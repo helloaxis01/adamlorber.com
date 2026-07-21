@@ -26,6 +26,7 @@
     --line:rgba(220,218,211,0.16);
     --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
     --maxw:1320px;
+    --gutter:clamp(20px,5vw,64px);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -35,13 +36,13 @@
   img{display:block; max-width:100%;}
   ::selection{background:var(--gold); color:var(--bg);}
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,64px);}
-  .bleed{width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter);}
+  .bleed{width:100%; margin-inline:calc(-1 * var(--gutter)); padding-inline:var(--gutter);}
 
   /* ---------- NAV ---------- */
   header{position:fixed; top:0; left:0; right:0; z-index:110; background-color:color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid transparent; transition:background-color .3s ease, border-color .3s ease;}
   header.scrolled{background-color:color-mix(in srgb, var(--bg) 97%, transparent); border-color:var(--line);}
-  nav{max-width:100%; margin:0 auto; padding:26px clamp(20px,5vw,48px); display:flex; align-items:center; justify-content:space-between;}
+  nav{max-width:100%; margin:0 auto; padding:26px var(--gutter); display:flex; align-items:center; justify-content:space-between;}
   .logo{font-family:var(--grotesk); font-weight:800; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink);}
   .burger{display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; z-index:110;}
   .nav-right{display:flex; align-items:center; gap:14px;}
@@ -102,8 +103,9 @@
   .hero-role::before{content:''; width:26px; height:1px; background:var(--ink-dim); flex-shrink:0;}
   .hero-role-sep{letter-spacing:0.16em;}
   .hero-role-loc{white-space:nowrap;}
+  .hero-name .flourish{text-wrap:nowrap;}
 
-  .stack-wrap{width:100vw; position:relative; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; margin-bottom:28px;}
+  .stack-wrap{width:100%; margin-bottom:28px;}
   .stack{position:relative; width:100%; aspect-ratio:16/9; touch-action:pan-y;}
   .stack-card{
     position:absolute; inset:0; border-radius:1px; overflow:hidden; cursor:grab;
@@ -121,7 +123,7 @@
 
   .stack-controls{
     display:flex; align-items:center; justify-content:center;
-    max-width:var(--maxw); margin:0 auto; padding:18px clamp(20px,5vw,64px) 0;
+    max-width:var(--maxw); margin:0 auto; padding:18px var(--gutter) 0;
   }
   .stack-nav{display:flex; align-items:center; gap:18px;}
   .stack-count{font-family:var(--mono); font-size:11px; color:var(--ink-dim); min-width:52px; text-align:center;}
@@ -199,7 +201,15 @@
     .contact-links a{transition:none;}
     .contact-links.is-lit a{transition-delay:0s;}
   }
-  .pointer-egg{ display:inline-flex; align-items:center; color:var(--ink); animation:pointerFlickerMark 2.2s steps(1) infinite; }
+  .pointer-egg{
+    display:inline-flex; align-items:center;
+    background:none; padding:0; margin:0; border:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .pointer-egg svg{
+    display:block; color:var(--ink);
+    animation:pointerFlickerMark 2.2s steps(1) infinite;
+  }
   .sitemap{display:grid; grid-template-columns:repeat(5,1fr); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
   .sitemap-col{display:flex; flex-direction:column; gap:11px;}
   .sitemap-head{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
@@ -207,7 +217,7 @@
   
   .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
   
-  footer.wrap{padding:48px clamp(20px,5vw,64px) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
+  footer.wrap{padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
 
   @media (max-width:900px){
     .hero{padding-top:120px; padding-bottom:0;}
@@ -224,7 +234,7 @@
     .hero-role-sep{display:none;}
     .hero-role-loc{
       flex-basis:100%;
-      padding-left:38px; /* align under title text, past the rule */
+      padding-left:38px;
     }
     .hero-name{
       font-size:clamp(24px,7vw,30px);
@@ -293,7 +303,6 @@
   .about-actions .resume:hover{
     border-color:var(--line);
   }
-  .pointer-egg{animation-name:pointerFlickerMark;}
   @keyframes pointerFlickerMark{
     0%, 100%{ color:var(--ink); }
     8%{ color:var(--chartreuse); }
@@ -304,9 +313,10 @@
     81%{ color:var(--chartreuse); }
     86%{ color:var(--ink); }
   }
-  html[data-theme="light"] .pointer-egg{ color:#1a1a19; }
-  .pointer-egg:hover{ color:var(--chartreuse); background:transparent; }
-  html[data-theme="light"] .flourish,
+  html[data-theme="light"] .pointer-egg svg{ color:#1a1a19; }
+  .pointer-egg:hover,
+  .pointer-egg:focus-visible{ background:none; }
+  .pointer-egg:hover svg{ color:var(--chartreuse); animation-play-state:paused; }
   html[data-theme="light"] .stat .num,
   html[data-theme="light"] .err-code,
   html[data-theme="light"] .tl-row.current .tl-year{
@@ -320,10 +330,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-  }
-  html[data-theme="light"] .flourish::before,
-  html[data-theme="light"] .flourish::after{
-    background:var(--chartreuse);
   }
 
   .theme-toggle{
@@ -408,7 +414,7 @@
           <div class="work-cap"><span class="name"><span class="num">01</span>Amazon Prime Video Sports</span><span class="cat">Entertainment</span></div>
         </a>
         <a href="project-television-academy.html" class="work-item reveal">
-          <div class="work-media" data-slug="televisionacademy"><img src="images/televisionacademy/thumbnail.jpg" alt="Television Academy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
+          <div class="work-media" data-slug="televisionacademy"><img src="images/televisionacademy/thumbnail.jpg?v=4" alt="Television Academy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
           <div class="work-cap"><span class="name"><span class="num">02</span>Television Academy</span><span class="cat">Brand</span></div>
         </a>
         <a href="project-fount.html" class="work-item reveal">
@@ -483,7 +489,7 @@
   <div class="wrap sitemap">
     <div class="sitemap-col">
       <span class="sitemap-head">Brand</span>
-      <a href="project-amazon-prime-video-sports.html">Amazon Prime Video Sports</a>
+      <a href="project-amazon-prime-video-sports.html">Amazon</a>
       <a href="project-television-academy.html">Television Academy</a>
       <a href="project-fount.html">Fount</a>
       <a href="project-inflection.html">Inflection</a>
