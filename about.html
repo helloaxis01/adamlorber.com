@@ -65,7 +65,7 @@
   .about-meta{display:flex; gap:64px; flex-wrap:wrap; margin-top:32px;}
   .about-meta div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
   .about-meta strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; max-width:420px; line-height:1.45;}
-  .about-actions{display:flex; flex-wrap:wrap; align-items:baseline; gap:28px; margin-top:28px;}
+  .about-actions{display:flex; flex-direction:row; flex-wrap:wrap; align-items:baseline; gap:28px; margin-top:28px;}
   .about-actions a{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);}
   
   .about-actions .resume{color:var(--ink); border-bottom:1px solid var(--line); padding-bottom:2px;}
@@ -87,6 +87,7 @@
     .tl-row{flex-direction:column; gap:4px;}
     .tl-row .tl-year{width:auto;}
     .about-meta{flex-direction:column; gap:22px;}
+    .about-actions{flex-direction:column; align-items:flex-start; gap:18px;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
   }
 
@@ -249,7 +250,7 @@
         </div>
         <div class="about-actions">
           <a class="resume" href="resume.pdf" target="_blank" rel="noopener">View Resume</a>
-          <a href="mailto:hello@adamlorber.com" class="email-copy" data-email="hello@adamlorber.com"><span class="email-copy-label">hello@adamlorber.com</span><span class="email-copy-status" aria-live="polite"></span></a>
+          <a href="mailto:hello@adamlorber.com" class="email-copy" data-email="hello@adamlorber.com" aria-label="Copy email hello@adamlorber.com"><span class="email-copy-label">Email</span><span class="email-copy-status" aria-live="polite"></span></a>
           <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
