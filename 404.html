@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>404 · Adam Lorber</title>
+<meta name="description" content="This page isn’t in the portfolio.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>!function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}}()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
+    --line:rgba(220,218,211,0.16);
+    --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
+    --maxw:1320px;
+  }
+  html[data-theme="light"]{
+    --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19; --chartreuse:#ebff12;
+    --line:rgba(26,26,25,0.14);
+  }
+
+  /* Chartreuse highlight: black type on mark; pad ~1 space L/R without hover shift */
+  .sitemap-col a,
+  .sitemap-col a.sitemap-caps,
+  .next-title,
+  .study h3,
+  .study span,
+  .contact-links a,
+  .about-actions a,
+  .err-cta{
+    width:fit-content;
+    max-width:100%;
+    padding-inline:0.35em;
+    margin-inline:-0.35em;
+  }
+  .sitemap-col a:hover,
+  .sitemap-col a.sitemap-caps:hover,
+  .next-title:hover,
+  .study:hover h3,
+  .study:hover span,
+  .contact-links a:hover,
+  .contact-links.is-lit a,
+  .about-actions a:hover,
+  .err-cta:hover,
+  .theme-toggle:hover{
+    color:var(--chartreuse);
+    background:transparent;
+  }
+  html[data-theme="light"] .sitemap-col a:hover,
+  html[data-theme="light"] .sitemap-col a.sitemap-caps:hover,
+  html[data-theme="light"] .next-title:hover,
+  html[data-theme="light"] .study:hover h3,
+  html[data-theme="light"] .study:hover span,
+  html[data-theme="light"] .contact-links a:hover,
+  html[data-theme="light"] .contact-links.is-lit a,
+  html[data-theme="light"] .about-actions a:hover,
+  html[data-theme="light"] .err-cta:hover,
+  html[data-theme="light"] .theme-toggle:hover{
+    color:#1a1a19;
+    background:var(--chartreuse);
+  }
+  .theme-toggle:hover,
+  .err-cta:hover,
+  .about-actions .resume:hover{
+    border-color:var(--line);
+  }
+  .pointer-egg{animation-name:pointerFlickerMark;}
+  @keyframes pointerFlickerMark{
+    0%, 100%{ color:var(--ink); }
+    8%{ color:var(--chartreuse); }
+    14%{ color:var(--ink); }
+    46%{ color:var(--ink); }
+    52%{ color:var(--chartreuse); }
+    58%{ color:var(--ink); }
+    81%{ color:var(--chartreuse); }
+    86%{ color:var(--ink); }
+  }
+  html[data-theme="light"] .pointer-egg{ color:#1a1a19; }
+  .pointer-egg:hover{ color:var(--chartreuse); background:transparent; }
+  html[data-theme="light"] .flourish,
+  html[data-theme="light"] .stat .num,
+  html[data-theme="light"] .err-code,
+  html[data-theme="light"] .tl-row.current .tl-year{
+    color:#1a1a19;
+    background:var(--chartreuse);
+    padding-inline:0.35em;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
+  html[data-theme="light"] .stat .num{
+    display:inline-block;
+    width:fit-content;
+    max-width:100%;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.001ms !important; transition-duration:.001ms !important;} }
+  body{background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400; overflow-x:hidden; min-height:100vh;}
+  a{color:inherit; text-decoration:none;}
+  ::selection{background:var(--gold); color:var(--bg);}
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,64px);}
+
+  header{position:fixed; top:0; left:0; right:0; z-index:110; background-color:color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter:blur(8px);}
+  nav{max-width:100%; margin:0 auto; padding:26px clamp(20px,5vw,48px); display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:var(--grotesk); font-weight:800; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink);}
+  .nav-right{display:flex; align-items:center; gap:14px;}
+  .theme-toggle{
+    background:none; border:1px solid var(--line); color:var(--ink-dim);
+    font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    padding:7px 10px; cursor:pointer; border-radius:1px;
+    min-width:5.75em; text-align:center;
+    transition:color .15s ease, background-color .15s ease;
+  }
+  .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
+  
+  .burger{display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; z-index:110;}
+  .burger span{width:22px; height:2px; background:var(--ink); display:block; transition:transform .25s ease, opacity .25s ease;}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .menu{position:fixed; inset:0; background:var(--bg); z-index:105; display:flex; flex-direction:column; justify-content:center; gap:22px; padding:0 32px; transform:translateY(-100%); transition:transform .45s cubic-bezier(.65,0,.35,1);}
+  .menu.open{transform:translateY(0);}
+  .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
+  .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
+
+  .err{
+    min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center; padding:140px 0 100px;
+  }
+  .err-label{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-dim); display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:28px;
+  }
+  .err-label::before, .err-label::after{content:''; width:26px; height:1px; background:var(--ink-dim);}
+  .err-code{
+    font-family:var(--serif); font-weight:500; font-style:italic;
+    font-size:clamp(192px,44vw,440px); line-height:0.9; letter-spacing:-0.02em;
+    color:var(--chartreuse); position:relative; display:inline-block; cursor:default;
+    margin-bottom:28px;
+  }
+  .err-code::before, .err-code::after{
+    content:attr(data-text);
+    position:absolute; left:0; top:0; width:100%; height:100%;
+    opacity:0; pointer-events:none; font-style:italic;
+  }
+  .err-code::before{ color:#00e5ff; }
+  .err-code::after{ color:#ff2fd0; }
+  .err-code.is-glitching{ animation:glitchMain .45s steps(2,end); }
+  .err-code.is-glitching::before{ animation:glitchLayer1 .45s steps(2,end); }
+  .err-code.is-glitching::after{ animation:glitchLayer2 .45s steps(2,end); }
+  .err-code:hover{ animation:glitchMain .4s steps(2,end); }
+  .err-code:hover::before{ animation:glitchLayer1 .4s steps(2,end); }
+  .err-code:hover::after{ animation:glitchLayer2 .4s steps(2,end); }
+  @keyframes glitchMain{
+    0%{ transform:translate(0,0); }
+    15%{ transform:translate(-3px,1px); }
+    30%{ transform:translate(3px,-1px); }
+    45%{ transform:translate(-2px,-2px); }
+    60%{ transform:translate(2px,2px); }
+    75%{ transform:translate(-3px,0); }
+    100%{ transform:translate(0,0); }
+  }
+  @keyframes glitchLayer1{
+    0%{ opacity:1; clip-path:inset(0 0 70% 0); transform:translate(-5px,-2px); }
+    25%{ opacity:1; clip-path:inset(45% 0 15% 0); transform:translate(5px,1px); }
+    50%{ opacity:1; clip-path:inset(10% 0 60% 0); transform:translate(-4px,2px); }
+    75%{ opacity:1; clip-path:inset(60% 0 5% 0); transform:translate(4px,-1px); }
+    100%{ opacity:0; clip-path:inset(0 0 100% 0); transform:translate(0,0); }
+  }
+  @keyframes glitchLayer2{
+    0%{ opacity:1; clip-path:inset(65% 0 0 0); transform:translate(5px,2px); }
+    25%{ opacity:1; clip-path:inset(15% 0 45% 0); transform:translate(-5px,-1px); }
+    50%{ opacity:1; clip-path:inset(70% 0 8% 0); transform:translate(4px,-2px); }
+    75%{ opacity:1; clip-path:inset(5% 0 65% 0); transform:translate(-4px,1px); }
+    100%{ opacity:0; clip-path:inset(100% 0 0 0); transform:translate(0,0); }
+  }
+  .err-copy{
+    font-family:var(--grotesk); font-weight:400; font-size:clamp(16px,2vw,19px);
+    color:var(--ink-dim); max-width:420px; line-height:1.6; margin:0 auto 40px;
+  }
+  .err-cta{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-dim); border-bottom:1px solid var(--line); padding-bottom:3px;
+  }
+  
+
+  footer.wrap{padding:48px clamp(20px,5vw,64px) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
+  .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="index.html" class="logo">Adam Lorber</a>
+    <div class="nav-right">
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch to light theme" data-theme="dark"><span class="theme-toggle-label">Light</span></button>
+      <button class="burger" aria-label="Open menu" id="burgerBtn"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<div class="menu" id="menu">
+  <span class="m-eyebrow">Menu</span>
+  <a href="index.html">Home</a>
+  <a href="index.html#work">Work</a>
+  <a href="index.html#studies">Studies</a>
+  <a href="about.html">About</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<main class="wrap err" id="top">
+  <p class="err-label">00 · Missing</p>
+  <h1 class="err-code" data-text="404" id="errCode">404</h1>
+  <p class="err-copy">This page isn’t in the portfolio.</p>
+  <a class="err-cta" href="index.html">Back to work</a>
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
+  <a href="index.html">Home ↑</a>
+</footer>
+
+<script>
+
+  const code = document.getElementById('errCode');
+  function pulseGlitch(){
+    code.classList.remove('is-glitching');
+    void code.offsetWidth;
+    code.classList.add('is-glitching');
+  }
+  pulseGlitch();
+  setInterval(pulseGlitch, 4200);
+</script>
+<script src="site.js"></script>
+
+</body>
+</html>

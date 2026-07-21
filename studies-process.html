@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Process · Adam Lorber</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>!function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}}()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
+    --line:rgba(220,218,211,0.16); --next-bg:#141413;
+    --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
+    --maxw:1320px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400; overflow-x:hidden;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  ::selection{background:var(--gold); color:var(--bg);}
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,64px);}
+
+  header{position:fixed; top:0; left:0; right:0; z-index:110; background-color:color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid transparent; transition:background-color .3s ease, border-color .3s ease;}
+  header.scrolled{background-color:color-mix(in srgb, var(--bg) 97%, transparent); border-color:var(--line);}
+  nav{max-width:100%; margin:0 auto; padding:26px clamp(20px,5vw,48px); display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:var(--grotesk); font-weight:800; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink);}
+  .burger{display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; z-index:110;}
+  .nav-right{display:flex; align-items:center; gap:14px;}
+  .burger span{width:22px; height:2px; background:var(--ink); display:block; transition:transform .25s ease, opacity .25s ease;}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .menu{position:fixed; inset:0; background:var(--bg); z-index:105; display:flex; flex-direction:column; justify-content:center; gap:22px; padding:0 32px; transform:translateY(-100%); transition:transform .45s cubic-bezier(.65,0,.35,1);}
+  .menu.open{transform:translateY(0);}
+  .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
+  .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
+
+  .p-hero{padding-top:150px; padding-bottom:48px;}
+  .p-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); display:flex; align-items:center; gap:12px; margin-bottom:20px;}
+  .p-eyebrow::before{content:''; width:26px; height:1px; background:var(--ink-dim);}
+  .p-title{font-family:var(--serif); font-weight:500; font-size:clamp(40px,7.6vw,104px); line-height:0.98;}
+  .p-sub{font-family:var(--grotesk); font-weight:400; font-size:clamp(15px,1.6vw,17px); color:var(--ink-dim); max-width:720px; margin-top:22px; line-height:1.6;}
+
+  .meta-row{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:56px; border-top:1px solid var(--line); padding:24px 0 56px;}
+  .meta-row div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
+  .meta-row strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; line-height:1.4;}
+
+  .study-section{padding-top:72px; padding-bottom:24px;}
+  .study-section .sec-label{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink); margin-bottom:14px;}
+  .study-section .sec-body{font-size:15px; line-height:1.75; color:var(--ink-dim); max-width:720px; margin-bottom:32px;}
+  .study-section .sec-body strong{color:var(--ink); font-weight:600;}
+
+  .logo-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,2vw,24px); padding-bottom:96px;}
+  .logo-grid .cell{aspect-ratio:1; overflow:hidden; background:#141413;}
+  .logo-grid .cell img{width:100%; height:100%; object-fit:cover;}
+
+  .proc-gallery{display:grid; grid-template-columns:1fr 1fr; gap:clamp(12px,2vw,20px); margin-bottom:16px;}
+  .proc-gallery .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:#141413;}
+  .proc-gallery .p-image.full{grid-column:1 / -1; aspect-ratio:16/9;}
+  .proc-gallery .p-image.square{aspect-ratio:1;}
+  .proc-gallery img{width:100%; height:100%; object-fit:cover;}
+
+  .next{background:var(--next-bg); padding:70px 0; display:flex; align-items:center; margin-top:48px;}
+  .next .wrap{width:100%;}
+  .next-label{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:14px;}
+  .next-title{font-family:var(--serif); font-weight:500; font-size:clamp(32px,6vw,64px); display:inline-flex; align-items:center; gap:18px;}
+  
+
+  .sitemap{display:grid; grid-template-columns:repeat(5,1fr); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
+  .sitemap-col{display:flex; flex-direction:column; gap:11px;}
+  .sitemap-head{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
+  .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em;}
+  
+  .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
+  
+  footer.wrap{padding:48px clamp(20px,5vw,64px) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
+
+  @media (max-width:900px){
+    .p-hero{padding-top:120px;}
+    .meta-row{grid-template-columns:repeat(2,1fr);}
+    .logo-grid{grid-template-columns:repeat(2,1fr);}
+    .proc-gallery{grid-template-columns:1fr;}
+    .sitemap{grid-template-columns:1fr; gap:32px;}
+  }
+
+  html[data-theme="light"]{
+    --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19; --chartreuse:#ebff12;
+    --line:rgba(26,26,25,0.14); --next-bg:#e5e4df;
+  }
+
+  /* Chartreuse highlight: black type on mark; pad ~1 space L/R without hover shift */
+  .sitemap-col a,
+  .sitemap-col a.sitemap-caps,
+  .next-title,
+  .study h3,
+  .study span,
+  .contact-links a,
+  .about-actions a,
+  .err-cta{
+    width:fit-content;
+    max-width:100%;
+    padding-inline:0.35em;
+    margin-inline:-0.35em;
+  }
+  .sitemap-col a:hover,
+  .sitemap-col a.sitemap-caps:hover,
+  .next-title:hover,
+  .study:hover h3,
+  .study:hover span,
+  .contact-links a:hover,
+  .contact-links.is-lit a,
+  .about-actions a:hover,
+  .err-cta:hover,
+  .theme-toggle:hover{
+    color:var(--chartreuse);
+    background:transparent;
+  }
+  html[data-theme="light"] .sitemap-col a:hover,
+  html[data-theme="light"] .sitemap-col a.sitemap-caps:hover,
+  html[data-theme="light"] .next-title:hover,
+  html[data-theme="light"] .study:hover h3,
+  html[data-theme="light"] .study:hover span,
+  html[data-theme="light"] .contact-links a:hover,
+  html[data-theme="light"] .contact-links.is-lit a,
+  html[data-theme="light"] .about-actions a:hover,
+  html[data-theme="light"] .err-cta:hover,
+  html[data-theme="light"] .theme-toggle:hover{
+    color:#1a1a19;
+    background:var(--chartreuse);
+  }
+  .theme-toggle:hover,
+  .err-cta:hover,
+  .about-actions .resume:hover{
+    border-color:var(--line);
+  }
+  .pointer-egg{animation-name:pointerFlickerMark;}
+  @keyframes pointerFlickerMark{
+    0%, 100%{ color:var(--ink); }
+    8%{ color:var(--chartreuse); }
+    14%{ color:var(--ink); }
+    46%{ color:var(--ink); }
+    52%{ color:var(--chartreuse); }
+    58%{ color:var(--ink); }
+    81%{ color:var(--chartreuse); }
+    86%{ color:var(--ink); }
+  }
+  html[data-theme="light"] .pointer-egg{ color:#1a1a19; }
+  .pointer-egg:hover{ color:var(--chartreuse); background:transparent; }
+  html[data-theme="light"] .flourish,
+  html[data-theme="light"] .stat .num,
+  html[data-theme="light"] .err-code,
+  html[data-theme="light"] .tl-row.current .tl-year{
+    color:#1a1a19;
+    background:var(--chartreuse);
+    padding-inline:0.35em;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
+  html[data-theme="light"] .stat .num{
+    display:inline-block;
+    width:fit-content;
+    max-width:100%;
+  }
+
+  .theme-toggle{
+    background:none; border:1px solid var(--line); color:var(--ink-dim);
+    font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    padding:7px 10px; cursor:pointer; border-radius:1px;
+    min-width:5.75em; text-align:center;
+    transition:color .15s ease, background-color .15s ease;
+  }
+  .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
+  
+  .email-copy{position:relative; display:inline-flex; align-items:baseline; gap:10px;}
+  .email-copy-status{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    color:#faf9f6; opacity:0; transform:translateY(2px);
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  html[data-theme="light"] .email-copy-status{color:var(--ink);}
+  .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(0);}
+  .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
+</style>
+</head>
+<body>
+<header id="siteHeader">
+  <nav>
+    <a href="index.html" class="logo">Adam Lorber</a>
+    <div class="nav-right">
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch to light theme" data-theme="dark"><span class="theme-toggle-label">Light</span></button>
+      <button class="burger" aria-label="Open menu" id="burgerBtn"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<div class="menu" id="menu">
+  <span class="m-eyebrow">Menu</span>
+  <a href="index.html">Home</a>
+  <a href="index.html#work">Work</a>
+  <a href="index.html#studies">Studies</a>
+  <a href="about.html">About</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+<main id="top">
+  <div class="wrap p-hero">
+    <p class="p-eyebrow">Study</p>
+    <h1 class="p-title">Process</h1>
+    <p class="p-sub">A curated collection of early concepts, alternative directions, and archived favorites that still deserve the spotlight, from projects that shipped to ideas that live on as process.</p>
+    <div class="meta-row">
+      <div>Scope<strong>Brand Identity, Logo, Collateral</strong></div>
+      <div>Tools<strong>Illustrator, Photoshop, Figma</strong></div>
+    </div>
+  </div>
+  <section class="wrap study-section">
+    <div class="sec-label">Nice Supps</div>
+    <p class="sec-body">Identity and label design for Nice Supps, a wellness brand built on honesty and purity. A clean visual system using transparent materials and friendly naming conventions like Mighty Multi and Probiotic Pal.</p>
+    <div class="proc-gallery">
+      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_MightyMulti.jpg" alt="Nice Supps"></div>
+      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_MorningMix.jpg" alt="Nice Supps"></div>
+      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_NighttimeNutrients.jpg" alt="Nice Supps"></div>
+      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_ProbioticPal.jpg" alt="Nice Supps"></div>
+    </div>
+  </section>
+  <section class="wrap study-section">
+    <div class="sec-label">Great Greek</div>
+    <p class="sec-body">Restaurant branding exploring a warm, contemporary Mediterranean identity.</p>
+    <div class="proc-gallery">
+      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-02.jpg" alt="Great Greek"></div>
+      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-07.jpg" alt="Great Greek"></div>
+      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-08.jpg" alt="Great Greek"></div>
+      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-09.jpg" alt="Great Greek"></div>
+      <div class="p-image full"><img src="images/studies-process/GreatGreek_Portfolio-10.jpg" alt="Great Greek"></div>
+    </div>
+  </section>
+  <section class="wrap study-section">
+    <div class="sec-label">Red Shoes Pictures</div>
+    <p class="sec-body">Branding for Red Shoes Pictures. The final logo can now be seen in the end credits of Netflix’s hit show Pieces of Her.</p>
+    <div class="proc-gallery">
+      <div class="p-image"><img src="images/studies-process/RedShoes_RedPink_4K.jpg" alt="Red Shoes Pictures"></div>
+      <div class="p-image"><img src="images/studies-process/RedShoes_RedPink_4K_Alt.jpg" alt="Red Shoes Pictures"></div>
+      <div class="p-image"><img src="images/studies-process/RedShoes_RedPink_4K_Icons.jpg" alt="Red Shoes Pictures"></div>
+      <div class="p-image"><img src="images/studies-process/RedShoes_BrandColors.jpg" alt="Red Shoes Pictures brand colors"></div>
+      <div class="p-image full"><img src="images/studies-process/RSP_NetflixScroll-01.jpg" alt="Red Shoes Pictures"></div>
+    </div>
+  </section>
+  <section class="wrap study-section">
+    <div class="sec-label">Existent Films</div>
+    <p class="sec-body">Logo concept for Existent Films.</p>
+    <div class="proc-gallery">
+      <div class="p-image full"><img src="images/studies-process/Existent_Theater_v2a.jpg" alt="Existent Films"></div>
+    </div>
+  </section>
+  <section class="wrap study-section">
+    <div class="sec-label">Lalo</div>
+    <p class="sec-body">Business card concepts designed for meetlalo.com.</p>
+    <div class="proc-gallery">
+      <div class="p-image"><img src="images/studies-process/Lalo_BC_4.jpg" alt="Lalo"></div>
+      <div class="p-image"><img src="images/studies-process/Lalo_BC_5.jpg" alt="Lalo"></div>
+      <div class="p-image"><img src="images/studies-process/Lalo_4.jpg" alt="Lalo"></div>
+      <div class="p-image"><img src="images/studies-process/Lalo_5.jpg" alt="Lalo"></div>
+    </div>
+  </section>
+  <section class="wrap study-section">
+    <div class="sec-label">Victory Extracts</div>
+    <p class="sec-body">Brand identity and packaging for Victory Extracts, a premium line of organic Delta 8 gummies and beverages tailored for a youthful, wellness-focused audience.</p>
+    <div class="proc-gallery">
+      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-03.jpg" alt="Victory Extracts"></div>
+      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-04.jpg" alt="Victory Extracts"></div>
+      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-05.jpg" alt="Victory Extracts"></div>
+      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-06.jpg" alt="Victory Extracts"></div>
+      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-07.jpg" alt="Victory Extracts"></div>
+      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-08.jpg" alt="Victory Extracts"></div>
+      <div class="p-image full"><img src="images/studies-process/Victory_Portfolio-09.jpg" alt="Victory Extracts"></div>
+    </div>
+  </section>
+  <section class="wrap study-section">
+    <div class="sec-label">Eric Broad Real Estate</div>
+    <p class="sec-body">Brand identity centered on a clean, quick-to-read visual language. Deep ocean and crisp light blues reflect the coastal energy of the Miami market.</p>
+    <div class="proc-gallery">
+      <div class="p-image"><img src="images/studies-process/EB_Comps.jpg" alt="Eric Broad Real Estate"></div>
+      <div class="p-image"><img src="images/studies-process/EB_Hat.jpg" alt="Eric Broad Real Estate"></div>
+      <div class="p-image"><img src="images/studies-process/EB_House.jpg" alt="Eric Broad Real Estate"></div>
+      <div class="p-image"><img src="images/studies-process/EB_Keys.jpg" alt="Eric Broad Real Estate"></div>
+    </div>
+  </section>
+  <section class="wrap study-section">
+    <div class="sec-label">The Nautilus Hotel</div>
+    <p class="sec-body">Conceptual branding for The Nautilus Hotel in Miami Beach. A modern art deco system spanning a shell-inspired monogram, environmental signage, and guest collateral, honoring the hotel’s architectural roots through a refined coastal lens.</p>
+    <div class="proc-gallery">
+      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-01.jpg" alt="The Nautilus Hotel"></div>
+      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-02.jpg" alt="The Nautilus Hotel"></div>
+      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-03.jpg" alt="The Nautilus Hotel"></div>
+      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-04.jpg" alt="The Nautilus Hotel"></div>
+      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-05.jpg" alt="The Nautilus Hotel"></div>
+      <div class="p-image"><img src="images/studies-process/Nautilus_BrandColors.jpg" alt="The Nautilus Hotel brand colors"></div>
+      <div class="p-image full"><img src="images/studies-process/Nautilus_Portfolio-06.jpg" alt="The Nautilus Hotel"></div>
+      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-07.jpg" alt="The Nautilus Hotel"></div>
+      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-08.jpg" alt="The Nautilus Hotel"></div>
+    </div>
+  </section>
+
+  <div class="next">
+    <div class="wrap">
+      <div class="next-label">Next study</div>
+      <a href="studies-logos-marks.html" class="next-title">Logos &amp; Marks</a>
+    </div>
+  </div>
+  <div class="wrap sitemap">
+    <div class="sitemap-col">
+      <span class="sitemap-head">Brand</span>
+      <a href="project-amazon-prime-video-sports.html">Amazon Prime Video Sports</a>
+      <a href="project-television-academy.html">Television Academy</a>
+      <a href="project-fount.html">Fount</a>
+      <a href="project-inflection.html">Inflection</a>
+    </div>
+    <div class="sitemap-col">
+      <span class="sitemap-head">CPG</span>
+      <a href="project-dream-clean.html">Dream Clean</a>
+      <a href="project-lemon-perfect.html">Lemon Perfect</a>
+      <a href="project-mantra.html">Mantra</a>
+    </div>
+    <div class="sitemap-col">
+      <span class="sitemap-head">Hospitality</span>
+      <a href="project-chick-fil-a.html">Chick-fil-A</a>
+      <a href="project-mootz-tom.html">Mootz &amp; Tom</a>
+      <a href="project-joes-stone-crab.html">Joe's Stone Crab</a>
+    </div>
+    <div class="sitemap-col">
+      <span class="sitemap-head">Studies</span>
+      <a href="studies-logos-marks.html">Logos &amp; Marks</a>
+      <a href="studies-process.html">Process</a>
+    </div>
+    <div class="sitemap-col">
+      <a href="about.html" class="sitemap-caps">About</a>
+      <a href="index.html#contact" class="sitemap-caps">Contact</a>
+    </div>
+  </div>
+
+  <footer class="wrap">
+    <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+</main>
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 10));
+</script>
+<script src="site.js"></script>
+</body>
+</html>

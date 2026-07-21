@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Television Academy · Adam Lorber</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>!function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}}()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
+    --line:rgba(220,218,211,0.16); --next-bg:#141413;
+    --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
+    --maxw:1320px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400; overflow-x:hidden;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  ::selection{background:var(--gold); color:var(--bg);}
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(20px,5vw,64px);}
+
+  header{position:fixed; top:0; left:0; right:0; z-index:110; background-color:color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid transparent; transition:background-color .3s ease, border-color .3s ease;}
+  header.scrolled{background-color:color-mix(in srgb, var(--bg) 97%, transparent); border-color:var(--line);}
+  nav{max-width:100%; margin:0 auto; padding:26px clamp(20px,5vw,48px); display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:var(--grotesk); font-weight:800; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink);}
+  .burger{display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; z-index:110;}
+  .nav-right{display:flex; align-items:center; gap:14px;}
+  .burger span{width:22px; height:2px; background:var(--ink); display:block; transition:transform .25s ease, opacity .25s ease;}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .menu{position:fixed; inset:0; background:var(--bg); z-index:105; display:flex; flex-direction:column; justify-content:center; gap:22px; padding:0 32px; transform:translateY(-100%); transition:transform .45s cubic-bezier(.65,0,.35,1);}
+  .menu.open{transform:translateY(0);}
+  .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
+  .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
+
+  .p-hero{padding-top:150px;}
+  .p-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); display:flex; align-items:center; gap:12px; margin-bottom:20px;}
+  .p-eyebrow::before{content:''; width:26px; height:1px; background:var(--ink-dim);}
+  .p-title{font-family:var(--serif); font-weight:500; font-size:clamp(40px,7.6vw,104px); line-height:0.98;}
+  .p-sub{font-family:var(--grotesk); font-weight:400; font-size:clamp(15px,1.6vw,17px); color:var(--ink-dim); max-width:720px; margin-top:22px; line-height:1.6;}
+
+  .meta-row{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:56px; border-top:1px solid var(--line); padding:24px 0 48px;}
+  .meta-row div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
+  .meta-row strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; line-height:1.4;}
+
+  .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;}
+  .p-image img{width:100%; height:100%; object-fit:cover;}
+
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
+  .stat{background:var(--bg); padding:36px clamp(20px,5vw,64px);}
+  .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(30px,4vw,46px); color:var(--chartreuse);}
+  .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px;}
+
+  section{padding-top:96px; padding-bottom:130px;}
+  .section-inner{display:grid; grid-template-columns:180px 1fr; gap:64px;}
+  .section-label{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink); padding-top:4px;}
+  .section-body p{font-size:15px; line-height:1.75; color:var(--ink-dim); max-width:640px; margin-bottom:16px;}
+  .section-body p:last-child{margin-bottom:0;}
+  .section-body strong{color:var(--ink); font-weight:600;}
+
+  .gallery-cap{font-family:var(--mono); font-size:11px; letter-spacing:0.06em; color:var(--ink-dim); padding-top:18px; padding-bottom:56px; max-width:640px; line-height:1.7;}
+  .gallery{display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:8px; margin-bottom:56px;}
+  .gallery.full{margin-bottom:0;}
+  .gallery .p-image{aspect-ratio:4/3;}
+  .gallery.full .p-image{aspect-ratio:16/9; grid-column:1 / -1;}
+
+  .next{background:var(--next-bg); padding:70px 0; display:flex; align-items:center;}
+  .next .wrap{width:100%;}
+  .section-end-rule{border-top:1px solid var(--line); margin:0 0 64px;}
+  .next-label{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:14px;}
+  .next-title{font-family:var(--serif); font-weight:500; font-size:clamp(32px,6vw,64px); display:inline-flex; align-items:center; gap:18px;}
+  
+
+  .sitemap{display:grid; grid-template-columns:repeat(5,1fr); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
+  .sitemap-col{display:flex; flex-direction:column; gap:11px;}
+  .sitemap-head{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
+  .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em;}
+  
+  .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
+  
+  .case-section{padding-top:88px; padding-bottom:88px;}
+  .case-header{margin-bottom:32px;}
+  .case-blocks{display:flex; flex-direction:column; gap:36px;}
+  .case-block.block-text p{font-size:15px; line-height:1.55; color:var(--ink-dim); max-width:920px;}
+  .case-block.block-image + .case-block,
+  .case-block.block-carousel + .case-block,
+  .case-block.block-gif + .case-block,
+  .case-block.block-gif-centered + .case-block{
+    border-top:1px solid var(--line); padding-top:48px;
+  }
+  .case-block.block-image + .case-block.block-text p,
+  .case-block.block-carousel + .case-block.block-text p,
+  .case-block.block-gif + .case-block.block-text p,
+  .case-block.block-gif-centered + .case-block.block-text p{
+    font-size:13px;
+  }
+  .case-block.block-text strong{color:var(--ink); font-weight:600;}
+  .case-block .p-image{aspect-ratio:16/9;}
+  .case-block.block-gif{max-width:520px;}
+  .case-block.block-gif .p-image{aspect-ratio:auto;}
+  .case-block.block-gif .p-image img{width:100%; height:auto; object-fit:contain;}
+  .case-block.block-gif-centered{margin-left:auto; margin-right:auto;}
+
+  .carousel-viewport{position:relative; width:100%; aspect-ratio:16/9; background:#000; overflow:hidden; border-radius:2px; touch-action:pan-y; cursor:grab;}
+  .carousel-viewport:active{cursor:grabbing;}
+  .carousel-track{display:flex; height:100%; transition:transform 0.45s cubic-bezier(0.65,0,0.35,1);}
+  .carousel-slide{flex:0 0 100%; height:100%; display:flex; align-items:center; justify-content:center;}
+  .carousel-slide img{max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; -webkit-user-drag:none; user-select:none; pointer-events:none;}
+  .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:3;
+    width:28px; height:28px; border-radius:50%; border:1px solid rgba(220,218,211,0.22);
+    background:rgba(20,20,19,0.45); color:var(--ink); font-size:13px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);
+    padding:0;
+  }
+  .carousel-arrow:hover{border-color:var(--gold); color:var(--gold); background:rgba(20,20,19,0.65);}
+  .carousel-prev{left:10px;}
+  .carousel-next{right:10px;}
+  .carousel-counter{
+    position:absolute; bottom:10px; right:10px; z-index:3; font-family:var(--mono); font-size:10px;
+    letter-spacing:0.06em; color:var(--ink); background:rgba(20,20,19,0.45); padding:3px 7px; border-radius:2px; backdrop-filter:blur(4px);
+  }
+  html[data-theme="light"] .carousel-arrow{
+    color:#faf9f6;
+    border-color:rgba(250,249,246,0.35);
+    background:rgba(20,20,19,0.55);
+  }
+  html[data-theme="light"] .carousel-arrow:hover{
+    color:#faf9f6;
+    border-color:rgba(250,249,246,0.7);
+    background:rgba(20,20,19,0.75);
+  }
+  html[data-theme="light"] .carousel-counter{
+    color:#faf9f6;
+    background:rgba(20,20,19,0.55);
+  }
+
+  .case-block video{width:100%; height:100%; object-fit:cover; display:block; background:#000;}
+  .case-block .block-cap{font-family:var(--mono); font-size:11px; color:var(--ink-dim); margin-top:14px; max-width:820px; line-height:1.5;}
+  footer.wrap{padding:48px clamp(20px,5vw,64px) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
+
+  @media (max-width:900px){
+    .sitemap{grid-template-columns:1fr; gap:32px;}
+    .meta-row{grid-template-columns:repeat(2,1fr); gap:24px 20px;}
+    .section-inner{grid-template-columns:1fr; gap:14px;}
+    .stats{grid-template-columns:1fr;}
+    .gallery{grid-template-columns:1fr;}
+    .gallery .p-image{aspect-ratio:16/10;}
+    section{padding-top:64px; padding-bottom:90px;}
+    .p-hero{padding-top:120px;}
+  }
+
+  html[data-theme="light"]{
+    --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19; --chartreuse:#ebff12;
+    --line:rgba(26,26,25,0.14); --next-bg:#e5e4df;
+  }
+
+  /* Chartreuse highlight: black type on mark; pad ~1 space L/R without hover shift */
+  .sitemap-col a,
+  .sitemap-col a.sitemap-caps,
+  .next-title,
+  .study h3,
+  .study span,
+  .contact-links a,
+  .about-actions a,
+  .err-cta{
+    width:fit-content;
+    max-width:100%;
+    padding-inline:0.35em;
+    margin-inline:-0.35em;
+  }
+  .sitemap-col a:hover,
+  .sitemap-col a.sitemap-caps:hover,
+  .next-title:hover,
+  .study:hover h3,
+  .study:hover span,
+  .contact-links a:hover,
+  .contact-links.is-lit a,
+  .about-actions a:hover,
+  .err-cta:hover,
+  .theme-toggle:hover{
+    color:var(--chartreuse);
+    background:transparent;
+  }
+  html[data-theme="light"] .sitemap-col a:hover,
+  html[data-theme="light"] .sitemap-col a.sitemap-caps:hover,
+  html[data-theme="light"] .next-title:hover,
+  html[data-theme="light"] .study:hover h3,
+  html[data-theme="light"] .study:hover span,
+  html[data-theme="light"] .contact-links a:hover,
+  html[data-theme="light"] .contact-links.is-lit a,
+  html[data-theme="light"] .about-actions a:hover,
+  html[data-theme="light"] .err-cta:hover,
+  html[data-theme="light"] .theme-toggle:hover{
+    color:#1a1a19;
+    background:var(--chartreuse);
+  }
+  .theme-toggle:hover,
+  .err-cta:hover,
+  .about-actions .resume:hover{
+    border-color:var(--line);
+  }
+  .pointer-egg{animation-name:pointerFlickerMark;}
+  @keyframes pointerFlickerMark{
+    0%, 100%{ color:var(--ink); }
+    8%{ color:var(--chartreuse); }
+    14%{ color:var(--ink); }
+    46%{ color:var(--ink); }
+    52%{ color:var(--chartreuse); }
+    58%{ color:var(--ink); }
+    81%{ color:var(--chartreuse); }
+    86%{ color:var(--ink); }
+  }
+  html[data-theme="light"] .pointer-egg{ color:#1a1a19; }
+  .pointer-egg:hover{ color:var(--chartreuse); background:transparent; }
+  html[data-theme="light"] .flourish,
+  html[data-theme="light"] .stat .num,
+  html[data-theme="light"] .err-code,
+  html[data-theme="light"] .tl-row.current .tl-year{
+    color:#1a1a19;
+    background:var(--chartreuse);
+    padding-inline:0.35em;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
+  html[data-theme="light"] .stat .num{
+    display:inline-block;
+    width:fit-content;
+    max-width:100%;
+  }
+
+  .theme-toggle{
+    background:none; border:1px solid var(--line); color:var(--ink-dim);
+    font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    padding:7px 10px; cursor:pointer; border-radius:1px;
+    min-width:5.75em; text-align:center;
+    transition:color .15s ease, background-color .15s ease;
+  }
+  .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
+  
+  .email-copy{position:relative; display:inline-flex; align-items:baseline; gap:10px;}
+  .email-copy-status{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    color:#faf9f6; opacity:0; transform:translateY(2px);
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  html[data-theme="light"] .email-copy-status{color:var(--ink);}
+  .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(0);}
+  .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav>
+    <a href="index.html" class="logo">Adam Lorber</a>
+    <div class="nav-right">
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch to light theme" data-theme="dark"><span class="theme-toggle-label">Light</span></button>
+      <button class="burger" aria-label="Open menu" id="burgerBtn"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<div class="menu" id="menu">
+  <span class="m-eyebrow">Menu</span>
+  <a href="index.html">Home</a>
+  <a href="index.html#work">Work</a>
+  <a href="index.html#studies">Studies</a>
+  <a href="about.html">About</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<main>
+  <div class="wrap p-hero">
+    <p class="p-eyebrow">Case study · Brand</p>
+    <h1 class="p-title">Television Academy</h1>
+    <p class="p-sub">Sixteen years directing the visual identity of the Emmy Awards. Evolved a legacy institution's brand for a younger, digital-first audience without losing the gold standard the industry expects.</p>
+
+    <div class="meta-row">
+      <div>Role<strong>Art Director</strong></div>
+      <div>Scope<strong>Identity, event art, campaigns</strong></div>
+      <div>Milestone<strong>Helped bring a mom and pop organization into the 21st Century</strong></div>
+      <div>Reach<strong>Millions of viewers annually</strong></div>
+    </div>
+  </div>
+
+  <div class="p-image">
+    <img src="images/televisionacademy/70-emmy-awards-red-carpet-television-008-2.jpg" alt="Emmy Awards red carpet, blue step and repeat backdrop">
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">257%</div><div class="label">Membership growth, 7,000 to 25,000+</div></div>
+    <div class="stat"><div class="num">16 yrs</div><div class="label">Consecutive ceremonies art directed</div></div>
+    <div class="stat"><div class="num">10M+</div><div class="label">People reached by the 70th anniversary mark</div></div>
+  </div>
+
+    <section class="wrap case-section" data-section="challenge">
+    <div class="case-header"><span class="section-label">01 · Challenge</span></div>
+    <div class="case-blocks" data-blocks="challenge">
+      <div class="case-block block-text"><p>The Emmy Awards risked feeling like a stagnant legacy institution. Growing the Academy meant modernizing the identity for a younger audience, without losing the credibility the brand had built over decades.</p></div>
+      <div class="case-block block-text"><p>As <strong>Art Director and second in command</strong>, I ran daily creative operations, bridging leadership, external vendors, and network partners across the in-house design team, ceremony design, and every media campaign.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap case-section" data-section="approach">
+    <div class="case-header"><span class="section-label">02 · Approach</span></div>
+    <div class="case-blocks" data-blocks="approach">
+      <div class="case-block block-text"><p>For the 70th anniversary, the full design department and an outside agency worked on concepts for a special logo. The logo I designed was chosen to run year-round on everything from billboards and stationery to trade ads, broadcast graphics, and the Governors Ball hamburger boxes. It reached over 10 million people.</p></div>
+      <div class="case-block block-carousel" id="carousel-70th">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/televisionacademy/70Emmys_FullLogo_BlueGold.jpg" alt="70th Emmy Awards anniversary logo, full lockup"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/70Emmys_Mark_BlueGold.jpg" alt="70th Emmy Awards anniversary mark"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/emmys-70-logo-design.jpg" alt="70th Emmy Awards logo design exploration"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/_DM12463.jpg" alt="Emmy Awards ceremony production still"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/_DM11882.jpg" alt="Emmy Awards ceremony backstage photography"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/screen-shot-2021-10-15.jpg" alt="Emmy Awards behind-the-scenes photography"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/70th-Emmy-Awards-Academy-Chairmans-Remarks_Moment02_edited.jpg" alt="Academy Chairman's remarks at the 70th Emmy Awards"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/4PM_7477.jpg" alt="Emmy Awards ceremony photography"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/4PM_7633.jpg" alt="Emmy Awards ceremony photography"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/4PM_7655.jpg" alt="Emmy Awards ceremony photography"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/4PM_7732.jpg" alt="Emmy Awards ceremony photography"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Emmys2018-Monday9-17-18-115.jpg" alt="Emmy Awards 2018 event photography"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/EGB2018-A-1.jpg" alt="Emmy Governors Ball 2018 photography"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/JBU_5359.jpg" alt="Emmy Awards event photography"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/ABI52357.jpg" alt="Emmy Awards event photography"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 15</div>
+        </div>
+      </div>
+
+      <div class="case-block block-text"><p>Invitations for Emmy-related events: the LA Area Emmy Awards, the Performers Nominee Reception, and the Emmy Awards show itself.</p></div>
+      <div class="case-block block-carousel" id="carousel-invites">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/televisionacademy/70th_Emmys_Invite.jpg" alt="70th Emmy Awards show invitation"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/70th_LAArea_Invite.jpg" alt="70th LA Area Emmy Awards invitation"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/70th_PNR_Invite.jpg" alt="Performers Nominee Reception invitation"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
+        </div>
+      </div>
+
+      <div class="case-block block-text"><p>Invitation package for the 73rd Emmy Awards: four color-coded invitations and nine RSVP cards, printed on soft-touch paper with reflective foils only, in gold, red, blue, and purple.</p></div>
+      <div class="case-block block-carousel" id="carousel-73rd">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/televisionacademy/Portfolio_73rdEmmys-05.jpg" alt="73rd Emmy Awards invitation suite, foil printed"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Portfolio_73rdEmmys-01.jpg" alt="73rd Emmy Awards invitation detail"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Portfolio_73rdEmmys-02.jpg" alt="73rd Emmy Awards invitation detail"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Portfolio_73rdEmmys-03.jpg" alt="73rd Emmy Awards RSVP cards"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Portfolio_73rdEmmys-04.jpg" alt="73rd Emmy Awards RSVP cards detail"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
+        </div>
+      </div>
+
+      <div class="case-block block-text"><p>Key art for Television Academy events, from the annual College Television Awards to "Evenings With" events featuring the cast of popular shows.</p></div>
+      <div class="case-block block-carousel" id="carousel-keyart">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/televisionacademy/NAACP_1920x1080.jpg" alt="Key art for Television Academy event"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Legend_1920x1080.jpg" alt="Key art for Television Academy Legend event"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Black_1920x1080.jpg" alt="Key art for Television Academy Black event"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Characters_1920x1080.jpg" alt="Key art for Television Academy Characters event"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/CTA_Portfolio.jpg" alt="Key art for the College Television Awards"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Score_Portfolio.jpg" alt="Key art for Television Academy Score event"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Girls_Portfolio.jpg" alt="Key art for Television Academy Girls event"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Penn_Portfolio.jpg" alt="Key art for Television Academy Penn event"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Emmys101_1920x1080.jpg" alt="Key art for Emmys 101 event"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 09</div>
+        </div>
+      </div>
+
+      <div class="case-block block-text"><p>Logos designed for various Television Academy and Television Academy Foundation programs, initiatives, and awards.</p></div>
+      <div class="case-block block-carousel" id="carousel-logos">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/televisionacademy/CornerstoneAward-01.jpg" alt="Cornerstone Award key art"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/StarTrek_Logo_BW.jpg" alt="Star Trek program logo for Television Academy"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/TheInterviews-01.jpg" alt="The Interviews program logo"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/BidForTheStars_Logo.jpg" alt="Bid for the Stars program logo"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/FredRogersMemorialScholarship-01.jpg" alt="Fred Rogers Memorial Scholarship logo"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
+        </div>
+      </div>
+
+      <div class="case-block block-text"><p>Print and digital campaigns for the Emmy telecast ran in People, The Hollywood Reporter, and Variety. Key art was adapted across trade ads, banner ads, social assets, and motion graphics for Instagram Stories, and I managed the media budget and partner placements.</p></div>
+      <div class="case-block block-carousel" id="carousel-banner-ads">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/televisionacademy/Emmys_BannerAds-02.jpg" alt="Emmy Awards banner ad campaign"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Emmys_BannerAds-03.jpg" alt="Emmy Awards banner ad campaign"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Emmys_BannerAds-01.jpg" alt="Emmy Awards banner ad campaign"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
+        </div>
+      </div>
+      <div class="case-block block-carousel" id="carousel-campaign">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/televisionacademy/emmys-key-art-nbc-peacock.png" alt="Emmys key art with statue, NBC and Peacock broadcast branding"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/Emmys20_HemispheresAd_RGB_CC.jpg" alt="Emmy Awards Hemispheres magazine ad"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/screenshot-04-21-9-01.png" alt="Emmy Awards campaign social asset"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/screenshot-04-21-9-02.png" alt="Emmy Awards campaign social asset"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/screenshot-04-21-8-57.png" alt="Emmy Awards campaign social asset"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/BUK_7532-jpg.jpg" alt="Emmy Awards campaign photography"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 06</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap case-section" data-section="outcome">
+    <div class="case-header"><span class="section-label">03 · Outcome</span></div>
+    <div class="case-blocks" data-blocks="outcome">
+      <div class="case-block block-text"><p>Sixteen years of art direction kept the Academy at the gold standard of the industry through a period of aggressive membership growth: <strong>257%, from 7,000 to over 25,000 members</strong>. Ceremonies and campaigns reached millions of viewers every year.</p></div>
+      <div class="case-block block-gif block-gif-centered">
+        <div class="p-image"><img src="images/televisionacademy/EmmySpin_Export_v2.gif" alt="Emmy Awards statue spin motion graphic"></div>
+      </div>
+    </div>
+  </section>
+
+<div class="section-end-rule"></div></div>
+
+  <a href="project-fount.html" class="next">
+    <div class="wrap">
+      <div class="next-label">Next project</div>
+      <div class="next-title">Fount</div>
+    </div>
+  </a>
+
+  <div class="wrap sitemap">
+    <div class="sitemap-col">
+      <span class="sitemap-head">Brand</span>
+      <a href="project-amazon-prime-video-sports.html">Amazon Prime Video Sports</a>
+      <a href="project-television-academy.html">Television Academy</a>
+      <a href="project-fount.html">Fount</a>
+      <a href="project-inflection.html">Inflection</a>
+    </div>
+    <div class="sitemap-col">
+      <span class="sitemap-head">CPG</span>
+      <a href="project-dream-clean.html">Dream Clean</a>
+      <a href="project-lemon-perfect.html">Lemon Perfect</a>
+      <a href="project-mantra.html">Mantra</a>
+    </div>
+    <div class="sitemap-col">
+      <span class="sitemap-head">Hospitality</span>
+      <a href="project-chick-fil-a.html">Chick-fil-A</a>
+      <a href="project-mootz-tom.html">Mootz &amp; Tom</a>
+      <a href="project-joes-stone-crab.html">Joe's Stone Crab</a>
+    </div>
+    <div class="sitemap-col">
+      <span class="sitemap-head">Studies</span>
+      <a href="studies-logos-marks.html">Logos &amp; Marks</a>
+      <a href="studies-process.html">Process</a>
+    </div>
+    <div class="sitemap-col">
+      <a href="about.html" class="sitemap-caps">About</a>
+      <a href="index.html#contact" class="sitemap-caps">Contact</a>
+    </div>
+  </div>
+
+  <footer class="wrap">
+    <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
+    <a href="index.html#top">Back to top ↑</a>
+  </footer>
+</main>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 10));
+
+  (function(){
+    const carousels = document.querySelectorAll('.block-carousel');
+    carousels.forEach(function(carousel){
+      const viewport = carousel.querySelector('.carousel-viewport');
+      const track = carousel.querySelector('.carousel-track');
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const counter = carousel.querySelector('.carousel-current');
+      const total = slides.length;
+      let index = 0;
+      let startX = 0;
+      let deltaX = 0;
+      let dragging = false;
+      let pointerId = null;
+
+      function update(){
+        track.style.transition = 'transform 0.45s cubic-bezier(0.65,0,0.35,1)';
+        track.style.transform = `translateX(-${index * 100}%)`;
+        counter.textContent = String(index + 1).padStart(2, '0');
+      }
+      function go(dir){
+        index = (index + dir + total) % total;
+        update();
+      }
+
+      carousel.querySelector('.carousel-prev').addEventListener('click', () => go(-1));
+      carousel.querySelector('.carousel-next').addEventListener('click', () => go(1));
+
+      viewport.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        if (e.target.closest('.carousel-arrow')) return;
+        dragging = true;
+        pointerId = e.pointerId;
+        startX = e.clientX;
+        deltaX = 0;
+        track.style.transition = 'none';
+        try { viewport.setPointerCapture(e.pointerId); } catch (_) {}
+      });
+      viewport.addEventListener('pointermove', (e) => {
+        if (!dragging || e.pointerId !== pointerId) return;
+        deltaX = e.clientX - startX;
+        track.style.transform = `translateX(calc(-${index * 100}% + ${deltaX}px))`;
+      });
+      function endDrag(e){
+        if (!dragging || (e && e.pointerId !== pointerId)) return;
+        dragging = false;
+        pointerId = null;
+        if (Math.abs(deltaX) > 50) go(deltaX < 0 ? 1 : -1);
+        else update();
+        deltaX = 0;
+      }
+      viewport.addEventListener('pointerup', endDrag);
+      viewport.addEventListener('pointercancel', endDrag);
+    });
+  })();
+</script>
+
+<script src="site.js"></script>
+</body>
+</html>

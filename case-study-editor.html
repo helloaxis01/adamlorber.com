@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Case Study Editor · Adam Lorber Portfolio</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  :root{
+    --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --line:rgba(220,218,211,0.16);
+    --accent:#ebff12; --chartreuse:#ebff12;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; font-family:'Helvetica Neue',Arial,sans-serif; background:#0f0f0e; color:var(--ink); height:100vh; overflow:hidden;}
+  .app{display:grid; grid-template-columns:440px 1fr; height:100vh;}
+  .panel{background:var(--bg); border-right:1px solid var(--line); overflow-y:auto; padding:24px;}
+  .panel h1{font-size:15px; letter-spacing:0.02em; margin:0 0 4px;}
+  .panel .sub{font-size:11px; color:var(--ink-dim); margin-bottom:20px; line-height:1.5;}
+  .field{margin-bottom:18px;}
+  .field label{display:block; font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:8px;}
+  .field input[type="file"]{width:100%; font-size:11px; color:var(--ink-dim);}
+  .status-note{font-size:10.5px; color:var(--ink-dim); margin-top:8px; line-height:1.6;}
+  .status-note.ok{color:var(--accent);}
+  .status-note.warn{color:#ff9f5f;}
+
+  .section-block{border:1px solid var(--line); border-radius:6px; margin-bottom:20px; overflow:hidden;}
+  .section-block-head{display:flex; align-items:center; justify-content:space-between; padding:12px 14px; background:#141413;}
+  .section-block-head h2{font-size:12px; letter-spacing:0.08em; text-transform:uppercase; margin:0;}
+  .blocks-list{padding:12px; display:flex; flex-direction:column; gap:10px;}
+  .block-row{border:1px solid var(--line); border-radius:5px; padding:10px; background:#141413; display:flex; gap:10px;}
+  .block-row.dragging{opacity:0.4;}
+  .block-row.drag-over{border-top:2px solid var(--accent);}
+  .block-drag{cursor:grab; color:var(--ink-dim); font-size:13px; padding-top:4px; user-select:none;}
+  .block-drag:active{cursor:grabbing;}
+  .block-body{flex:1; min-width:0;}
+  .block-type-label{font-size:9px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:6px; display:flex; justify-content:space-between; align-items:center;}
+  .block-body textarea{
+    width:100%; background:#1e1e1c; border:1px solid var(--line); color:var(--ink);
+    padding:8px 10px; font-size:12.5px; border-radius:3px; font-family:inherit; resize:vertical; line-height:1.5;
+  }
+  .block-body textarea:focus{outline:none; border-color:var(--accent);}
+  .media-preview{width:100%; aspect-ratio:16/9; background:#000; border-radius:3px; overflow:hidden; position:relative; margin-bottom:8px;}
+  .media-preview img, .media-preview video{width:100%; height:100%; object-fit:cover; display:block;}
+  .media-preview .empty{display:flex; align-items:center; justify-content:center; height:100%; font-size:10px; color:var(--ink-dim); text-align:center; padding:8px;}
+  .media-btn-row{display:flex; gap:8px;}
+  .small-btn{
+    font-size:10px; letter-spacing:0.04em; text-transform:uppercase; color:var(--ink);
+    border:1px solid var(--line); background:none; padding:6px 10px; border-radius:3px; cursor:pointer;
+  }
+  .small-btn:hover{border-color:var(--accent); color:var(--accent);}
+  .block-delete{background:none; border:none; color:var(--ink-dim); cursor:pointer; font-size:13px; padding:0 2px;}
+  .block-delete:hover{color:#ff5f5f;}
+  input[type="file"].hidden-file{display:none;}
+  .add-block-row{display:flex; gap:8px; padding:4px 12px 12px;}
+  .add-block-row button{flex:1;}
+
+  .export-btn{
+    width:100%; background:var(--accent); color:#111; border:none; padding:14px; font-size:13px;
+    font-weight:700; letter-spacing:0.03em; text-transform:uppercase; border-radius:4px; cursor:pointer; margin-top:20px;
+  }
+  .export-btn:hover{opacity:0.88;}
+  .export-btn:disabled{opacity:0.35; cursor:not-allowed;}
+  .export-note{font-size:10.5px; color:var(--ink-dim); margin-top:10px; line-height:1.6;}
+
+  .preview-wrap{position:relative; background:#0a0a0a;}
+  .preview-bar{
+    position:absolute; top:0; left:0; right:0; height:36px; background:#1a1a19; border-bottom:1px solid var(--line);
+    display:flex; align-items:center; padding:0 14px; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); z-index:2;
+  }
+  .preview-bar .dot{width:6px; height:6px; border-radius:50%; background:var(--accent); margin-right:8px; animation:pulse 1.8s ease infinite;}
+  @keyframes pulse{0%,100%{opacity:1;} 50%{opacity:0.3;}}
+  iframe{position:absolute; top:36px; left:0; right:0; bottom:0; width:100%; height:calc(100% - 36px); border:none; background:#1a1a19;}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="panel">
+    <h1>Case Study Editor</h1>
+    <p class="sub">Load a project page. Each section becomes a list of blocks (text, image, or video) that you can add, delete, and drag to reorder. The preview updates live.</p>
+
+    <div class="field">
+      <label>Load a project page (e.g. project-fount.html)</label>
+      <input type="file" id="loadPageFile" accept=".html">
+      <p id="loadStatus" class="status-note">Nothing loaded yet.</p>
+    </div>
+
+    <div id="sectionsContainer"></div>
+
+    <button class="export-btn" id="exportBtn" disabled>Export updated page</button>
+    <p class="export-note">Downloads a .zip with the updated project page plus an /images (and /videos) folder for anything new you uploaded. Unzip into your site folder, overwriting the project page, to merge it in.</p>
+  </div>
+  <div class="preview-wrap">
+    <div class="preview-bar"><span class="dot"></span> Live preview</div>
+    <iframe id="preview"></iframe>
+  </div>
+</div>
+
+<script>
+const SECTIONS = [
+  {key:'challenge', label:'01 · Challenge'},
+  {key:'approach', label:'02 · Approach'},
+  {key:'outcome', label:'03 · Outcome'}
+];
+
+let BASE_HTML = null;
+let slug = null;
+let state = { blocks: { challenge: [], approach: [], outcome: [] } };
+let blockIdCounter = 0;
+
+function newBlockId(){ return 'b' + (blockIdCounter++); }
+
+// ---------- Loading & parsing ----------
+document.getElementById('loadPageFile').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    BASE_HTML = reader.result;
+    slug = file.name.replace(/^project-/, '').replace(/\.html$/, '');
+    const isNewFormat = BASE_HTML.includes('data-blocks="challenge"');
+    SECTIONS.forEach(s => {
+      state.blocks[s.key] = isNewFormat ? parseNewFormatSection(BASE_HTML, s.key) : parseOldFormatSection(BASE_HTML, s.key);
+    });
+    const statusEl = document.getElementById('loadStatus');
+    if (isNewFormat) {
+      statusEl.textContent = `Loaded "${file.name}". Using its existing block structure.`;
+      statusEl.className = 'status-note ok';
+    } else {
+      statusEl.textContent = `Loaded "${file.name}". This page used the older layout, so content was recovered automatically. Double-check each section before exporting.`;
+      statusEl.className = 'status-note warn';
+    }
+    document.getElementById('exportBtn').disabled = false;
+    renderSectionsUI();
+    render();
+  };
+  reader.readAsText(file);
+});
+
+function findDivBlockEnd(html, openEnd){
+  let depth = 1, i = openEnd;
+  while (depth > 0 && i < html.length){
+    const nextOpen = html.indexOf('<div', i);
+    const nextClose = html.indexOf('</div>', i);
+    if (nextClose === -1) return html.length;
+    if (nextOpen !== -1 && nextOpen < nextClose){ depth++; i = nextOpen + 4; }
+    else { depth--; i = nextClose + 6; }
+  }
+  return i;
+}
+
+function parseNewFormatSection(html, key){
+  const marker = `data-blocks="${key}"`;
+  const idx = html.indexOf(marker);
+  if (idx === -1) return [];
+  const openEnd = html.indexOf('>', idx) + 1;
+  const containerEnd = findDivBlockEnd(html, openEnd);
+  const innerHTML = html.substring(openEnd, containerEnd - '</div>'.length);
+
+  const blocks = [];
+  let i = 0;
+  while (true){
+    const startIdx = innerHTML.indexOf('<div class="case-block', i);
+    if (startIdx === -1) break;
+    const bOpenEnd = innerHTML.indexOf('>', startIdx) + 1;
+    const bEnd = findDivBlockEnd(innerHTML, bOpenEnd);
+    const outer = innerHTML.substring(startIdx, bEnd);
+    const inner = innerHTML.substring(bOpenEnd, bEnd - '</div>'.length);
+    let type = 'text';
+    if (outer.includes('block-image')) type = 'image';
+    else if (outer.includes('block-video')) type = 'video';
+    blocks.push(parseBlockInner(type, inner));
+    i = bEnd;
+  }
+  return blocks;
+}
+
+function parseBlockInner(type, inner){
+  const id = newBlockId();
+  if (type === 'text'){
+    const m = inner.match(/<p>([\s\S]*?)<\/p>/);
+    return { id, type, text: m ? m[1].trim() : inner.trim() };
+  }
+  if (type === 'image'){
+    const srcM = inner.match(/<img src="([^"]*)"[^>]*alt="([^"]*)"/);
+    const capM = inner.match(/<p class="block-cap">([\s\S]*?)<\/p>/);
+    return { id, type, src: srcM ? srcM[1] : '', alt: srcM ? srcM[2] : '', caption: capM ? capM[1].trim() : '', isNew:false };
+  }
+  if (type === 'video'){
+    const srcM = inner.match(/<video[^>]*src="([^"]*)"/);
+    const capM = inner.match(/<p class="block-cap">([\s\S]*?)<\/p>/);
+    return { id, type, src: srcM ? srcM[1] : '', caption: capM ? capM[1].trim() : '', isNew:false };
+  }
+}
+
+function parseOldFormatSection(html, key){
+  // Best-effort recovery for pages that predate the block system.
+  const labelText = SECTIONS.find(s => s.key === key).label;
+  const labelIdx = html.indexOf('>' + labelText + '<');
+  if (labelIdx === -1) return [];
+  const bodyStart = html.indexOf('<div class="section-body">', labelIdx);
+  if (bodyStart === -1) return [];
+  const bodyOpenEnd = html.indexOf('>', bodyStart) + 1;
+  const bodyEnd = findDivBlockEnd(html, bodyOpenEnd);
+  const bodyInner = html.substring(bodyOpenEnd, bodyEnd - '</div>'.length);
+
+  const blocks = [];
+  const pMatches = [...bodyInner.matchAll(/<p>([\s\S]*?)<\/p>/g)];
+  pMatches.forEach(m => blocks.push({ id:newBlockId(), type:'text', text:m[1].trim() }));
+
+  // Find gallery images whose position falls after this section's label and before the next section's label (or end of doc)
+  const allLabelIdxs = SECTIONS.map(s => ({ key:s.key, idx: html.indexOf('>' + s.label + '<') })).filter(x => x.idx !== -1);
+  allLabelIdxs.sort((a,b) => a.idx - b.idx);
+  const thisPos = allLabelIdxs.findIndex(x => x.key === key);
+  const rangeStart = allLabelIdxs[thisPos].idx;
+  const rangeEnd = thisPos + 1 < allLabelIdxs.length ? allLabelIdxs[thisPos+1].idx : html.indexOf('class="section-end-rule"');
+  const searchZone = html.substring(rangeStart, rangeEnd === -1 ? html.length : rangeEnd);
+  const imgMatches = [...searchZone.matchAll(/<img src="([^"]*)"[^>]*alt="([^"]*)"/g)];
+  imgMatches.forEach(m => blocks.push({ id:newBlockId(), type:'image', src:m[1], alt:m[2], caption:'', isNew:false }));
+
+  return blocks;
+}
+
+// ---------- UI rendering ----------
+const sectionsContainer = document.getElementById('sectionsContainer');
+
+function renderSectionsUI(){
+  sectionsContainer.innerHTML = '';
+  SECTIONS.forEach(s => {
+    const wrap = document.createElement('div');
+    wrap.className = 'section-block';
+    wrap.innerHTML = `
+      <div class="section-block-head"><h2>${s.label}</h2></div>
+      <div class="blocks-list" id="blocks-${s.key}"></div>
+      <div class="add-block-row">
+        <button class="small-btn" data-addtype="text" data-section="${s.key}">+ Text</button>
+        <button class="small-btn" data-addtype="image" data-section="${s.key}">+ Image</button>
+        <button class="small-btn" data-addtype="video" data-section="${s.key}">+ Video</button>
+      </div>
+    `;
+    sectionsContainer.appendChild(wrap);
+    renderBlocksList(s.key);
+  });
+
+  sectionsContainer.querySelectorAll('[data-addtype]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const key = btn.dataset.section;
+      const type = btn.dataset.addtype;
+      const id = newBlockId();
+      if (type === 'text') state.blocks[key].push({ id, type, text:'' });
+      if (type === 'image') state.blocks[key].push({ id, type, src:'', alt:'', caption:'', isNew:false });
+      if (type === 'video') state.blocks[key].push({ id, type, src:'', caption:'', isNew:false });
+      renderBlocksList(key);
+      render();
+    });
+  });
+}
+
+function renderBlocksList(key){
+  const listEl = document.getElementById(`blocks-${key}`);
+  listEl.innerHTML = '';
+  state.blocks[key].forEach((block) => {
+    const row = document.createElement('div');
+    row.className = 'block-row';
+    row.draggable = true;
+    row.dataset.blockId = block.id;
+
+    let mediaHtml = '';
+    if (block.type === 'image' || block.type === 'video'){
+      const previewSrc = block.src;
+      const mediaTag = block.type === 'image'
+        ? (previewSrc ? `<img src="${previewSrc}">` : `<div class="empty">No ${block.type} yet</div>`)
+        : (previewSrc ? `<video src="${previewSrc}" muted loop autoplay playsinline></video>` : `<div class="empty">No ${block.type} yet</div>`);
+      mediaHtml = `
+        <div class="media-preview" id="preview-${block.id}">${mediaTag}</div>
+        <div class="media-btn-row">
+          <button class="small-btn" data-upload="${block.id}">${previewSrc ? 'Replace' : 'Upload'} ${block.type}</button>
+        </div>
+        <input type="file" class="hidden-file" id="file-${block.id}" accept="${block.type === 'image' ? 'image/*' : 'video/*'}">
+        <textarea placeholder="Caption (optional)" rows="2" data-caption="${block.id}" style="margin-top:8px;">${block.caption || ''}</textarea>
+      `;
+    } else {
+      mediaHtml = `<textarea placeholder="Paragraph text..." rows="4" data-text="${block.id}">${block.text || ''}</textarea>`;
+    }
+
+    row.innerHTML = `
+      <span class="block-drag" title="Drag to reorder">⠿</span>
+      <div class="block-body">
+        <div class="block-type-label"><span>${block.type}</span><button class="block-delete" data-delete="${block.id}" title="Delete block">✕</button></div>
+        ${mediaHtml}
+      </div>
+    `;
+    listEl.appendChild(row);
+
+    // Drag handlers
+    row.addEventListener('dragstart', () => row.classList.add('dragging'));
+    row.addEventListener('dragend', () => row.classList.remove('dragging'));
+    row.addEventListener('dragover', (e) => { e.preventDefault(); row.classList.add('drag-over'); });
+    row.addEventListener('dragleave', () => row.classList.remove('drag-over'));
+    row.addEventListener('drop', (e) => {
+      e.preventDefault();
+      row.classList.remove('drag-over');
+      const draggedId = sectionsContainer.querySelector('.dragging')?.dataset.blockId;
+      if (!draggedId || draggedId === block.id) return;
+      const arr = state.blocks[key];
+      const fromIdx = arr.findIndex(b => b.id === draggedId);
+      const toIdx = arr.findIndex(b => b.id === block.id);
+      if (fromIdx === -1 || toIdx === -1) return;
+      const [moved] = arr.splice(fromIdx, 1);
+      arr.splice(toIdx, 0, moved);
+      renderBlocksList(key);
+      render();
+    });
+
+    // Delete
+    row.querySelector(`[data-delete="${block.id}"]`).addEventListener('click', () => {
+      state.blocks[key] = state.blocks[key].filter(b => b.id !== block.id);
+      renderBlocksList(key);
+      render();
+    });
+
+    // Text input
+    const textArea = row.querySelector(`[data-text="${block.id}"]`);
+    if (textArea) textArea.addEventListener('input', () => { block.text = textArea.value; render(); });
+
+    // Caption input
+    const capArea = row.querySelector(`[data-caption="${block.id}"]`);
+    if (capArea) capArea.addEventListener('input', () => { block.caption = capArea.value; render(); });
+
+    // Upload
+    const uploadBtn = row.querySelector(`[data-upload="${block.id}"]`);
+    if (uploadBtn){
+      const fileInput = row.querySelector(`#file-${block.id}`);
+      uploadBtn.addEventListener('click', () => fileInput.click());
+      fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const fr = new FileReader();
+        fr.onload = () => {
+          block.src = fr.result;
+          block.fileName = file.name;
+          block.fileType = file.type;
+          block.isNew = true;
+          renderBlocksList(key);
+          render();
+        };
+        fr.readAsDataURL(file);
+      });
+    }
+  });
+}
+
+// ---------- Rebuild HTML ----------
+function escapeAttr(str){ return (str || '').replace(/"/g, '&quot;'); }
+
+function buildBlockHTML(block, forExport, sectionKey, index){
+  if (block.type === 'text'){
+    return `      <div class="case-block block-text"><p>${block.text || ''}</p></div>\n`;
+  }
+  if (block.type === 'image'){
+    let src = block.src;
+    if (forExport && block.isNew){
+      const ext = (block.fileType || 'image/jpeg').split('/')[1].replace('jpeg','jpg');
+      src = `images/${slug}/${sectionKey}-${index}.${ext}`;
+    }
+    const cap = block.caption ? `\n        <p class="block-cap">${block.caption}</p>` : '';
+    return `      <div class="case-block block-image">\n        <div class="p-image">${src ? `<img src="${src}" alt="${escapeAttr(block.alt)}">` : ''}</div>${cap}\n      </div>\n`;
+  }
+  if (block.type === 'video'){
+    let src = block.src;
+    if (forExport && block.isNew){
+      const ext = (block.fileType || 'video/mp4').split('/')[1];
+      src = `videos/${slug}/${sectionKey}-${index}.${ext}`;
+    }
+    const cap = block.caption ? `\n        <p class="block-cap">${block.caption}</p>` : '';
+    return `      <div class="case-block block-video">\n        <div class="p-image">${src ? `<video src="${src}" muted loop autoplay playsinline></video>` : ''}</div>${cap}\n      </div>\n`;
+  }
+}
+
+function buildSectionHTML(key, label, forExport){
+  const blocksHtml = state.blocks[key].map((b, i) => buildBlockHTML(b, forExport, key, i)).join('');
+  return `  <section class="wrap case-section" data-section="${key}">\n    <div class="case-header"><span class="section-label">${label}</span></div>\n    <div class="case-blocks" data-blocks="${key}">\n${blocksHtml}    </div>\n  </section>\n\n`;
+}
+
+function render(forExport){
+  if (!BASE_HTML) return '';
+  let html = BASE_HTML;
+  const isNewFormat = BASE_HTML.includes('data-blocks="challenge"');
+
+  const newSectionsHtml = SECTIONS.map(s => buildSectionHTML(s.key, s.label, forExport)).join('');
+
+  if (isNewFormat){
+    // Replace from the first case-section through the last one entirely
+    const firstIdx = html.indexOf('<section class="wrap case-section"');
+    const lastMarker = 'data-section="outcome"';
+    const lastSectionIdx = html.indexOf(lastMarker);
+    const afterLastOpenTag = html.indexOf('>', lastSectionIdx) + 1;
+    // find this section's closing </section>
+    let depth = 1, i = afterLastOpenTag;
+    while (depth > 0 && i < html.length){
+      const nextOpenSec = html.indexOf('<section', i);
+      const nextCloseSec = html.indexOf('</section>', i);
+      if (nextCloseSec === -1) break;
+      if (nextOpenSec !== -1 && nextOpenSec < nextCloseSec){ depth++; i = nextOpenSec + 8; }
+      else { depth--; i = nextCloseSec + '</section>'.length; }
+    }
+    html = html.substring(0, firstIdx) + newSectionsHtml + html.substring(i);
+  } else {
+    // Old-format page: replace the whole span from the first old-style <section class="wrap"> section
+    // through the .section-end-rule marker (or the "next" block start) with the new block sections.
+    const firstIdx = html.indexOf('<section class="wrap">');
+    let endIdx = html.indexOf('<div class="section-end-rule">');
+    if (endIdx === -1) endIdx = html.indexOf('class="next"');
+    if (firstIdx === -1 || endIdx === -1) {
+      return forExport ? html : html; // can't safely rebuild; leave untouched
+    }
+    html = html.substring(0, firstIdx) + newSectionsHtml + html.substring(endIdx);
+  }
+
+  if (!forExport){
+    document.getElementById('preview').srcdoc = html;
+  }
+  return html;
+}
+
+// ---------- Export ----------
+document.getElementById('exportBtn').addEventListener('click', async () => {
+ try {
+  if (typeof JSZip === 'undefined') {
+    alert('Export failed: the JSZip library did not load. This tool needs internet access to load it from a CDN. Check your connection (or any ad-blocker/firewall that might be blocking cdnjs.cloudflare.com) and reload the page.');
+    return;
+  }
+  const finalHtml = render(true);
+  const zip = new JSZip();
+  zip.file(`project-${slug}.html`, finalHtml);
+
+  for (const s of SECTIONS){
+    for (let i = 0; i < state.blocks[s.key].length; i++){
+      const block = state.blocks[s.key][i];
+      if ((block.type === 'image' || block.type === 'video') && block.isNew && block.src){
+        const ext = (block.fileType || (block.type === 'image' ? 'image/jpeg' : 'video/mp4')).split('/')[1].replace('jpeg','jpg');
+        const folder = block.type === 'image' ? 'images' : 'videos';
+        const blob = await (await fetch(block.src)).blob();
+        zip.file(`${folder}/${slug}/${s.key}-${i}.${ext}`, blob);
+      }
+    }
+  }
+
+  const content = await zip.generateAsync({type:"blob"});
+  const url = URL.createObjectURL(content);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `${slug}-case-study-update.zip`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+ } catch (err) {
+  alert('Export failed: ' + (err && err.message ? err.message : err) + '\n\nTry reloading the page and exporting again. If it keeps failing, let Adam know the exact error above.');
+  console.error(err);
+ }
+});
+</script>
+</body>
+</html>
