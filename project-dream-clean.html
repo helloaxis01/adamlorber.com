@@ -77,7 +77,12 @@
   .case-block .gallery{display:grid; grid-template-columns:1fr 1fr; gap:2px;}
   .case-block .gallery.full{grid-template-columns:1fr;}
   .case-block .gallery.full .p-image{grid-column:1 / -1;}
+  .case-block .gallery.gallery-three{grid-template-columns:repeat(3,1fr);}
+  .case-block .gallery.gallery-three .p-image{aspect-ratio:auto;}
+  .case-block .gallery.gallery-three .p-image img{width:100%; height:auto; object-fit:contain;}
   .case-block .gallery-stack{display:flex; flex-direction:column; gap:2px;}
+  .case-block .gallery-stack .p-image.natural{aspect-ratio:auto;}
+  .case-block .gallery-stack .p-image.natural img{width:100%; height:auto; object-fit:contain;}
 
   .section-end-rule{border-top:1px solid var(--line); margin:0 0 64px;}
   .next{background:var(--next-bg); padding:70px 0; display:flex; align-items:center;}
@@ -100,6 +105,7 @@
     .meta-row{grid-template-columns:repeat(2,1fr); gap:24px 20px;}
     .case-section{padding-top:64px; padding-bottom:64px;}
     .case-block .gallery{grid-template-columns:1fr;}
+    .case-block .gallery.gallery-three{grid-template-columns:1fr;}
     .p-hero{padding-top:120px;}
   }
 
@@ -352,13 +358,9 @@
       </div>
       <div class="case-block block-image">
         <div class="gallery-stack">
-          <div class="gallery">
-            <div class="p-image"><img src="images/dream-clean/DreamClean_LavBottle_Mockup_4k_v2.jpeg" alt="Dream Clean Lavender bottle mockup, repeated pattern"></div>
-            <div class="p-image"><img src="images/dream-clean/DreamClean_LimeThymeBottle_Mockup_4k_v2.jpeg" alt="Dream Clean Lime Thyme bottle mockup, repeated pattern"></div>
-          </div>
-          <div class="gallery">
-            <div class="p-image"><img src="images/dream-clean/DreamClean_MintTeaBottle_Mockup_4k_v2.jpeg" alt="Dream Clean MintTea bottle mockup, repeated pattern"></div>
-          </div>
+          <div class="p-image natural"><img src="images/dream-clean/DreamClean_LavBottle_Mockup_4k_v2.jpeg" alt="Dream Clean Lavender bottle mockup, pink pattern"></div>
+          <div class="p-image natural"><img src="images/dream-clean/DreamClean_LimeThymeBottle_Mockup_4k_v2.jpeg" alt="Dream Clean Lime Thyme bottle mockup, green pattern"></div>
+          <div class="p-image natural"><img src="images/dream-clean/DreamClean_MintTeaBottle_Mockup_4k_v2.jpeg" alt="Dream Clean MintTea bottle mockup, blue pattern"></div>
         </div>
         <p class="block-cap">The finished packaging system across the full scent line: Lavender, Lime Thyme, and MintTea.</p>
       </div>
