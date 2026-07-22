@@ -52,46 +52,85 @@
     });
   });
 
+  function headerOffset() {
+    var header = document.querySelector('header');
+    return header ? Math.ceil(header.getBoundingClientRect().height) : 84;
+  }
+
+  function syncHeaderOffset() {
+    root.style.setProperty('--header-offset', headerOffset() + 'px');
+  }
+
+  function prefersReducedMotion() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  function scrollToId(hash, smooth) {
+    var target = document.getElementById(hash);
+    if (!target) return false;
+    syncHeaderOffset();
+    var top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: smooth && !prefersReducedMotion() ? 'smooth' : 'auto'
+    });
+    return true;
+  }
+
+  function hashFromHref(href) {
+    if (!href) return '';
+    if (href.charAt(0) === '#') return href.slice(1);
+    try {
+      var u = new URL(href, window.location.href);
+      var here = window.location.pathname.replace(/\/$/, '') || '/';
+      var there = u.pathname.replace(/\/$/, '') || '/';
+      // Same page, or links like index.html#contact from index.html /
+      var onIndex = /(^|\/)(index\.html)?$/.test(here);
+      var toIndex = /(^|\/)(index\.html)?$/.test(there);
+      if (u.hash && (there === here || (onIndex && toIndex))) return u.hash.slice(1);
+    } catch (err) {}
+    return '';
+  }
+
+  syncHeaderOffset();
+  window.addEventListener('resize', syncHeaderOffset);
+
+  // In-page anchors (menu, footer, etc.)
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var hash = hashFromHref(a.getAttribute('href'));
+    if (!hash || !document.getElementById(hash)) return;
+    e.preventDefault();
+    if (menu && menu.classList.contains('open')) setMenuOpen(false);
+    requestAnimationFrame(function () {
+      scrollToId(hash, true);
+      if (history.replaceState) history.replaceState(null, '', '#' + hash);
+      else window.location.hash = hash;
+    });
+  });
+
+  // Arrive with a hash (from another page or refresh)
+  if (window.location.hash.length > 1) {
+    var initial = window.location.hash.slice(1);
+    window.setTimeout(function () { scrollToId(initial, false); }, 0);
+  }
+
   var burger = document.getElementById('burgerBtn');
   var menu = document.getElementById('menu');
-  if (burger && menu) {
-    function setMenuOpen(open) {
-      menu.classList.toggle('open', open);
-      burger.classList.toggle('open', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-    }
+  function setMenuOpen(open) {
+    if (!burger || !menu) return;
+    menu.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
 
+  if (burger && menu) {
     burger.setAttribute('aria-expanded', 'false');
     burger.addEventListener('click', function () {
       setMenuOpen(!menu.classList.contains('open'));
-    });
-    menu.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function (e) {
-        var href = a.getAttribute('href') || '';
-        var hash = '';
-        if (href.charAt(0) === '#') hash = href.slice(1);
-        else {
-          try {
-            var u = new URL(href, window.location.href);
-            if (u.pathname.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, '') && u.hash) {
-              hash = u.hash.slice(1);
-            }
-          } catch (err) {}
-        }
-        setMenuOpen(false);
-        if (!hash) return;
-        var target = document.getElementById(hash);
-        if (!target) return;
-        e.preventDefault();
-        // Wait for menu close / overflow unlock, then scroll under the fixed header
-        requestAnimationFrame(function () {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          if (history.replaceState) history.replaceState(null, '', '#' + hash);
-          else window.location.hash = hash;
-        });
-      });
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && menu.classList.contains('open')) setMenuOpen(false);
