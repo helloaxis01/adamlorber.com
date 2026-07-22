@@ -111,12 +111,19 @@
   .hero-role-loc{white-space:nowrap;}
   .hero-name .flourish{text-wrap:nowrap;}
 
-  .stack-wrap{width:100%; margin-bottom:28px;}
+  .stack-wrap{width:100%; margin-bottom:40px;}
   .stack{position:relative; width:100%; aspect-ratio:16/9; touch-action:pan-y;}
   .stack-card{
     position:absolute; inset:0; border-radius:1px; overflow:hidden; cursor:grab;
-    transition:transform .45s cubic-bezier(.22,.9,.3,1), opacity .45s ease;
+    transition:transform .45s cubic-bezier(.22,.9,.3,1), opacity .45s ease, box-shadow .45s ease;
     will-change:transform;
+    box-shadow:none;
+  }
+  .stack-card.is-front{
+    box-shadow:0 18px 42px rgba(0,0,0,0.32);
+  }
+  html[data-theme="light"] .stack-card.is-front{
+    box-shadow:0 14px 34px rgba(26,26,25,0.14);
   }
   .stack-card:active{cursor:grabbing;}
   .stack-card.is-clickable{cursor:grab;}
