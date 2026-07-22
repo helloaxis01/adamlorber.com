@@ -11,3 +11,4 @@ Disallow: /axis.html
 Disallow: /axis
 Disallow: /mitzvahs.html
 Disallow: /mitzvahs
+Disallow: /private.html

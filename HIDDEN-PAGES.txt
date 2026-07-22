@@ -1,0 +1,26 @@
+HIDDEN / UNLISTED PAGES
+=======================
+These are intentionally off the public nav and sitemap.
+Open them on the current deploy host, or open the .html files
+locally from this folder.
+
+  /private              private.html           This index (bookmark it)
+  /fount-deep-dive      fount-deep-dive.html   Private Fount deep dive
+  /revyrie-decks        revyrie-decks.html     Password: Decks
+  /questions            questions.html         Client questionnaire form
+  /axis                 axis.html              AXIS app showcase (WIP)
+  /mitzvahs             mitzvahs.html          Bespoke Mitzvahs concept
+
+HOW TO PREVIEW (until PR #4 is merged)
+--------------------------------------
+Production Netlify (joyful-genie-7584fe.netlify.app) is still the
+older main branch — hidden pages 404 there.
+
+Use the GitHub Deploy Preview for PR #4 (avoids copy/paste issues
+with the "--" in Netlify preview URLs):
+
+  https://github.com/helloaxis01/adamlorber.com/pull/4
+
+Then open:  /private
+
+Or local: open private.html in a browser from this folder.
