@@ -1,0 +1,61 @@
+PORTFOLIO CHANGE BRIEF — adamlorber.com
+Locked from Adam’s answers · Jul 2026
+========================================
+
+DECISIONS
+---------
+1. Hero stack = completed, visually strong work only. Selected Work #01 = Amazon (current-role draw). Do not put Amazon in the hero stack until there is real work to show.
+2. Keep the lead headline: “Branding, art direction, and strategy for established brands and ambitious startups.” Do not replace it with a résumé-style Amazon line. Seniority is carried by the role eyebrow, About, and work order.
+3. Availability stays on About only — move it above the timeline (right after the bio paragraphs).
+4–5. Leave personal / unfinished work (cmmnwthr) off the site for now. Remove the orphan About mention. Revisit when there is shippable work.
+6. Most projects are end-to-end solo. Do not force a Collaborators field everywhere. Emmys already notes outside-agency key-art concepts in Approach — keep/clarify that. Inflection keeps cross-functional collaboration note.
+7. Chick-fil-A stays as client concept work. Never mention hiring exercise / role not received / scraped images.
+8. Outcomes: for Chick-fil-A and Lemon Perfect, frame as delivered concepts (not “approved for national rollout” / stakeholder-approval theater). They shipped to the client as tests; may be used later — don’t claim live launch, don’t confess unused.
+9. Keep hard metrics on full-time brand roles (Emmys, Fount, etc.). Don’t invent client-work metrics.
+10. Draft one-line work-grid captions for Adam to edit.
+11. Amazon = grid only. No alternate orange logo graphic (implies mark authorship). Keep a restrained existing logo/lockup treatment with clear “current role / work forthcoming” framing.
+12. Keep current hero stack order; optional later adds only.
+13–14. No separate “recognition / client logo wall.” Brands already live in the grid, case studies, and sitemap. Impact proof already sits inside Emmys/Fount case studies. Skip a dedicated strip.
+15–16. Keep Studies as demoted/concept archive. Do not promote Process items into Selected Work right now. (Optional later: Red Shoes if entertainment branding needs more proof — Netflix end-credit is real — but not required.)
+17. Do not imply motion design or broadcast design as a practice. Soften copy that reads that way. Amazon page stays graphics/role-scope honest without a motion reel.
+18–19. Amazon page = “Current role.” Don’t expand from the job description until there is releasable work.
+
+IMPLEMENTATION CHECKLIST
+------------------------
+[ ] Amazon page → current-role card (meta + short body + forthcoming note); stay #01; grid-only
+[ ] About → remove cmmnwthr; move Open to… above timeline
+[ ] Index → one-line blurb under each Selected Work item (drafts below)
+[ ] Lemon Perfect → remove national-rollout claims; reframe Outcome
+[ ] Chick-fil-A → remove Approved/Status theater; reframe Outcome; fix odd Programs/tools meta
+[ ] Project meta pass → Role · Years (when known) · Scope · useful 4th only when true
+[ ] Emmys/About → tone down motion/broadcast-practice implications; keep agency key-art note
+[ ] No recognition wall, no Amazon in hero stack, no cmmnwthr, no motion reel
+
+DRAFT WORK-GRID CAPTIONS (edit freely)
+-------------------------------------
+01 Amazon Prime Video Sports — Art Director III · current role
+02 Television Academy — 16 years of Emmy identity and key art
+03 Fount — Brand system, packaging, and product launch
+04 Inflection — One brand system across a fractured product suite
+05 Dream Clean — Full label redesign built for national shelves
+06 Lemon Perfect — OOH and retail campaign concepts
+07 Mantra — Identity and packaging for an adaptogen line
+08 Chick-fil-A — Social and OOH campaign concepts
+09 Mootz & Tom — Naming through visual system for a new steakhouse
+10 Joe’s Stone Crab — Photography for the 100th-anniversary book
+
+HEADLINE NOTE
+-------------
+Keep the current H1. It’s the right altitude for an AD site: what you do, for whom. Amazon + Emmy tenure belong in structure (work order, About, role card), not crammed into the hero sentence.
+
+CMMNWTHR NOTE
+-------------
+Agree: unfinished personal work stays off. Senior portfolios get weaker when half-built passion projects sit next to Emmys/Amazon. When it’s real, give it a Study or case — don’t tease it in About.
+
+RECOGNITION NOTE (clarified)
+----------------------------
+Not “list the brands again.” Meant optional impact/press lines (growth %, Series A, Netflix credit). Those already live inside case studies / Process. No extra section.
+
+STUDIES / PROMOTE NOTE
+----------------------
+Demotion was correct. Don’t promote packaging concepts that compete with Dream Clean / Mantra / Lemon Perfect. Only promote later if a Study has proof the main grid lacks (e.g. Red Shoes → Netflix) and you want that story louder.
