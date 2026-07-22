@@ -201,7 +201,7 @@
   /* One section rule into Studies; list dividers only after that. */
   .studies-row{
     padding-top:0;
-    padding-bottom:56px;
+    padding-bottom:0;
     border-top:1px solid var(--line);
   }
   .studies-row .label-row{
@@ -225,8 +225,8 @@
   
 
   /* ---------- CONTACT ---------- */
-  /* No top rule — last Studies divider + spacing carries the break. */
-  .contact{padding-top:56px; padding-bottom:70px;}
+  /* Equal air above and below between the last Studies divider and the sitemap rule. */
+  .contact{padding-block:64px;}
   .contact h2{
     font-family:var(--serif); font-weight:500; font-size:clamp(44px,10vw,140px); line-height:0.95;
     cursor:default; width:fit-content;
@@ -319,11 +319,11 @@
       padding-top:10px;
     }
     .work-list, .work-group{gap:64px;}
-    .studies-row{padding-bottom:48px;}
+    .studies-row{padding-bottom:0;}
     .study{padding:22px 0;}
     section.pad{padding-top:64px; padding-bottom:60px;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
-    .contact{padding-top:48px; padding-bottom:70px;}
+    .contact{padding-block:56px;}
     .contact-links{flex-direction:column; align-items:flex-start; gap:18px;}
   }
 
