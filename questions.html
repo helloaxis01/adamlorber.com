@@ -247,6 +247,10 @@
     background:var(--chartreuse); color:#1a1a19; padding:16px 26px; font-weight:700;
   }
   .q-note{font-size:13px; color:var(--ink-dim); line-height:1.5;}
+  .q-note a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
+  .q-note a:hover{color:var(--chartreuse);}
+  html[data-theme="light"] .q-note a:hover{color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;}
+  .q-note-top{margin-top:22px; font-size:15px;}
   .hp{position:absolute; left:-9999px; height:0; overflow:hidden;}
 
 </style>
@@ -278,6 +282,7 @@
     <h1 class="p-title">Let's work together!</h1>
     <p class="p-sub" id="qIntro">Please fill out the form below and I'll be in touch shortly.</p>
     <p class="p-sub" id="qSuccess" hidden>Thanks — your answers are in. I'll be in touch shortly.</p>
+    <p class="q-note q-note-top" id="qEmailPref">Prefer email instead? <a href="mailto:hello@adamlorber.com">hello@adamlorber.com</a></p>
   </div>
 
   <div class="wrap">
@@ -401,7 +406,6 @@
     </div>
       <div class="q-actions">
         <button class="q-submit" type="submit">Submit</button>
-        <p class="q-note">Prefer email? <a href="mailto:hello@adamlorber.com">hello@adamlorber.com</a></p>
       </div>
     </form>
   </div>
@@ -421,8 +425,10 @@
     const form = document.getElementById('qForm');
     const intro = document.getElementById('qIntro');
     const success = document.getElementById('qSuccess');
+    const emailPref = document.getElementById('qEmailPref');
     if (form) form.hidden = true;
     if (intro) intro.hidden = true;
+    if (emailPref) emailPref.hidden = true;
     if (success) success.hidden = false;
   }
 </script>

@@ -125,6 +125,14 @@
   .carousel-track{display:flex; height:100%; transition:transform 0.45s cubic-bezier(0.65,0,0.35,1);}
   .carousel-slide{flex:0 0 100%; height:100%; display:flex; align-items:center; justify-content:center; background:var(--bg);}
   .carousel-slide img{max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; -webkit-user-drag:none; user-select:none; pointer-events:none;}
+  .block-carousel.dd-cover .carousel-slide img{width:100%; height:100%; max-width:none; max-height:none; object-fit:cover;}
+  .gallery.amazon{grid-template-columns:repeat(2,1fr); gap:2px; margin-top:8px; margin-bottom:56px;}
+  .gallery.amazon .p-image{aspect-ratio:1; overflow:hidden; background:#141413;}
+  .gallery.amazon .p-image img{width:100%; height:100%; object-fit:cover;}
+  .gallery.amazon .p-image.full{grid-column:1 / -1; aspect-ratio:5/1;}
+  .gallery.amazon .p-image.square{aspect-ratio:1;}
+  @media (max-width:700px){.gallery.amazon{grid-template-columns:1fr 1fr;}}
+
   #carousel-lifestyle .carousel-slide img,
   #carousel-product .carousel-slide img{width:100%; height:100%; max-width:none; max-height:none; object-fit:cover;}
 
@@ -452,11 +460,18 @@
       <span>AI Imagery</span>
     </div>
 <div class="case-block block-text"><p>Logo mark conceptualized and launched within the first 30 days at the company.</p></div>
-<div class="gallery">
-<div class="p-image"><img src="images/fount-deep-dive/Fount_Logo_BeforeAfter-03.jpg" alt="Fount logo evolution"></div>
-<div class="p-image"><img src="images/fount-deep-dive/Fount_Logo_BeforeAfter-01.jpg" alt="Fount logo before after"></div>
-<div class="p-image full"><img src="images/fount-deep-dive/Fount_Logo_BeforeAfter-02.jpg" alt="Fount logo before after"></div>
-</div>
+      <div class="case-block block-carousel dd-cover" id="carousel-dd-1">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_Logo_BeforeAfter-03.jpg" alt="Fount logo evolution"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_Logo_BeforeAfter-01.jpg" alt="Fount logo before after"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_Logo_BeforeAfter-02.jpg" alt="Fount logo before after"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
+        </div>
+      </div>
     </div>
   </section>
   <section class="wrap case-section">
@@ -487,52 +502,94 @@
       <div class="p-image full"><img src="images/fount-deep-dive/Fount_FlyKitt_BeforeAfter_PackageBundle.jpg" alt="FlyKitt Bundle press photo, showing the "></div>
       </div>
 <div class="case-block block-text"><p>The new FlyKitt packaging design features a lighter color palette, for better visual recognition on nighttime flights, and enhanced color capsule callouts. While retaining familiar color names for existing customers, the callouts now include function names for easier pill identification. This update improves both the visual appeal and practical usability of the packaging.</p></div>
-      <div class="gallery ">
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_FlyKitt_BeforeAfter-02.jpg" alt="The new FlyKitt packaging design feature"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_FlyKitt_BeforeAfter-01.jpg" alt="The new FlyKitt packaging design feature"></div>
+            <div class="case-block block-carousel dd-cover" id="carousel-dd-2">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_FlyKitt_BeforeAfter-02.jpg" alt="The new FlyKitt packaging design feature"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_FlyKitt_BeforeAfter-01.jpg" alt="The new FlyKitt packaging design feature"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
+        </div>
       </div>
 <div class="case-block block-text"><p>A small sampling of shots from the lifestyle shoot I art directed. Photos featured on Axios, in press releases, and on fount.bio.</p></div>
-      <div class="gallery ">
-      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-5854-Retouch-7.jpg" alt="A small sampling of shots from the lifes"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-7006-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-7379-Retouch-V2.jpg" alt="A small sampling of shots from the lifes"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/7a5b4d47ebf8d6296335451058b64bd2.jpeg" alt="A small sampling of shots from the lifes"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/FountPro_HeroImage-min-scaled-1_f4e24228-ddcc-40f6-b65e-215b30c1e847.jpeg" alt="A small sampling of shots from the lifes"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-7282-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-6404-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-6432-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-6364-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-7042-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-6333-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-6574-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+            <div class="case-block block-carousel dd-cover" id="carousel-dd-3">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount-deep-dive/2023-03-13-Fount-5854-Retouch-7.jpg" alt="A small sampling of shots from the lifes"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/2023-03-13-Fount-7006-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/2023-03-13-Fount-7379-Retouch-V2.jpg" alt="A small sampling of shots from the lifes"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/7a5b4d47ebf8d6296335451058b64bd2.jpeg" alt="A small sampling of shots from the lifes"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/FountPro_HeroImage-min-scaled-1_f4e24228-ddcc-40f6-b65e-215b30c1e847.jpeg" alt="A small sampling of shots from the lifes"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/2023-03-13-Fount-7282-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/2023-03-13-Fount-6404-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/2023-03-13-Fount-6432-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/2023-03-13-Fount-6364-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/2023-03-13-Fount-7042-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/2023-03-13-Fount-6333-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/2023-03-13-Fount-6574-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 12</div>
+        </div>
       </div>
 <div class="case-block block-text"><p>The face of FlyKitt — AI Image created with Midjourney + ChatGPT + Generative AI in Photoshop. AI was used in place of an on-location photo shoot, which ultimately saved the company upwards of $50k.</p></div>
-      <div class="gallery ">
-      <div class="p-image"><img src="images/fount-deep-dive/asset-19.jpg" alt="The face of FlyKitt — AI Image created w"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Screenshot_2026-04-21_at_11.23.56_AM.png" alt="The face of FlyKitt — AI Image created w"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/4_Edit.jpg" alt="The face of FlyKitt — AI Image created w"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/4_Edit_Athlete.jpg" alt="The face of FlyKitt — AI Image created w"></div>
+            <div class="case-block block-carousel dd-cover" id="carousel-dd-4">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount-deep-dive/asset-19.jpg" alt="The face of FlyKitt — AI Image created w"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Screenshot_2026-04-21_at_11.23.56_AM.png" alt="The face of FlyKitt — AI Image created w"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/4_Edit.jpg" alt="The face of FlyKitt — AI Image created w"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/4_Edit_Athlete.jpg" alt="The face of FlyKitt — AI Image created w"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 04</div>
+        </div>
       </div>
 <div class="case-block block-text"><p>Shots from a product photography shoot featuring the final FlyKitt packaging design.</p></div>
-      <div class="gallery ">
-      <div class="p-image"><img src="images/fount-deep-dive/hi_res-eb-Fount_r1_095A9501.jpg" alt="Shots from a product photography shoot f"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/hi_res-f1-Fount_r1_095A95973_2_-min.jpg" alt="Shots from a product photography shoot f"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/hi_res-ee-Fount_r1_095A9554.jpg" alt="Shots from a product photography shoot f"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/hi_res-fd-Fount_r1_095A9661.jpg" alt="Shots from a product photography shoot f"></div>
+            <div class="case-block block-carousel dd-cover" id="carousel-dd-5">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount-deep-dive/hi_res-eb-Fount_r1_095A9501.jpg" alt="Shots from a product photography shoot f"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/hi_res-f1-Fount_r1_095A95973_2_-min.jpg" alt="Shots from a product photography shoot f"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/hi_res-ee-Fount_r1_095A9554.jpg" alt="Shots from a product photography shoot f"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/hi_res-fd-Fount_r1_095A9661.jpg" alt="Shots from a product photography shoot f"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 04</div>
+        </div>
       </div>
     </div>
   </section>
   <section class="wrap case-section">
     <div class="case-blocks">
 <div class="case-block block-text"><p>Logos designed while at Fount including the FlyKitt logo, Fount Chat logo, and for member pricing tiers (shown below): Fount One, Fount Pro, and Fount Black.</p></div>
-      <div class="gallery ">
-      <div class="p-image"><img src="images/fount-deep-dive/FlyKitt_Logo_BeforeAfter-01.jpg" alt="Logos designed while at Fount including "></div>
-      <div class="p-image"><img src="images/fount-deep-dive/FlyKitt_Logo_BeforeAfter-02.jpg" alt="Logos designed while at Fount including "></div>
+            <div class="case-block block-carousel dd-cover" id="carousel-dd-6">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount-deep-dive/FlyKitt_Logo_BeforeAfter-01.jpg" alt="Logos designed while at Fount including "></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/FlyKitt_Logo_BeforeAfter-02.jpg" alt="Logos designed while at Fount including "></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
+        </div>
       </div>
 <div class="case-block block-text"><p>Website design (2024) featuring static hero images and :25 looping hero videos. Visit <a href="https://fount.bio" target="_blank" rel="noopener">fount.bio</a> to view the live sites.</p></div>
-      <div class="gallery">
-        <div class="p-image"><img src="images/fount-deep-dive/Website_-_Fount.png" alt="Fount website"></div>
-        <div class="p-image"><img src="images/fount-deep-dive/Website_-_FlyKitt.png" alt="FlyKitt website"></div>
+            <div class="case-block block-carousel dd-cover" id="carousel-dd-7">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Website_-_Fount.png" alt="Fount website"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Website_-_FlyKitt.png" alt="FlyKitt website"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
+        </div>
       </div>
 <div class="case-block block-text"><p>I designed the FlyKitt App Store screens and contributed to the app's UI. Considering that many FlyKitt users will be interacting with the app during night flights, a permanent dark mode was implemented to reduce eye strain. Bright colors and simple icons were also used for easy visibility in dark environments.</p></div>
       <div class="appstore-row">
@@ -546,48 +603,69 @@
         <div class="p-image contain"><img src="images/fount-deep-dive/FlyKitt_AppIcon_Portfolio.jpg" alt="FlyKitt app icon"></div>
       </div>
 <div class="case-block block-text"><p>AI generated images using Midjourney, Adobe Firefly, and Photoshop AI.</p></div>
-      <div class="gallery ">
-      <div class="p-image"><img src="images/fount-deep-dive/Sleep.jpg" alt="AI generated images using Midjourney, Ad"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Stress.jpg" alt="AI generated images using Midjourney, Ad"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_App_AI_ColdPlungeIceBath.jpg" alt="AI generated images using Midjourney, Ad"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_App_AI_Dinner_v3.jpg" alt="AI generated images using Midjourney, Ad"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_App_AI_Energy_v4.jpg" alt="AI generated images using Midjourney, Ad"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_App_AI_Focus_v2.jpg" alt="AI generated images using Midjourney, Ad"></div>
+            <div class="case-block block-carousel dd-cover" id="carousel-dd-8">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Sleep.jpg" alt="AI generated images using Midjourney, Ad"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Stress.jpg" alt="AI generated images using Midjourney, Ad"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_App_AI_ColdPlungeIceBath.jpg" alt="AI generated images using Midjourney, Ad"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_App_AI_Dinner_v3.jpg" alt="AI generated images using Midjourney, Ad"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_App_AI_Energy_v4.jpg" alt="AI generated images using Midjourney, Ad"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_App_AI_Focus_v2.jpg" alt="AI generated images using Midjourney, Ad"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 06</div>
+        </div>
       </div>
 <div class="case-block block-text"><p>Amazon storefront header and product images.</p></div>
-      <div class="gallery">
+      <div class="gallery amazon">
         <div class="p-image full"><img src="images/fount-deep-dive/AmazonStoreHeader_3000x600.jpg" alt="Amazon storefront header"></div>
-        <div class="p-image"><img src="images/fount-deep-dive/4_Medium.jpeg" alt="Amazon product"></div>
-        <div class="p-image"><img src="images/fount-deep-dive/3_Medium.jpeg" alt="Amazon product"></div>
-        <div class="p-image"><img src="images/fount-deep-dive/5_Medium.jpeg" alt="Amazon product"></div>
-        <div class="p-image"><img src="images/fount-deep-dive/2_Medium.jpeg" alt="Amazon product"></div>
+        <div class="p-image square"><img src="images/fount-deep-dive/4_Medium.jpeg" alt="Amazon product"></div>
+        <div class="p-image square"><img src="images/fount-deep-dive/3_Medium.jpeg" alt="Amazon product"></div>
+        <div class="p-image square"><img src="images/fount-deep-dive/5_Medium.jpeg" alt="Amazon product"></div>
+        <div class="p-image square"><img src="images/fount-deep-dive/2_Medium.jpeg" alt="Amazon product"></div>
       </div>
     </div>
   </section>
   <section class="wrap case-section">
     <div class="case-blocks">
 <div class="case-block block-text"><p>Business development deck.</p></div>
-<div class="gallery">
-      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-47.jpg" alt="Business development deck"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-48.jpg" alt="Business development deck"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-49.jpg" alt="Business development deck"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-50.jpg" alt="Business development deck"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-51.jpg" alt="Business development deck"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-52.jpg" alt="Business development deck"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-53.jpg" alt="Business development deck"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-54.jpg" alt="Business development deck"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-55.jpg" alt="Business development deck"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-56.jpg" alt="Business development deck"></div>
+      <div class="case-block block-carousel dd-cover" id="carousel-dd-9">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount-deep-dive/bizdev-deck-47.jpg" alt="Business development deck"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/bizdev-deck-48.jpg" alt="Business development deck"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/bizdev-deck-49.jpg" alt="Business development deck"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/bizdev-deck-50.jpg" alt="Business development deck"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/bizdev-deck-51.jpg" alt="Business development deck"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/bizdev-deck-52.jpg" alt="Business development deck"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/bizdev-deck-53.jpg" alt="Business development deck"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/bizdev-deck-54.jpg" alt="Business development deck"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/bizdev-deck-55.jpg" alt="Business development deck"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/bizdev-deck-56.jpg" alt="Business development deck"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 10</div>
+        </div>
       </div>
       <div class="case-block block-image">
         <div class="p-image"><video controls playsinline preload="metadata" src="images/fount-deep-dive/video-deck-clip.mp4"></video></div>
       </div>
 <div class="case-block block-text"><p>Tube packaging for the additional products I helped launch while at Fount.</p></div>
-      <div class="gallery ">
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_TubeMockup_CycleKitt.jpg" alt="Tube packaging for the additional produc"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_TubeMockup_FiestaKitt.jpg" alt="Tube packaging for the additional produc"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_TubeMockup_FlyKitt.jpg" alt="Tube packaging for the additional produc"></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_TubeMockup_ImmunityKitt.jpg" alt="Tube packaging for the additional produc"></div>
+            <div class="case-block block-carousel dd-cover" id="carousel-dd-10">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_TubeMockup_CycleKitt.jpg" alt="Tube packaging for the additional produc"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_TubeMockup_FiestaKitt.jpg" alt="Tube packaging for the additional produc"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_TubeMockup_FlyKitt.jpg" alt="Tube packaging for the additional produc"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_TubeMockup_ImmunityKitt.jpg" alt="Tube packaging for the additional produc"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 04</div>
+        </div>
       </div>
 <div class="case-block block-text"><p>Custom icons/graphics created to promote FiestaKitt, a hangover solution.</p></div>
       <div class="gallery ">
@@ -598,11 +676,18 @@
       <div class="p-image full"><img src="images/fount-deep-dive/Fount_PillBox_Concepts.jpg" alt="Packaging design for a Parata pack daily"></div>
       </div>
 <div class="case-block block-text"><p>Logos designed while at Fount including the FlyKitt logo, Fount Chat logo, and for member pricing tiers: Fount One, Fount Pro, and Fount Black.</p></div>
-      <div class="gallery ">
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_Logos-03.jpg" alt="Logos designed while at Fount including "></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_Logos-01.jpg" alt="Logos designed while at Fount including "></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Fount_Logos-05.jpg" alt="Logos designed while at Fount including "></div>
-      <div class="p-image"><img src="images/fount-deep-dive/Screenshot_2023-08-14_at_9.56.01_AM.png" alt="Logos designed while at Fount including "></div>
+            <div class="case-block block-carousel dd-cover" id="carousel-dd-11">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_Logos-03.jpg" alt="Logos designed while at Fount including "></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_Logos-01.jpg" alt="Logos designed while at Fount including "></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_Logos-05.jpg" alt="Logos designed while at Fount including "></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Screenshot_2023-08-14_at_9.56.01_AM.png" alt="Logos designed while at Fount including "></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 04</div>
+        </div>
       </div>
 <div class="case-block block-text"><p>A :15 second Instagram ad introducing FlyKitt and it's benefits.</p></div>
       <div class="case-block block-image">
@@ -627,6 +712,56 @@
 <script>
   const header = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 10));
+
+  (function(){
+    const carousels = document.querySelectorAll('.block-carousel');
+    carousels.forEach(function(carousel){
+      const viewport = carousel.querySelector('.carousel-viewport');
+      const track = carousel.querySelector('.carousel-track');
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const counter = carousel.querySelector('.carousel-current');
+      const total = slides.length;
+      if (!viewport || !track || total < 1) return;
+      let index = 0, startX = 0, deltaX = 0, dragging = false, pointerId = null;
+
+      function update(){
+        track.style.transition = 'transform 0.45s cubic-bezier(0.65,0,0.35,1)';
+        track.style.transform = `translateX(-${index * 100}%)`;
+        if (counter) counter.textContent = String(index + 1).padStart(2, '0');
+      }
+      function go(dir){
+        index = (index + dir + total) % total;
+        update();
+      }
+
+      const prev = carousel.querySelector('.carousel-prev');
+      const next = carousel.querySelector('.carousel-next');
+      if (prev) prev.addEventListener('click', () => go(-1));
+      if (next) next.addEventListener('click', () => go(1));
+
+      viewport.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        if (e.target.closest('.carousel-arrow')) return;
+        dragging = true; pointerId = e.pointerId; startX = e.clientX; deltaX = 0;
+        track.style.transition = 'none';
+        try { viewport.setPointerCapture(e.pointerId); } catch (_) {}
+      });
+      viewport.addEventListener('pointermove', (e) => {
+        if (!dragging || e.pointerId !== pointerId) return;
+        deltaX = e.clientX - startX;
+        track.style.transform = `translateX(calc(-${index * 100}% + ${deltaX}px))`;
+      });
+      function endDrag(e){
+        if (!dragging || (e && e.pointerId !== pointerId)) return;
+        dragging = false; pointerId = null;
+        if (Math.abs(deltaX) > 50) go(deltaX < 0 ? 1 : -1);
+        else update();
+        deltaX = 0;
+      }
+      viewport.addEventListener('pointerup', endDrag);
+      viewport.addEventListener('pointercancel', endDrag);
+    });
+  })();
 </script>
 <script src="site.js"></script>
 
