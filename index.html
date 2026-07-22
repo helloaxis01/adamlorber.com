@@ -111,7 +111,7 @@
   .hero-role-loc{white-space:nowrap;}
   .hero-name .flourish{text-wrap:nowrap;}
 
-  .stack-wrap{width:100%; margin-bottom:40px;}
+  .stack-wrap{width:100%; margin-bottom:36px;}
   .stack{position:relative; width:100%; aspect-ratio:16/9; touch-action:pan-y;}
   .stack-card{
     position:absolute; inset:0; border-radius:1px; overflow:hidden; cursor:grab;
@@ -120,10 +120,10 @@
     box-shadow:none;
   }
   .stack-card.is-front{
-    box-shadow:0 18px 42px rgba(0,0,0,0.32);
+    box-shadow:0 12px 28px rgba(0,0,0,0.22);
   }
   html[data-theme="light"] .stack-card.is-front{
-    box-shadow:0 14px 34px rgba(26,26,25,0.14);
+    box-shadow:0 10px 24px rgba(26,26,25,0.10);
   }
   .stack-card:active{cursor:grabbing;}
   .stack-card.is-clickable{cursor:grab;}
@@ -265,7 +265,7 @@
   footer.wrap{padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
 
   @media (max-width:900px){
-    .stack-wrap{margin-bottom:58px;}
+    .stack-wrap{margin-bottom:44px;}
     .hero{padding-top:120px; padding-bottom:0;}
     .hero-role{
       font-size:11px;
@@ -474,6 +474,7 @@
     <div class="stack" id="stack">
       <div class="stack-card" data-cat="ph-brand" data-slug="televisionacademy"><img src="images/televisionacademy/hero-stack.jpg?v=6" alt="John Legend and Chrissy Teigen at the Emmy Awards" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 35%;"></div>
       <div class="stack-card" data-cat="ph-cpg" data-slug="lemon-perfect"><img src="images/lemon-perfect/hero-stack.jpg" alt="Lemon Perfect" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
+      <div class="stack-card" data-cat="ph-cpg" data-slug="dream-clean"><img src="images/dream-clean/hero-stack.jpg" alt="Dream Clean full scent line packaging" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
       <div class="stack-card" data-cat="ph-hosp" data-slug="joes-stone-crab"><img src="images/joes-stone-crab/hero-stack.jpg" alt="Joe's Stone Crab" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
       <div class="stack-card" data-cat="ph-hosp" data-slug="mootz-tom"><img src="images/mootz-tom/hero-stack.jpg" alt="Mootz &amp; Tom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
       <div class="stack-card" data-cat="ph-brand" data-slug="fount"><img src="images/fount/hero-stack.jpg" alt="Fount" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
@@ -628,6 +629,7 @@
   const slugToHref = {
     televisionacademy: 'project-television-academy.html',
     'lemon-perfect': 'project-lemon-perfect.html',
+    'dream-clean': 'project-dream-clean.html',
     'joes-stone-crab': 'project-joes-stone-crab.html',
     'mootz-tom': 'project-mootz-tom.html',
     fount: 'project-fount.html',
@@ -642,9 +644,10 @@
 
   function peekParams(){
     const mobile = window.matchMedia('(max-width:900px)').matches;
+    // Vertical deck only — side offsets made the fan look broken on mobile.
     return mobile
-      ? { y: 24, x: 10, scale: 0.04, rot: 2.4 }
-      : { y: 16, x: 5, scale: 0.032, rot: 1.55 };
+      ? { y: 18, scale: 0.03, rot: 1.25 }
+      : { y: 14, scale: 0.028, rot: 1.15 };
   }
 
   function layout(){
@@ -658,10 +661,9 @@
         card.style.opacity = '1';
       } else if (pos < 4){
         const y = pos * peek.y;
-        const x = (pos % 2 === 0 ? 1 : -1) * pos * peek.x;
         const s = 1 - pos * peek.scale;
         const r = (pos % 2 === 0 ? 1 : -1) * pos * peek.rot;
-        card.style.transform = `translate(${x}px, ${y}px) scale(${s}) rotate(${r}deg)`;
+        card.style.transform = `translate(0px, ${y}px) scale(${s}) rotate(${r}deg)`;
         card.style.opacity = '1';
       } else {
         card.style.transform = 'translate(0,50px) scale(0.9)';
@@ -684,7 +686,11 @@
   }
 
   layout();
-  window.addEventListener('resize', layout);
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(layout, 120);
+  });
 
   document.getElementById('stackNext').addEventListener('click', () => advance('next'));
   document.getElementById('stackPrev').addEventListener('click', () => advance('prev'));
