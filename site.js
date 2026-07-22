@@ -65,11 +65,20 @@
     return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
+  function pageGutter() {
+    var wrap = document.querySelector('.wrap');
+    if (!wrap) return 0;
+    var style = window.getComputedStyle(wrap);
+    return Math.ceil(parseFloat(style.paddingInlineStart || style.paddingLeft) || 0);
+  }
+
   function scrollToId(hash, smooth) {
     var target = document.getElementById(hash);
     if (!target) return false;
     syncHeaderOffset();
-    var top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+    // Studies: leave the same breathing room above the label as the page gutter to its right.
+    var air = hash === 'studies' ? pageGutter() : 0;
+    var top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset() - air;
     window.scrollTo({
       top: Math.max(0, top),
       behavior: smooth && !prefersReducedMotion() ? 'smooth' : 'auto'
