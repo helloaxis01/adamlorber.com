@@ -276,7 +276,7 @@
     }
     .hero-name{
       font-size:clamp(24px,7vw,30px);
-      line-height:1.28;
+      line-height:1.36;
       margin-top:16px;
       max-width:22ch;
       text-wrap:pretty;
@@ -391,6 +391,14 @@
     padding-inline:0.18em;
     box-decoration-break:clone;
     -webkit-box-decoration-break:clone;
+  }
+  /* Keep hero marks shorter than the line box so stacked highlights don't fuse. */
+  html[data-theme="light"] .hero-name .flourish{
+    line-height:1.02;
+    padding-block:0.05em;
+    padding-inline:0.14em;
+    margin-inline:0.02em;
+    vertical-align:baseline;
   }
   html[data-theme="light"] .stat .num{
     display:inline-block;
