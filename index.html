@@ -722,7 +722,7 @@
   function onPointerUp(){
     if (!dragging) return;
     dragging = false;
-    activeCard.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .45s ease';
+    activeCard.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .45s ease, box-shadow .45s ease';
     const elapsed = Date.now() - startTime;
     const absX = Math.abs(currentX);
     const absY = Math.abs(currentY);
