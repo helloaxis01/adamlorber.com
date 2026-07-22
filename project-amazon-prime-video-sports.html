@@ -8,7 +8,7 @@
 <script>!function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}}()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
@@ -51,13 +51,13 @@
   .meta-row div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
   .meta-row strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; line-height:1.4;}
 
-  .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;}
+  .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--bg);}
   .p-image img{width:100%; height:100%; object-fit:cover;}
 
   .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
-  .stat{background:var(--bg); padding:36px clamp(20px,5vw,64px);}
-  .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(30px,4vw,46px); color:var(--chartreuse);}
-  .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px;}
+  .stat{background:var(--bg); padding:36px clamp(16px,3.5vw,48px);}
+  .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
+  .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
 
   section{padding-top:96px; padding-bottom:130px;}
   .section-inner{display:grid; grid-template-columns:180px 1fr; gap:64px;}
@@ -80,7 +80,7 @@
 
   .sitemap{display:grid; grid-template-columns:repeat(5,1fr); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
   .sitemap-col{display:flex; flex-direction:column; gap:11px;}
-  .sitemap-head{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
+  .sitemap-head{font-family:var(--mono); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
   .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em;}
   
   .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
@@ -203,6 +203,7 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
+    margin-inline-start:-0.35em;
   }
 
   .theme-toggle{
@@ -254,8 +255,8 @@
     <div class="meta-row">
       <div>Role<strong>Art Director III</strong></div>
       <div>Client<strong>Amazon Prime Video</strong></div>
-      <div>Category<strong>Entertainment, Sports, Streaming</strong></div>
-      <div>Milestone<strong>Sports graphics for a platform with 315M monthly viewers worldwide</strong></div>
+      <div>Category<strong>Entertainment, Sports</strong></div>
+      <div>Milestone<strong>Graphics for a streaming platform reaching 315M monthly viewers worldwide</strong></div>
     </div>
   </div>
 

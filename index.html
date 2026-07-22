@@ -19,7 +19,7 @@
 <script>!function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}}()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
@@ -188,7 +188,7 @@
   .contact-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-top:40px;}
   .contact-links{display:flex; flex-direction:row; gap:32px; flex-wrap:wrap;}
   .contact-links a{
-    font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
     transition:color .25s ease, background-color .25s ease;
   }
   .contact-links a:hover,
@@ -196,7 +196,6 @@
   .contact-links.is-lit a:nth-child(1){transition-delay:0s;}
   .contact-links.is-lit a:nth-child(2){transition-delay:0.06s;}
   .contact-links.is-lit a:nth-child(3){transition-delay:0.12s;}
-  .contact-links.is-lit a:nth-child(4){transition-delay:0.18s;}
   @media (prefers-reduced-motion: reduce){
     .contact-links a{transition:none;}
     .contact-links.is-lit a{transition-delay:0s;}
@@ -212,7 +211,7 @@
   }
   .sitemap{display:grid; grid-template-columns:repeat(5,1fr); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
   .sitemap-col{display:flex; flex-direction:column; gap:11px;}
-  .sitemap-head{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
+  .sitemap-head{font-family:var(--mono); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
   .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em;}
   
   .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
@@ -259,7 +258,7 @@
     --line:rgba(26,26,25,0.14);
   }
 
-  /* Chartreuse highlight: black type on mark; pad ~1 space L/R without hover shift */
+  /* Chartreuse highlight: black type on mark; tight pad L/R without hover shift */
   .sitemap-col a,
   .sitemap-col a.sitemap-caps,
   .next-title,
@@ -270,8 +269,8 @@
   .err-cta{
     width:fit-content;
     max-width:100%;
-    padding-inline:0.35em;
-    margin-inline:-0.35em;
+    padding-inline:0.18em;
+    margin-inline:-0.18em;
   }
   .sitemap-col a:hover,
   .sitemap-col a.sitemap-caps:hover,
@@ -318,12 +317,13 @@
   .pointer-egg:hover,
   .pointer-egg:focus-visible{ background:none; }
   .pointer-egg:hover svg{ color:var(--chartreuse); animation-play-state:paused; }
+  html[data-theme="light"] .flourish,
   html[data-theme="light"] .stat .num,
   html[data-theme="light"] .err-code,
   html[data-theme="light"] .tl-row.current .tl-year{
     color:#1a1a19;
     background:var(--chartreuse);
-    padding-inline:0.35em;
+    padding-inline:0.18em;
     box-decoration-break:clone;
     -webkit-box-decoration-break:clone;
   }
@@ -331,6 +331,11 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
+    margin-inline-start:-0.18em;
+  }
+  html[data-theme="light"] .flourish::before,
+  html[data-theme="light"] .flourish::after{
+    background:var(--chartreuse);
   }
 
   .theme-toggle{
@@ -342,14 +347,15 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
   
-  .email-copy{position:relative; display:inline-flex; align-items:baseline; gap:10px;}
+  .email-copy{position:relative; display:inline-block;}
   .email-copy-status{
+    position:absolute; left:calc(100% + 10px); top:50%; transform:translateY(calc(-50% + 2px));
     font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
-    color:#faf9f6; opacity:0; transform:translateY(2px);
+    color:#faf9f6; opacity:0; white-space:nowrap; pointer-events:none;
     transition:opacity .25s ease, transform .25s ease;
   }
   html[data-theme="light"] .email-copy-status{color:var(--ink);}
-  .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(0);}
+  .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(-50%);}
   .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
 </style>
 </head>
@@ -385,7 +391,7 @@
 
   <div class="stack-wrap">
     <div class="stack" id="stack">
-      <div class="stack-card" data-cat="ph-brand" data-slug="televisionacademy"><img src="images/televisionacademy/hero-stack.jpg" alt="Television Academy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
+      <div class="stack-card" data-cat="ph-brand" data-slug="televisionacademy"><img src="images/televisionacademy/hero-stack.jpg?v=6" alt="John Legend and Chrissy Teigen at the Emmy Awards" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:68% 35%;"></div>
       <div class="stack-card" data-cat="ph-cpg" data-slug="lemon-perfect"><img src="images/lemon-perfect/hero-stack.jpg" alt="Lemon Perfect" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
       <div class="stack-card" data-cat="ph-hosp" data-slug="joes-stone-crab"><img src="images/joes-stone-crab/hero-stack.jpg" alt="Joe's Stone Crab" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
       <div class="stack-card" data-cat="ph-hosp" data-slug="mootz-tom"><img src="images/mootz-tom/hero-stack.jpg" alt="Mootz &amp; Tom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
@@ -476,10 +482,9 @@
     <h2 class="reveal">Say <em>hello</em>.</h2>
     <div class="contact-row reveal">
       <div class="contact-links">
+        <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
         <a href="mailto:hello@adamlorber.com" class="email-copy" data-email="hello@adamlorber.com" aria-label="Copy email hello@adamlorber.com"><span class="email-copy-label">Email</span><span class="email-copy-status" aria-live="polite"></span></a>
         <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://www.behance.net/adamlorber" target="_blank" rel="noopener">Behance</a>
-        <a href="https://www.threads.net/@aalorber" target="_blank" rel="noopener">Threads</a>
       </div>
       <a href="https://pointerpointer.com" target="_blank" rel="noopener" class="pointer-egg" aria-label="pointerpointer.com">
         <svg width="20" height="27" viewBox="0 0 24 32" fill="currentColor"><path d="M4 3 L4 25 L9.5 20.5 L14 29 L17.5 27.3 L12.8 18.7 L21 18.7 Z"/></svg>
