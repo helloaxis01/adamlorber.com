@@ -104,12 +104,20 @@
     object-fit:contain !important;
     object-position:center center;
   }
+  /* Inset padding on the stage; keep img at 100%+contain so max-height
+     always resolves (auto+max-height:% was clipping screenshots). */
   .case-block .p-image.stage.stage-inset{
     padding:clamp(28px,5vw,56px);
+    box-sizing:border-box;
   }
   .case-block .p-image.stage.stage-inset img{
-    width:auto !important;
-    height:auto !important;
+    width:100% !important;
+    height:100% !important;
+    object-fit:contain !important;
+    object-position:center center;
+  }
+  html[data-theme="light"] .case-block .p-image.stage{
+    border:1px solid rgba(26,26,25,0.08);
   }
   .case-block .block-cap{font-family:var(--mono); font-size:11px; color:var(--ink-dim); margin-top:14px; max-width:720px; line-height:1.7;}
 
