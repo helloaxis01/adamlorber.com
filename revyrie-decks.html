@@ -3,13 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Process · Adam Lorber</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Revyrie Decks · Adam Lorber</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>!function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}}()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+
   :root{
     --mark-pad-x:0.18em;
     --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
@@ -226,9 +228,32 @@
     background:var(--chartreuse);
   }
   .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
+
+
+  .gate{position:fixed; inset:0; z-index:200; background:var(--bg); display:flex; align-items:center; justify-content:center; padding:32px;}
+  .gate[hidden]{display:none;}
+  .gate-card{width:min(420px,100%); text-align:left;}
+  .gate-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:16px;}
+  .gate-title{font-family:var(--serif); font-weight:500; font-size:clamp(28px,5vw,40px); margin-bottom:12px;}
+  .gate-sub{font-size:15px; line-height:1.6; color:var(--ink-dim); margin-bottom:28px;}
+  .gate-form{display:flex; flex-direction:column; gap:12px;}
+  .gate-form input{
+    width:100%; background:transparent; border:1px solid var(--line); color:var(--ink);
+    font-family:var(--grotesk); font-size:16px; padding:14px 16px; outline:none;
+  }
+  .gate-form input:focus{border-color:var(--ink-dim);}
+  .gate-form button{
+    align-self:flex-start; border:none; cursor:pointer;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    background:var(--chartreuse); color:#1a1a19; padding:14px 22px; font-weight:700;
+  }
+  .gate-error{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#c45c5c; min-height:1.2em;}
+  .deck-page[hidden]{display:none;}
+
 </style>
 </head>
 <body>
+
 <header id="siteHeader">
   <nav>
     <a href="index.html" class="logo">Adam Lorber</a>
@@ -247,174 +272,114 @@
   <a href="about.html">About</a>
   <a href="index.html#contact">Contact</a>
 </div>
-<main id="top">
+
+<div class="gate" id="deckGate">
+  <div class="gate-card">
+    <p class="gate-eyebrow">Private</p>
+    <h1 class="gate-title">Revyrie Decks</h1>
+    <p class="gate-sub">Enter the password to view deck designs.</p>
+    <form class="gate-form" id="gateForm">
+      <input type="password" id="gatePassword" name="password" autocomplete="current-password" placeholder="Password" required>
+      <button type="submit">Unlock</button>
+      <p class="gate-error" id="gateError" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<main id="top" class="deck-page" hidden>
   <div class="wrap p-hero">
-    <p class="p-eyebrow">Study</p>
-    <h1 class="p-title">Process</h1>
-    <p class="p-sub">A curated collection of early concepts, alternative directions, and archived favorites that still deserve the spotlight, from projects that shipped to ideas that live on as process.</p>
+    <p class="p-eyebrow">Private</p>
+    <h1 class="p-title">Revyrie</h1>
+    <p class="p-sub">As the VP of Design at Revyrie, I helped lead creative, working closely with a cross-functional team to develop and implement a consistent company identity across marketing materials. Deck design for client proposals, agency services, and brand systems.</p>
     <div class="meta-row">
-      <div>Scope<strong>Brand Identity, Logo, Collateral</strong></div>
+      <div>Scope<strong>Brand Identity, Logo, Collateral, Decks</strong></div>
       <div>Tools<strong>Illustrator, Photoshop, Figma</strong></div>
     </div>
   </div>
+
   <section class="wrap study-section">
-    <div class="sec-label">Nice Supps</div>
-    <p class="sec-body">Identity and label design for Nice Supps, a wellness brand built on honesty and purity. A clean visual system using transparent materials and friendly naming conventions like Mighty Multi and Probiotic Pal.</p>
+    <div class="sec-label">Client proposals</div>
+    <p class="sec-body">Deck design for Revyrie client proposals.</p>
     <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_MightyMulti.jpg" alt="Nice Supps"></div>
-      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_MorningMix.jpg" alt="Nice Supps"></div>
-      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_NighttimeNutrients.jpg" alt="Nice Supps"></div>
-      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_ProbioticPal.jpg" alt="Nice Supps"></div>
-    </div>
-  </section>
-  <section class="wrap study-section">
-    <div class="sec-label">Good Kernels</div>
-    <p class="sec-body">Logo and packaging design for Good Kernels, a vibrant popcorn brand featuring tiny-hulled kernels and nostalgic, carnival-inspired aesthetics. The project focused on a playful yet polished visual system that differentiates the brand within the healthy snacking market.</p>
-    <div class="proc-gallery">
-      <div class="p-image full"><img src="images/studies-process/GoodKernels_Mockup_Ranch-Large.jpg" alt="Good Kernels Ranch packaging"></div>
-      <div class="p-image"><img src="images/studies-process/GoodKernels_Mockup_Dill.jpg" alt="Good Kernels Dill packaging"></div>
-      <div class="p-image"><img src="images/studies-process/GoodKernels_Mockup_Cheese.jpg" alt="Good Kernels Cheese packaging"></div>
-      <div class="p-image"><img src="images/studies-process/GoodKernels_Mockup_Sweet.jpg" alt="Good Kernels Sweet packaging"></div>
-      <div class="p-image"><img src="images/studies-process/GoodKernels_Mockup_Wasabi.jpg" alt="Good Kernels Wasabi packaging"></div>
-    </div>
-  </section>
-  <section class="wrap study-section">
-    <div class="sec-label">Great Greek</div>
-    <p class="sec-body">Restaurant branding exploring a warm, contemporary Mediterranean identity.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-02.jpg" alt="Great Greek"></div>
-      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-07.jpg" alt="Great Greek"></div>
-      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-08.jpg" alt="Great Greek"></div>
-      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-09.jpg" alt="Great Greek"></div>
-      <div class="p-image full"><img src="images/studies-process/GreatGreek_Portfolio-10.jpg" alt="Great Greek"></div>
-    </div>
-  </section>
-  <section class="wrap study-section">
-    <div class="sec-label">Red Shoes Pictures</div>
-    <p class="sec-body">Branding for Red Shoes Pictures. The final logo can now be seen in the end credits of Netflix’s hit show Pieces of Her.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/RedShoes_RedPink_4K.jpg" alt="Red Shoes Pictures"></div>
-      <div class="p-image"><img src="images/studies-process/RedShoes_RedPink_4K_Alt.jpg" alt="Red Shoes Pictures"></div>
-      <div class="p-image"><img src="images/studies-process/RedShoes_RedPink_4K_Icons.jpg" alt="Red Shoes Pictures"></div>
-      <div class="p-image"><img src="images/studies-process/RedShoes_BrandColors.jpg" alt="Red Shoes Pictures brand colors"></div>
-      <div class="p-image full"><img src="images/studies-process/RSP_NetflixScroll-01.jpg" alt="Red Shoes Pictures"></div>
-    </div>
-  </section>
-  <section class="wrap study-section">
-    <div class="sec-label">Existent Films</div>
-    <p class="sec-body">Logo concept for Existent Films.</p>
-    <div class="proc-gallery">
-      <div class="p-image full"><img src="images/studies-process/Existent_Theater_v2a.jpg" alt="Existent Films"></div>
-    </div>
-  </section>
-  <section class="wrap study-section">
-    <div class="sec-label">Lalo</div>
-    <p class="sec-body">Business card concepts designed for meetlalo.com.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/Lalo_BC_4.jpg" alt="Lalo"></div>
-      <div class="p-image"><img src="images/studies-process/Lalo_BC_5.jpg" alt="Lalo"></div>
-      <div class="p-image"><img src="images/studies-process/Lalo_4.jpg" alt="Lalo"></div>
-      <div class="p-image"><img src="images/studies-process/Lalo_5.jpg" alt="Lalo"></div>
-    </div>
-  </section>
-  <section class="wrap study-section">
-    <div class="sec-label">Victory Extracts</div>
-    <p class="sec-body">Brand identity and packaging for Victory Extracts, a premium line of organic Delta 8 gummies and beverages tailored for a youthful, wellness-focused audience.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-03.jpg" alt="Victory Extracts"></div>
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-04.jpg" alt="Victory Extracts"></div>
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-05.jpg" alt="Victory Extracts"></div>
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-06.jpg" alt="Victory Extracts"></div>
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-07.jpg" alt="Victory Extracts"></div>
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-08.jpg" alt="Victory Extracts"></div>
-      <div class="p-image full"><img src="images/studies-process/Victory_Portfolio-09.jpg" alt="Victory Extracts"></div>
-    </div>
-  </section>
-  <section class="wrap study-section">
-    <div class="sec-label">Eric Broad Real Estate</div>
-    <p class="sec-body">Brand identity centered on a clean, quick-to-read visual language. Deep ocean and crisp light blues reflect the coastal energy of the Miami market.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/EB_Comps.jpg" alt="Eric Broad Real Estate"></div>
-      <div class="p-image"><img src="images/studies-process/EB_Hat.jpg" alt="Eric Broad Real Estate"></div>
-      <div class="p-image"><img src="images/studies-process/EB_House.jpg" alt="Eric Broad Real Estate"></div>
-      <div class="p-image"><img src="images/studies-process/EB_Keys.jpg" alt="Eric Broad Real Estate"></div>
-    </div>
-  </section>
-  <section class="wrap study-section">
-    <div class="sec-label">Revyrie</div>
-    <p class="sec-body">Brand refreshes and new logo systems developed for both existing and newly launched companies within the Revyrie portfolio.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---1.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---2.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---3.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---4.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---5.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---7.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---8.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---9.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---10.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---11.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---13.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---14.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image full"><img src="images/studies-process/Slide-16_9---15.jpg" alt="Revyrie logo system"></div>
-    </div>
-  </section>
-  <section class="wrap study-section">
-    <div class="sec-label">The Nautilus Hotel</div>
-    <p class="sec-body">Conceptual branding for The Nautilus Hotel in Miami Beach. A modern art deco system spanning a shell-inspired monogram, environmental signage, and guest collateral, honoring the hotel’s architectural roots through a refined coastal lens.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-01.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-02.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-03.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-04.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-05.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_BrandColors.jpg" alt="The Nautilus Hotel brand colors"></div>
-      <div class="p-image full"><img src="images/studies-process/Nautilus_Portfolio-06.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-07.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-08.jpg" alt="The Nautilus Hotel"></div>
+      <div class="p-image full"><img src="images/revyrie-decks/Slide-16_9---23.jpg" alt="Revyrie client proposal deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---65.jpg" alt="Revyrie client proposal deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---66.jpg" alt="Revyrie client proposal deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---67.jpg" alt="Revyrie client proposal deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---68.jpg" alt="Revyrie client proposal deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---69.jpg" alt="Revyrie client proposal deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---72.jpg" alt="Revyrie client proposal deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---70.jpg" alt="Revyrie client proposal deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---71.jpg" alt="Revyrie client proposal deck"></div>
+      <div class="p-image full"><img src="images/revyrie-decks/Slide-16_9---119.jpg" alt="Revyrie client proposal deck"></div>
     </div>
   </section>
 
-  <div class="next">
-    <div class="wrap">
-      <div class="next-label">Next study</div>
-      <a href="studies-logos-marks.html" class="next-title">Logos &amp; Marks</a>
+  <section class="wrap study-section">
+    <div class="sec-label">Clarity agency services</div>
+    <p class="sec-body">Deck design for Clarity featuring their agency services. This design features their new logo and wordmark in use.</p>
+    <div class="proc-gallery">
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---107.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---108.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---109.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---110.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---111.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---112.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---113.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---114.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---115.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---116.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---117.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---118.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---99.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---76.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image full"><img src="images/revyrie-decks/Slide-16_9---100.jpg" alt="Clarity agency services deck"></div>
     </div>
-  </div>
-  <div class="wrap sitemap">
-    <div class="sitemap-col">
-      <span class="sitemap-head">In-House</span>
-      <a href="project-amazon-prime-video-sports.html">Amazon</a>
-      <a href="project-television-academy.html">Television Academy</a>
-      <a href="project-fount.html">Fount</a>
-      <a href="project-inflection.html">Inflection</a>
+  </section>
+
+  <section class="wrap study-section">
+    <div class="sec-label">Clarity alternate logo</div>
+    <p class="sec-body">A client and service-focused deck design for Clarity, featuring an alternate logo design.</p>
+    <div class="proc-gallery">
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---79.jpg" alt="Clarity alternate logo deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---73.jpg" alt="Clarity alternate logo deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---74.jpg" alt="Clarity alternate logo deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---75.jpg" alt="Clarity alternate logo deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---77.jpg" alt="Clarity alternate logo deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---78.jpg" alt="Clarity alternate logo deck"></div>
     </div>
-    <div class="sitemap-col">
-      <span class="sitemap-head">Client Work</span>
-      <a href="project-dream-clean.html">Dream Clean</a>
-      <a href="project-lemon-perfect.html">Lemon Perfect</a>
-      <a href="project-mantra.html">Mantra</a>
-      <a href="project-chick-fil-a.html">Chick-fil-A</a>
-      <a href="project-mootz-tom.html">Mootz &amp; Tom</a>
-      <a href="project-joes-stone-crab.html">Joe's Stone Crab</a>
-    </div>
-    <div class="sitemap-col">
-      <span class="sitemap-head">Studies</span>
-      <a href="studies-logos-marks.html">Logos &amp; Marks</a>
-      <a href="studies-process.html">Process</a>
-    </div>
-    <div class="sitemap-col">
-      <a href="about.html" class="sitemap-caps">About</a>
-      <a href="index.html#contact" class="sitemap-caps">Contact</a>
-    </div>
-  </div>
+  </section>
+
 
   <footer class="wrap">
     <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
     <a href="#top">Back to top ↑</a>
   </footer>
+
 </main>
 <script>
+  const GATE_KEY = "revyrie-decks-unlocked";
+  const PASS = "Decks";
+  const gate = document.getElementById("deckGate");
+  const page = document.querySelector(".deck-page");
+  const form = document.getElementById("gateForm");
+  const err = document.getElementById("gateError");
+  function unlock() {
+    gate.hidden = true;
+    page.hidden = false;
+  }
+  try {
+    if (sessionStorage.getItem(GATE_KEY) === "1") unlock();
+  } catch (e) {}
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const val = document.getElementById("gatePassword").value.trim();
+    if (val === PASS) {
+      try { sessionStorage.setItem(GATE_KEY, "1"); } catch (err2) {}
+      unlock();
+    } else {
+      err.textContent = "Incorrect password";
+    }
+  });
   const header = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 10));
 </script>

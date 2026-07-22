@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /questions.html
+Disallow: /questions
+Disallow: /revyrie-decks.html
+Disallow: /revyrie-decks
