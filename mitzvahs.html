@@ -44,10 +44,13 @@
 
   .site-top{
     position:fixed; inset:0 0 auto 0; z-index:40;
-    display:flex; justify-content:space-between; align-items:center;
-    padding:22px var(--gutter);
+    padding:22px 0;
     background:linear-gradient(to bottom, rgba(16,19,26,0.88), rgba(16,19,26,0.35) 70%, transparent);
     backdrop-filter:blur(6px);
+  }
+  .site-top-inner{
+    max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter);
+    display:flex; justify-content:space-between; align-items:center;
   }
   .brand{
     font-family:var(--serif); font-weight:600; font-size:22px; letter-spacing:0.04em;
@@ -67,16 +70,21 @@
   .intro{
     padding:clamp(120px,18vh,180px) 0 clamp(48px,8vh,72px);
   }
-  .intro-inner{max-width:720px;}
+  .intro-inner{
+    width:100%;
+    max-width:min(720px, 100%);
+  }
   .intro h1{
     font-family:var(--serif); font-weight:500; font-size:clamp(42px,7.2vw,88px);
-    line-height:0.98; letter-spacing:-0.01em; max-width:14ch;
+    line-height:0.98; letter-spacing:-0.01em;
+    max-width:min(14ch, 100%);
+    overflow-wrap:break-word;
     opacity:0; transform:translateY(16px);
     animation:riseIn .9s ease .15s forwards;
   }
   .intro h1 em{font-style:italic; color:var(--gold);}
   .intro p{
-    margin-top:20px; max-width:40ch; font-size:clamp(16px,1.7vw,18px);
+    margin-top:20px; max-width:min(40ch, 100%); font-size:clamp(16px,1.7vw,18px);
     line-height:1.55; color:var(--ink-dim); font-weight:300;
     opacity:0; transform:translateY(16px);
     animation:riseIn .9s ease .3s forwards;
@@ -222,7 +230,7 @@
 
   @media (max-width:900px){
     .tiers{grid-template-columns:1fr;}
-    .site-top{padding:16px var(--gutter);}
+    .site-top{padding:16px 0;}
     .brand{font-size:18px;}
     .mitz-gallery{
       display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory;
@@ -246,8 +254,10 @@
 </head>
 <body>
   <header class="site-top">
-    <a class="brand" href="#top"><span>Bespoke</span>Mitzvahs</a>
-    <a class="top-cta" href="#contact">Get in touch</a>
+    <div class="site-top-inner">
+      <a class="brand" href="#top"><span>Bespoke</span>Mitzvahs</a>
+      <a class="top-cta" href="#contact">Get in touch</a>
+    </div>
   </header>
 
   <main id="top">
