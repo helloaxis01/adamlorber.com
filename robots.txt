@@ -5,3 +5,9 @@ Disallow: /questions.html
 Disallow: /questions
 Disallow: /revyrie-decks.html
 Disallow: /revyrie-decks
+Disallow: /fount-deep-dive.html
+Disallow: /fount-deep-dive
+Disallow: /axis.html
+Disallow: /axis
+Disallow: /mitzvahs.html
+Disallow: /mitzvahs

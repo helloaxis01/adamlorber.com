@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Fount Deep Dive · Adam Lorber</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<script>!function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}}()</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --mark-pad-x:0.18em;
+    --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
+    --line:rgba(220,218,211,0.16); --next-bg:#141413;
+    --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
+    --maxw:1320px;
+    --gutter:clamp(20px,5vw,64px);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400; overflow-x:hidden;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  ::selection{background:var(--gold); color:var(--bg);}
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter);}
+
+  header{position:fixed; top:0; left:0; right:0; z-index:110; background-color:color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid transparent; transition:background-color .3s ease, border-color .3s ease;}
+  header.scrolled{background-color:color-mix(in srgb, var(--bg) 97%, transparent); border-color:var(--line);}
+  nav{max-width:100%; margin:0 auto; padding:26px var(--gutter); display:flex; align-items:center; justify-content:space-between;}
+  .logo{font-family:var(--grotesk); font-weight:800; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink);}
+  .burger{display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; z-index:110;}
+  .nav-right{display:flex; align-items:center; gap:14px;}
+  .burger span{width:22px; height:2px; background:var(--ink); display:block; transition:transform .25s ease, opacity .25s ease;}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .menu{position:fixed; inset:0; background:var(--bg); z-index:105; display:flex; flex-direction:column; justify-content:center; gap:22px; padding:0 32px; transform:translateY(-100%); transition:transform .45s cubic-bezier(.65,0,.35,1);}
+  .menu.open{transform:translateY(0);}
+  .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
+  .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
+
+  .p-hero{padding-top:150px;}
+  .p-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); display:flex; align-items:center; gap:12px; margin-bottom:20px;}
+  .p-eyebrow::before{content:''; width:26px; height:1px; background:var(--ink-dim);}
+  .p-title{font-family:var(--serif); font-weight:500; font-size:clamp(40px,7.6vw,104px); line-height:0.98;}
+  .p-sub{font-family:var(--grotesk); font-weight:400; font-size:clamp(15px,1.6vw,17px); color:var(--ink-dim); max-width:720px; margin-top:22px; line-height:1.6;}
+
+  .meta-row{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:56px; border-top:1px solid var(--line); padding:24px 0 48px;}
+  .meta-row div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
+  .meta-row strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; line-height:1.4;}
+
+  .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--bg);}
+  .p-image img{width:100%; height:100%; object-fit:cover;}
+
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
+  .stat{background:var(--bg); padding:36px clamp(16px,3.5vw,48px);}
+  .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
+  .stat .stat-star{font-size:0.55em; margin-left:0.12em; vertical-align:0.2em;}
+  .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
+
+  section{padding-top:96px; padding-bottom:130px;}
+  .section-inner{display:grid; grid-template-columns:180px 1fr; gap:64px;}
+  .section-label{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink); padding-top:4px;}
+  .section-body p{font-size:15px; line-height:1.75; color:var(--ink-dim); max-width:640px; margin-bottom:16px;}
+  .section-body p:last-child{margin-bottom:0;}
+  .section-body strong{color:var(--ink); font-weight:600;}
+
+  .case-section{padding-top:88px; padding-bottom:88px;}
+  .case-header{margin-bottom:32px;}
+  .case-blocks{display:flex; flex-direction:column; gap:36px;}
+  .case-block.block-text p{font-size:15px; line-height:1.55; color:var(--ink-dim); max-width:920px;}
+  .case-block.block-image + .case-block,
+  .case-block.block-carousel + .case-block,
+  .case-block.block-gif + .case-block,
+  .case-block.block-gif-centered + .case-block,
+  .case-block.block-appstore + .case-block{
+    border-top:1px solid var(--line); padding-top:48px;
+  }
+  .case-block.block-carousel + .case-block.joins-prev,
+  .case-block.block-image + .case-block.joins-prev{
+    border-top:none;
+    padding-top:0;
+  }
+  .case-block.block-image + .case-block.block-text p,
+  .case-block.block-carousel + .case-block.block-text p,
+  .case-block.block-gif + .case-block.block-text p,
+  .case-block.block-gif-centered + .case-block.block-text p,
+  .case-block.block-appstore + .case-block.block-text p{
+    font-size:13px;
+  }
+  .case-block.block-text a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
+  .case-block.block-text a:hover{color:var(--chartreuse); background:transparent;}
+  html[data-theme="light"] .case-block.block-text a:hover{color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;}
+  .case-block.block-text strong{color:var(--ink); font-weight:600;}
+  .case-block .p-image{aspect-ratio:16/9;}
+  .case-block video{width:100%; height:100%; object-fit:cover; display:block; background:#000;}
+  .case-block .block-cap{font-family:var(--mono); font-size:11px; color:var(--ink-dim); margin-top:14px; max-width:820px; line-height:1.5;}
+
+  .gallery-cap{font-family:var(--mono); font-size:11px; letter-spacing:0.06em; color:var(--ink-dim); padding-top:18px; padding-bottom:56px; max-width:640px; line-height:1.7;}
+  .gallery{display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:8px; margin-bottom:56px;}
+  .gallery.full{margin-bottom:0;}
+  .gallery.full .p-image{grid-column:1 / -1;}
+
+  .section-end-rule{border-top:1px solid var(--line); margin:0 0 64px;}
+  .next{background:var(--next-bg); padding:70px 0; display:flex; align-items:center;}
+  .next .wrap{width:100%;}
+  .next-label{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:14px;}
+  .next-title{font-family:var(--serif); font-weight:500; font-size:clamp(32px,6vw,64px); display:inline-flex; align-items:center; gap:18px;}
+  
+
+  .sitemap{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
+  .sitemap-col{display:flex; flex-direction:column; gap:11px;}
+  .sitemap-head{font-family:var(--mono); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
+  .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em;}
+  
+  .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
+  
+  .carousel-viewport{position:relative; width:100%; aspect-ratio:16/9; background:var(--bg); overflow:hidden; border-radius:0; touch-action:pan-y; cursor:grab;}
+  .carousel-viewport:active{cursor:grabbing;}
+  .carousel-track{display:flex; height:100%; transition:transform 0.45s cubic-bezier(0.65,0,0.35,1);}
+  .carousel-slide{flex:0 0 100%; height:100%; display:flex; align-items:center; justify-content:center; background:var(--bg);}
+  .carousel-slide img{max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; -webkit-user-drag:none; user-select:none; pointer-events:none;}
+  #carousel-lifestyle .carousel-slide img,
+  #carousel-product .carousel-slide img{width:100%; height:100%; max-width:none; max-height:none; object-fit:cover;}
+
+  .appstore-row{
+    display:grid;
+    grid-template-columns:repeat(5, minmax(0, 1fr));
+    gap:12px;
+    align-items:start;
+  }
+  .appstore-row img{
+    width:100%;
+    height:auto;
+    display:block;
+  }
+  @media (max-width:900px){
+    .appstore-row{
+      display:flex;
+      gap:10px;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      padding-bottom:4px;
+    }
+    .appstore-row img{
+      flex:0 0 38vw;
+      max-width:160px;
+      width:38vw;
+    }
+  }
+  .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:3;
+    width:28px; height:28px; border-radius:50%; border:1px solid rgba(220,218,211,0.22);
+    background:rgba(20,20,19,0.45); color:var(--ink); font-size:13px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);
+    padding:0;
+  }
+  .carousel-arrow:hover{border-color:var(--gold); color:var(--gold); background:rgba(20,20,19,0.65);}
+  .carousel-prev{left:10px;}
+  .carousel-next{right:10px;}
+  .carousel-counter{
+    position:absolute; bottom:10px; right:10px; z-index:3; font-family:var(--mono); font-size:10px;
+    letter-spacing:0.06em; color:var(--ink); background:rgba(20,20,19,0.45); padding:3px 7px; border-radius:2px; backdrop-filter:blur(4px);
+  }
+  html[data-theme="light"] .carousel-arrow{
+    color:#faf9f6;
+    border-color:rgba(250,249,246,0.35);
+    background:rgba(20,20,19,0.55);
+  }
+  html[data-theme="light"] .carousel-arrow:hover{
+    color:#faf9f6;
+    border-color:rgba(250,249,246,0.7);
+    background:rgba(20,20,19,0.75);
+  }
+  html[data-theme="light"] .carousel-counter{
+    color:#faf9f6;
+    background:rgba(20,20,19,0.55);
+  }
+
+  footer.wrap{padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
+
+  @media (max-width:900px){
+    .sitemap{grid-template-columns:1fr; gap:32px;}
+    .meta-row{grid-template-columns:repeat(2,1fr); gap:24px 20px;}
+    .section-inner{grid-template-columns:1fr; gap:14px;}
+    .stats{grid-template-columns:1fr;}
+    .gallery{grid-template-columns:1fr;}
+    section{padding-top:64px; padding-bottom:90px;}
+    .p-hero{padding-top:120px;}
+  }
+
+  html[data-theme="light"]{
+    --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19; --chartreuse:#ebff12;
+    --line:rgba(26,26,25,0.14); --next-bg:#e5e4df;
+  }
+
+  /* Chartreuse highlight: black type on mark; pad ~1 space L/R without hover shift */
+  .sitemap-col a,
+  .sitemap-col a.sitemap-caps,
+  .next-title,
+  .study h3,
+  .study span,
+  .contact-links a,
+  .about-actions a,
+  .err-cta{
+    width:fit-content;
+    max-width:100%;
+    padding-inline:0.35em;
+    margin-inline:-0.35em;
+  }
+  .sitemap-col a:hover,
+  .sitemap-col a.sitemap-caps:hover,
+  .next-title:hover,
+  .study:hover h3,
+  .study:hover span,
+  .contact-links a:hover,
+  .contact-links.is-lit a,
+  .about-actions a:hover,
+  .err-cta:hover,
+  .theme-toggle:hover{
+    color:var(--chartreuse);
+    background:transparent;
+  }
+  html[data-theme="light"] .sitemap-col a:hover,
+  html[data-theme="light"] .sitemap-col a.sitemap-caps:hover,
+  html[data-theme="light"] .next-title:hover,
+  html[data-theme="light"] .study:hover h3,
+  html[data-theme="light"] .study:hover span,
+  html[data-theme="light"] .contact-links a:hover,
+  html[data-theme="light"] .contact-links.is-lit a,
+  html[data-theme="light"] .about-actions a:hover,
+  html[data-theme="light"] .err-cta:hover,
+  html[data-theme="light"] .theme-toggle:hover{
+    color:#1a1a19;
+    background:var(--chartreuse);
+  }
+  .theme-toggle:hover,
+  .err-cta:hover,
+  .about-actions .resume:hover{
+    border-color:var(--line);
+  }
+  .pointer-egg{
+    display:inline-flex; align-items:center;
+    background:none; padding:0; margin:0; border:none;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .pointer-egg svg{
+    display:block; color:var(--ink);
+    animation:pointerFlickerMark 2.2s steps(1) infinite;
+  }
+  @keyframes pointerFlickerMark{
+    0%, 100%{ color:var(--ink); }
+    8%{ color:var(--chartreuse); }
+    14%{ color:var(--ink); }
+    46%{ color:var(--ink); }
+    52%{ color:var(--chartreuse); }
+    58%{ color:var(--ink); }
+    81%{ color:var(--chartreuse); }
+    86%{ color:var(--ink); }
+  }
+  html[data-theme="light"] .pointer-egg svg{ color:#1a1a19; }
+  .pointer-egg:hover,
+  .pointer-egg:focus-visible{ background:none; }
+  .pointer-egg:hover svg{ color:var(--chartreuse); animation-play-state:paused; }
+  html[data-theme="light"] .stat .num,
+  html[data-theme="light"] .err-code,
+  html[data-theme="light"] .tl-row.current .tl-year{
+    color:#1a1a19;
+    background:var(--chartreuse);
+    padding-inline:0.35em;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
+  html[data-theme="light"] .stat .num{
+    display:inline-block;
+    width:fit-content;
+    max-width:100%;
+    margin-inline-start:-0.35em;
+  }
+
+  .theme-toggle{
+    background:none; border:1px solid var(--line); color:var(--ink-dim);
+    font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    padding:7px 10px; cursor:pointer; border-radius:1px;
+    min-width:5.75em; text-align:center;
+    transition:color .15s ease, background-color .15s ease;
+  }
+  .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
+  
+  .contact-links a.email-copy,
+  .about-actions a.email-copy{
+    position:relative; display:inline-block;
+    padding-inline:0;
+    margin-inline:0;
+  }
+  .email-copy .email-copy-label{
+    padding-inline:var(--mark-pad-x);
+    margin-inline:calc(-1 * var(--mark-pad-x));
+  }
+  .email-copy-status{
+    position:absolute; left:calc(100% + 10px); top:50%; transform:translateY(calc(-50% + 2px));
+    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    color:#faf9f6; opacity:0; white-space:nowrap; pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  html[data-theme="light"] .email-copy-status{color:var(--ink);}
+  .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(-50%);}
+  .contact-links a.email-copy:hover,
+  .contact-links.is-lit a.email-copy,
+  .about-actions a.email-copy:hover,
+  html[data-theme="light"] .contact-links a.email-copy:hover,
+  html[data-theme="light"] .contact-links.is-lit a.email-copy,
+  html[data-theme="light"] .about-actions a.email-copy:hover{
+    background:transparent;
+  }
+  .contact-links a.email-copy:hover .email-copy-label,
+  .contact-links.is-lit a.email-copy .email-copy-label,
+  .about-actions a.email-copy:hover .email-copy-label{
+    color:var(--chartreuse);
+  }
+  html[data-theme="light"] .contact-links a.email-copy:hover .email-copy-label,
+  html[data-theme="light"] .contact-links.is-lit a.email-copy .email-copy-label,
+  html[data-theme="light"] .about-actions a.email-copy:hover .email-copy-label{
+    color:#1a1a19;
+    background:var(--chartreuse);
+  }
+  .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
+
+
+  .role-list{list-style:none; display:flex; flex-direction:column; gap:22px; max-width:820px; margin:0 0 40px;}
+  .role-list li{font-size:15px; line-height:1.65; color:var(--ink-dim);}
+  .role-list strong{display:block; color:var(--ink); font-weight:600; margin-bottom:4px; font-size:14px; letter-spacing:0.02em;}
+  .scope-chips{display:flex; flex-wrap:wrap; gap:8px 14px; max-width:900px; margin-bottom:48px;}
+  .scope-chips span{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); border:1px solid var(--line); padding:8px 12px;}
+  .gallery.thirds{grid-template-columns:repeat(3,1fr);}
+  .gallery.icons{grid-template-columns:repeat(4,1fr);}
+  .gallery .p-image.square{aspect-ratio:1;}
+  .gallery .p-image.tall{aspect-ratio:9/16;}
+  .gallery .p-image.auto{aspect-ratio:auto; height:auto;}
+  .gallery .p-image.auto img{height:auto; object-fit:contain; background:#141413;}
+  .gallery .p-image.contain img{object-fit:contain; background:#141413;}
+  .appstore-row{display:flex; gap:12px; overflow-x:auto; padding-bottom:8px; margin-bottom:16px;}
+  .appstore-row .p-image{flex:0 0 auto; width:min(220px,42vw); aspect-ratio:9/19.5; border-radius:0;}
+  .private-note{font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim); margin-top:18px;}
+  .tier-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(20px,3vw,36px); margin:40px 0 64px;}
+  .tier h3{font-family:var(--serif); font-weight:500; font-size:clamp(22px,3vw,30px); margin-bottom:14px;}
+  .tier ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  .tier li{font-size:14px; line-height:1.55; color:var(--ink-dim); padding-left:14px; position:relative;}
+  .tier li::before{content:''; position:absolute; left:0; top:0.65em; width:6px; height:1px; background:var(--ink-dim);}
+  .axis-icons{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,2vw,20px); margin:32px 0 48px;}
+  .axis-icons figure{margin:0; text-align:center;}
+  .axis-icons img{width:100%; aspect-ratio:1; object-fit:cover; border-radius:22%; background:#080d18;}
+  .axis-icons figcaption{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim); margin-top:10px;}
+  .axis-hero-mark{max-width:min(420px,80vw); margin:28px 0 8px;}
+  .axis-hero-mark img{width:100%; height:auto;}
+  .q-form{max-width:720px; display:flex; flex-direction:column; gap:28px; padding-bottom:96px;}
+  .q-field{display:flex; flex-direction:column; gap:8px;}
+  .q-field label{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink);}
+  .q-field .hint{font-family:var(--grotesk); font-size:13px; line-height:1.5; color:var(--ink-dim); text-transform:none; letter-spacing:0;}
+  .q-field input, .q-field textarea, .q-field select{
+    width:100%; background:transparent; border:1px solid var(--line); color:var(--ink);
+    font-family:var(--grotesk); font-size:15px; line-height:1.5; padding:14px 16px; outline:none; resize:vertical;
+  }
+  .q-field input:focus, .q-field textarea:focus{border-color:var(--ink-dim);}
+  .q-check{display:flex; flex-direction:column; gap:10px; margin-top:4px;}
+  .q-check label{display:flex; align-items:center; gap:10px; font-family:var(--grotesk); font-size:14px; letter-spacing:0; text-transform:none; color:var(--ink-dim); cursor:pointer;}
+  .q-check input{width:auto; accent-color:var(--chartreuse);}
+  .q-submit{border:none; cursor:pointer; font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; background:var(--chartreuse); color:#1a1a19; padding:16px 26px; font-weight:700; align-self:flex-start;}
+  .hp{position:absolute; left:-9999px; height:0; overflow:hidden;}
+  @media (max-width:900px){
+    .tier-grid{grid-template-columns:1fr;}
+    .gallery.thirds, .gallery.icons, .axis-icons{grid-template-columns:repeat(2,1fr);}
+    .meta-row{grid-template-columns:repeat(2,1fr);}
+  }
+
+</style>
+
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav>
+    <a href="index.html" class="logo">Adam Lorber</a>
+    <div class="nav-right">
+      <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch to light theme" data-theme="dark"><span class="theme-toggle-label">Light</span></button>
+      <button class="burger" aria-label="Open menu" id="burgerBtn"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+</header>
+
+<div class="menu" id="menu">
+  <span class="m-eyebrow">Menu</span>
+  <a href="index.html">Home</a>
+  <a href="index.html#work">Work</a>
+  <a href="index.html#studies">Studies</a>
+  <a href="about.html">About</a>
+  <a href="index.html#contact">Contact</a>
+</div>
+
+<main id="top">
+  <div class="wrap p-hero">
+    <p class="p-eyebrow">Private</p>
+    <h1 class="p-title">Fount</h1>
+    <p class="p-sub">Deep dive — Lead Designer, 2022–2024. A fuller look at the rebrand, product launches, packaging, film, digital, and AI work beyond the public case study.</p>
+    <p class="private-note">Unlisted · more context for hiring conversations</p>
+    <div class="meta-row">
+      <div>Role<strong>Lead Designer</strong></div>
+      <div>Category<strong>In-House</strong></div>
+      <div>Years<strong>2022–2024</strong></div>
+      <div>Also see<strong><a href="project-fount.html">Public case study</a></strong></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-5854-Retouch.jpg" alt="Fount lifestyle"></div>
+  </div>
+  <section class="wrap case-section">
+    <div class="case-blocks">
+<div class="case-block block-text"><p>In late September 2022, I joined Fount, a wellness and tech startup dedicated to optimizing health and performance for the world's top performers. As Lead Designer and the sole creative on the team, I had the opportunity to shape the brand from the ground up, driving design for a game-changing business.</p></div>
+<div class="case-block block-text"><p><strong>Key achievements</strong></p></div>
+    <ul class="role-list">
+      <li><strong>Comprehensive Rebrand & Product Launches</strong>I led a full-scale rebranding of Fount and launched its first public product, FlyKitt, a jet lag solution, in my first 30 days with the company. This included overseeing the design of Squarespace websites for both brands and delivering on a tight November 1st deadline.</li>
+      <li><strong>Decks & Strategic Marketing</strong>Designed decks, sales one-pagers, and promotional materials to support company growth. This included presentations for high-profile celebrity collaborations and partnerships, as well as investor decks that played a key role in securing Fount's successful Series A funding round.</li>
+      <li><strong>Packaging Design</strong>Designed FDA-compliant, consumer-friendly packaging for FlyKitt and the Fount Kitt System wellness line, launched in November 2023. Additionally, I designed a custom welcome box to house Fount and FlyKitt products for new members.</li>
+      <li><strong>Brand Development</strong>Created essential brand assets, including internal communications collateral, membership materials, and comprehensive brand guidelines, ensuring a cohesive identity across all platforms.</li>
+      <li><strong>Photo & Video Production</strong>Produced and art directed a photo and video shoot, ultimately creating a comprehensive catalog of lifestyle and product photos for Fount and FlyKitt. In tandem, I oversaw video production, which was later utilized in a brand video, a testimonial video, and two 20-second hero videos featured on the Fount and FlyKitt websites.</li>
+      <li><strong>Creative Content Production</strong>Conceptualized and coordinated additional brand videos, ensuring alignment with Fount's evolving identity and messaging.</li>
+      <li><strong>Digital Design & Web Development</strong>Spearheaded the WordPress website redesign for Fount and FlyKitt, collaborating with developers to enhance UI/UX and meet aggressive timelines.</li>
+      <li><strong>Mobile App UI/UX</strong>Partnered with the CTO and engineering team to design the user interface for Fount and FlyKitt mobile apps, contributing icons, graphics, and UI/UX improvements.</li>
+      <li><strong>AI & Innovative Cost-Saving Solutions</strong>Leveraged AI tools (Midjourney, ChatGPT, Adobe Firefly, Photoshop Generative AI) to create marketing visuals, saving the company over $50,000 in production costs.</li>
+    </ul>
+<div class="case-block block-text"><p>While much of my work remains confidential, the projects highlighted here showcase my ability to lead design initiatives across branding, product, digital, and marketing channels, all within a fast-paced, high-growth environment.</p></div>
+<div class="case-block block-text"><p><strong>Project scope</strong></p></div>
+    <div class="scope-chips">
+      <span>Brand Identity</span>
+      <span>Art Direction</span>
+      <span>Creative Direction</span>
+      <span>Video Production</span>
+      <span>Product Launches</span>
+      <span>Packaging</span>
+      <span>Collateral</span>
+      <span>Marketing Documents</span>
+      <span>Decks and Presentations</span>
+      <span>UI/UX Consulting</span>
+      <span>Squarespace Websites</span>
+      <span>Wordpress Websites</span>
+      <span>App Design</span>
+      <span>AI Imagery</span>
+    </div>
+<div class="case-block block-text"><p>Logo mark conceptualized and launched within the first 30 days at the company.</p></div>
+<div class="gallery">
+<div class="p-image"><img src="images/fount-deep-dive/Fount_Logo_BeforeAfter-03.jpg" alt="Fount logo evolution"></div>
+<div class="p-image"><img src="images/fount-deep-dive/Fount_Logo_BeforeAfter-01.jpg" alt="Fount logo before after"></div>
+<div class="p-image full"><img src="images/fount-deep-dive/Fount_Logo_BeforeAfter-02.jpg" alt="Fount logo before after"></div>
+</div>
+    </div>
+  </section>
+  <section class="wrap case-section">
+    <div class="case-blocks">
+<div class="case-block block-text"><p>Videos I art directed and produced for Fount and FlyKitt, including a brand video, a testimonial video, and two looping videos to be used as hero images on the fount.bio and FlyKitt websites. Additionally, I collaborated closely with an editor to effectively convey the brand message.</p></div>
+      <div class="case-block block-image">
+        <div class="p-image"><video controls playsinline preload="metadata" src="images/fount-deep-dive/video-overview.mp4"></video></div>
+        <p class="block-cap">Fount Overview Video</p>
+      </div>
+      <div class="case-block block-image">
+        <div class="p-image"><video controls playsinline muted loop preload="metadata" src="images/fount-deep-dive/video-loop-hero.mp4"></video></div>
+        <p class="block-cap">Fount — Looping Hero Video (no audio)</p>
+      </div>
+      <div class="case-block block-image">
+        <div class="p-image"><video controls playsinline preload="metadata" src="images/fount-deep-dive/video-brand.mp4"></video></div>
+        <p class="block-cap">Fount Brand Video</p>
+      </div>
+      <div class="case-block block-image">
+        <div class="p-image"><video controls playsinline muted loop preload="metadata" src="images/fount-deep-dive/video-flykitt-loop.mp4"></video></div>
+        <p class="block-cap">FlyKitt — Looping Hero Video (no audio)</p>
+      </div>
+    </div>
+  </section>
+  <section class="wrap case-section">
+    <div class="case-blocks">
+<div class="case-block block-text"><p>FlyKitt Bundle press photo, showing the redesigned packaging, product renders, and redesigned app UI.</p></div>
+      <div class="gallery ">
+      <div class="p-image full"><img src="images/fount-deep-dive/Fount_FlyKitt_BeforeAfter_PackageBundle.jpg" alt="FlyKitt Bundle press photo, showing the "></div>
+      </div>
+<div class="case-block block-text"><p>The new FlyKitt packaging design features a lighter color palette, for better visual recognition on nighttime flights, and enhanced color capsule callouts. While retaining familiar color names for existing customers, the callouts now include function names for easier pill identification. This update improves both the visual appeal and practical usability of the packaging.</p></div>
+      <div class="gallery ">
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_FlyKitt_BeforeAfter-02.jpg" alt="The new FlyKitt packaging design feature"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_FlyKitt_BeforeAfter-01.jpg" alt="The new FlyKitt packaging design feature"></div>
+      </div>
+<div class="case-block block-text"><p>A small sampling of shots from the lifestyle shoot I art directed. Photos featured on Axios, in press releases, and on fount.bio.</p></div>
+      <div class="gallery ">
+      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-5854-Retouch-7.jpg" alt="A small sampling of shots from the lifes"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-7006-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-7379-Retouch-V2.jpg" alt="A small sampling of shots from the lifes"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/7a5b4d47ebf8d6296335451058b64bd2.jpeg" alt="A small sampling of shots from the lifes"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/FountPro_HeroImage-min-scaled-1_f4e24228-ddcc-40f6-b65e-215b30c1e847.jpeg" alt="A small sampling of shots from the lifes"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-7282-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-6404-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-6432-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-6364-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-7042-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-6333-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-6574-Retouch.jpg" alt="A small sampling of shots from the lifes"></div>
+      </div>
+<div class="case-block block-text"><p>The face of FlyKitt — AI Image created with Midjourney + ChatGPT + Generative AI in Photoshop. AI was used in place of an on-location photo shoot, which ultimately saved the company upwards of $50k.</p></div>
+      <div class="gallery ">
+      <div class="p-image"><img src="images/fount-deep-dive/asset-19.jpg" alt="The face of FlyKitt — AI Image created w"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Screenshot_2026-04-21_at_11.23.56_AM.png" alt="The face of FlyKitt — AI Image created w"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/4_Edit.jpg" alt="The face of FlyKitt — AI Image created w"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/4_Edit_Athlete.jpg" alt="The face of FlyKitt — AI Image created w"></div>
+      </div>
+<div class="case-block block-text"><p>Shots from a product photography shoot featuring the final FlyKitt packaging design.</p></div>
+      <div class="gallery ">
+      <div class="p-image"><img src="images/fount-deep-dive/hi_res-eb-Fount_r1_095A9501.jpg" alt="Shots from a product photography shoot f"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/hi_res-f1-Fount_r1_095A95973_2_-min.jpg" alt="Shots from a product photography shoot f"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/hi_res-ee-Fount_r1_095A9554.jpg" alt="Shots from a product photography shoot f"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/hi_res-fd-Fount_r1_095A9661.jpg" alt="Shots from a product photography shoot f"></div>
+      </div>
+    </div>
+  </section>
+  <section class="wrap case-section">
+    <div class="case-blocks">
+<div class="case-block block-text"><p>Logos designed while at Fount including the FlyKitt logo, Fount Chat logo, and for member pricing tiers (shown below): Fount One, Fount Pro, and Fount Black.</p></div>
+      <div class="gallery ">
+      <div class="p-image"><img src="images/fount-deep-dive/FlyKitt_Logo_BeforeAfter-01.jpg" alt="Logos designed while at Fount including "></div>
+      <div class="p-image"><img src="images/fount-deep-dive/FlyKitt_Logo_BeforeAfter-02.jpg" alt="Logos designed while at Fount including "></div>
+      </div>
+<div class="case-block block-text"><p>Website design (2024) featuring static hero images and :25 looping hero videos. Visit <a href="https://fount.bio" target="_blank" rel="noopener">fount.bio</a> to view the live sites.</p></div>
+      <div class="gallery">
+        <div class="p-image"><img src="images/fount-deep-dive/Website_-_Fount.png" alt="Fount website"></div>
+        <div class="p-image"><img src="images/fount-deep-dive/Website_-_FlyKitt.png" alt="FlyKitt website"></div>
+      </div>
+<div class="case-block block-text"><p>I designed the FlyKitt App Store screens and contributed to the app's UI. Considering that many FlyKitt users will be interacting with the app during night flights, a permanent dark mode was implemented to reduce eye strain. Bright colors and simple icons were also used for easy visibility in dark environments.</p></div>
+      <div class="appstore-row">
+        <div class="p-image"><img src="images/fount-deep-dive/Fount_FlyKitt_AppStoreScreens_May23-08.jpg" alt="App Store screen"></div>
+        <div class="p-image"><img src="images/fount-deep-dive/Fount_FlyKitt_AppStoreScreens_May23-07.jpg" alt="App Store screen"></div>
+        <div class="p-image"><img src="images/fount-deep-dive/Fount_FlyKitt_AppStoreScreens_May23-09.jpg" alt="App Store screen"></div>
+        <div class="p-image"><img src="images/fount-deep-dive/Fount_FlyKitt_AppStoreScreens_May23-10.jpg" alt="App Store screen"></div>
+      </div>
+<div class="case-block block-text"><p>I also designed the FlyKitt app icon, which represents a flight path from departure to cruising altitude with a simple grey line. The line reflects FlyKitt's functionality in aiding the body to transition from a sluggish state to being functional, ultimately helping the user avoid jet lag. Additionally, the icon features a four-quadrant circle in the bottom right corner, the Fount mark, signifying it being powered by Fount AI.</p></div>
+      <div class="gallery">
+        <div class="p-image contain"><img src="images/fount-deep-dive/FlyKitt_AppIcon_Portfolio.jpg" alt="FlyKitt app icon"></div>
+      </div>
+<div class="case-block block-text"><p>AI generated images using Midjourney, Adobe Firefly, and Photoshop AI.</p></div>
+      <div class="gallery ">
+      <div class="p-image"><img src="images/fount-deep-dive/Sleep.jpg" alt="AI generated images using Midjourney, Ad"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Stress.jpg" alt="AI generated images using Midjourney, Ad"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_App_AI_ColdPlungeIceBath.jpg" alt="AI generated images using Midjourney, Ad"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_App_AI_Dinner_v3.jpg" alt="AI generated images using Midjourney, Ad"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_App_AI_Energy_v4.jpg" alt="AI generated images using Midjourney, Ad"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_App_AI_Focus_v2.jpg" alt="AI generated images using Midjourney, Ad"></div>
+      </div>
+<div class="case-block block-text"><p>Amazon storefront header and product images.</p></div>
+      <div class="gallery">
+        <div class="p-image full"><img src="images/fount-deep-dive/AmazonStoreHeader_3000x600.jpg" alt="Amazon storefront header"></div>
+        <div class="p-image"><img src="images/fount-deep-dive/4_Medium.jpeg" alt="Amazon product"></div>
+        <div class="p-image"><img src="images/fount-deep-dive/3_Medium.jpeg" alt="Amazon product"></div>
+        <div class="p-image"><img src="images/fount-deep-dive/5_Medium.jpeg" alt="Amazon product"></div>
+        <div class="p-image"><img src="images/fount-deep-dive/2_Medium.jpeg" alt="Amazon product"></div>
+      </div>
+    </div>
+  </section>
+  <section class="wrap case-section">
+    <div class="case-blocks">
+<div class="case-block block-text"><p>Business development deck.</p></div>
+<div class="gallery">
+      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-47.jpg" alt="Business development deck"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-48.jpg" alt="Business development deck"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-49.jpg" alt="Business development deck"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-50.jpg" alt="Business development deck"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-51.jpg" alt="Business development deck"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-52.jpg" alt="Business development deck"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-53.jpg" alt="Business development deck"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-54.jpg" alt="Business development deck"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-55.jpg" alt="Business development deck"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/bizdev-deck-56.jpg" alt="Business development deck"></div>
+      </div>
+      <div class="case-block block-image">
+        <div class="p-image"><video controls playsinline preload="metadata" src="images/fount-deep-dive/video-deck-clip.mp4"></video></div>
+      </div>
+<div class="case-block block-text"><p>Tube packaging for the additional products I helped launch while at Fount.</p></div>
+      <div class="gallery ">
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_TubeMockup_CycleKitt.jpg" alt="Tube packaging for the additional produc"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_TubeMockup_FiestaKitt.jpg" alt="Tube packaging for the additional produc"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_TubeMockup_FlyKitt.jpg" alt="Tube packaging for the additional produc"></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_TubeMockup_ImmunityKitt.jpg" alt="Tube packaging for the additional produc"></div>
+      </div>
+<div class="case-block block-text"><p>Custom icons/graphics created to promote FiestaKitt, a hangover solution.</p></div>
+      <div class="gallery ">
+      <div class="p-image full"><img src="images/fount-deep-dive/Fount_FiestaKitt_HeroImage-01.jpg" alt="Custom icons/graphics created to promote"></div>
+      </div>
+<div class="case-block block-text"><p>Packaging design for a Parata pack daily dispenser box.</p></div>
+      <div class="gallery ">
+      <div class="p-image full"><img src="images/fount-deep-dive/Fount_PillBox_Concepts.jpg" alt="Packaging design for a Parata pack daily"></div>
+      </div>
+<div class="case-block block-text"><p>Logos designed while at Fount including the FlyKitt logo, Fount Chat logo, and for member pricing tiers: Fount One, Fount Pro, and Fount Black.</p></div>
+      <div class="gallery ">
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_Logos-03.jpg" alt="Logos designed while at Fount including "></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_Logos-01.jpg" alt="Logos designed while at Fount including "></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Fount_Logos-05.jpg" alt="Logos designed while at Fount including "></div>
+      <div class="p-image"><img src="images/fount-deep-dive/Screenshot_2023-08-14_at_9.56.01_AM.png" alt="Logos designed while at Fount including "></div>
+      </div>
+<div class="case-block block-text"><p>A :15 second Instagram ad introducing FlyKitt and it's benefits.</p></div>
+      <div class="case-block block-image">
+        <div class="p-image tall" style="max-width:360px;margin-inline:auto;"><video controls playsinline preload="metadata" src="images/fount-deep-dive/video-ig-ad.mp4"></video></div>
+      </div>
+    </div>
+  </section>
+  <div class="next">
+    <div class="wrap">
+      <div class="next-label">Public case study</div>
+      <a href="project-fount.html" class="next-title">Fount</a>
+    </div>
+  </div>
+
+  <footer class="wrap">
+    <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+</main>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 10));
+</script>
+<script src="site.js"></script>
+
+</body>
+</html>
