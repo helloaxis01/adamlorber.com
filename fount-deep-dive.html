@@ -133,6 +133,20 @@
     object-fit:contain; display:block; background:#141413;
     -webkit-user-drag:none; user-select:none; pointer-events:none;
   }
+  .block-carousel.crop-16x9 .carousel-slide img{
+    width:100%; height:100%; max-width:none; max-height:none; object-fit:cover;
+  }
+  .p-image.crop-16x9,
+  .gallery .p-image.crop-16x9{
+    aspect-ratio:16/9;
+  }
+  .p-image.crop-16x9 img,
+  .gallery .p-image.crop-16x9 img{
+    width:100%; height:100%; object-fit:cover;
+  }
+  .case-block .p-image:not(.tall) video{
+    object-fit:cover;
+  }
   .gallery.amazon{grid-template-columns:repeat(2,1fr); gap:2px; margin-top:8px; margin-bottom:56px;}
   .gallery.amazon .p-image{aspect-ratio:1; overflow:hidden; background:#141413;}
   .gallery.amazon .p-image img{width:100%; height:100%; object-fit:contain;}
@@ -434,7 +448,7 @@
     </div>
   </div>
   <div class="wrap">
-    <div class="p-image"><img src="images/fount-deep-dive/2023-03-13-Fount-5854-Retouch.jpg" alt="Fount lifestyle"></div>
+    <div class="p-image crop-16x9"><img src="images/fount-deep-dive/2023-03-13-Fount-5854-Retouch.jpg" alt="Fount lifestyle"></div>
   </div>
   <section class="wrap case-section">
     <div class="case-blocks">
@@ -488,19 +502,19 @@
     <div class="case-blocks">
 <div class="case-block block-text"><p>Videos I art directed and produced for Fount and FlyKitt, including a brand video, a testimonial video, and two looping videos to be used as hero images on the fount.bio and FlyKitt websites. Additionally, I collaborated closely with an editor to effectively convey the brand message.</p></div>
       <div class="case-block block-image">
-        <div class="p-image"><video controls playsinline preload="metadata" src="images/fount-deep-dive/video-overview.mp4"></video></div>
+        <div class="p-image"><video controls playsinline preload="metadata" poster="images/fount-deep-dive/posters/video-overview.jpg" src="images/fount-deep-dive/video-overview.mp4"></video></div>
         <p class="block-cap">Fount Overview Video</p>
       </div>
       <div class="case-block block-image">
-        <div class="p-image"><video controls playsinline muted loop preload="metadata" src="images/fount-deep-dive/video-loop-hero.mp4"></video></div>
+        <div class="p-image"><video controls playsinline muted loop preload="metadata" poster="images/fount-deep-dive/posters/video-loop-hero.jpg" src="images/fount-deep-dive/video-loop-hero.mp4"></video></div>
         <p class="block-cap">Fount — Looping Hero Video (no audio)</p>
       </div>
       <div class="case-block block-image">
-        <div class="p-image"><video controls playsinline preload="metadata" src="images/fount-deep-dive/video-brand.mp4"></video></div>
+        <div class="p-image"><video controls playsinline preload="metadata" poster="images/fount-deep-dive/posters/video-brand.jpg" src="images/fount-deep-dive/video-brand.mp4"></video></div>
         <p class="block-cap">Fount Brand Video</p>
       </div>
       <div class="case-block block-image">
-        <div class="p-image"><video controls playsinline muted loop preload="metadata" src="images/fount-deep-dive/video-flykitt-loop.mp4"></video></div>
+        <div class="p-image"><video controls playsinline muted loop preload="metadata" poster="images/fount-deep-dive/posters/video-flykitt-loop.jpg" src="images/fount-deep-dive/video-flykitt-loop.mp4"></video></div>
         <p class="block-cap">FlyKitt — Looping Hero Video (no audio)</p>
       </div>
     </div>
@@ -524,7 +538,7 @@
         </div>
       </div>
 <div class="case-block block-text"><p>A small sampling of shots from the lifestyle shoot I art directed. Photos featured on Axios, in press releases, and on fount.bio.</p></div>
-            <div class="case-block block-carousel" id="carousel-dd-3">
+            <div class="case-block block-carousel crop-16x9" id="carousel-dd-3">
         <div class="carousel-viewport">
           <div class="carousel-track">
             <div class="carousel-slide"><img src="images/fount-deep-dive/2023-03-13-Fount-5854-Retouch-7.jpg" alt="A small sampling of shots from the lifes"></div>
@@ -546,7 +560,7 @@
         </div>
       </div>
 <div class="case-block block-text"><p>The face of FlyKitt — AI Image created with Midjourney + ChatGPT + Generative AI in Photoshop. AI was used in place of an on-location photo shoot, which ultimately saved the company upwards of $50k.</p></div>
-            <div class="case-block block-carousel" id="carousel-dd-4">
+            <div class="case-block block-carousel crop-16x9" id="carousel-dd-4">
         <div class="carousel-viewport">
           <div class="carousel-track">
             <div class="carousel-slide"><img src="images/fount-deep-dive/asset-19.jpg" alt="The face of FlyKitt — AI Image created w"></div>
@@ -662,10 +676,10 @@
         </div>
       </div>
       <div class="case-block block-image">
-        <div class="p-image"><video controls playsinline preload="metadata" src="images/fount-deep-dive/video-deck-clip.mp4"></video></div>
+        <div class="p-image"><video controls playsinline preload="metadata" poster="images/fount-deep-dive/posters/video-deck-clip.jpg" src="images/fount-deep-dive/video-deck-clip.mp4"></video></div>
       </div>
 <div class="case-block block-text"><p>Tube packaging for the additional products I helped launch while at Fount.</p></div>
-            <div class="case-block block-carousel" id="carousel-dd-10">
+            <div class="case-block block-carousel crop-16x9" id="carousel-dd-10">
         <div class="carousel-viewport">
           <div class="carousel-track">
             <div class="carousel-slide"><img src="images/fount-deep-dive/Fount_TubeMockup_CycleKitt.jpg" alt="Tube packaging for the additional produc"></div>
@@ -680,11 +694,11 @@
       </div>
 <div class="case-block block-text"><p>Custom icons/graphics created to promote FiestaKitt, a hangover solution.</p></div>
       <div class="gallery ">
-      <div class="p-image full"><img src="images/fount-deep-dive/Fount_FiestaKitt_HeroImage-01.jpg" alt="Custom icons/graphics created to promote"></div>
+      <div class="p-image full crop-16x9"><img src="images/fount-deep-dive/Fount_FiestaKitt_HeroImage-01.jpg" alt="Custom icons/graphics created to promote"></div>
       </div>
 <div class="case-block block-text"><p>Packaging design for a Parata pack daily dispenser box.</p></div>
       <div class="gallery ">
-      <div class="p-image full"><img src="images/fount-deep-dive/Fount_PillBox_Concepts.jpg" alt="Packaging design for a Parata pack daily"></div>
+      <div class="p-image full crop-16x9"><img src="images/fount-deep-dive/Fount_PillBox_Concepts.jpg" alt="Packaging design for a Parata pack daily"></div>
       </div>
 <div class="case-block block-text"><p>Logos designed while at Fount including the FlyKitt logo, Fount Chat logo, and for member pricing tiers: Fount One, Fount Pro, and Fount Black.</p></div>
             <div class="case-block block-carousel" id="carousel-dd-11">
@@ -702,7 +716,7 @@
       </div>
 <div class="case-block block-text"><p>A :15 second Instagram ad introducing FlyKitt and it's benefits.</p></div>
       <div class="case-block block-image">
-        <div class="p-image tall"><video controls playsinline preload="metadata" src="images/fount-deep-dive/video-ig-ad.mp4"></video></div>
+        <div class="p-image tall"><video controls playsinline preload="metadata" poster="images/fount-deep-dive/posters/video-ig-ad.jpg" src="images/fount-deep-dive/video-ig-ad.mp4"></video></div>
       </div>
     </div>
   </section>
