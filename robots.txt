@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /private.html
+Disallow: /private
 Disallow: /questions.html
 Disallow: /questions
 Disallow: /revyrie-decks.html
@@ -11,4 +13,3 @@ Disallow: /axis.html
 Disallow: /axis
 Disallow: /mitzvahs.html
 Disallow: /mitzvahs
-Disallow: /private.html
