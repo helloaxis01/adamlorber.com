@@ -146,9 +146,23 @@
 
   /* ---------- WORK : FULL-BLEED SEQUENCE ---------- */
   .work-list{display:flex; flex-direction:column; gap:90px;}
-  .work-item{display:block;}
+  .work-item{
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr) auto;
+    grid-template-areas:
+      "media media media"
+      "num name cat";
+    column-gap:16px;
+    row-gap:0;
+    align-items:baseline;
+  }
   .work-group{display:flex; flex-direction:column; gap:90px;}
-  .work-media{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:1px;}
+  .work-num{
+    grid-area:num;
+    font-family:var(--mono); font-size:11px; color:var(--gold); font-weight:400;
+    padding-top:22px;
+  }
+  .work-media{grid-area:media; position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:1px;}
   .work-media > img, .work-media .ph, .work-media .ph img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.25,.7,.35,1);}
   .work-item:hover .work-media > img, .work-item:hover .work-media .ph{transform:scale(1.025);}
   .work-media .ph::after{
@@ -159,13 +173,17 @@
   .ph-brand{background:linear-gradient(135deg,#e4e3df,#b8b6ae);}
   .ph-cpg{background:linear-gradient(135deg,#e9e9e7,#c4c3bf);}
   .ph-hosp{background:linear-gradient(135deg,#dedcd8,#a9a7a1);}
-  .work-cap{
-    display:flex; align-items:baseline; justify-content:space-between; gap:20px;
-    padding-top:22px;
+  .work-cap{display:contents;}
+  .work-cap .name{
+    grid-area:name;
+    font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.2vw,28px);
+    min-width:0; text-wrap:pretty; padding-top:22px;
   }
-  .work-cap .name{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.2vw,28px); display:flex; align-items:baseline; gap:16px; min-width:0; text-wrap:pretty;}
-  .work-cap .name .num{font-family:var(--mono); font-size:11px; color:var(--gold); font-weight:400; flex-shrink:0;}
-  .work-cap .cat{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim); white-space:nowrap; flex-shrink:0;}
+  .work-cap .cat{
+    grid-area:cat;
+    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-dim); white-space:nowrap; flex-shrink:0; padding-top:22px;
+  }
 
   section.pad{padding-top:96px; padding-bottom:90px;}
   .label-row{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:56px;}
@@ -251,18 +269,27 @@
     .hero-name .m-br{display:inline;}
     .hero-name .d-br{display:none;}
     .hero-name .hero-end{white-space:normal;}
-    .work-cap{
-      flex-direction:column;
-      align-items:flex-start;
-      gap:8px;
+    .work-item{
+      grid-template-columns:1fr;
+      grid-template-areas:
+        "num"
+        "media"
+        "name"
+        "cat";
+      row-gap:10px;
+    }
+    .work-num{
+      padding-top:0;
+      padding-bottom:2px;
     }
     .work-cap .name{
       font-size:clamp(22px,6.2vw,26px);
       line-height:1.2;
       max-width:100%;
+      padding-top:10px;
     }
     .work-cap .cat{
-      padding-left:calc(2ch + 16px); /* hang under title, clear of the number */
+      padding-top:0;
     }
     .work-list, .work-group{gap:64px;}
     .studies-row{padding-top:72px; padding-bottom:72px;}
@@ -437,47 +464,57 @@
     <div class="work-list">
       <div class="work-group">
         <a href="project-amazon-prime-video-sports.html" class="work-item reveal">
+          <span class="work-num">01</span>
           <div class="work-media" data-slug="amazon-prime-video-sports"><img src="images/amazon-prime-video-sports/thumbnail.jpg" alt="Amazon Prime Video Sports" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
-          <div class="work-cap"><span class="name"><span class="num">01</span>Amazon</span><span class="cat">In-House</span></div>
+          <div class="work-cap"><span class="name">Amazon</span><span class="cat">In-House</span></div>
         </a>
         <a href="project-television-academy.html" class="work-item reveal">
+          <span class="work-num">02</span>
           <div class="work-media" data-slug="televisionacademy"><img src="images/televisionacademy/thumbnail.jpg?v=4" alt="Television Academy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
-          <div class="work-cap"><span class="name"><span class="num">02</span>Television Academy</span><span class="cat">In-House</span></div>
+          <div class="work-cap"><span class="name">Television Academy</span><span class="cat">In-House</span></div>
         </a>
         <a href="project-fount.html" class="work-item reveal">
+          <span class="work-num">03</span>
           <div class="work-media" data-slug="fount"><img src="images/fount/thumbnail.jpg" alt="Fount" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
-          <div class="work-cap"><span class="name"><span class="num">03</span>Fount</span><span class="cat">In-House</span></div>
+          <div class="work-cap"><span class="name">Fount</span><span class="cat">In-House</span></div>
         </a>
         <a href="project-inflection.html" class="work-item reveal">
+          <span class="work-num">04</span>
           <div class="work-media" data-slug="inflection"><img src="images/inflection/thumbnail.jpg?v=2" alt="Inflection" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
-          <div class="work-cap"><span class="name"><span class="num">04</span>Inflection</span><span class="cat">In-House</span></div>
+          <div class="work-cap"><span class="name">Inflection</span><span class="cat">In-House</span></div>
         </a>
       </div>
 
       <div class="work-group">
         <a href="project-dream-clean.html" class="work-item reveal">
+          <span class="work-num">05</span>
           <div class="work-media" data-slug="dream-clean"><img src="images/dream-clean/thumbnail.jpg" alt="Dream Clean full scent line packaging" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
-          <div class="work-cap"><span class="name"><span class="num">05</span>Dream Clean</span><span class="cat">Client Work</span></div>
+          <div class="work-cap"><span class="name">Dream Clean</span><span class="cat">Client Work</span></div>
         </a>
         <a href="project-lemon-perfect.html" class="work-item reveal">
+          <span class="work-num">06</span>
           <div class="work-media" data-slug="lemon-perfect"><img src="images/lemon-perfect/thumbnail.jpg?v=2" alt="Lemon Perfect" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
-          <div class="work-cap"><span class="name"><span class="num">06</span>Lemon Perfect</span><span class="cat">Client Work</span></div>
+          <div class="work-cap"><span class="name">Lemon Perfect</span><span class="cat">Client Work</span></div>
         </a>
         <a href="project-mantra.html" class="work-item reveal">
+          <span class="work-num">07</span>
           <div class="work-media" data-slug="mantra"><img src="images/mantra/thumbnail.jpg" alt="Mantra" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
-          <div class="work-cap"><span class="name"><span class="num">07</span>Mantra</span><span class="cat">Client Work</span></div>
+          <div class="work-cap"><span class="name">Mantra</span><span class="cat">Client Work</span></div>
         </a>
         <a href="project-chick-fil-a.html" class="work-item reveal">
+          <span class="work-num">08</span>
           <div class="work-media" data-slug="chick-fil-a"><img src="images/chick-fil-a/thumbnail.jpg?v=3" alt="Chick-fil-A" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
-          <div class="work-cap"><span class="name"><span class="num">08</span>Chick-fil-A</span><span class="cat">Client Work</span></div>
+          <div class="work-cap"><span class="name">Chick-fil-A</span><span class="cat">Client Work</span></div>
         </a>
         <a href="project-mootz-tom.html" class="work-item reveal">
+          <span class="work-num">09</span>
           <div class="work-media" data-slug="mootz-tom"><img src="images/mootz-tom/thumbnail.jpg" alt="Mootz &amp; Tom" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
-          <div class="work-cap"><span class="name"><span class="num">09</span>Mootz &amp; Tom</span><span class="cat">Client Work</span></div>
+          <div class="work-cap"><span class="name">Mootz &amp; Tom</span><span class="cat">Client Work</span></div>
         </a>
         <a href="project-joes-stone-crab.html" class="work-item reveal">
+          <span class="work-num">10</span>
           <div class="work-media" data-slug="joes-stone-crab"><img src="images/joes-stone-crab/thumbnail.jpg" alt="Joe's Stone Crab" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"></div>
-          <div class="work-cap"><span class="name"><span class="num">10</span>Joe's Stone Crab</span><span class="cat">Client Work</span></div>
+          <div class="work-cap"><span class="name">Joe's Stone Crab</span><span class="cat">Client Work</span></div>
         </a>
       </div>
     </div>
