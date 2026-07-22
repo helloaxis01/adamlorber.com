@@ -191,12 +191,18 @@
   .label-row .count{font-family:var(--mono); font-size:11px; color:var(--ink-dim);}
 
   /* ---------- STUDIES ---------- */
-  .studies-row{padding-top:100px; padding-bottom:100px;}
-  .studies-row .label-row{margin-bottom:20px;}
-  /* Studies keeps page-gutter air under the sticky header (matches space to the right of the label). */
-  #studies{
-    scroll-margin-top:calc(var(--header-offset, 84px) + var(--gutter));
+  /* Top rule, then gutter air above the label (same as the page margin to its right). */
+  .studies-row{
+    padding-top:0;
+    padding-bottom:100px;
+    border-top:1px solid var(--line);
   }
+  .studies-row .label-row{
+    margin-bottom:0;
+    padding-top:var(--gutter);
+    padding-bottom:0;
+  }
+  #studies,
   #contact,
   #work{
     scroll-margin-top:var(--header-offset, 84px);
@@ -304,8 +310,7 @@
       padding-top:10px;
     }
     .work-list, .work-group{gap:64px;}
-    .studies-row{padding-top:72px; padding-bottom:72px;}
-    .studies-row .label-row{margin-bottom:16px;}
+    .studies-row{padding-bottom:72px;}
     .study{padding:22px 0;}
     section.pad{padding-top:64px; padding-bottom:60px;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
@@ -533,8 +538,8 @@
     </div>
   </section>
 
-  <section class="wrap studies-row">
-    <div id="studies" class="label-row reveal"><span class="eyebrow-sm">Studies</span></div>
+  <section id="studies" class="wrap studies-row">
+    <div class="label-row reveal"><span class="eyebrow-sm">Studies</span></div>
     <div class="studies-list reveal">
       <a href="studies-logos-marks.html" class="study">
         <h3>Logos &amp; Marks</h3><span>View</span>
