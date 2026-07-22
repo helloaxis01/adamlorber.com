@@ -18,7 +18,6 @@
     --ink-dim:#a79f92;
     --line:rgba(243,238,230,0.14);
     --gold:#d2b48c;
-    --gold-soft:rgba(210,180,140,0.18);
     --serif:'Cormorant Garamond', Georgia, serif;
     --sans:'Outfit', system-ui, sans-serif;
     --gutter:clamp(20px,5vw,72px);
@@ -43,18 +42,20 @@
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
   .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter);}
 
-  /* Header — brand only */
   .site-top{
     position:fixed; inset:0 0 auto 0; z-index:40;
     display:flex; justify-content:space-between; align-items:center;
     padding:22px var(--gutter);
-    background:linear-gradient(to bottom, rgba(16,19,26,0.72), transparent);
+    background:linear-gradient(to bottom, rgba(16,19,26,0.88), rgba(16,19,26,0.35) 70%, transparent);
     backdrop-filter:blur(6px);
   }
   .brand{
     font-family:var(--serif); font-weight:600; font-size:22px; letter-spacing:0.04em;
   }
-  .brand span{font-family:var(--sans); font-weight:500; font-size:11px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:2px;}
+  .brand span{
+    font-family:var(--sans); font-weight:500; font-size:11px; letter-spacing:0.22em;
+    text-transform:uppercase; color:var(--gold); display:block; margin-bottom:2px;
+  }
   .top-cta{
     font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase;
     color:var(--bg); background:var(--gold); padding:12px 18px;
@@ -62,52 +63,51 @@
   }
   .top-cta:hover{transform:translateY(-1px); background:#e0c49e;}
 
-  /* Hero */
-  .hero{
-    position:relative; min-height:100svh; display:flex; align-items:flex-end;
-    padding:0;
+  /* Intro — copy only, no photo underneath */
+  .intro{
+    padding:clamp(120px,18vh,180px) 0 clamp(48px,8vh,72px);
   }
-  .hero-media{
-    position:absolute; inset:0; z-index:0;
-    background:#0a0c10;
-  }
-  .hero-media img{
-    width:100%; height:100%; object-fit:cover; object-position:center 30%;
-    opacity:0; transform:scale(1.04);
-    animation:heroIn 1.4s cubic-bezier(.22,.9,.3,1) .1s forwards;
-  }
-  .hero-media::after{
-    content:''; position:absolute; inset:0;
-    background:linear-gradient(to top, rgba(16,19,26,0.92) 0%, rgba(16,19,26,0.45) 42%, rgba(16,19,26,0.2) 100%);
-  }
-  .hero-copy{
-    position:relative; z-index:1; width:100%;
-    padding:0 var(--gutter) clamp(48px,8vh,96px);
-    max-width:var(--maxw); margin:0 auto;
-    opacity:0; transform:translateY(18px);
-    animation:riseIn .9s ease .35s forwards;
-  }
-  .hero-copy h1{
-    font-family:var(--serif); font-weight:500; font-size:clamp(42px,8vw,92px);
+  .intro-inner{max-width:720px;}
+  .intro h1{
+    font-family:var(--serif); font-weight:500; font-size:clamp(42px,7.2vw,88px);
     line-height:0.98; letter-spacing:-0.01em; max-width:14ch;
+    opacity:0; transform:translateY(16px);
+    animation:riseIn .9s ease .15s forwards;
   }
-  .hero-copy h1 em{font-style:italic; color:var(--gold);}
-  .hero-copy p{
-    margin-top:18px; max-width:38ch; font-size:clamp(16px,1.7vw,18px);
+  .intro h1 em{font-style:italic; color:var(--gold);}
+  .intro p{
+    margin-top:20px; max-width:40ch; font-size:clamp(16px,1.7vw,18px);
     line-height:1.55; color:var(--ink-dim); font-weight:300;
+    opacity:0; transform:translateY(16px);
+    animation:riseIn .9s ease .3s forwards;
   }
-  .hero-actions{display:flex; flex-wrap:wrap; gap:14px; margin-top:28px;}
+  .intro-actions{
+    display:flex; flex-wrap:wrap; gap:14px; margin-top:30px;
+    opacity:0; transform:translateY(16px);
+    animation:riseIn .9s ease .45s forwards;
+  }
   .btn{
     display:inline-flex; align-items:center; justify-content:center;
     font-size:12px; font-weight:500; letter-spacing:0.14em; text-transform:uppercase;
-    padding:14px 22px; border:1px solid transparent; transition:background .25s ease, color .25s ease, border-color .25s ease;
+    padding:14px 22px; border:1px solid transparent;
+    transition:background .25s ease, color .25s ease, border-color .25s ease;
   }
   .btn-primary{background:var(--gold); color:var(--bg);}
   .btn-primary:hover{background:#e0c49e;}
   .btn-ghost{border-color:var(--line); color:var(--ink);}
   .btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
 
-  /* Sections */
+  /* Full-bleed photo band — image only */
+  .hero-band{
+    width:100%;
+    background:#0a0c10;
+  }
+  .hero-band img{
+    width:100%; height:auto; max-height:min(82vh,920px); object-fit:cover; object-position:center 28%;
+    opacity:0; transform:scale(1.03);
+    animation:heroIn 1.3s cubic-bezier(.22,.9,.3,1) .2s forwards;
+  }
+
   section{padding-block:clamp(64px,10vw,120px);}
   .sec-label{
     font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold);
@@ -120,29 +120,31 @@
   .sec-body{
     font-size:16px; line-height:1.7; color:var(--ink-dim); max-width:58ch; font-weight:300;
   }
+  .sec-body a{color:var(--gold); text-decoration:underline; text-underline-offset:3px;}
 
-  /* Gallery */
-  .gallery-wrap{margin-top:40px;}
+  /* Gallery: desktop grid of all concepts; mobile swipe */
+  .gallery-wrap{margin-top:44px;}
   .mitz-gallery{
-    display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory;
-    scroll-padding-inline:var(--gutter);
-    margin-inline:calc(var(--gutter) * -1);
-    padding-inline:var(--gutter);
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
   }
-  .mitz-gallery::-webkit-scrollbar{display:none;}
   .mitz-gallery figure{
-    flex:0 0 min(78vw,720px); scroll-snap-align:start; margin:0;
-    aspect-ratio:16/10; overflow:hidden; background:var(--bg-elev);
+    margin:0; overflow:hidden; background:var(--bg-elev);
+    aspect-ratio:4/5;
   }
-  .mitz-gallery img{width:100%; height:100%; object-fit:cover; transition:transform 1.2s ease;}
+  .mitz-gallery figure:nth-child(1),
+  .mitz-gallery figure:nth-child(3){aspect-ratio:16/10;}
+  .mitz-gallery img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform 1.2s ease;
+  }
   .mitz-gallery figure:hover img{transform:scale(1.03);}
   .gallery-hint{
+    display:none;
     margin-top:14px; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-dim);
   }
 
-  /* Tiers as boxes */
   .tiers{
     display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:40px;
   }
@@ -150,7 +152,7 @@
     background:var(--bg-elev);
     border:1px solid var(--line);
     padding:clamp(22px,3vw,32px);
-    display:flex; flex-direction:column; gap:16px;
+    display:flex; flex-direction:column; gap:14px;
     transition:border-color .3s ease, transform .3s ease, background .3s ease;
   }
   .tier:hover{border-color:rgba(210,180,140,0.45); transform:translateY(-3px); background:#1b2130;}
@@ -159,6 +161,14 @@
   }
   .tier .tier-kicker{
     font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);
+  }
+  .tier .tier-price{
+    font-family:var(--serif); font-weight:500; font-size:clamp(22px,2.4vw,28px);
+    color:var(--ink); letter-spacing:0.01em;
+  }
+  .tier .tier-price span{
+    display:block; font-family:var(--sans); font-size:12px; font-weight:400;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:4px;
   }
   .tier ul{list-style:none; display:flex; flex-direction:column; gap:10px; margin-top:4px;}
   .tier li{
@@ -169,7 +179,6 @@
     content:''; position:absolute; left:0; top:0.7em; width:6px; height:1px; background:var(--gold);
   }
 
-  /* Form */
   .form-panel{
     margin-top:40px; background:var(--bg-elev); border:1px solid var(--line);
     padding:clamp(24px,4vw,48px);
@@ -196,7 +205,6 @@
   .q-submit:hover{background:#e0c49e;}
   .hp{position:absolute; left:-9999px; height:0; overflow:hidden;}
   .form-note{margin-top:8px; font-size:14px; color:var(--ink-dim); font-weight:300;}
-  .form-note a{color:var(--gold); text-decoration:underline; text-underline-offset:3px;}
 
   footer{
     padding:40px var(--gutter) 48px; border-top:1px solid var(--line);
@@ -214,12 +222,25 @@
 
   @media (max-width:900px){
     .tiers{grid-template-columns:1fr;}
-    .mitz-gallery figure{flex-basis:88vw;}
     .site-top{padding:16px var(--gutter);}
     .brand{font-size:18px;}
+    .mitz-gallery{
+      display:flex; gap:14px; overflow-x:auto; scroll-snap-type:x mandatory;
+      scroll-padding-inline:var(--gutter);
+      margin-inline:calc(var(--gutter) * -1);
+      padding-inline:var(--gutter);
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .mitz-gallery::-webkit-scrollbar{display:none;}
+    .mitz-gallery figure{
+      flex:0 0 88vw; scroll-snap-align:start;
+      aspect-ratio:16/10;
+    }
+    .gallery-hint{display:block;}
   }
   @media (prefers-reduced-motion:reduce){
-    .hero-media img, .hero-copy{animation:none; opacity:1; transform:none;}
+    .hero-band img, .intro h1, .intro p, .intro-actions{animation:none; opacity:1; transform:none;}
   }
 </style>
 </head>
@@ -230,19 +251,20 @@
   </header>
 
   <main id="top">
-    <section class="hero" aria-label="Hero">
-      <div class="hero-media">
-        <img src="images/mitzvahs/hero-concept-2.jpg" alt="Bespoke mitzvah identity concept">
-      </div>
-      <div class="hero-copy">
+    <section class="intro wrap" aria-label="Introduction">
+      <div class="intro-inner">
         <h1>Event identities for life’s <em>most significant</em> milestones.</h1>
         <p>Custom wordmarks, monograms, and creative direction — treated like a prestige brand launch, not a party theme.</p>
-        <div class="hero-actions">
+        <div class="intro-actions">
           <a class="btn btn-primary" href="#contact">Plan your celebration</a>
           <a class="btn btn-ghost" href="#offerings">View offerings</a>
         </div>
       </div>
     </section>
+
+    <div class="hero-band" aria-hidden="false">
+      <img src="images/mitzvahs/hero-concept-2.jpg" alt="Bespoke mitzvah identity concept">
+    </div>
 
     <section class="wrap" id="about">
       <p class="sec-label">The approach</p>
@@ -268,6 +290,7 @@
         <article class="tier">
           <p class="tier-kicker">01</p>
           <h3>The Essential Identity</h3>
+          <p class="tier-price">$2,500<span>starting investment</span></p>
           <ul>
             <li>Custom wordmark</li>
             <li>Hero image for dance floor or video screen</li>
@@ -278,6 +301,7 @@
         <article class="tier">
           <p class="tier-kicker">02</p>
           <h3>The Bespoke System</h3>
+          <p class="tier-price">$5,000<span>starting investment</span></p>
           <ul>
             <li>Everything in The Essential Identity</li>
             <li>Custom monogram</li>
@@ -287,6 +311,7 @@
         <article class="tier">
           <p class="tier-kicker">03</p>
           <h3>The Signature Experience</h3>
+          <p class="tier-price">$10,000<span>starting investment</span></p>
           <ul>
             <li>Everything in The Bespoke System</li>
             <li>Creative direction for the event</li>
@@ -299,7 +324,7 @@
     <section class="wrap" id="contact">
       <p class="sec-label">Get in touch</p>
       <h2 class="sec-title">Tell me about the celebration</h2>
-      <p class="sec-body">Share a few details and I’ll follow up shortly. Prefer email first? <a href="mailto:hello@adamlorber.com" style="color:var(--gold);text-decoration:underline;text-underline-offset:3px;">hello@adamlorber.com</a></p>
+      <p class="sec-body">Share a few details and I’ll follow up shortly. Prefer email first? <a href="mailto:hello@adamlorber.com">hello@adamlorber.com</a></p>
 
       <div class="form-panel">
         <form class="q-form" id="mForm" name="mitzvahs" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="mitzvahs.html?submitted=1">
@@ -319,9 +344,10 @@
           <div class="q-field">
             <label>Budget</label>
             <div class="q-check">
-              <label><input type="checkbox" name="budget" value="Under $500"> Under $500</label>
-              <label><input type="checkbox" name="budget" value="$500–$1000"> $500–$1000</label>
-              <label><input type="checkbox" name="budget" value="Over $1000"> Over $1000</label>
+              <label><input type="checkbox" name="budget" value="Under $2,500"> Under $2,500</label>
+              <label><input type="checkbox" name="budget" value="$2,500–$5,000"> $2,500–$5,000</label>
+              <label><input type="checkbox" name="budget" value="$5,000–$10,000"> $5,000–$10,000</label>
+              <label><input type="checkbox" name="budget" value="Over $10,000"> Over $10,000</label>
             </div>
           </div>
           <div class="q-field"><label for="start">Project start date</label><input type="date" id="start" name="start-date"></div>
