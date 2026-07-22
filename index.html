@@ -270,12 +270,12 @@
     .hero-name .d-br{display:none;}
     .hero-name .hero-end{white-space:normal;}
     .work-item{
-      grid-template-columns:1fr;
+      grid-template-columns:minmax(0,1fr) auto;
       grid-template-areas:
-        "num"
-        "media"
-        "name"
-        "cat";
+        "num num"
+        "media media"
+        "name cat";
+      column-gap:16px;
       row-gap:10px;
     }
     .work-num{
@@ -289,7 +289,8 @@
       padding-top:10px;
     }
     .work-cap .cat{
-      padding-top:0;
+      padding-top:10px;
+      align-self:baseline;
     }
     .work-list, .work-group{gap:64px;}
     .studies-row{padding-top:72px; padding-bottom:72px;}
