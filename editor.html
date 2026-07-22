@@ -190,15 +190,15 @@ function refreshDefaultsFromBase(){
 }
 
 const PROJECTS = [
-  {slug:"televisionacademy", name:"Television Academy", cat:"Brand"},
-  {slug:"fount", name:"Fount", cat:"Health tech"},
-  {slug:"inflection", name:"Inflection", cat:"Health tech"},
-  {slug:"dream-clean", name:"Dream Clean", cat:"CPG"},
-  {slug:"lemon-perfect", name:"Lemon Perfect", cat:"CPG"},
-  {slug:"mantra", name:"Mantra", cat:"CPG"},
-  {slug:"chick-fil-a", name:"Chick-fil-A", cat:"Hospitality"},
-  {slug:"mootz-tom", name:"Mootz & Tom", cat:"Hospitality"},
-  {slug:"joes-stone-crab", name:"Joe's Stone Crab", cat:"Hospitality"},
+  {slug:"televisionacademy", name:"Television Academy", cat:"In-House"},
+  {slug:"fount", name:"Fount", cat:"In-House"},
+  {slug:"inflection", name:"Inflection", cat:"In-House"},
+  {slug:"dream-clean", name:"Dream Clean", cat:"Client Work"},
+  {slug:"lemon-perfect", name:"Lemon Perfect", cat:"Client Work"},
+  {slug:"mantra", name:"Mantra", cat:"Client Work"},
+  {slug:"chick-fil-a", name:"Chick-fil-A", cat:"Client Work"},
+  {slug:"mootz-tom", name:"Mootz & Tom", cat:"Client Work"},
+  {slug:"joes-stone-crab", name:"Joe's Stone Crab", cat:"Client Work"},
 ];
 
 const STACK_CARDS = [
@@ -322,7 +322,7 @@ function rebuildProjectList(){
 document.getElementById('addProjectBtn').addEventListener('click', () => {
   const name = prompt("New project name (e.g. \"Acme Co\"):");
   if (!name) return;
-  const cat = prompt("Category (type Brand, CPG, or Hospitality):", "Brand") || "Brand";
+  const cat = prompt("Category (type In-House or Client Work):", "In-House") || "In-House";
   const slug = name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   if (activeProjects().some(p => p.slug === slug)) { alert("A project with that name already exists."); return; }
   state.newProjects.push({slug, name, cat});
@@ -395,7 +395,7 @@ function rebuildStackList(){
 document.getElementById('addStackBtn').addEventListener('click', () => {
   const name = prompt("New hero stack card name (e.g. \"Acme Co\"):");
   if (!name) return;
-  const cat = prompt("Category (type Brand, CPG, or Hospitality; controls the placeholder tint):", "Brand") || "Brand";
+  const cat = prompt("Category (type In-House or Client Work; controls the placeholder tint):", "In-House") || "In-House";
   const slug = name.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   if (activeStackCards().some(p => p.slug === slug)) { alert("A stack card with that name already exists."); return; }
   state.newStackCards.push({slug, name, cat});
