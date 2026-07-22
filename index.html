@@ -29,7 +29,7 @@
     --gutter:clamp(20px,5vw,64px);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; scroll-padding-top:96px;}
   @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} *{animation-duration:.001ms !important; transition-duration:.001ms !important;} }
   body{background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400; overflow-x:hidden;}
   a{color:inherit; text-decoration:none;}
@@ -193,6 +193,11 @@
   /* ---------- STUDIES ---------- */
   .studies-row{padding-top:100px; padding-bottom:100px;}
   .studies-row .label-row{margin-bottom:20px;}
+  #studies,
+  #contact,
+  #work{
+    scroll-margin-top:96px;
+  }
   .studies-list{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line);}
   .study{
     display:flex; align-items:baseline; justify-content:space-between; gap:24px;
@@ -298,6 +303,11 @@
     .work-list, .work-group{gap:64px;}
     .studies-row{padding-top:72px; padding-bottom:72px;}
     .studies-row .label-row{margin-bottom:16px;}
+    #studies,
+    #contact,
+    #work{
+      scroll-margin-top:84px;
+    }
     .study{padding:22px 0;}
     section.pad{padding-top:64px; padding-bottom:60px;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
@@ -525,8 +535,8 @@
     </div>
   </section>
 
-  <section id="studies" class="wrap studies-row">
-    <div class="label-row reveal"><span class="eyebrow-sm">Studies</span></div>
+  <section class="wrap studies-row">
+    <div id="studies" class="label-row reveal"><span class="eyebrow-sm">Studies</span></div>
     <div class="studies-list reveal">
       <a href="studies-logos-marks.html" class="study">
         <h3>Logos &amp; Marks</h3><span>View</span>
