@@ -66,6 +66,7 @@
   .proc-gallery .p-image.full{grid-column:1 / -1; aspect-ratio:16/9;}
   .proc-gallery .p-image.square{aspect-ratio:1;}
   .proc-gallery img{width:100%; height:100%; object-fit:cover;}
+  .proc-dots{display:none;}
 
   .next{background:var(--next-bg); padding:70px 0; display:flex; align-items:center; margin-top:48px;}
   .next .wrap{width:100%;}
@@ -86,8 +87,48 @@
     .p-hero{padding-top:120px;}
     .meta-row{grid-template-columns:repeat(2,1fr);}
     .logo-grid{grid-template-columns:repeat(2,1fr);}
-    .proc-gallery{grid-template-columns:1fr;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
+
+    /* Process: swipe galleries instead of stacked images */
+    .proc-gallery{
+      display:flex;
+      grid-template-columns:none;
+      gap:12px;
+      overflow-x:auto;
+      overflow-y:hidden;
+      scroll-snap-type:x mandatory;
+      scroll-padding-inline:var(--gutter);
+      -webkit-overflow-scrolling:touch;
+      overscroll-behavior-x:contain;
+      margin-inline:calc(var(--gutter) * -1);
+      padding-inline:var(--gutter);
+      margin-bottom:10px;
+      scrollbar-width:none;
+    }
+    .proc-gallery::-webkit-scrollbar{display:none;}
+    .proc-gallery .p-image,
+    .proc-gallery .p-image.full{
+      flex:0 0 100%;
+      width:100%;
+      max-width:100%;
+      grid-column:auto;
+      scroll-snap-align:center;
+      scroll-snap-stop:always;
+    }
+    .proc-dots{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:7px;
+      margin-bottom:8px;
+      min-height:12px;
+    }
+    .proc-dots[hidden]{display:none;}
+    .proc-dots button{
+      width:6px; height:6px; padding:0; border:0; border-radius:50%;
+      background:var(--ink-dim); opacity:0.35; cursor:pointer;
+    }
+    .proc-dots button[aria-current="true"]{opacity:1; background:var(--ink); transform:scale(1.15);}
   }
 
   html[data-theme="light"]{
@@ -268,17 +309,6 @@
     </div>
   </section>
   <section class="wrap study-section">
-    <div class="sec-label">Good Kernels</div>
-    <p class="sec-body">Logo and packaging design for Good Kernels, a vibrant popcorn brand featuring tiny-hulled kernels and nostalgic, carnival-inspired aesthetics. The project focused on a playful yet polished visual system that differentiates the brand within the healthy snacking market.</p>
-    <div class="proc-gallery">
-      <div class="p-image full"><img src="images/studies-process/GoodKernels_Mockup_Ranch-Large.jpg" alt="Good Kernels Ranch packaging"></div>
-      <div class="p-image"><img src="images/studies-process/GoodKernels_Mockup_Dill.jpg" alt="Good Kernels Dill packaging"></div>
-      <div class="p-image"><img src="images/studies-process/GoodKernels_Mockup_Cheese.jpg" alt="Good Kernels Cheese packaging"></div>
-      <div class="p-image"><img src="images/studies-process/GoodKernels_Mockup_Sweet.jpg" alt="Good Kernels Sweet packaging"></div>
-      <div class="p-image"><img src="images/studies-process/GoodKernels_Mockup_Wasabi.jpg" alt="Good Kernels Wasabi packaging"></div>
-    </div>
-  </section>
-  <section class="wrap study-section">
     <div class="sec-label">Great Greek</div>
     <p class="sec-body">Restaurant branding exploring a warm, contemporary Mediterranean identity.</p>
     <div class="proc-gallery">
@@ -417,6 +447,42 @@
 <script>
   const header = document.getElementById('siteHeader');
   window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 10));
+
+  (function(){
+    const galleries = document.querySelectorAll('.proc-gallery');
+    galleries.forEach(function(gallery){
+      const slides = gallery.querySelectorAll('.p-image');
+      if (slides.length < 2) return;
+
+      const dots = document.createElement('div');
+      dots.className = 'proc-dots';
+      dots.setAttribute('role', 'tablist');
+      dots.setAttribute('aria-label', 'Gallery slides');
+      slides.forEach(function(_, i){
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.setAttribute('aria-label', 'Go to image ' + (i + 1));
+        if (i === 0) btn.setAttribute('aria-current', 'true');
+        btn.addEventListener('click', function(){
+          slides[i].scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'});
+        });
+        dots.appendChild(btn);
+      });
+      gallery.insertAdjacentElement('afterend', dots);
+
+      const buttons = dots.querySelectorAll('button');
+      function syncDots(){
+        const galleryLeft = gallery.scrollLeft;
+        const width = gallery.clientWidth || 1;
+        const index = Math.round(galleryLeft / width);
+        buttons.forEach(function(btn, i){
+          if (i === index) btn.setAttribute('aria-current', 'true');
+          else btn.removeAttribute('aria-current');
+        });
+      }
+      gallery.addEventListener('scroll', syncDots, {passive:true});
+    });
+  })();
 </script>
 <script src="site.js"></script>
 </body>
