@@ -265,6 +265,7 @@
   footer.wrap{padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
 
   @media (max-width:900px){
+    .stack-wrap{margin-bottom:58px;}
     .hero{padding-top:120px; padding-bottom:0;}
     .hero-role{
       font-size:11px;
@@ -639,18 +640,28 @@
 
   function pad(n){ return String(n).padStart(2,'0'); }
 
+  function peekParams(){
+    const mobile = window.matchMedia('(max-width:900px)').matches;
+    return mobile
+      ? { y: 24, x: 10, scale: 0.04, rot: 2.4 }
+      : { y: 16, x: 5, scale: 0.032, rot: 1.55 };
+  }
+
   function layout(){
+    const peek = peekParams();
     order.forEach((cardIndex, pos) => {
       const card = cards[cardIndex];
       card.style.zIndex = total - pos;
+      card.classList.toggle('is-front', pos === 0);
       if (pos === 0){
         card.style.transform = 'translate(0,0) scale(1) rotate(0deg)';
         card.style.opacity = '1';
       } else if (pos < 4){
-        const y = pos * 14;
-        const s = 1 - pos * 0.03;
-        const r = (pos % 2 === 0 ? 1 : -1) * pos * 1.2;
-        card.style.transform = `translate(0px, ${y}px) scale(${s}) rotate(${r}deg)`;
+        const y = pos * peek.y;
+        const x = (pos % 2 === 0 ? 1 : -1) * pos * peek.x;
+        const s = 1 - pos * peek.scale;
+        const r = (pos % 2 === 0 ? 1 : -1) * pos * peek.rot;
+        card.style.transform = `translate(${x}px, ${y}px) scale(${s}) rotate(${r}deg)`;
         card.style.opacity = '1';
       } else {
         card.style.transform = 'translate(0,50px) scale(0.9)';
@@ -673,6 +684,7 @@
   }
 
   layout();
+  window.addEventListener('resize', layout);
 
   document.getElementById('stackNext').addEventListener('click', () => advance('next'));
   document.getElementById('stackPrev').addEventListener('click', () => advance('prev'));
