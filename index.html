@@ -36,7 +36,7 @@
   img{display:block; max-width:100%;}
   ::selection{background:var(--gold); color:var(--bg);}
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter);}
+  .wrap{max-width:var(--maxw); margin-left:0; margin-right:auto; padding-inline:var(--gutter);}
   .bleed{width:100%; margin-inline:calc(-1 * var(--gutter)); padding-inline:var(--gutter);}
 
   /* ---------- NAV ---------- */
@@ -58,8 +58,14 @@
   /* ---------- HERO : FULL BLEED ---------- */
   .hero{padding-top:158px; padding-bottom:0;}
   .hero-text{margin-bottom:32px;}
-  .hero-name{font-family:var(--serif); font-weight:500; font-size:clamp(26px,3.6vw,42px); line-height:1.25; color:var(--ink); max-width:780px; margin-top:18px; text-wrap:balance;}
+  .hero-name{font-family:var(--serif); font-weight:500; font-size:clamp(26px,3.6vw,42px); line-height:1.25; color:var(--ink); max-width:min(1100px,100%); margin-top:18px; text-wrap:wrap;}
   .hero-name .m-br{display:none;}
+  .hero-name .d-br{display:none;}
+  .hero-name .hero-end{white-space:normal;}
+  @media (min-width:1100px){
+    .hero-name .d-br{display:inline;}
+    .hero-name .hero-end{white-space:nowrap;}
+  }
   .nowrap{white-space:nowrap;}
   .flourish{
     font-style:italic; display:inline-block; position:relative; cursor:default;
@@ -243,6 +249,8 @@
       text-wrap:pretty;
     }
     .hero-name .m-br{display:inline;}
+    .hero-name .d-br{display:none;}
+    .hero-name .hero-end{white-space:normal;}
     .work-cap{gap:12px;}
     .work-list, .work-group{gap:64px;}
     .studies-row{padding-top:72px; padding-bottom:72px;}
@@ -385,7 +393,7 @@
   <div class="hero wrap">
     <div class="hero-text">
       <p class="hero-role">Lead Designer / Art Director<span class="hero-role-sep"> · </span><span class="hero-role-loc">Los Angeles</span></p>
-      <h1 class="hero-name">Branding, art direction,<br class="m-br"> and strategy for<br class="m-br"> <span class="flourish" data-text="established brands">established brands</span> and<br class="m-br"> <span class="flourish" data-text="ambitious startups">ambitious startups</span>.</h1>
+      <h1 class="hero-name">Branding, art direction,<br class="m-br"> and strategy for<br class="d-br"> <span class="hero-end"><span class="flourish" data-text="established brands">established brands</span> and<br class="m-br"> <span class="flourish" data-text="ambitious startups">ambitious startups</span>.</span></h1>
     </div>
   </div>
 
