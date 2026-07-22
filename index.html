@@ -22,6 +22,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
+    --mark-pad-x:0.18em;
     --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
     --line:rgba(220,218,211,0.16);
     --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
@@ -344,8 +345,8 @@
   .err-cta{
     width:fit-content;
     max-width:100%;
-    padding-inline:0.18em;
-    margin-inline:-0.18em;
+    padding-inline:var(--mark-pad-x);
+    margin-inline:calc(-1 * var(--mark-pad-x));
   }
   .sitemap-col a:hover,
   .sitemap-col a.sitemap-caps:hover,
@@ -398,7 +399,7 @@
   html[data-theme="light"] .tl-row.current .tl-year{
     color:#1a1a19;
     background:var(--chartreuse);
-    padding-inline:0.18em;
+    padding-inline:var(--mark-pad-x);
     box-decoration-break:clone;
     -webkit-box-decoration-break:clone;
   }
@@ -406,7 +407,7 @@
   html[data-theme="light"] .hero-name .flourish{
     line-height:1.02;
     padding-block:0.05em;
-    padding-inline:0.14em;
+    padding-inline:var(--mark-pad-x);
     margin-inline:0.02em;
     vertical-align:baseline;
   }
@@ -414,7 +415,7 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:-0.18em;
+    margin-inline-start:calc(-1 * var(--mark-pad-x));
   }
   html[data-theme="light"] .flourish::before,
   html[data-theme="light"] .flourish::after{
@@ -430,7 +431,16 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
   
-  .email-copy{position:relative; display:inline-block;}
+  .contact-links a.email-copy,
+  .about-actions a.email-copy{
+    position:relative; display:inline-block;
+    padding-inline:0;
+    margin-inline:0;
+  }
+  .email-copy .email-copy-label{
+    padding-inline:var(--mark-pad-x);
+    margin-inline:calc(-1 * var(--mark-pad-x));
+  }
   .email-copy-status{
     position:absolute; left:calc(100% + 10px); top:50%; transform:translateY(calc(-50% + 2px));
     font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
@@ -439,6 +449,25 @@
   }
   html[data-theme="light"] .email-copy-status{color:var(--ink);}
   .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(-50%);}
+  .contact-links a.email-copy:hover,
+  .contact-links.is-lit a.email-copy,
+  .about-actions a.email-copy:hover,
+  html[data-theme="light"] .contact-links a.email-copy:hover,
+  html[data-theme="light"] .contact-links.is-lit a.email-copy,
+  html[data-theme="light"] .about-actions a.email-copy:hover{
+    background:transparent;
+  }
+  .contact-links a.email-copy:hover .email-copy-label,
+  .contact-links.is-lit a.email-copy .email-copy-label,
+  .about-actions a.email-copy:hover .email-copy-label{
+    color:var(--chartreuse);
+  }
+  html[data-theme="light"] .contact-links a.email-copy:hover .email-copy-label,
+  html[data-theme="light"] .contact-links.is-lit a.email-copy .email-copy-label,
+  html[data-theme="light"] .about-actions a.email-copy:hover .email-copy-label{
+    color:#1a1a19;
+    background:var(--chartreuse);
+  }
   .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
 </style>
 </head>

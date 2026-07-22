@@ -11,6 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
+    --mark-pad-x:0.18em;
     --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
     --line:rgba(220,218,211,0.16); --next-bg:#141413;
     --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
@@ -254,14 +255,43 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
   
-  .email-copy{position:relative; display:inline-flex; align-items:baseline; gap:10px;}
+  .contact-links a.email-copy,
+  .about-actions a.email-copy{
+    position:relative; display:inline-block;
+    padding-inline:0;
+    margin-inline:0;
+  }
+  .email-copy .email-copy-label{
+    padding-inline:var(--mark-pad-x);
+    margin-inline:calc(-1 * var(--mark-pad-x));
+  }
   .email-copy-status{
+    position:absolute; left:calc(100% + 10px); top:50%; transform:translateY(calc(-50% + 2px));
     font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
-    color:#faf9f6; opacity:0; transform:translateY(2px);
+    color:#faf9f6; opacity:0; white-space:nowrap; pointer-events:none;
     transition:opacity .25s ease, transform .25s ease;
   }
   html[data-theme="light"] .email-copy-status{color:var(--ink);}
-  .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(0);}
+  .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(-50%);}
+  .contact-links a.email-copy:hover,
+  .contact-links.is-lit a.email-copy,
+  .about-actions a.email-copy:hover,
+  html[data-theme="light"] .contact-links a.email-copy:hover,
+  html[data-theme="light"] .contact-links.is-lit a.email-copy,
+  html[data-theme="light"] .about-actions a.email-copy:hover{
+    background:transparent;
+  }
+  .contact-links a.email-copy:hover .email-copy-label,
+  .contact-links.is-lit a.email-copy .email-copy-label,
+  .about-actions a.email-copy:hover .email-copy-label{
+    color:var(--chartreuse);
+  }
+  html[data-theme="light"] .contact-links a.email-copy:hover .email-copy-label,
+  html[data-theme="light"] .contact-links.is-lit a.email-copy .email-copy-label,
+  html[data-theme="light"] .about-actions a.email-copy:hover .email-copy-label{
+    color:#1a1a19;
+    background:var(--chartreuse);
+  }
   .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
 </style>
 </head>
