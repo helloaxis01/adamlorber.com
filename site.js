@@ -68,7 +68,30 @@
       setMenuOpen(!menu.classList.contains('open'));
     });
     menu.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { setMenuOpen(false); });
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href') || '';
+        var hash = '';
+        if (href.charAt(0) === '#') hash = href.slice(1);
+        else {
+          try {
+            var u = new URL(href, window.location.href);
+            if (u.pathname.replace(/\/$/, '') === window.location.pathname.replace(/\/$/, '') && u.hash) {
+              hash = u.hash.slice(1);
+            }
+          } catch (err) {}
+        }
+        setMenuOpen(false);
+        if (!hash) return;
+        var target = document.getElementById(hash);
+        if (!target) return;
+        e.preventDefault();
+        // Wait for menu close / overflow unlock, then scroll under the fixed header
+        requestAnimationFrame(function () {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          if (history.replaceState) history.replaceState(null, '', '#' + hash);
+          else window.location.hash = hash;
+        });
+      });
     });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' && menu.classList.contains('open')) setMenuOpen(false);
