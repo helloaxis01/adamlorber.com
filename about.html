@@ -84,7 +84,13 @@
   @media (max-width:900px){
     .about{padding-top:120px; padding-bottom:90px;}
     .about-grid{grid-template-columns:1fr; gap:36px;}
-    .about-photo{aspect-ratio:4/5; max-width:280px; margin-inline:auto;}
+    .about-photo{
+      aspect-ratio:4/5;
+      max-width:none;
+      width:100%;
+      margin-inline:0;
+      background:#f7fadf; /* match portrait paper tone */
+    }
     .tl-row{flex-direction:column; gap:4px;}
     .tl-row .tl-year{width:auto;}
     .about-meta{flex-direction:column; gap:22px;}
