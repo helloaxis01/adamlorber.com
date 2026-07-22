@@ -87,7 +87,9 @@
   .case-block .p-image{aspect-ratio:16/9;}
   .case-block .p-image.natural{aspect-ratio:auto;}
   .case-block .p-image.natural img{height:auto; object-fit:contain;}
-  .case-block .p-image.stage{
+  /* White 16:9 stage — LinkedIn fills the frame; others use stage-inset
+     for breathing room on all four sides (top/bottom included). */
+  .p-image.stage{
     aspect-ratio:16/9;
     background:#fff !important;
     display:flex;
@@ -96,7 +98,7 @@
     padding:0;
     overflow:hidden;
   }
-  .case-block .p-image.stage img{
+  .p-image.stage img{
     width:100% !important;
     height:100% !important;
     max-width:100%;
@@ -104,19 +106,17 @@
     object-fit:contain !important;
     object-position:center center;
   }
-  /* Inset padding on the stage; keep img at 100%+contain so max-height
-     always resolves (auto+max-height:% was clipping screenshots). */
-  .case-block .p-image.stage.stage-inset{
-    padding:clamp(28px,5vw,56px);
+  .p-image.stage.stage-inset{
+    padding:clamp(48px,8vw,96px) clamp(36px,6vw,72px);
     box-sizing:border-box;
   }
-  .case-block .p-image.stage.stage-inset img{
+  .p-image.stage.stage-inset img{
     width:100% !important;
     height:100% !important;
     object-fit:contain !important;
     object-position:center center;
   }
-  html[data-theme="light"] .case-block .p-image.stage{
+  html[data-theme="light"] .p-image.stage{
     border:1px solid rgba(26,26,25,0.08);
   }
   .case-block .block-cap{font-family:var(--mono); font-size:11px; color:var(--ink-dim); margin-top:14px; max-width:720px; line-height:1.7;}
@@ -318,7 +318,7 @@
     </div>
   </div>
 
-  <div class="p-image">
+  <div class="p-image stage stage-inset">
     <img src="images/inflection/68918680d55c22cffb2b6565_inflection-open_graph.png" alt="Inflection wordmark logo">
   </div>
 
@@ -359,7 +359,7 @@
         <p class="block-cap">Directed the visual evolution of Inflection’s social content, ensuring brand consistency across all digital touchpoints. This included developing scalable design systems for live-streamed seminars, global observed days, and core brand initiatives.</p>
       </div>
       <div class="case-block block-image">
-        <div class="p-image stage stage-inset"><img src="images/inflection/screenshot-linkedin-post.png" alt="Inflection LinkedIn company page redesign"></div>
+        <div class="p-image stage"><img src="images/inflection/screenshot-linkedin-post.png" alt="Inflection LinkedIn company page redesign"></div>
         <p class="block-cap">I took ownership of Inflection’s LinkedIn presence, updating the banner and avatar to align with the brand rollout, transforming a fragmented page into a cohesive, polished, and professional brand touchpoint.</p>
       </div>
       <div class="case-block block-image">
