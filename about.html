@@ -63,6 +63,8 @@
   .tl-row .tl-role span{display:block; padding-left:1.1em; position:relative;}
   .tl-row .tl-role span::before{content:'·'; position:absolute; left:0; color:var(--ink-dim);}
   .tl-row .tl-role span + span{margin-top:6px;}
+  .tl-row.current .tl-role .tl-mark{color:var(--chartreuse);}
+  .tl-row.current .tl-role > span::before{color:var(--chartreuse);}
   .about-meta{display:flex; gap:64px; flex-wrap:wrap; margin-top:28px; margin-bottom:8px;}
   .about-meta div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
   .about-meta strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; max-width:420px; line-height:1.45;}
@@ -244,7 +246,7 @@
       <div class="about-body reveal">
         <p>I'm an Art Director and Lead Designer based in Los Angeles. For sixteen years I directed visual identity for the Television Academy and the Emmy Awards, the kind of work where the deadline is a live event and there's no version two.</p>
         <p>Since then I've taken that discipline into health tech, building brand and product for startups like Fount and Inflection, and into independent client work across CPG, hospitality, and brand identity.</p>
-        <p>I'm currently consulting for the Television Academy on the 2026 Emmy season and serving as Art Director III for Amazon Prime Video Sports, while taking on select client projects.</p>
+        <p>I'm currently consulting for the Television Academy on the 2026 Emmy season and serving as Art Director III (contract) for Amazon Prime Video Sports, while taking on select client projects.</p>
 
         <div class="about-meta">
           <div>Open to<strong>Full-time art direction roles and select contract projects.</strong></div>
@@ -256,8 +258,8 @@
           <div class="tl-row current">
             <span class="tl-year"><span class="tl-mark">2026-Present</span></span>
             <span class="tl-role">
-              <span>Consulting Art Director, Television Academy &amp; Emmy Awards</span>
-              <span>Art Director III, Amazon Prime Video Sports</span>
+              <span><span class="tl-mark">Consulting Art Director, Television Academy &amp; Emmy Awards</span></span>
+              <span><span class="tl-mark">Art Director III (Contract), Amazon Prime Video Sports</span></span>
             </span>
           </div>
           <div class="tl-row"><span class="tl-year">Ongoing</span><span class="tl-role"><span>Freelance Art Director and Designer for CPG, food &amp; bev, and startups</span></span></div>
