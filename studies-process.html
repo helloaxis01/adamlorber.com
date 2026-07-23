@@ -86,7 +86,7 @@
   .revyrie-grid .ba-carousel{margin-bottom:0;}
   .ba-carousel .carousel-viewport{
     position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;
-    background:#141413; touch-action:pan-y; cursor:grab; border-radius:1px;
+    background:var(--bg); touch-action:pan-y; cursor:grab; border-radius:1px;
   }
   .ba-carousel .carousel-viewport:active{cursor:grabbing;}
   .ba-carousel .carousel-track{display:flex; height:100%; will-change:transform;}
@@ -96,6 +96,7 @@
   .ba-carousel .carousel-slide img{
     width:100%; height:100%; object-fit:cover;
     -webkit-user-drag:none; user-select:none; pointer-events:none;
+    display:block;
   }
   .ba-carousel .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%);
@@ -394,11 +395,11 @@
     <div class="ba-carousel block-carousel" id="carousel-great-greek">
       <div class="carousel-viewport">
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-02.jpg" alt="Great Greek branding"></div>
-          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-07.jpg" alt="Great Greek branding"></div>
-          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-08.jpg" alt="Great Greek branding"></div>
-          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-09.jpg" alt="Great Greek branding"></div>
-          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-10.jpg" alt="Great Greek branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-10.jpg" alt="Great Greek business cards"></div>
+          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-09.jpg" alt="Great Greek matchbook design"></div>
+          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-08.jpg" alt="Great Greek menu"></div>
+          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-07.jpg" alt="Great Greek social mockups"></div>
+          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-02.jpg" alt="Great Greek t-shirt branding"></div>
         </div>
         <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
         <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
@@ -439,8 +440,8 @@
         <div class="ba-carousel block-carousel" id="carousel-lalo-a">
           <div class="carousel-viewport">
             <div class="carousel-track">
-              <div class="carousel-slide"><img src="images/studies-process/Lalo_BC_4.jpg" alt="Lalo business cards held in hand"></div>
-              <div class="carousel-slide"><img src="images/studies-process/Lalo_BC_5.jpg" alt="Lalo business card concept"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Lalo_BC_4.jpg" alt="Lalo navy business cards held in hand"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Lalo_4.jpg" alt="Lalo navy business card flat lay"></div>
             </div>
             <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
             <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
@@ -452,8 +453,8 @@
         <div class="ba-carousel block-carousel" id="carousel-lalo-b">
           <div class="carousel-viewport">
             <div class="carousel-track">
-              <div class="carousel-slide"><img src="images/studies-process/Lalo_4.jpg" alt="Lalo business card flat lay"></div>
-              <div class="carousel-slide"><img src="images/studies-process/Lalo_5.jpg" alt="Lalo business card flat lay alternate"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Lalo_BC_5.jpg" alt="Lalo white business cards held in hand"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Lalo_5.jpg" alt="Lalo white business card flat lay"></div>
             </div>
             <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
             <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
@@ -469,13 +470,13 @@
     <div class="ba-carousel block-carousel" id="carousel-victory">
       <div class="carousel-viewport">
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-03.jpg" alt="Victory Extracts branding"></div>
-          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-04.jpg" alt="Victory Extracts branding"></div>
-          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-05.jpg" alt="Victory Extracts branding"></div>
-          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-06.jpg" alt="Victory Extracts branding"></div>
-          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-07.jpg" alt="Victory Extracts branding"></div>
-          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-08.jpg" alt="Victory Extracts branding"></div>
-          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-09.jpg" alt="Victory Extracts branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-06.jpg" alt="Victory! Extracts logo"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-03.jpg" alt="Victory! Extracts fruit gummies packaging"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-04.jpg" alt="Victory! Extracts bottle views"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-05.jpg" alt="Victory! Extracts nanotechnology mark"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-07.jpg" alt="Victory! Extracts Triple Berry Fusion"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-08.jpg" alt="Victory! Extracts Golden Ginger Lemonade"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-09.jpg" alt="Victory! Extracts Matcha Honey Lemonade"></div>
         </div>
         <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
         <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
@@ -489,10 +490,10 @@
     <div class="ba-carousel block-carousel" id="carousel-eric-broad">
       <div class="carousel-viewport">
         <div class="carousel-track">
+          <div class="carousel-slide"><img src="images/studies-process/EB_Keys.jpg" alt="Eric Broad Real Estate key branding"></div>
           <div class="carousel-slide"><img src="images/studies-process/EB_Comps.jpg" alt="Eric Broad Real Estate comps"></div>
           <div class="carousel-slide"><img src="images/studies-process/EB_Hat.jpg" alt="Eric Broad Real Estate hat branding"></div>
           <div class="carousel-slide"><img src="images/studies-process/EB_House.jpg" alt="Eric Broad Real Estate house signage"></div>
-          <div class="carousel-slide"><img src="images/studies-process/EB_Keys.jpg" alt="Eric Broad Real Estate key branding"></div>
         </div>
         <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
         <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
@@ -598,10 +599,11 @@
           <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-06.jpg" alt="The Nautilus Hotel branding"></div>
           <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-07.jpg" alt="The Nautilus Hotel branding"></div>
           <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-08.jpg" alt="The Nautilus Hotel branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Image.jpg" alt="Nautilus Hotel outdoor sign"></div>
         </div>
         <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
         <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
-        <div class="carousel-counter"><span class="carousel-current">01</span> / 09</div>
+        <div class="carousel-counter"><span class="carousel-current">01</span> / 10</div>
       </div>
     </div>
   </section>
