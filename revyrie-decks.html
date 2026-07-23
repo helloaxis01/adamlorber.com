@@ -29,8 +29,8 @@
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
   .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter);}
 
-  header{position:fixed; top:0; left:0; right:0; z-index:110; background-color:color-mix(in srgb, var(--bg) 55%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid transparent; transition:background-color .3s ease, border-color .3s ease;}
-  header.scrolled{background-color:color-mix(in srgb, var(--bg) 97%, transparent); border-color:var(--line);}
+  header{position:fixed; top:0; left:0; right:0; z-index:110; background-color:color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-bottom:1px solid transparent; transition:background-color .2s ease, border-color .2s ease; transform:translateZ(0); -webkit-backface-visibility:hidden; backface-visibility:hidden;}
+  header.scrolled{background-color:color-mix(in srgb, var(--bg) 94%, transparent); border-color:var(--line);}
   nav{max-width:100%; margin:0 auto; padding:26px var(--gutter); display:flex; align-items:center; justify-content:space-between;}
   .logo{font-family:var(--grotesk); font-weight:800; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink);}
   .burger{display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; z-index:110;}
@@ -318,21 +318,21 @@
     <div class="sec-label">Clarity agency services</div>
     <p class="sec-body">Deck design for Clarity featuring their agency services. This design features their new logo and wordmark in use.</p>
     <div class="proc-gallery">
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---107.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---108.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---109.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---110.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---111.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---112.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---113.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---114.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---115.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---116.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---117.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---118.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---99.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---76.jpg" alt="Clarity agency services deck"></div>
-      <div class="p-image full"><img src="images/revyrie-decks/Slide-16_9---100.jpg" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---107.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---108.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---109.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---110.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---111.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---112.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---113.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---114.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---115.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---116.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---117.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---118.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---99.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image"><img src="images/revyrie-decks/Slide-16_9---76.jpg?v=2" alt="Clarity agency services deck"></div>
+      <div class="p-image full"><img src="images/revyrie-decks/Slide-16_9---100.jpg?v=2" alt="Clarity agency services deck"></div>
     </div>
   </section>
 
@@ -381,7 +381,19 @@
     }
   });
   const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 10));
+  let headerScrolled = false, headerTicking = false;
+  function updateHeader(){
+    headerTicking = false;
+    const y = window.scrollY || 0;
+    const next = headerScrolled ? y > 4 : y > 16;
+    if (next !== headerScrolled){
+      headerScrolled = next;
+      header.classList.toggle('scrolled', headerScrolled);
+    }
+  }
+  window.addEventListener('scroll', () => {
+    if (!headerTicking){ headerTicking = true; requestAnimationFrame(updateHeader); }
+  }, { passive: true });
 </script>
 <script src="site.js"></script>
 </body>
