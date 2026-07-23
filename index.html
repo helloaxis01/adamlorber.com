@@ -231,24 +231,22 @@
   .contact h2{
     font-family:var(--serif); font-weight:500; font-size:clamp(44px,10vw,140px); line-height:0.95;
     cursor:default; width:fit-content;
-    color:var(--ink);
-    transition:color .25s ease;
   }
-  .contact h2 em{font-style:italic; color:inherit; transition:color .25s ease;}
-  .contact h2:hover,
-  .contact h2:hover em{ color:var(--chartreuse); }
+  .contact h2 em{font-style:italic; color:var(--ink);}
   .contact-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-top:40px;}
   .contact-links{display:flex; flex-direction:row; gap:32px; flex-wrap:wrap;}
   .contact-links a{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
-    transition:color .25s ease;
+    transition:color .25s ease, background-color .25s ease;
   }
-  .contact-links a:hover{ color:#faf9f6; }
-  html[data-theme="light"] .contact-links a:hover{ color:#1a1a19; background:transparent; }
+  .contact-links a:hover,
+  .contact-links.is-lit a{/* highlight via shared mark styles */}
+  .contact-links.is-lit a:nth-child(1){transition-delay:0s;}
+  .contact-links.is-lit a:nth-child(2){transition-delay:0.06s;}
+  .contact-links.is-lit a:nth-child(3){transition-delay:0.12s;}
   @media (prefers-reduced-motion: reduce){
-    .contact h2,
-    .contact h2 em,
     .contact-links a{transition:none;}
+    .contact-links.is-lit a{transition-delay:0s;}
   }
   .pointer-egg{
     display:inline-flex; align-items:center;
@@ -347,6 +345,7 @@
   .next-title,
   .study h3,
   .study span,
+  .contact-links a,
   .about-actions a,
   .err-cta{
     width:fit-content;
@@ -359,6 +358,8 @@
   .next-title:hover,
   .study:hover h3,
   .study:hover span,
+  .contact-links a:hover,
+  .contact-links.is-lit a,
   .about-actions a:hover,
   .err-cta:hover,
   .theme-toggle:hover{
@@ -370,6 +371,8 @@
   html[data-theme="light"] .next-title:hover,
   html[data-theme="light"] .study:hover h3,
   html[data-theme="light"] .study:hover span,
+  html[data-theme="light"] .contact-links a:hover,
+  html[data-theme="light"] .contact-links.is-lit a,
   html[data-theme="light"] .about-actions a:hover,
   html[data-theme="light"] .err-cta:hover,
   html[data-theme="light"] .theme-toggle:hover{
@@ -452,21 +455,20 @@
   html[data-theme="light"] .email-copy-status{color:var(--ink);}
   .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(-50%);}
   .contact-links a.email-copy:hover,
+  .contact-links.is-lit a.email-copy,
   .about-actions a.email-copy:hover,
   html[data-theme="light"] .contact-links a.email-copy:hover,
+  html[data-theme="light"] .contact-links.is-lit a.email-copy,
   html[data-theme="light"] .about-actions a.email-copy:hover{
     background:transparent;
   }
-  .contact-links a.email-copy:hover .email-copy-label{
-    color:#faf9f6;
-  }
+  .contact-links a.email-copy:hover .email-copy-label,
+  .contact-links.is-lit a.email-copy .email-copy-label,
   .about-actions a.email-copy:hover .email-copy-label{
     color:var(--chartreuse);
   }
-  html[data-theme="light"] .contact-links a.email-copy:hover .email-copy-label{
-    color:#1a1a19;
-    background:transparent;
-  }
+  html[data-theme="light"] .contact-links a.email-copy:hover .email-copy-label,
+  html[data-theme="light"] .contact-links.is-lit a.email-copy .email-copy-label,
   html[data-theme="light"] .about-actions a.email-copy:hover .email-copy-label{
     color:#1a1a19;
     background:var(--chartreuse);
@@ -803,6 +805,23 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  (function(){
+    const hello = document.querySelector('.contact h2');
+    const links = document.querySelector('.contact-links');
+    if (!hello || !links) return;
+    let litTimer = null;
+    function lightUp(){
+      clearTimeout(litTimer);
+      links.classList.add('is-lit');
+    }
+    function scheduleDim(){
+      clearTimeout(litTimer);
+      litTimer = setTimeout(() => links.classList.remove('is-lit'), 1000);
+    }
+    hello.addEventListener('pointerenter', lightUp);
+    hello.addEventListener('pointerleave', scheduleDim);
+  })();
 </script>
 
 <script src="site.js"></script>
