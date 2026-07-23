@@ -51,6 +51,7 @@
   .meta-row{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:56px; border-top:1px solid var(--line); padding:24px 0 56px;}
   .meta-row div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
   .meta-row strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; line-height:1.4;}
+  .meta-row .meta-span-2{grid-column:span 2;}
 
   .study-section{padding-top:72px; padding-bottom:24px;}
   .study-section .sec-label{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink); margin-bottom:14px;}
@@ -139,6 +140,7 @@
   @media (max-width:900px){
     .p-hero{padding-top:120px;}
     .meta-row{grid-template-columns:repeat(2,1fr);}
+    .meta-row .meta-span-2{grid-column:1 / -1;}
     .logo-grid{grid-template-columns:repeat(2,1fr);}
     .sitemap{grid-template-columns:1fr; gap:32px;}
     .revyrie-grid{grid-template-columns:1fr;}
@@ -365,6 +367,7 @@
     <p class="p-sub">A curated collection of early concepts, alternative directions, and archived favorites that still deserve the spotlight, from projects that shipped to ideas that live on as process.</p>
     <div class="meta-row">
       <div>Scope<strong>Brand Identity, Logo, Collateral</strong></div>
+      <div class="meta-span-2">Clients<strong>CPG, Restaurants, Production Companies, Retail, Wellness, Realtors, Incubators, and Hotels</strong></div>
       <div>Tools<strong>Illustrator, Photoshop, Figma</strong></div>
     </div>
   </div>
