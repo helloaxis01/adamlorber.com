@@ -68,6 +68,58 @@
   .proc-gallery img{width:100%; height:100%; object-fit:cover;}
   .proc-dots{display:none;}
 
+  /* Revyrie: 2x2 + one full-width, each cell a swipeable before/after */
+  .revyrie-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(16px,2.2vw,24px) clamp(12px,2vw,20px);
+    margin-bottom:16px;
+  }
+  .revyrie-cell{min-width:0; display:flex; flex-direction:column; gap:10px;}
+  .revyrie-cell.is-wide{grid-column:1 / -1;}
+  .revyrie-name{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--ink-dim);
+  }
+  .ba-carousel{position:relative;}
+  .ba-carousel .carousel-viewport{
+    position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;
+    background:#141413; touch-action:pan-y; cursor:grab; border-radius:1px;
+  }
+  .ba-carousel .carousel-viewport:active{cursor:grabbing;}
+  .ba-carousel .carousel-track{display:flex; height:100%; will-change:transform;}
+  .ba-carousel .carousel-slide{
+    flex:0 0 100%; height:100%; display:flex; align-items:center; justify-content:center;
+  }
+  .ba-carousel .carousel-slide img{
+    width:100%; height:100%; object-fit:cover;
+    -webkit-user-drag:none; user-select:none; pointer-events:none;
+  }
+  .ba-carousel .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:34px; height:34px; border-radius:50%; border:1px solid rgba(239,238,233,0.28);
+    background:rgba(20,20,19,0.45); color:#efeee9; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; font-size:13px; z-index:2;
+  }
+  .ba-carousel .carousel-arrow:hover{border-color:rgba(239,238,233,0.7); background:rgba(20,20,19,0.65);}
+  .ba-carousel .carousel-prev{left:10px;}
+  .ba-carousel .carousel-next{right:10px;}
+  .ba-carousel .carousel-counter{
+    position:absolute; right:12px; bottom:10px; z-index:2;
+    font-family:var(--mono); font-size:10px; letter-spacing:0.1em;
+    color:rgba(239,238,233,0.85); background:rgba(20,20,19,0.4);
+    padding:4px 8px; border-radius:999px; pointer-events:none;
+  }
+  html[data-theme="light"] .ba-carousel .carousel-arrow{
+    border-color:rgba(26,26,25,0.18); background:rgba(239,238,233,0.72); color:var(--ink);
+  }
+  html[data-theme="light"] .ba-carousel .carousel-arrow:hover{
+    border-color:rgba(26,26,25,0.4); background:rgba(239,238,233,0.92);
+  }
+  html[data-theme="light"] .ba-carousel .carousel-counter{
+    color:var(--ink); background:rgba(239,238,233,0.78);
+  }
+
   .next{background:var(--next-bg); padding:70px 0; display:flex; align-items:center; margin-top:48px;}
   .next .wrap{width:100%;}
   .next-label{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:14px;}
@@ -88,6 +140,8 @@
     .meta-row{grid-template-columns:repeat(2,1fr);}
     .logo-grid{grid-template-columns:repeat(2,1fr);}
     .sitemap{grid-template-columns:1fr; gap:32px;}
+    .revyrie-grid{grid-template-columns:1fr;}
+    .revyrie-cell.is-wide{grid-column:auto;}
 
     /* Process: swipe galleries instead of stacked images */
     .proc-gallery{
@@ -387,21 +441,85 @@
   </section>
   <section class="wrap study-section">
     <div class="sec-label">Revyrie</div>
-    <p class="sec-body">Brand refreshes and new logo systems developed for both existing and newly launched companies within the Revyrie portfolio.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---1.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---2.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---3.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---4.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---5.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---7.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---8.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---9.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---10.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---11.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---13.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image"><img src="images/studies-process/Slide-16_9---14.jpg" alt="Revyrie logo system"></div>
-      <div class="p-image full"><img src="images/studies-process/Slide-16_9---15.jpg" alt="Revyrie logo system"></div>
+    <p class="sec-body">Brand refreshes and new logo systems developed for both existing and newly launched companies within the Revyrie portfolio. Swipe each tile to compare before and after.</p>
+    <div class="revyrie-grid">
+      <div class="revyrie-cell">
+        <div class="revyrie-name">Revyrie</div>
+        <div class="ba-carousel block-carousel" id="carousel-revyrie">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---2.jpg" alt="Revyrie old wordmark"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---1.jpg" alt="Revyrie new wordmark"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---3.jpg" alt="Revyrie typography overlap comparison"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="revyrie-cell">
+        <div class="revyrie-name">Archetype</div>
+        <div class="ba-carousel block-carousel" id="carousel-archetype">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---4.jpg" alt="Archetype new wordmark"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---5.jpg" alt="Archetype new logo mark"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="revyrie-cell">
+        <div class="revyrie-name">Clarity</div>
+        <div class="ba-carousel block-carousel" id="carousel-clarity">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---9.jpg" alt="Clarity old wordmark"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---7.jpg" alt="Clarity new wordmark"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---8.jpg" alt="Clarity new logomark"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="revyrie-cell">
+        <div class="revyrie-name">Gravity + AV</div>
+        <div class="ba-carousel block-carousel" id="carousel-gravity">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---10.jpg" alt="Gravity new wordmark"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---11.jpg" alt="AV new logomark"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="revyrie-cell is-wide">
+        <div class="revyrie-name">Legacie</div>
+        <div class="ba-carousel block-carousel" id="carousel-legacie">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---15.jpg" alt="Legacie old wordmark and logomark"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---13.jpg" alt="Legacie new wordmark"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---14.jpg" alt="Legacie new logomark"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <section class="wrap study-section">
@@ -511,6 +629,66 @@
         });
       }
       gallery.addEventListener('scroll', syncDots, {passive:true});
+    });
+  })();
+
+  (function(){
+    const carousels = document.querySelectorAll('.ba-carousel');
+    carousels.forEach(function(carousel){
+      const viewport = carousel.querySelector('.carousel-viewport');
+      const track = carousel.querySelector('.carousel-track');
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const counter = carousel.querySelector('.carousel-current');
+      const total = slides.length;
+      if (!viewport || !track || total < 2) return;
+
+      let index = 0;
+      let startX = 0;
+      let deltaX = 0;
+      let dragging = false;
+      let pointerId = null;
+
+      function update(){
+        track.style.transition = 'transform 0.45s cubic-bezier(0.65,0,0.35,1)';
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        if (counter) counter.textContent = String(index + 1).padStart(2, '0');
+      }
+      function go(dir){
+        index = (index + dir + total) % total;
+        update();
+      }
+
+      const prev = carousel.querySelector('.carousel-prev');
+      const next = carousel.querySelector('.carousel-next');
+      if (prev) prev.addEventListener('click', function(){ go(-1); });
+      if (next) next.addEventListener('click', function(){ go(1); });
+
+      viewport.addEventListener('pointerdown', function(e){
+        if (e.button !== 0) return;
+        if (e.target.closest('.carousel-arrow')) return;
+        dragging = true;
+        pointerId = e.pointerId;
+        startX = e.clientX;
+        deltaX = 0;
+        track.style.transition = 'none';
+        try { viewport.setPointerCapture(e.pointerId); } catch (_) {}
+      });
+      viewport.addEventListener('pointermove', function(e){
+        if (!dragging || e.pointerId !== pointerId) return;
+        deltaX = e.clientX - startX;
+        track.style.transform = 'translateX(calc(-' + (index * 100) + '% + ' + deltaX + 'px))';
+      });
+      function endDrag(e){
+        if (!dragging || (e && e.pointerId !== pointerId)) return;
+        dragging = false;
+        pointerId = null;
+        if (Math.abs(deltaX) > 50) go(deltaX < 0 ? 1 : -1);
+        else update();
+        deltaX = 0;
+      }
+      viewport.addEventListener('pointerup', endDrag);
+      viewport.addEventListener('pointercancel', endDrag);
+      update();
     });
   })();
 </script>
