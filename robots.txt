@@ -16,9 +16,9 @@ Disallow: /mitzvahs.html
 Disallow: /agra-wood
 Disallow: /agra-wood.html
 Disallow: /project-agra-wood.html
-Disallow: /olio
-Disallow: /olio.html
-Disallow: /project-olio.html
 Disallow: /solmar
 Disallow: /solmar.html
 Disallow: /project-solmar.html
+Disallow: /mootz-tom
+Disallow: /mootz-tom.html
+Disallow: /project-mootz-tom.html
