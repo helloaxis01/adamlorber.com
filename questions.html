@@ -276,7 +276,7 @@
 
 <header id="siteHeader">
   <nav>
-    <a href="index.html" class="logo">Adam Lorber</a>
+    <a href="/" class="logo">Adam Lorber</a>
     <div class="nav-right">
       <button class="theme-toggle" type="button" id="themeToggle" aria-label="Switch to light theme" data-theme="dark"><span class="theme-toggle-label">Light</span></button>
       <button class="burger" aria-label="Open menu" id="burgerBtn"><span></span><span></span><span></span></button>
@@ -286,11 +286,11 @@
 
 <div class="menu" id="menu">
   <span class="m-eyebrow">Menu</span>
-  <a href="index.html">Home</a>
-  <a href="index.html#work">Work</a>
-  <a href="index.html#studies">Studies</a>
-  <a href="about.html">About</a>
-  <a href="index.html#contact">Contact</a>
+  <a href="/">Home</a>
+  <a href="/#work">Work</a>
+  <a href="/#studies">Studies</a>
+  <a href="/about">About</a>
+  <a href="/#contact">Contact</a>
 </div>
 
 <main id="top">
@@ -303,7 +303,7 @@
   </div>
 
   <div class="wrap">
-    <form class="q-form" id="qForm" name="questions" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/questions.html?submitted=1">
+    <form class="q-form" id="qForm" name="questions" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/questions?submitted=1">
       <input type="hidden" name="form-name" value="questions">
       <p class="hp"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
     <div class="q-field">
@@ -511,7 +511,7 @@
         });
         if (!res.ok) throw new Error('HTTP ' + res.status);
         showQuestionsSuccess();
-        history.replaceState(null, '', 'questions.html?submitted=1');
+        history.replaceState(null, '', '/questions?submitted=1');
       } catch (e) {
         // Netlify Forms not enabled / not registered — open email to hello@adamlorber.com
         mailtoFallback(formData);

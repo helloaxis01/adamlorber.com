@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Amazon Prime Video Sports · Adam Lorber</title>
+<meta name="robots" content="noindex, nofollow">
+<title>Solmar · Adam Lorber</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <script>!function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}}()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,6 +107,52 @@
   .case-block .p-image{aspect-ratio:16/9;}
   .case-block video{width:100%; height:100%; object-fit:cover; display:block; background:#000;}
   .case-block .block-cap{font-family:var(--mono); font-size:11px; color:var(--ink-dim); margin-top:14px; max-width:640px; line-height:1.7;}
+  footer.wrap{padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
+
+  @media (max-width:900px){
+    .sitemap{grid-template-columns:1fr; gap:32px;}
+    .meta-row{grid-template-columns:repeat(2,1fr); gap:24px 20px;}
+    .section-inner{grid-template-columns:1fr; gap:14px;}
+    .stats{grid-template-columns:1fr;}
+    .gallery{grid-template-columns:1fr;}
+    section{padding-top:64px; padding-bottom:90px;}
+    .p-hero{padding-top:120px;}
+  }
+
+  .carousel-viewport{position:relative; width:100%; aspect-ratio:16/9; background:var(--bg); overflow:hidden; border-radius:0; touch-action:pan-y; cursor:grab;}
+  .carousel-viewport:active{cursor:grabbing;}
+  .carousel-track{display:flex; height:100%; transition:transform 0.45s cubic-bezier(0.65,0,0.35,1);}
+  .carousel-slide{flex:0 0 100%; height:100%; display:flex; align-items:center; justify-content:center; background:var(--bg);}
+  .carousel-slide img{width:100%; height:100%; object-fit:cover; -webkit-user-drag:none; user-select:none; pointer-events:none;}
+  .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:3;
+    width:28px; height:28px; border-radius:50%; border:1px solid rgba(220,218,211,0.22);
+    background:rgba(20,20,19,0.45); color:var(--ink); font-size:13px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);
+    padding:0;
+  }
+  .carousel-arrow:hover{border-color:var(--gold); color:var(--gold); background:rgba(20,20,19,0.65);}
+  .carousel-prev{left:10px;}
+  .carousel-next{right:10px;}
+  .carousel-counter{
+    position:absolute; bottom:10px; right:10px; z-index:3; font-family:var(--mono); font-size:10px;
+    letter-spacing:0.06em; color:var(--ink); background:rgba(20,20,19,0.45); padding:3px 7px; border-radius:2px; backdrop-filter:blur(4px);
+  }
+  html[data-theme="light"] .carousel-arrow{
+    color:#faf9f6;
+    border-color:rgba(250,249,246,0.35);
+    background:rgba(20,20,19,0.55);
+  }
+  html[data-theme="light"] .carousel-arrow:hover{
+    color:#faf9f6;
+    border-color:rgba(250,249,246,0.7);
+    background:rgba(20,20,19,0.75);
+  }
+  html[data-theme="light"] .carousel-counter{
+    color:#faf9f6;
+    background:rgba(20,20,19,0.55);
+  }
+
   footer.wrap{padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
 
   @media (max-width:900px){
@@ -294,29 +341,70 @@
 
 <main>
   <div class="wrap p-hero">
-    <p class="p-eyebrow">Current role · In-House</p>
-    <h1 class="p-title">Amazon Prime Video Sports</h1>
-    <p class="p-sub">Art Director III (contract) on the Prime Video Sports creative team. Selected work will be posted here when it can be shared.</p>
+    <p class="p-eyebrow">Case study · Client Work · Hidden</p>
+    <h1 class="p-title">Solmar</h1>
+    <p class="p-sub">Naming, identity, and packaging for a premium Mediterranean sea jerky lifestyle brand.</p>
 
     <div class="meta-row">
-      <div>Role<strong>Art Director III (Contract)</strong></div>
-      <div>Years<strong>2026–Present</strong></div>
-      <div>Client<strong>Amazon Prime Video</strong></div>
-      <div>Status<strong>Selected work forthcoming</strong></div>
+      <div>Role<strong>Art Director</strong></div>
+      <div>Scope<strong>Naming, identity, packaging</strong></div>
+      <div>Category<strong>CPG / premium snack</strong></div>
+      <div>Positioning<strong>Mediterranean lifestyle</strong></div>
     </div>
   </div>
 
   <div class="p-image">
-    <img src="images/amazon-prime-video-sports/hero.png" alt="Amazon Prime Video">
+    <img src="images/solmar/pack-salmon.jpg" alt="Solmar sea jerky packaging">
   </div>
-  <p class="p-sub wrap" style="padding:28px var(--gutter) 0; margin:0 auto; max-width:var(--maxw);">Scope includes in arena visuals for the NBA and WNBA, Thursday Night Football graphics, and work across NASCAR and the Masters. The graphics audiences see when they stream Prime Video Sports.</p>
 
-  <div class="wrap"><div class="section-end-rule" style="margin-top:64px;"></div></div>
+    <section class="wrap case-section" data-section="challenge">
+    <div class="case-header"><span class="section-label">01 · Challenge</span></div>
+    <div class="case-blocks" data-blocks="challenge">
+      <div class="case-block block-text"><p>Solmar needed to launch a premium sea jerky that felt like a lifestyle brand rather than another shelf-stable snack. The challenge was to move away from the gritty aesthetic of traditional jerky and capture the essence of Mediterranean coastal living.</p></div>
+    </div>
+  </section>
 
-  <a href="/television-academy" class="next">
+  <section class="wrap case-section" data-section="approach">
+    <div class="case-header"><span class="section-label">02 · Approach</span></div>
+    <div class="case-blocks" data-blocks="approach">
+      <div class="case-block block-text"><p>I led brand development from the ground up, including helping name the product, the full visual identity, and the packaging system, so sustainability and nutrient-dense ingredients felt built into the brand.</p></div>
+      <div class="case-block block-text"><p>Inspiration came from Italian coastal towns: typography and design that feel laid-back yet chic. Bold, colorful stripes reminiscent of iconic Italian beach umbrellas help the packaging stop shoppers in the aisle.</p></div>
+      <div class="case-block block-text"><p>Color and custom iconography anchor the brand in sun-cured methods and ocean purity, so sustainability reads as part of the personality rather than a marketing claim.</p></div>
+      <div class="case-block block-carousel" id="carousel-solmar-approach">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/solmar/logo-01.jpg" alt="Solmar logo exploration"></div>
+            <div class="carousel-slide"><img src="images/solmar/logo-02.jpg" alt="Solmar logo mark"></div>
+            <div class="carousel-slide"><img src="images/solmar/logo-03.jpg" alt="Solmar logo system"></div>
+            <div class="carousel-slide"><img src="images/solmar/logo-04.jpg" alt="Solmar logo lockup"></div>
+            <div class="carousel-slide"><img src="images/solmar/pack-salmon.jpg" alt="Solmar salmon packaging"></div>
+            <div class="carousel-slide"><img src="images/solmar/pack-tuna.jpg" alt="Solmar tuna packaging"></div>
+            <div class="carousel-slide"><img src="images/solmar/pack-extra-1.jpg" alt="Solmar packaging system"></div>
+            <div class="carousel-slide"><img src="images/solmar/pack-extra-2.jpg" alt="Solmar packaging detail"></div>
+            <div class="carousel-slide"><img src="images/solmar/unsplash-beach.jpg" alt="Solmar coastal reference"></div>
+            <div class="carousel-slide"><img src="images/solmar/unsplash-coast.jpg" alt="Solmar Mediterranean coastal mood"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 10</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap case-section" data-section="outcome">
+    <div class="case-header"><span class="section-label">03 · Outcome</span></div>
+    <div class="case-blocks" data-blocks="outcome">
+      <div class="case-block block-text"><p>A fully developed, shelf-ready brand system that positions Solmar as a premium lifestyle snack, balancing a nutrient-dense offer (including 7 grams of protein and high omega-3 content) with a fresh visual voice for design-conscious health consumers.</p></div>
+    </div>
+  </section>
+
+<div class="section-end-rule"></div></div>
+
+  <a href="/private" class="next">
     <div class="wrap">
-      <div class="next-label">Next project</div>
-      <div class="next-title">Television Academy</div>
+      <div class="next-label">Private index</div>
+      <div class="next-title">Hidden pages</div>
     </div>
   </a>
 
@@ -372,6 +460,61 @@
   window.addEventListener('scroll', () => {
     if (!headerTicking){ headerTicking = true; requestAnimationFrame(updateHeader); }
   }, { passive: true });
+
+  (function(){
+    const carousels = document.querySelectorAll('.block-carousel');
+    carousels.forEach(function(carousel){
+      const viewport = carousel.querySelector('.carousel-viewport');
+      const track = carousel.querySelector('.carousel-track');
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const counter = carousel.querySelector('.carousel-current');
+      const total = slides.length;
+      let index = 0;
+      let startX = 0;
+      let deltaX = 0;
+      let dragging = false;
+      let pointerId = null;
+
+      function update(){
+        track.style.transition = 'transform 0.45s cubic-bezier(0.65,0,0.35,1)';
+        track.style.transform = `translateX(-${index * 100}%)`;
+        counter.textContent = String(index + 1).padStart(2, '0');
+      }
+      function go(dir){
+        index = (index + dir + total) % total;
+        update();
+      }
+
+      carousel.querySelector('.carousel-prev').addEventListener('click', () => go(-1));
+      carousel.querySelector('.carousel-next').addEventListener('click', () => go(1));
+
+      viewport.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        if (e.target.closest('.carousel-arrow')) return;
+        dragging = true;
+        pointerId = e.pointerId;
+        startX = e.clientX;
+        deltaX = 0;
+        track.style.transition = 'none';
+        try { viewport.setPointerCapture(e.pointerId); } catch (_) {}
+      });
+      viewport.addEventListener('pointermove', (e) => {
+        if (!dragging || e.pointerId !== pointerId) return;
+        deltaX = e.clientX - startX;
+        track.style.transform = `translateX(calc(-${index * 100}% + ${deltaX}px))`;
+      });
+      function endDrag(e){
+        if (!dragging || (e && e.pointerId !== pointerId)) return;
+        dragging = false;
+        pointerId = null;
+        if (Math.abs(deltaX) > 50) go(deltaX < 0 ? 1 : -1);
+        else update();
+        deltaX = 0;
+      }
+      viewport.addEventListener('pointerup', endDrag);
+      viewport.addEventListener('pointercancel', endDrag);
+    });
+  })();
 </script>
 
 <script src="site.js"></script>

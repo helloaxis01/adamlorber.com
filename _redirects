@@ -1,0 +1,53 @@
+# Pretty URLs (serve HTML without exposing filenames)
+/about                    /about.html                               200
+/process                  /studies-process.html                     200
+/logos-marks              /studies-logos-marks.html                 200
+/amazon                   /project-amazon-prime-video-sports.html   200
+/television-academy       /project-television-academy.html          200
+/fount                    /project-fount.html                       200
+/inflection               /project-inflection.html                  200
+/dream-clean              /project-dream-clean.html                 200
+/lemon-perfect            /project-lemon-perfect.html               200
+/mantra                   /project-mantra.html                      200
+/chick-fil-a              /project-chick-fil-a.html                 200
+/mootz-tom                /project-mootz-tom.html                   200
+/joes-stone-crab          /project-joes-stone-crab.html             200
+/agra-wood                /project-agra-wood.html                   200
+/olio                     /project-olio.html                        200
+/solmar                   /project-solmar.html                      200
+/private                  /private.html                             200
+/questions                /questions.html                           200
+/fount-deep-dive          /fount-deep-dive.html                     200
+/revyrie-decks            /revyrie-decks.html                       200
+/axis                     /axis.html                                200
+/mitzvahs                 /mitzvahs.html                            200
+
+# Legacy Squarespace-style paths
+/televisionacademy        /television-academy                       301
+/work                     /#work                                    301
+/contact                  /#contact                                 301
+/logos-marks/             /logos-marks                              301
+
+# Prefer pretty URLs when someone hits the .html file directly
+/about.html                                         /about                  301
+/studies-process.html                               /process                301
+/studies-logos-marks.html                           /logos-marks            301
+/project-amazon-prime-video-sports.html             /amazon                 301
+/project-television-academy.html                    /television-academy     301
+/project-fount.html                                 /fount                  301
+/project-inflection.html                            /inflection             301
+/project-dream-clean.html                           /dream-clean            301
+/project-lemon-perfect.html                         /lemon-perfect          301
+/project-mantra.html                                /mantra                 301
+/project-chick-fil-a.html                           /chick-fil-a            301
+/project-mootz-tom.html                             /mootz-tom              301
+/project-joes-stone-crab.html                       /joes-stone-crab        301
+/project-agra-wood.html                             /agra-wood              301
+/project-olio.html                                  /olio                   301
+/project-solmar.html                                /solmar                 301
+/private.html                                       /private                301
+/questions.html                                     /questions              301
+/fount-deep-dive.html                               /fount-deep-dive        301
+/revyrie-decks.html                                 /revyrie-decks          301
+/axis.html                                          /axis                   301
+/mitzvahs.html                                      /mitzvahs               301

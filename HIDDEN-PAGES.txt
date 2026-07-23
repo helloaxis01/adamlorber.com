@@ -1,26 +1,33 @@
 HIDDEN / UNLISTED PAGES
 =======================
 These are intentionally off the public nav and sitemap.
-Open them on the current deploy host, or open the .html files
-locally from this folder.
+Open them on the live host with pretty URLs (or the .html
+files locally from this folder).
 
-  /private              private.html           This index (bookmark it)
-  /fount-deep-dive      fount-deep-dive.html   Private Fount deep dive
-  /revyrie-decks        revyrie-decks.html     Password: Decks
-  /questions            questions.html         Client questionnaire form
-  /axis                 axis.html              AXIS app showcase (on hold)
-  /mitzvahs             mitzvahs.html          Bespoke Mitzvahs (standalone client page)
+  /private              private.html                 This index (bookmark it)
+  /agra-wood            project-agra-wood.html       Archived case (ready to restore)
+  /olio                 project-olio.html            Archived case (ready to restore)
+  /solmar               project-solmar.html          Archived case (ready to restore)
+  /fount-deep-dive      fount-deep-dive.html         Private Fount deep dive
+  /revyrie-decks        revyrie-decks.html           Password: Decks
+  /questions            questions.html               Client questionnaire form
+  /axis                 axis.html                    AXIS app showcase (on hold)
+  /mitzvahs             mitzvahs.html                Bespoke Mitzvahs (standalone client page)
 
-HOW TO PREVIEW (until PR #4 is merged)
---------------------------------------
-Production Netlify (joyful-genie-7584fe.netlify.app) is still the
-older main branch — hidden pages 404 there.
+PUBLIC PRETTY URLS
+------------------
+Netlify `_redirects` maps clean paths to the HTML files, e.g.:
 
-Use the GitHub Deploy Preview for PR #4 (avoids copy/paste issues
-with the "--" in Netlify preview URLs):
+  /fount                 → project-fount.html
+  /television-academy    → project-television-academy.html
+  /amazon                → project-amazon-prime-video-sports.html
+  /process               → studies-process.html
+  /about                 → about.html
 
-  https://github.com/helloaxis01/adamlorber.com/pull/4
+Hitting the .html filename redirects to the pretty path.
+Legacy /televisionacademy redirects to /television-academy.
 
-Then open:  /private
-
-Or local: open private.html in a browser from this folder.
+PREVIEW
+-------
+  https://adamlorber.netlify.app/private
+  Local: open private.html in a browser from this folder.
