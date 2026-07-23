@@ -286,9 +286,12 @@
   </div>
 
   <div class="wrap">
-    <form class="q-form" id="qForm" name="questions" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="questions.html?submitted=1">
-      <input type="hidden" name="form-name" value="questions">
-      <p class="hp"><label>Don't fill this out: <input name="bot-field"></label></p>
+    <form class="q-form" id="qForm" name="questions" method="POST" action="https://formsubmit.co/hello@adamlorber.com">
+      <input type="hidden" name="_subject" value="New Questions form — adamlorber.com">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://adamlorber.netlify.app/questions.html?submitted=1">
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
     <div class="q-field">
       <label for="name">Name</label>
       
@@ -405,7 +408,7 @@
       <textarea id="budget" name="budget" rows="4"></textarea>
     </div>
       <div class="q-actions">
-        <button class="q-submit" type="submit">Submit</button>
+        <button class="q-submit" type="submit">Send</button>
       </div>
     </form>
   </div>
