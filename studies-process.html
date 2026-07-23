@@ -68,7 +68,7 @@
   .proc-gallery img{width:100%; height:100%; object-fit:cover;}
   .proc-dots{display:none;}
 
-  /* Revyrie: 2x2 + one full-width, each cell a swipeable before/after */
+  /* Multi-tile gallery grids (Revyrie, Lalo, etc.) */
   .revyrie-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -81,7 +81,8 @@
     font-family:var(--mono); font-size:10px; letter-spacing:0.14em;
     text-transform:uppercase; color:var(--ink-dim);
   }
-  .ba-carousel{position:relative;}
+  .ba-carousel{position:relative; margin-bottom:16px;}
+  .revyrie-grid .ba-carousel{margin-bottom:0;}
   .ba-carousel .carousel-viewport{
     position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;
     background:#141413; touch-action:pan-y; cursor:grab; border-radius:1px;
@@ -370,33 +371,54 @@
   <section class="wrap study-section">
     <div class="sec-label">Nice Supps</div>
     <p class="sec-body">Identity and label design for Nice Supps, a wellness brand built on honesty and purity. A clean visual system using transparent materials and friendly naming conventions like Mighty Multi and Probiotic Pal.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_MightyMulti.jpg" alt="Nice Supps"></div>
-      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_MorningMix.jpg" alt="Nice Supps"></div>
-      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_NighttimeNutrients.jpg" alt="Nice Supps"></div>
-      <div class="p-image"><img src="images/studies-process/NiceSupps_Mockup_ProbioticPal.jpg" alt="Nice Supps"></div>
+    <div class="ba-carousel block-carousel" id="carousel-nice-supps">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="images/studies-process/NiceSupps_Mockup_MightyMulti.jpg" alt="Nice Supps Mighty Multi label"></div>
+          <div class="carousel-slide"><img src="images/studies-process/NiceSupps_Mockup_MorningMix.jpg" alt="Nice Supps Morning Mix label"></div>
+          <div class="carousel-slide"><img src="images/studies-process/NiceSupps_Mockup_NighttimeNutrients.jpg" alt="Nice Supps Nighttime Nutrients label"></div>
+          <div class="carousel-slide"><img src="images/studies-process/NiceSupps_Mockup_ProbioticPal.jpg" alt="Nice Supps Probiotic Pal label"></div>
+        </div>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <div class="carousel-counter"><span class="carousel-current">01</span> / 04</div>
+      </div>
     </div>
   </section>
   <section class="wrap study-section">
     <div class="sec-label">Great Greek</div>
     <p class="sec-body">Restaurant branding exploring a warm, contemporary Mediterranean identity.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-02.jpg" alt="Great Greek"></div>
-      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-07.jpg" alt="Great Greek"></div>
-      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-08.jpg" alt="Great Greek"></div>
-      <div class="p-image"><img src="images/studies-process/GreatGreek_Portfolio-09.jpg" alt="Great Greek"></div>
-      <div class="p-image full"><img src="images/studies-process/GreatGreek_Portfolio-10.jpg" alt="Great Greek"></div>
+    <div class="ba-carousel block-carousel" id="carousel-great-greek">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-02.jpg" alt="Great Greek branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-07.jpg" alt="Great Greek branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-08.jpg" alt="Great Greek branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-09.jpg" alt="Great Greek branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-10.jpg" alt="Great Greek branding"></div>
+        </div>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
+      </div>
     </div>
   </section>
   <section class="wrap study-section">
     <div class="sec-label">Red Shoes Pictures</div>
     <p class="sec-body">Branding for Red Shoes Pictures. The final logo can now be seen in the end credits of Netflix’s hit show Pieces of Her.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/RedShoes_RedPink_4K.jpg" alt="Red Shoes Pictures"></div>
-      <div class="p-image"><img src="images/studies-process/RedShoes_RedPink_4K_Alt.jpg" alt="Red Shoes Pictures"></div>
-      <div class="p-image"><img src="images/studies-process/RedShoes_RedPink_4K_Icons.jpg" alt="Red Shoes Pictures"></div>
-      <div class="p-image"><img src="images/studies-process/RedShoes_BrandColors.jpg" alt="Red Shoes Pictures brand colors"></div>
-      <div class="p-image full"><img src="images/studies-process/RSP_NetflixScroll-01.jpg" alt="Red Shoes Pictures"></div>
+    <div class="ba-carousel block-carousel" id="carousel-red-shoes">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="images/studies-process/RedShoes_RedPink_4K.jpg" alt="Red Shoes Pictures logo"></div>
+          <div class="carousel-slide"><img src="images/studies-process/RedShoes_RedPink_4K_Alt.jpg" alt="Red Shoes Pictures alternate logo"></div>
+          <div class="carousel-slide"><img src="images/studies-process/RedShoes_RedPink_4K_Icons.jpg" alt="Red Shoes Pictures icon system"></div>
+          <div class="carousel-slide"><img src="images/studies-process/RedShoes_BrandColors.jpg" alt="Red Shoes Pictures brand colors"></div>
+          <div class="carousel-slide"><img src="images/studies-process/RSP_NetflixScroll-01.jpg" alt="Red Shoes Pictures in Netflix end credits"></div>
+        </div>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
+      </div>
     </div>
   </section>
   <section class="wrap study-section">
@@ -409,34 +431,70 @@
   <section class="wrap study-section">
     <div class="sec-label">Lalo</div>
     <p class="sec-body">Business card concepts designed for meetlalo.com.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/Lalo_BC_4.jpg" alt="Lalo"></div>
-      <div class="p-image"><img src="images/studies-process/Lalo_BC_5.jpg" alt="Lalo"></div>
-      <div class="p-image"><img src="images/studies-process/Lalo_4.jpg" alt="Lalo"></div>
-      <div class="p-image"><img src="images/studies-process/Lalo_5.jpg" alt="Lalo"></div>
+    <div class="revyrie-grid">
+      <div class="revyrie-cell">
+        <div class="ba-carousel block-carousel" id="carousel-lalo-a">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Lalo_BC_4.jpg" alt="Lalo business cards held in hand"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Lalo_BC_5.jpg" alt="Lalo business card concept"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
+          </div>
+        </div>
+      </div>
+      <div class="revyrie-cell">
+        <div class="ba-carousel block-carousel" id="carousel-lalo-b">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Lalo_4.jpg" alt="Lalo business card flat lay"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Lalo_5.jpg" alt="Lalo business card flat lay alternate"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <section class="wrap study-section">
     <div class="sec-label">Victory Extracts</div>
     <p class="sec-body">Brand identity and packaging for Victory Extracts, a premium line of organic Delta 8 gummies and beverages tailored for a youthful, wellness-focused audience.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-03.jpg" alt="Victory Extracts"></div>
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-04.jpg" alt="Victory Extracts"></div>
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-05.jpg" alt="Victory Extracts"></div>
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-06.jpg" alt="Victory Extracts"></div>
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-07.jpg" alt="Victory Extracts"></div>
-      <div class="p-image"><img src="images/studies-process/Victory_Portfolio-08.jpg" alt="Victory Extracts"></div>
-      <div class="p-image full"><img src="images/studies-process/Victory_Portfolio-09.jpg" alt="Victory Extracts"></div>
+    <div class="ba-carousel block-carousel" id="carousel-victory">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-03.jpg" alt="Victory Extracts branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-04.jpg" alt="Victory Extracts branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-05.jpg" alt="Victory Extracts branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-06.jpg" alt="Victory Extracts branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-07.jpg" alt="Victory Extracts branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-08.jpg" alt="Victory Extracts branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-09.jpg" alt="Victory Extracts branding"></div>
+        </div>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <div class="carousel-counter"><span class="carousel-current">01</span> / 07</div>
+      </div>
     </div>
   </section>
   <section class="wrap study-section">
     <div class="sec-label">Eric Broad Real Estate</div>
     <p class="sec-body">Brand identity centered on a clean, quick-to-read visual language. Deep ocean and crisp light blues reflect the coastal energy of the Miami market.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/EB_Comps.jpg" alt="Eric Broad Real Estate"></div>
-      <div class="p-image"><img src="images/studies-process/EB_Hat.jpg" alt="Eric Broad Real Estate"></div>
-      <div class="p-image"><img src="images/studies-process/EB_House.jpg" alt="Eric Broad Real Estate"></div>
-      <div class="p-image"><img src="images/studies-process/EB_Keys.jpg" alt="Eric Broad Real Estate"></div>
+    <div class="ba-carousel block-carousel" id="carousel-eric-broad">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="images/studies-process/EB_Comps.jpg" alt="Eric Broad Real Estate comps"></div>
+          <div class="carousel-slide"><img src="images/studies-process/EB_Hat.jpg" alt="Eric Broad Real Estate hat branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/EB_House.jpg" alt="Eric Broad Real Estate house signage"></div>
+          <div class="carousel-slide"><img src="images/studies-process/EB_Keys.jpg" alt="Eric Broad Real Estate key branding"></div>
+        </div>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <div class="carousel-counter"><span class="carousel-current">01</span> / 04</div>
+      </div>
     </div>
   </section>
   <section class="wrap study-section">
@@ -525,16 +583,23 @@
   <section class="wrap study-section">
     <div class="sec-label">The Nautilus Hotel</div>
     <p class="sec-body">Conceptual branding for The Nautilus Hotel in Miami Beach. A modern art deco system spanning a shell-inspired monogram, environmental signage, and guest collateral, honoring the hotel’s architectural roots through a refined coastal lens.</p>
-    <div class="proc-gallery">
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-01.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-02.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-03.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-04.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-05.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_BrandColors.jpg" alt="The Nautilus Hotel brand colors"></div>
-      <div class="p-image full"><img src="images/studies-process/Nautilus_Portfolio-06.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-07.jpg" alt="The Nautilus Hotel"></div>
-      <div class="p-image"><img src="images/studies-process/Nautilus_Portfolio-08.jpg" alt="The Nautilus Hotel"></div>
+    <div class="ba-carousel block-carousel" id="carousel-nautilus">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-01.jpg" alt="The Nautilus Hotel branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-02.jpg" alt="The Nautilus Hotel branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-03.jpg" alt="The Nautilus Hotel branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-04.jpg" alt="The Nautilus Hotel branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-05.jpg" alt="The Nautilus Hotel branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Nautilus_BrandColors.jpg" alt="The Nautilus Hotel brand colors"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-06.jpg" alt="The Nautilus Hotel branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-07.jpg" alt="The Nautilus Hotel branding"></div>
+          <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-08.jpg" alt="The Nautilus Hotel branding"></div>
+        </div>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <div class="carousel-counter"><span class="carousel-current">01</span> / 09</div>
+      </div>
     </div>
   </section>
 
