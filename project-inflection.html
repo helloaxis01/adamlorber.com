@@ -87,9 +87,10 @@
   .case-block .p-image{aspect-ratio:16/9;}
   .case-block .p-image.natural{aspect-ratio:auto;}
   .case-block .p-image.natural img{height:auto; object-fit:contain;}
-  /* White 16:9 stage — LinkedIn post fills the frame; header / kit / booth
-     use stage-inset for breathing room on all four sides. */
+  /* White 16:9 stage. stage-inset = guaranteed white band on all sides
+     (matches LinkedIn header); used for post, header, display kit, REBA. */
   .p-image.stage{
+    position:relative;
     aspect-ratio:16/9;
     background:#fff !important;
     display:flex;
@@ -106,13 +107,15 @@
     object-fit:contain !important;
     object-position:center center;
   }
-  .p-image.stage.stage-inset{
-    padding:clamp(48px,8vw,96px) clamp(36px,6vw,72px);
-    box-sizing:border-box;
-  }
   .p-image.stage.stage-inset img{
-    width:100% !important;
-    height:100% !important;
+    position:absolute !important;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    width:auto !important;
+    height:auto !important;
+    max-width:calc(100% - clamp(72px, 12vw, 160px));
+    max-height:calc(100% - clamp(96px, 14vw, 192px));
     object-fit:contain !important;
     object-position:center center;
   }
@@ -355,7 +358,7 @@
         <p>I redesigned the entire email lifecycle to feel like a continuous, supportive conversation rather than a series of disjointed alerts. This made the user experience feel much more human and intuitive.</p>
       </div>
       <div class="case-block block-image">
-        <div class="p-image stage"><img src="images/inflection/screenshot-social-content.png" alt="Inflection social content design featuring a petri dish visual"></div>
+        <div class="p-image stage stage-inset"><img src="images/inflection/screenshot-social-content.png" alt="Inflection social content design featuring a petri dish visual"></div>
         <p class="block-cap">Directed the visual evolution of Inflection’s social content, ensuring brand consistency across all digital touchpoints. This included developing scalable design systems for live-streamed seminars, global observed days, and core brand initiatives.</p>
       </div>
       <div class="case-block block-image">
