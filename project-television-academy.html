@@ -217,7 +217,17 @@
   .sitemap-col .pointer-egg{
     margin-top:auto;
     align-self:flex-end;
-    padding-top:24px;
+    padding-top:0;
+  }
+  .sitemap-col a.pointer-egg:hover,
+  .sitemap-col a.pointer-egg:focus-visible{
+    background:transparent !important;
+    color:inherit;
+  }
+  html[data-theme="light"] .sitemap-col a.pointer-egg:hover,
+  html[data-theme="light"] .sitemap-col a.pointer-egg:focus-visible{
+    background:transparent !important;
+    color:inherit;
   }
   .pointer-egg svg{
     display:block; color:var(--ink);
