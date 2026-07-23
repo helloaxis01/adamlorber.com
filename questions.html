@@ -251,6 +251,8 @@
   .q-note a:hover{color:var(--chartreuse);}
   html[data-theme="light"] .q-note a:hover{color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;}
   .q-note-top{margin-top:22px; font-size:15px;}
+  .q-error{font-size:14px; color:#ffb4a8; line-height:1.5; margin-top:8px;}
+  .q-submit:disabled{opacity:0.6; cursor:wait;}
   .hp{position:absolute; left:-9999px; height:0; overflow:hidden;}
 
 </style>
@@ -286,12 +288,9 @@
   </div>
 
   <div class="wrap">
-    <form class="q-form" id="qForm" name="questions" method="POST" action="https://formsubmit.co/hello@adamlorber.com">
-      <input type="hidden" name="_subject" value="New Questions form — adamlorber.com">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" value="https://adamlorber.netlify.app/questions.html?submitted=1">
-      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <form class="q-form" id="qForm" name="questions" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" action="/questions.html?submitted=1">
+      <input type="hidden" name="form-name" value="questions">
+      <p class="hp"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
     <div class="q-field">
       <label for="name">Name</label>
       
@@ -409,6 +408,7 @@
     </div>
       <div class="q-actions">
         <button class="q-submit" type="submit">Send</button>
+        <p class="q-error" id="qError" hidden></p>
       </div>
     </form>
   </div>
@@ -436,7 +436,7 @@
   window.addEventListener('scroll', () => {
     if (!headerTicking){ headerTicking = true; requestAnimationFrame(updateHeader); }
   }, { passive: true });
-  if (new URLSearchParams(location.search).get('submitted') === '1') {
+  function showQuestionsSuccess(){
     const form = document.getElementById('qForm');
     const intro = document.getElementById('qIntro');
     const success = document.getElementById('qSuccess');
@@ -445,7 +445,69 @@
     if (intro) intro.hidden = true;
     if (emailPref) emailPref.hidden = true;
     if (success) success.hidden = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  if (new URLSearchParams(location.search).get('submitted') === '1') {
+    showQuestionsSuccess();
+  }
+
+  (function(){
+    const form = document.getElementById('qForm');
+    if (!form || new URLSearchParams(location.search).get('submitted') === '1') return;
+    const btn = form.querySelector('.q-submit');
+    const err = document.getElementById('qError');
+    const TO = 'hello@adamlorber.com';
+
+    function buildBody(formData){
+      const lines = [];
+      formData.forEach((value, key) => {
+        if (!value || key === 'form-name' || key === 'bot-field') return;
+        const label = key.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        lines.push(label + '\n' + value);
+      });
+      return lines.join('\n\n');
+    }
+
+    function mailtoFallback(formData){
+      const body = buildBody(formData);
+      const subject = 'Questions form — adamlorber.com';
+      try { navigator.clipboard.writeText(body); } catch (e) {}
+      const preview = body.length > 1400
+        ? body.slice(0, 1400) + '\n\n[Full answers were copied to your clipboard — paste below if needed.]'
+        : body;
+      window.location.href = 'mailto:' + TO
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(preview);
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (err) { err.hidden = true; err.textContent = ''; }
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(formData).toString()
+        });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        showQuestionsSuccess();
+        history.replaceState(null, '', 'questions.html?submitted=1');
+      } catch (e) {
+        // Netlify Forms not enabled / not registered — open email to hello@adamlorber.com
+        mailtoFallback(formData);
+        if (err) {
+          err.hidden = false;
+          err.innerHTML = 'Opening your email to send answers to <a href="mailto:' + TO + '">' + TO + '</a>. If nothing opens, email that address directly — your answers were copied to the clipboard.';
+        }
+        if (btn) { btn.disabled = false; btn.textContent = 'Send'; }
+      }
+    });
+  })();
 </script>
 <script src="site.js"></script>
 
