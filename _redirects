@@ -15,6 +15,7 @@
 /agra-wood                /project-agra-wood.html                   200
 /olio                     /project-olio.html                        200
 /solmar                   /project-solmar.html                      200
+/good-kernels             /project-good-kernels.html                200
 /private                  /private.html                             200
 /questions                /questions.html                           200
 /fount-deep-dive          /fount-deep-dive.html                     200
@@ -46,6 +47,7 @@
 /project-agra-wood.html                             /agra-wood              301!
 /project-olio.html                                  /olio                   301!
 /project-solmar.html                                /solmar                 301!
+/project-good-kernels.html                          /good-kernels           301!
 /private.html                                       /private                301!
 /questions.html                                     /questions              301!
 /fount-deep-dive.html                               /fount-deep-dive        301!

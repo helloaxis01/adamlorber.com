@@ -10,6 +10,7 @@ files locally from this folder).
   /mootz-tom            project-mootz-tom.html       Full case (also featured in Process)
   /fount-deep-dive      fount-deep-dive.html         Private Fount deep dive
   /fount-sites          fount-sites.html             Fount / Fount Pro / FlyKitt full site captures
+  /good-kernels         project-good-kernels.html    Popcorn brand identity + packaging (hidden)
   /revyrie-decks        revyrie-decks.html           Password: Decks
   /questions            questions.html               Client questionnaire form
   /axis                 axis.html                    AXIS app showcase (screens + brand)
