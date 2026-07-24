@@ -367,30 +367,135 @@
   .tier ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
   .tier li{font-size:14px; line-height:1.55; color:var(--ink-dim); padding-left:14px; position:relative;}
   .tier li::before{content:''; position:absolute; left:0; top:0.65em; width:6px; height:1px; background:var(--ink-dim);}
-  .axis-icons{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,2vw,20px); margin:32px 0 48px;}
+  .axis-icons{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,2vw,20px); margin:12px 0 0;}
   .axis-icons figure{margin:0; text-align:center;}
   .axis-icons img{width:100%; aspect-ratio:1; object-fit:cover; border-radius:22%; background:#080d18;}
   .axis-icons figcaption{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim); margin-top:10px;}
-  .axis-hero-mark{max-width:min(420px,80vw); margin:28px 0 8px;}
+  .axis-hero-mark{max-width:min(280px,70vw); margin:24px 0 0;}
   .axis-hero-mark img{width:100%; height:auto;}
-  .axis-screens{
+  .meta-row a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
+  .meta-row a:hover{color:var(--chartreuse);}
+  html[data-theme="light"] .meta-row a:hover{color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;}
+
+  /* AXIS phone showcase */
+  .axis-stage{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:clamp(10px,1.6vw,18px);
-    margin:8px 0 48px;
+    grid-template-columns:minmax(0,1.05fr) minmax(260px,0.95fr);
+    gap:clamp(32px,6vw,80px);
+    align-items:center;
+    padding:8px 0 24px;
   }
-  .axis-screens .p-image{
-    aspect-ratio:9/19.5;
-    border-radius:18px;
-    background:#080d18;
+  .phone-wrap{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:520px;
   }
-  .axis-screens .p-image img{
+  .phone{
+    position:relative;
+    width:min(290px,72vw);
+    aspect-ratio:9/19.2;
+    border-radius:42px;
+    background:linear-gradient(160deg,#2a2a28 0%,#121211 55%,#0a0a09 100%);
+    box-shadow:
+      0 0 0 1px rgba(220,218,211,0.12),
+      0 28px 60px rgba(0,0,0,0.45),
+      inset 0 1px 0 rgba(255,255,255,0.08);
+    padding:10px;
+    touch-action:pan-y;
+    user-select:none;
+  }
+  html[data-theme="light"] .phone{
+    background:linear-gradient(160deg,#3a3a38 0%,#1c1c1b 55%,#111110 100%);
+    box-shadow:
+      0 0 0 1px rgba(26,26,25,0.18),
+      0 28px 50px rgba(26,26,25,0.18),
+      inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .phone-screen{
+    position:relative;
     width:100%;
     height:100%;
-    object-fit:cover;
+    border-radius:34px;
+    overflow:hidden;
+    background:#080d18;
+    cursor:grab;
   }
+  .phone-screen:active{cursor:grabbing;}
+  .phone-island{
+    position:absolute; top:10px; left:50%; transform:translateX(-50%);
+    width:28%; height:22px; border-radius:20px; background:#050505; z-index:4;
+    box-shadow:inset 0 0 0 1px rgba(255,255,255,0.06);
+  }
+  .phone-track{
+    display:flex; height:100%;
+    transition:transform 0.5s cubic-bezier(0.65,0,0.35,1);
+    will-change:transform;
+  }
+  .phone-slide{
+    flex:0 0 100%; height:100%;
+  }
+  .phone-slide img{
+    width:100%; height:100%; object-fit:cover;
+    -webkit-user-drag:none; pointer-events:none;
+  }
+  .phone-home{
+    position:absolute; left:50%; bottom:8px; transform:translateX(-50%);
+    width:34%; height:4px; border-radius:4px; background:rgba(255,255,255,0.28); z-index:4;
+  }
+  .phone-nav{
+    position:absolute; inset:auto 0 0 0; top:50%;
+    display:flex; justify-content:space-between; pointer-events:none;
+    transform:translateY(-50%);
+    width:min(390px,92vw);
+    left:50%; margin-left:calc(min(390px,92vw) / -2);
+  }
+  .phone-nav button{
+    pointer-events:auto;
+    width:36px; height:36px; border-radius:50%;
+    border:1px solid var(--line); background:color-mix(in srgb, var(--bg) 80%, transparent);
+    color:var(--ink); font-size:15px; cursor:pointer;
+    backdrop-filter:blur(8px);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .phone-nav button:hover{border-color:var(--ink-dim); color:var(--chartreuse);}
+  html[data-theme="light"] .phone-nav button:hover{color:#1a1a19; background:var(--chartreuse); border-color:var(--chartreuse);}
+  .phone-copy{max-width:420px;}
+  .phone-kicker{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink-dim); margin-bottom:14px;
+  }
+  .phone-label{
+    font-family:var(--serif); font-weight:500; font-size:clamp(28px,4vw,42px);
+    line-height:1.05; margin-bottom:12px; min-height:1.15em;
+    transition:opacity .25s ease;
+  }
+  .phone-cap{
+    font-size:15px; line-height:1.65; color:var(--ink-dim); max-width:36ch;
+    min-height:4.8em; transition:opacity .25s ease;
+  }
+  .phone-dots{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:28px;
+  }
+  .phone-dots button{
+    width:8px; height:8px; border-radius:50%; border:none; padding:0;
+    background:var(--line); cursor:pointer;
+  }
+  .phone-dots button[aria-current="true"]{background:var(--chartreuse);}
+  .phone-hint{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-dim); margin-top:18px;
+  }
+  .axis-brand-block{margin-top:24px;}
+  .axis-marks{display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:16px;}
+  .axis-marks .p-image{aspect-ratio:16/9;}
   @media (max-width:900px){
-    .axis-screens{grid-template-columns:repeat(2,1fr);}
+    .axis-stage{grid-template-columns:1fr; gap:28px; text-align:left;}
+    .phone-wrap{min-height:0; padding:8px 0 12px;}
+    .phone-copy{max-width:none; order:-1;}
+    .phone-cap{min-height:0;}
+    .phone-nav{width:min(340px,94vw); margin-left:calc(min(340px,94vw) / -2);}
   }
   .q-form{max-width:720px; display:flex; flex-direction:column; gap:28px; padding-bottom:96px;}
   .q-field{display:flex; flex-direction:column; gap:8px;}
@@ -443,10 +548,10 @@
 <main id="top">
 
   <div class="wrap p-hero">
-    <p class="p-eyebrow">Private</p>
+    <p class="p-eyebrow">Private · Product showcase</p>
     <h1 class="p-title">AXIS</h1>
-    <p class="p-sub">A wellness app I've been building — movement guidance that acts as a nervous system reset, not another workout. Hidden for now; may graduate into the public portfolio.</p>
-    <p class="private-note">Unlisted · product in progress</p>
+    <p class="p-sub">A wellness app I’m building — guided movement as a nervous system reset, not another workout. Swipe the phone to move through themes and session UI from the current build.</p>
+    <p class="private-note">Unlisted · in development</p>
     <div class="axis-hero-mark">
       <img src="images/axis/AXIS_LOGO_LIGHT.png" alt="AXIS" class="axis-logo axis-logo-on-dark">
       <img src="images/axis/AXIS_LOGO_DARK.png" alt="AXIS" class="axis-logo axis-logo-on-light">
@@ -459,25 +564,69 @@
     </div>
   </div>
 
-  <section class="wrap case-section">
-    <div class="case-blocks">
-      <div class="case-block block-text"><p>Screens, desks, and stress contribute to back pain and tech neck. AXIS is the reset button — guided movement sessions that dial down pain and wake up your core.</p></div>
-      <div class="case-block block-text"><p><strong>Movement equals medicine.</strong> AXIS isn't a workout. It's a nervous system reset with proven moves, quick resets or deeper sessions, and cues so you can stay in the flow.</p></div>
-      <div class="case-block block-text"><p>I've been designing and building the product end-to-end: brand system, onboarding, session UX, iconography that shifts with time of day, and native shells for iOS and Android.</p></div>
-
-      <div class="case-block block-text"><p><strong>Product screens</strong> — home themes and a guided protocol session from the current build.</p></div>
-      <div class="axis-screens">
-        <div class="p-image"><img src="images/axis/IMG_5774.jpg" alt="AXIS home, dark orange night theme with Sleep-Ready Recovery"></div>
-        <div class="p-image"><img src="images/axis/IMG_5779.jpg" alt="AXIS home, light orange night theme with Night Ease"></div>
-        <div class="p-image"><img src="images/axis/IMG_5775.jpg" alt="AXIS home, dark teal night theme"></div>
-        <div class="p-image"><img src="images/axis/IMG_5778.jpg" alt="AXIS home, light teal night theme"></div>
-        <div class="p-image"><img src="images/axis/IMG_5757.jpg" alt="AXIS home, dark blue theme with Sundown Stretch"></div>
-        <div class="p-image"><img src="images/axis/IMG_5758.jpg" alt="AXIS Baseline Protocol session screen"></div>
-        <div class="p-image"><img src="images/axis/IMG_5776.jpg" alt="AXIS home, dark purple night theme"></div>
-        <div class="p-image"><img src="images/axis/IMG_5777.jpg" alt="AXIS home, light purple night theme"></div>
+  <section class="wrap case-section" style="padding-top:24px;">
+    <div class="axis-stage" id="axisPhoneStage">
+      <div class="phone-wrap">
+        <div class="phone" aria-roledescription="carousel" aria-label="AXIS app screens">
+          <div class="phone-screen" id="axisPhoneScreen">
+            <div class="phone-island" aria-hidden="true"></div>
+            <div class="phone-track" id="axisPhoneTrack">
+              <div class="phone-slide" data-label="Night · Orange" data-cap="Rest theme in dark mode. Home leads with Sleep-Ready Recovery and a one-tap Night Ease session.">
+                <img src="images/axis/IMG_5774.jpg" alt="AXIS home, dark orange night theme">
+              </div>
+              <div class="phone-slide" data-label="Night · Orange Light" data-cap="Same Rest flow in light mode — softer ground, same hierarchy and CTA.">
+                <img src="images/axis/IMG_5779.jpg" alt="AXIS home, light orange night theme">
+              </div>
+              <div class="phone-slide" data-label="Night · Teal" data-cap="Alternate Rest colorway. Themes shift with time of day or lock to mood.">
+                <img src="images/axis/IMG_5775.jpg" alt="AXIS home, dark teal night theme">
+              </div>
+              <div class="phone-slide" data-label="Night · Teal Light" data-cap="Light teal Rest theme — proof the system holds across contrast modes.">
+                <img src="images/axis/IMG_5778.jpg" alt="AXIS home, light teal night theme">
+              </div>
+              <div class="phone-slide" data-label="Sundown · Blue" data-cap="Prime wind-down: Sundown Stretch / Tension Release as the evening lead card.">
+                <img src="images/axis/IMG_5757.jpg" alt="AXIS home, dark blue Sundown Stretch theme">
+              </div>
+              <div class="phone-slide" data-label="In session" data-cap="Baseline Protocol — list vs guided modes, progress, and exercise blocks once you’re inside a session.">
+                <img src="images/axis/IMG_5758.jpg" alt="AXIS Baseline Protocol session screen">
+              </div>
+              <div class="phone-slide" data-label="Night · Purple" data-cap="Another Rest colorway. The home pattern stays fixed so the brand can flex without relearning the UI.">
+                <img src="images/axis/IMG_5776.jpg" alt="AXIS home, dark purple night theme">
+              </div>
+              <div class="phone-slide" data-label="Night · Purple Light" data-cap="Light purple Rest theme — closing the theme loop before brand system details below.">
+                <img src="images/axis/IMG_5777.jpg" alt="AXIS home, light purple night theme">
+              </div>
+            </div>
+            <div class="phone-home" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="phone-nav">
+          <button type="button" id="axisPhonePrev" aria-label="Previous screen">←</button>
+          <button type="button" id="axisPhoneNext" aria-label="Next screen">→</button>
+        </div>
       </div>
+      <div class="phone-copy">
+        <p class="phone-kicker">Swipe the phone · <span id="axisPhoneCount">01 / 08</span></p>
+        <h2 class="phone-label" id="axisPhoneLabel">Night · Orange</h2>
+        <p class="phone-cap" id="axisPhoneCap">Rest theme in dark mode. Home leads with Sleep-Ready Recovery and a one-tap Night Ease session.</p>
+        <div class="phone-dots" id="axisPhoneDots" role="tablist" aria-label="Screen selection"></div>
+        <p class="phone-hint">Drag, swipe, or use the arrows</p>
+      </div>
+    </div>
+  </section>
 
-      <div class="case-block block-text"><p><strong>App icon system</strong> — colorways that track time of day (or lock to mood).</p></div>
+  <section class="wrap case-section">
+    <div class="case-header"><span class="section-label">Concept</span></div>
+    <div class="case-blocks">
+      <div class="case-block block-text"><p>Screens, desks, and stress contribute to back pain and tech neck. AXIS is the reset button — guided movement that dials down pain and wakes up your core.</p></div>
+      <div class="case-block block-text"><p><strong>Movement equals medicine.</strong> Not a workout. A nervous system reset with proven moves, quick resets or deeper sessions, and cues so you can stay in the flow.</p></div>
+      <div class="case-block block-text"><p>I’m designing and building it end-to-end: brand system, onboarding, session UX, iconography that shifts with time of day, and native shells for iOS and Android.</p></div>
+    </div>
+  </section>
+
+  <section class="wrap case-section">
+    <div class="case-header"><span class="section-label">Brand system</span></div>
+    <div class="case-blocks">
+      <div class="case-block block-text"><p><strong>App icons</strong> — colorways that track time of day, or lock to a mood.</p></div>
       <div class="axis-icons">
         <figure><img src="images/axis/icon-classic.png" alt="Classic"><figcaption>Classic</figcaption></figure>
         <figure><img src="images/axis/icon-rise.png" alt="Rise"><figcaption>Rise</figcaption></figure>
@@ -488,15 +637,22 @@
         <figure><img src="images/axis/icon-light.png" alt="Light"><figcaption>Light</figcaption></figure>
         <figure><img src="images/axis/icon-dark.png" alt="Dark"><figcaption>Dark</figcaption></figure>
       </div>
-
-      <div class="case-block block-text"><p><strong>Wordmark</strong></p></div>
-      <div class="gallery">
+      <div class="case-block block-text axis-brand-block"><p><strong>Wordmark</strong></p></div>
+      <div class="axis-marks">
         <div class="p-image contain" style="background:#080d18;padding:48px;"><img src="images/axis/AXIS_Branding_DarkMode_Outlined.svg" alt="AXIS wordmark on dark" style="object-fit:contain;margin:auto;max-height:80px;"></div>
         <div class="p-image contain" style="background:#f6f7f8;padding:48px;"><img src="images/axis/AXIS_Branding_LightMode_Outlined.svg" alt="AXIS wordmark on light" style="object-fit:contain;margin:auto;max-height:80px;"></div>
       </div>
     </div>
   </section>
 
+  <div class="wrap"><div class="section-end-rule"></div></div>
+
+  <a href="/private" class="next">
+    <div class="wrap">
+      <div class="next-label">Private index</div>
+      <div class="next-title">Hidden pages</div>
+    </div>
+  </a>
 
   <footer class="wrap">
     <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
@@ -520,6 +676,81 @@
   window.addEventListener('scroll', () => {
     if (!headerTicking){ headerTicking = true; requestAnimationFrame(updateHeader); }
   }, { passive: true });
+
+  (function(){
+    const screen = document.getElementById('axisPhoneScreen');
+    const track = document.getElementById('axisPhoneTrack');
+    const slides = Array.from(track.querySelectorAll('.phone-slide'));
+    const labelEl = document.getElementById('axisPhoneLabel');
+    const capEl = document.getElementById('axisPhoneCap');
+    const countEl = document.getElementById('axisPhoneCount');
+    const dotsEl = document.getElementById('axisPhoneDots');
+    const total = slides.length;
+    let index = 0;
+    let startX = 0;
+    let deltaX = 0;
+    let dragging = false;
+    let pointerId = null;
+
+    slides.forEach((_, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Go to screen ' + String(i + 1));
+      b.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(b);
+    });
+    const dots = Array.from(dotsEl.querySelectorAll('button'));
+
+    function render(){
+      track.style.transition = 'transform 0.5s cubic-bezier(0.65,0,0.35,1)';
+      track.style.transform = 'translateX(-' + (index * 100) + '%)';
+      const slide = slides[index];
+      labelEl.textContent = slide.dataset.label || '';
+      capEl.textContent = slide.dataset.cap || '';
+      countEl.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+      dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+    }
+    function goTo(i){
+      index = (i + total) % total;
+      render();
+    }
+    function go(dir){ goTo(index + dir); }
+
+    document.getElementById('axisPhonePrev').addEventListener('click', () => go(-1));
+    document.getElementById('axisPhoneNext').addEventListener('click', () => go(1));
+
+    screen.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      dragging = true;
+      pointerId = e.pointerId;
+      startX = e.clientX;
+      deltaX = 0;
+      track.style.transition = 'none';
+      try { screen.setPointerCapture(e.pointerId); } catch (_) {}
+    });
+    screen.addEventListener('pointermove', (e) => {
+      if (!dragging || e.pointerId !== pointerId) return;
+      deltaX = e.clientX - startX;
+      track.style.transform = 'translateX(calc(-' + (index * 100) + '% + ' + deltaX + 'px))';
+    });
+    function endDrag(e){
+      if (!dragging || (e && e.pointerId !== pointerId)) return;
+      dragging = false;
+      pointerId = null;
+      if (Math.abs(deltaX) > 40) go(deltaX < 0 ? 1 : -1);
+      else render();
+      deltaX = 0;
+    }
+    screen.addEventListener('pointerup', endDrag);
+    screen.addEventListener('pointercancel', endDrag);
+
+    screen.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') go(-1);
+      if (e.key === 'ArrowRight') go(1);
+    });
+    screen.tabIndex = 0;
+    render();
+  })();
 </script>
 <script src="site.js"></script>
 
