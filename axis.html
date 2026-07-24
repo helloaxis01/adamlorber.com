@@ -367,12 +367,6 @@
   .tier ul{list-style:none; display:flex; flex-direction:column; gap:10px;}
   .tier li{font-size:14px; line-height:1.55; color:var(--ink-dim); padding-left:14px; position:relative;}
   .tier li::before{content:''; position:absolute; left:0; top:0.65em; width:6px; height:1px; background:var(--ink-dim);}
-  .axis-icons{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,2vw,20px); margin:12px 0 0;}
-  .axis-icons figure{margin:0; text-align:center;}
-  .axis-icons img{width:100%; aspect-ratio:1; object-fit:cover; border-radius:22%; background:#080d18;}
-  .axis-icons figcaption{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim); margin-top:10px;}
-  .axis-hero-mark{max-width:min(280px,70vw); margin:24px 0 0;}
-  .axis-hero-mark img{width:100%; height:auto;}
   .meta-row a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
   .meta-row a:hover{color:var(--chartreuse);}
   html[data-theme="light"] .meta-row a:hover{color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;}
@@ -487,15 +481,33 @@
     font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
     color:var(--ink-dim); margin-top:18px;
   }
-  .axis-brand-block{margin-top:24px;}
-  .axis-marks{display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:16px;}
-  .axis-marks .p-image{aspect-ratio:16/9;}
+  .phone.is-icon .phone-screen{background:#0b1020;}
+  .phone-slide.icon-slide{
+    display:flex; align-items:center; justify-content:center;
+    background:
+      radial-gradient(ellipse at 50% 28%, rgba(235,255,18,0.08), transparent 55%),
+      linear-gradient(180deg, #141a2e 0%, #080d18 70%);
+  }
+  .phone-slide.icon-slide img{
+    width:42%; aspect-ratio:1; height:auto; object-fit:cover;
+    border-radius:22.5%;
+    box-shadow:0 18px 40px rgba(0,0,0,0.45);
+  }
+  .axis-stage + .axis-stage{margin-top:72px; padding-top:72px; border-top:1px solid var(--line);}
+  .axis-stage.is-flip{grid-template-columns:minmax(260px,0.95fr) minmax(0,1.05fr);}
+  .axis-stage.is-flip .phone-wrap{order:2;}
+  .axis-stage.is-flip .phone-copy{order:1;}
   @media (max-width:900px){
-    .axis-stage{grid-template-columns:1fr; gap:28px; text-align:left;}
+    .axis-stage,
+    .axis-stage.is-flip{grid-template-columns:1fr; gap:28px; text-align:left;}
+    .axis-stage.is-flip .phone-wrap,
+    .axis-stage.is-flip .phone-copy{order:unset;}
     .phone-wrap{min-height:0; padding:8px 0 12px;}
     .phone-copy{max-width:none; order:-1;}
+    .axis-stage.is-flip .phone-copy{order:-1;}
     .phone-cap{min-height:0;}
     .phone-nav{width:min(340px,94vw); margin-left:calc(min(340px,94vw) / -2);}
+    .axis-stage + .axis-stage{margin-top:48px; padding-top:48px;}
   }
   .q-form{max-width:720px; display:flex; flex-direction:column; gap:28px; padding-bottom:96px;}
   .q-field{display:flex; flex-direction:column; gap:8px;}
@@ -513,14 +525,9 @@
   .hp{position:absolute; left:-9999px; height:0; overflow:hidden;}
   @media (max-width:900px){
     .tier-grid{grid-template-columns:1fr;}
-    .gallery.thirds, .gallery.icons, .axis-icons{grid-template-columns:repeat(2,1fr);}
+    .gallery.thirds, .gallery.icons{grid-template-columns:repeat(2,1fr);}
     .meta-row{grid-template-columns:repeat(2,1fr);}
   }
-
-
-  .axis-logo-on-light{display:none;}
-  html[data-theme="light"] .axis-logo-on-dark{display:none;}
-  html[data-theme="light"] .axis-logo-on-light{display:block;}
 </style>
 
 </head>
@@ -550,12 +557,8 @@
   <div class="wrap p-hero">
     <p class="p-eyebrow">Private · Product showcase</p>
     <h1 class="p-title">AXIS</h1>
-    <p class="p-sub">A wellness app I’m building — guided movement as a nervous system reset, not another workout. Swipe the phone to move through themes and session UI from the current build.</p>
+    <p class="p-sub">A wellness app I’m building — guided movement as a nervous system reset, not another workout. Swipe the phones for UI themes and app icon colorways from the current build.</p>
     <p class="private-note">Unlisted · in development</p>
-    <div class="axis-hero-mark">
-      <img src="images/axis/AXIS_LOGO_LIGHT.png" alt="AXIS" class="axis-logo axis-logo-on-dark">
-      <img src="images/axis/AXIS_LOGO_DARK.png" alt="AXIS" class="axis-logo axis-logo-on-light">
-    </div>
     <div class="meta-row">
       <div>Role<strong>Founder / Design / Product</strong></div>
       <div>Status<strong>In development</strong></div>
@@ -565,12 +568,12 @@
   </div>
 
   <section class="wrap case-section" style="padding-top:24px;">
-    <div class="axis-stage" id="axisPhoneStage">
+    <div class="axis-stage" id="axisPhoneStage" data-phone="ui">
       <div class="phone-wrap">
         <div class="phone" aria-roledescription="carousel" aria-label="AXIS app screens">
-          <div class="phone-screen" id="axisPhoneScreen">
+          <div class="phone-screen" data-phone-screen="ui">
             <div class="phone-island" aria-hidden="true"></div>
-            <div class="phone-track" id="axisPhoneTrack">
+            <div class="phone-track" data-phone-track="ui">
               <div class="phone-slide" data-label="Night · Orange" data-cap="Rest theme in dark mode. Home leads with Sleep-Ready Recovery and a one-tap Night Ease session.">
                 <img src="images/axis/IMG_5774.jpg" alt="AXIS home, dark orange night theme">
               </div>
@@ -592,7 +595,7 @@
               <div class="phone-slide" data-label="Night · Purple" data-cap="Another Rest colorway. The home pattern stays fixed so the brand can flex without relearning the UI.">
                 <img src="images/axis/IMG_5776.jpg" alt="AXIS home, dark purple night theme">
               </div>
-              <div class="phone-slide" data-label="Night · Purple Light" data-cap="Light purple Rest theme — closing the theme loop before brand system details below.">
+              <div class="phone-slide" data-label="Night · Purple Light" data-cap="Light purple Rest theme — same home pattern, different mood.">
                 <img src="images/axis/IMG_5777.jpg" alt="AXIS home, light purple night theme">
               </div>
             </div>
@@ -600,16 +603,55 @@
           </div>
         </div>
         <div class="phone-nav">
-          <button type="button" id="axisPhonePrev" aria-label="Previous screen">←</button>
-          <button type="button" id="axisPhoneNext" aria-label="Next screen">→</button>
+          <button type="button" data-phone-prev="ui" aria-label="Previous screen">←</button>
+          <button type="button" data-phone-next="ui" aria-label="Next screen">→</button>
         </div>
       </div>
       <div class="phone-copy">
-        <p class="phone-kicker">Swipe the phone · <span id="axisPhoneCount">01 / 08</span></p>
-        <h2 class="phone-label" id="axisPhoneLabel">Night · Orange</h2>
-        <p class="phone-cap" id="axisPhoneCap">Rest theme in dark mode. Home leads with Sleep-Ready Recovery and a one-tap Night Ease session.</p>
-        <div class="phone-dots" id="axisPhoneDots" role="tablist" aria-label="Screen selection"></div>
+        <p class="phone-kicker">UI · <span data-phone-count="ui">01 / 08</span></p>
+        <h2 class="phone-label" data-phone-label="ui">Night · Orange</h2>
+        <p class="phone-cap" data-phone-cap="ui">Rest theme in dark mode. Home leads with Sleep-Ready Recovery and a one-tap Night Ease session.</p>
+        <div class="phone-dots" data-phone-dots="ui" role="tablist" aria-label="Screen selection"></div>
         <p class="phone-hint">Drag, swipe, or use the arrows</p>
+      </div>
+    </div>
+
+    <div class="axis-stage is-flip" id="axisIconStage" data-phone="icon">
+      <div class="phone-wrap">
+        <div class="phone is-icon" aria-roledescription="carousel" aria-label="AXIS app icons">
+          <div class="phone-screen" data-phone-screen="icon">
+            <div class="phone-island" aria-hidden="true"></div>
+            <div class="phone-track" data-phone-track="icon">
+              <div class="phone-slide icon-slide" data-label="Icon · Rise" data-cap="Morning colorway. The icon shifts with time of day so the brand shows up before you open the app.">
+                <img src="images/axis/icon-rise.png" alt="AXIS app icon, Rise">
+              </div>
+              <div class="phone-slide icon-slide" data-label="Icon · Midday" data-cap="Daytime lockup — same mark, warmer energy.">
+                <img src="images/axis/icon-midday.png" alt="AXIS app icon, Midday">
+              </div>
+              <div class="phone-slide icon-slide" data-label="Icon · Prime" data-cap="Evening Prime tone, paired with wind-down sessions in the product.">
+                <img src="images/axis/icon-prime.png" alt="AXIS app icon, Prime">
+              </div>
+              <div class="phone-slide icon-slide" data-label="Icon · Rest" data-cap="Night Rest colorway — the version that matches the sleep-ready home themes.">
+                <img src="images/axis/icon-rest.png" alt="AXIS app icon, Rest">
+              </div>
+              <div class="phone-slide icon-slide" data-label="Icon · Classic" data-cap="Default mark if someone locks the icon instead of following the clock.">
+                <img src="images/axis/icon-classic.png" alt="AXIS app icon, Classic">
+              </div>
+            </div>
+            <div class="phone-home" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="phone-nav">
+          <button type="button" data-phone-prev="icon" aria-label="Previous icon">←</button>
+          <button type="button" data-phone-next="icon" aria-label="Next icon">→</button>
+        </div>
+      </div>
+      <div class="phone-copy">
+        <p class="phone-kicker">App icon · <span data-phone-count="icon">01 / 05</span></p>
+        <h2 class="phone-label" data-phone-label="icon">Icon · Rise</h2>
+        <p class="phone-cap" data-phone-cap="icon">Morning colorway. The icon shifts with time of day so the brand shows up before you open the app.</p>
+        <div class="phone-dots" data-phone-dots="icon" role="tablist" aria-label="Icon selection"></div>
+        <p class="phone-hint">A few key colorways — not the full set</p>
       </div>
     </div>
   </section>
@@ -620,28 +662,6 @@
       <div class="case-block block-text"><p>Screens, desks, and stress contribute to back pain and tech neck. AXIS is the reset button — guided movement that dials down pain and wakes up your core.</p></div>
       <div class="case-block block-text"><p><strong>Movement equals medicine.</strong> Not a workout. A nervous system reset with proven moves, quick resets or deeper sessions, and cues so you can stay in the flow.</p></div>
       <div class="case-block block-text"><p>I’m designing and building it end-to-end: brand system, onboarding, session UX, iconography that shifts with time of day, and native shells for iOS and Android.</p></div>
-    </div>
-  </section>
-
-  <section class="wrap case-section">
-    <div class="case-header"><span class="section-label">Brand system</span></div>
-    <div class="case-blocks">
-      <div class="case-block block-text"><p><strong>App icons</strong> — colorways that track time of day, or lock to a mood.</p></div>
-      <div class="axis-icons">
-        <figure><img src="images/axis/icon-classic.png" alt="Classic"><figcaption>Classic</figcaption></figure>
-        <figure><img src="images/axis/icon-rise.png" alt="Rise"><figcaption>Rise</figcaption></figure>
-        <figure><img src="images/axis/icon-midday.png" alt="Midday"><figcaption>Midday</figcaption></figure>
-        <figure><img src="images/axis/icon-prime.png" alt="Prime"><figcaption>Prime</figcaption></figure>
-        <figure><img src="images/axis/icon-rest.png" alt="Rest"><figcaption>Rest</figcaption></figure>
-        <figure><img src="images/axis/icon-ultra.png" alt="Ultra"><figcaption>Ultra</figcaption></figure>
-        <figure><img src="images/axis/icon-light.png" alt="Light"><figcaption>Light</figcaption></figure>
-        <figure><img src="images/axis/icon-dark.png" alt="Dark"><figcaption>Dark</figcaption></figure>
-      </div>
-      <div class="case-block block-text axis-brand-block"><p><strong>Wordmark</strong></p></div>
-      <div class="axis-marks">
-        <div class="p-image contain" style="background:#080d18;padding:48px;"><img src="images/axis/AXIS_Branding_DarkMode_Outlined.svg" alt="AXIS wordmark on dark" style="object-fit:contain;margin:auto;max-height:80px;"></div>
-        <div class="p-image contain" style="background:#f6f7f8;padding:48px;"><img src="images/axis/AXIS_Branding_LightMode_Outlined.svg" alt="AXIS wordmark on light" style="object-fit:contain;margin:auto;max-height:80px;"></div>
-      </div>
     </div>
   </section>
 
@@ -678,78 +698,86 @@
   }, { passive: true });
 
   (function(){
-    const screen = document.getElementById('axisPhoneScreen');
-    const track = document.getElementById('axisPhoneTrack');
-    const slides = Array.from(track.querySelectorAll('.phone-slide'));
-    const labelEl = document.getElementById('axisPhoneLabel');
-    const capEl = document.getElementById('axisPhoneCap');
-    const countEl = document.getElementById('axisPhoneCount');
-    const dotsEl = document.getElementById('axisPhoneDots');
-    const total = slides.length;
-    let index = 0;
-    let startX = 0;
-    let deltaX = 0;
-    let dragging = false;
-    let pointerId = null;
+    function initPhone(id){
+      const screen = document.querySelector('[data-phone-screen="' + id + '"]');
+      const track = document.querySelector('[data-phone-track="' + id + '"]');
+      const labelEl = document.querySelector('[data-phone-label="' + id + '"]');
+      const capEl = document.querySelector('[data-phone-cap="' + id + '"]');
+      const countEl = document.querySelector('[data-phone-count="' + id + '"]');
+      const dotsEl = document.querySelector('[data-phone-dots="' + id + '"]');
+      const prevBtn = document.querySelector('[data-phone-prev="' + id + '"]');
+      const nextBtn = document.querySelector('[data-phone-next="' + id + '"]');
+      if (!screen || !track) return;
 
-    slides.forEach((_, i) => {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.setAttribute('aria-label', 'Go to screen ' + String(i + 1));
-      b.addEventListener('click', () => goTo(i));
-      dotsEl.appendChild(b);
-    });
-    const dots = Array.from(dotsEl.querySelectorAll('button'));
+      const slides = Array.from(track.querySelectorAll('.phone-slide'));
+      const total = slides.length;
+      let index = 0;
+      let startX = 0;
+      let deltaX = 0;
+      let dragging = false;
+      let pointerId = null;
 
-    function render(){
-      track.style.transition = 'transform 0.5s cubic-bezier(0.65,0,0.35,1)';
-      track.style.transform = 'translateX(-' + (index * 100) + '%)';
-      const slide = slides[index];
-      labelEl.textContent = slide.dataset.label || '';
-      capEl.textContent = slide.dataset.cap || '';
-      countEl.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
-      dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
-    }
-    function goTo(i){
-      index = (i + total) % total;
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Go to item ' + String(i + 1));
+        b.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(b);
+      });
+      const dots = Array.from(dotsEl.querySelectorAll('button'));
+
+      function render(){
+        track.style.transition = 'transform 0.5s cubic-bezier(0.65,0,0.35,1)';
+        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        const slide = slides[index];
+        labelEl.textContent = slide.dataset.label || '';
+        capEl.textContent = slide.dataset.cap || '';
+        countEl.textContent = String(index + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+        dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+      }
+      function goTo(i){
+        index = (i + total) % total;
+        render();
+      }
+      function go(dir){ goTo(index + dir); }
+
+      prevBtn.addEventListener('click', () => go(-1));
+      nextBtn.addEventListener('click', () => go(1));
+
+      screen.addEventListener('pointerdown', (e) => {
+        if (e.button !== 0) return;
+        dragging = true;
+        pointerId = e.pointerId;
+        startX = e.clientX;
+        deltaX = 0;
+        track.style.transition = 'none';
+        try { screen.setPointerCapture(e.pointerId); } catch (_) {}
+      });
+      screen.addEventListener('pointermove', (e) => {
+        if (!dragging || e.pointerId !== pointerId) return;
+        deltaX = e.clientX - startX;
+        track.style.transform = 'translateX(calc(-' + (index * 100) + '% + ' + deltaX + 'px))';
+      });
+      function endDrag(e){
+        if (!dragging || (e && e.pointerId !== pointerId)) return;
+        dragging = false;
+        pointerId = null;
+        if (Math.abs(deltaX) > 40) go(deltaX < 0 ? 1 : -1);
+        else render();
+        deltaX = 0;
+      }
+      screen.addEventListener('pointerup', endDrag);
+      screen.addEventListener('pointercancel', endDrag);
+      screen.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') go(-1);
+        if (e.key === 'ArrowRight') go(1);
+      });
+      screen.tabIndex = 0;
       render();
     }
-    function go(dir){ goTo(index + dir); }
 
-    document.getElementById('axisPhonePrev').addEventListener('click', () => go(-1));
-    document.getElementById('axisPhoneNext').addEventListener('click', () => go(1));
-
-    screen.addEventListener('pointerdown', (e) => {
-      if (e.button !== 0) return;
-      dragging = true;
-      pointerId = e.pointerId;
-      startX = e.clientX;
-      deltaX = 0;
-      track.style.transition = 'none';
-      try { screen.setPointerCapture(e.pointerId); } catch (_) {}
-    });
-    screen.addEventListener('pointermove', (e) => {
-      if (!dragging || e.pointerId !== pointerId) return;
-      deltaX = e.clientX - startX;
-      track.style.transform = 'translateX(calc(-' + (index * 100) + '% + ' + deltaX + 'px))';
-    });
-    function endDrag(e){
-      if (!dragging || (e && e.pointerId !== pointerId)) return;
-      dragging = false;
-      pointerId = null;
-      if (Math.abs(deltaX) > 40) go(deltaX < 0 ? 1 : -1);
-      else render();
-      deltaX = 0;
-    }
-    screen.addEventListener('pointerup', endDrag);
-    screen.addEventListener('pointercancel', endDrag);
-
-    screen.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') go(-1);
-      if (e.key === 'ArrowRight') go(1);
-    });
-    screen.tabIndex = 0;
-    render();
+    initPhone('ui');
+    initPhone('icon');
   })();
 </script>
 <script src="site.js"></script>
