@@ -12,7 +12,7 @@ files locally from this folder).
   /fount-sites          fount-sites.html             Fount / Fount Pro / FlyKitt full site captures
   /revyrie-decks        revyrie-decks.html           Password: Decks
   /questions            questions.html               Client questionnaire form
-  /axis                 axis.html                    AXIS app showcase (on hold)
+  /axis                 axis.html                    AXIS app showcase (screens + brand)
   /mitzvahs             mitzvahs.html                Bespoke Mitzvahs (standalone client page)
 
 PUBLIC SELECTED WORK NOTES

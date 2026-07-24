@@ -373,6 +373,25 @@
   .axis-icons figcaption{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim); margin-top:10px;}
   .axis-hero-mark{max-width:min(420px,80vw); margin:28px 0 8px;}
   .axis-hero-mark img{width:100%; height:auto;}
+  .axis-screens{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:clamp(10px,1.6vw,18px);
+    margin:8px 0 48px;
+  }
+  .axis-screens .p-image{
+    aspect-ratio:9/19.5;
+    border-radius:18px;
+    background:#080d18;
+  }
+  .axis-screens .p-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+  @media (max-width:900px){
+    .axis-screens{grid-template-columns:repeat(2,1fr);}
+  }
   .q-form{max-width:720px; display:flex; flex-direction:column; gap:28px; padding-bottom:96px;}
   .q-field{display:flex; flex-direction:column; gap:8px;}
   .q-field label{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink);}
@@ -446,6 +465,18 @@
       <div class="case-block block-text"><p><strong>Movement equals medicine.</strong> AXIS isn't a workout. It's a nervous system reset with proven moves, quick resets or deeper sessions, and cues so you can stay in the flow.</p></div>
       <div class="case-block block-text"><p>I've been designing and building the product end-to-end: brand system, onboarding, session UX, iconography that shifts with time of day, and native shells for iOS and Android.</p></div>
 
+      <div class="case-block block-text"><p><strong>Product screens</strong> — home themes and a guided protocol session from the current build.</p></div>
+      <div class="axis-screens">
+        <div class="p-image"><img src="images/axis/IMG_5774.jpg" alt="AXIS home, dark orange night theme with Sleep-Ready Recovery"></div>
+        <div class="p-image"><img src="images/axis/IMG_5779.jpg" alt="AXIS home, light orange night theme with Night Ease"></div>
+        <div class="p-image"><img src="images/axis/IMG_5775.jpg" alt="AXIS home, dark teal night theme"></div>
+        <div class="p-image"><img src="images/axis/IMG_5778.jpg" alt="AXIS home, light teal night theme"></div>
+        <div class="p-image"><img src="images/axis/IMG_5757.jpg" alt="AXIS home, dark blue theme with Sundown Stretch"></div>
+        <div class="p-image"><img src="images/axis/IMG_5758.jpg" alt="AXIS Baseline Protocol session screen"></div>
+        <div class="p-image"><img src="images/axis/IMG_5776.jpg" alt="AXIS home, dark purple night theme"></div>
+        <div class="p-image"><img src="images/axis/IMG_5777.jpg" alt="AXIS home, light purple night theme"></div>
+      </div>
+
       <div class="case-block block-text"><p><strong>App icon system</strong> — colorways that track time of day (or lock to mood).</p></div>
       <div class="axis-icons">
         <figure><img src="images/axis/icon-classic.png" alt="Classic"><figcaption>Classic</figcaption></figure>
@@ -463,8 +494,6 @@
         <div class="p-image contain" style="background:#080d18;padding:48px;"><img src="images/axis/AXIS_Branding_DarkMode_Outlined.svg" alt="AXIS wordmark on dark" style="object-fit:contain;margin:auto;max-height:80px;"></div>
         <div class="p-image contain" style="background:#f6f7f8;padding:48px;"><img src="images/axis/AXIS_Branding_LightMode_Outlined.svg" alt="AXIS wordmark on light" style="object-fit:contain;margin:auto;max-height:80px;"></div>
       </div>
-
-      <div class="case-block block-text"><p>This page is a placeholder showcase while the public Squarespace draft is offline. When AXIS is ready for the portfolio, we can promote it into Selected Work with product screens and a fuller narrative.</p></div>
     </div>
   </section>
 
