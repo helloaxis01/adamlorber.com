@@ -57,8 +57,8 @@
   .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--bg);}
   .p-image img{width:100%; height:100%; object-fit:cover;}
 
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
-  .stat{background:var(--bg); padding:36px clamp(16px,3.5vw,48px);}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 auto 48px; max-width:var(--maxw); padding-inline:var(--gutter); box-sizing:border-box;}
+  .stat{background:var(--bg); padding:36px 0;} .stat:not(:first-child){padding-left:clamp(16px,2vw,28px);} .stat:not(:last-child){padding-right:clamp(16px,2vw,28px);}
   .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
   .stat .stat-star{font-size:0.55em; margin-left:0.12em; vertical-align:0.2em;}
   .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
@@ -296,7 +296,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:-0.35em;
   }
 
   .theme-toggle{
@@ -373,11 +372,11 @@
   <div class="wrap p-hero">
     <p class="p-eyebrow">Case study · In-House</p>
     <h1 class="p-title">Fount</h1>
-    <p class="p-sub">Sole creative for a wellness startup moving from concept to a premium brand. Full system, site redesign, and FlyKitt launch in my first 30 days.</p>
+    <p class="p-sub">Serious wellness. First product. Thirty days.</p>
 
     <div class="meta-row">
       <div>Role<strong>Lead Designer</strong></div>
-      <div>Years<strong>2022–2025</strong></div>
+      <div>Years<strong>2022–2023</strong></div>
       <div>Scope<strong>Brand, identity, packaging, photo shoots, website and app UI</strong></div>
       <div>Milestone<strong>Series A support</strong></div>
     </div>
@@ -396,7 +395,7 @@
   <section class="wrap case-section" data-section="challenge">
     <div class="case-header"><span class="section-label">01 · Challenge</span></div>
     <div class="case-blocks" data-blocks="challenge">
-      <div class="case-block block-text"><p>Fount needed to look like a serious wellness brand while launching its first consumer product on a tight timeline. As the sole creative, I worked directly with leadership on brand strategy, packaging, photography, and app UI alongside engineering.</p></div>
+      <div class="case-block block-text"><p>Fount needed to look like a serious wellness brand while launching its first consumer product on a tight timeline. Strategy, packaging, photography, and app UI moved together with engineering, not in sequence.</p></div>
       <div class="case-block block-carousel" id="carousel-beforeafter">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -414,7 +413,7 @@
         <p class="block-cap">FlyKitt Bundle press photo, showing the redesigned packaging, product renders, and redesigned app UI.</p>
       </div>
 
-      <div class="case-block block-text"><p>Videos I art directed and produced for Fount and FlyKitt, including a brand film, a testimonial, and looping heroes for fount.bio and the FlyKitt site.</p></div>
+      <div class="case-block block-text"><p>Brand film, testimonial, and looping heroes for fount.bio and the FlyKitt site, art directed and produced to carry the same premium tone as the product.</p></div>
       <div class="case-block block-image">
         <div class="p-image"><video controls playsinline preload="metadata" poster="images/fount-deep-dive/posters/video-overview.jpg" src="images/fount-deep-dive/video-overview.mp4"></video></div>
         <p class="block-cap">Fount Overview Video</p>
@@ -437,7 +436,7 @@
   <section class="wrap case-section" data-section="approach">
     <div class="case-header"><span class="section-label">02 · Approach</span></div>
     <div class="case-blocks" data-blocks="approach">
-      <div class="case-block block-text"><p>Samples of the lifestyle shoot I art directed. These ran on Axios, in press, and on fount.bio.</p></div>
+      <div class="case-block block-text"><p>Lifestyle photography built for press and product, work that ran on Axios, in coverage, and on fount.bio.</p></div>
       <div class="case-block block-carousel" id="carousel-lifestyle">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -460,7 +459,7 @@
         </div>
       </div>
 
-      <div class="case-block block-text"><p>I created brand guidelines so the box, the site, and the app felt like a cohesive brand. Product shots below use the final FlyKitt packaging.</p></div>
+      <div class="case-block block-text"><p>Brand guidelines so the box, the site, and the app felt like one system. Product shots below use the final FlyKitt packaging.</p></div>
       <div class="case-block block-carousel" id="carousel-product">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -477,13 +476,13 @@
         </div>
       </div>
 
-      <div class="case-block block-text"><p>When shoot costs started climbing, I pitched an AI route instead. Through Midjourney and Photoshop I developed a hero that led FlyKitt for years and is still used to this day. Additional images were created for use in the app, website, marketing materials, and sales deck.</p></div>
+      <div class="case-block block-text"><p>When shoot costs climbed, I pitched an AI route. A Midjourney and Photoshop hero led FlyKitt for years and is still in use, with more images built for the app, site, marketing, and sales deck.</p></div>
       <div class="case-block block-image">
         <div class="p-image crop-16x9"><img src="images/fount/ai-hero-face.jpg" alt="AI-generated hero image, the face of FlyKitt"></div>
         <p class="block-cap">The face of FlyKitt, an AI image created with Midjourney, ChatGPT, and generative AI in Photoshop, used in place of an on-location photo shoot and saving the company upwards of $50K.</p>
       </div>
 
-      <div class="case-block block-text"><p>Identities and marks I designed for various products and pricing tiers, including FlyKitt, Fount Chat, and the membership tiers One, Pro, and Black.</p></div>
+      <div class="case-block block-text"><p>Identities and marks across the product line, including FlyKitt, Fount Chat, and membership tiers One, Pro, and Black.</p></div>
       <div class="case-block block-carousel" id="carousel-logos">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -503,7 +502,7 @@
         <p class="block-cap">One brand system, three membership tiers, from $399/mo to a fully bespoke Black tier.</p>
       </div>
 
-      <div class="case-block block-text"><p>Website design for Fount and FlyKitt, featuring static heroes and looping video.</p></div>
+      <div class="case-block block-text"><p>Sites for Fount and FlyKitt with static heroes and looping video, tuned to the same system.</p></div>
       <div class="case-block block-carousel" id="carousel-websites">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -516,7 +515,7 @@
         </div>
       </div>
 
-      <div class="case-block block-text"><p>I partnered with engineering on the FlyKitt app and website to simplify how performance data is presented, so it reads clearly at a glance. Because many members use the app on night flights, we built a permanent dark mode. The app holds a 4.7 star rating in the App Store.</p></div>
+      <div class="case-block block-text"><p>With engineering, FlyKitt’s performance data was simplified to read at a glance. Permanent dark mode for night flights. The app holds a 4.7 star rating in the App Store.</p></div>
       <div class="case-block block-appstore">
         <div class="appstore-row">
           <img src="images/fount/appstore-06.jpg" alt="FlyKitt App Store screenshot">
@@ -536,7 +535,7 @@
   <section class="wrap case-section" data-section="outcome">
     <div class="case-header"><span class="section-label">03 · Outcome</span></div>
     <div class="case-blocks" data-blocks="outcome">
-      <div class="case-block block-text"><p>FlyKitt launched in 30 days and was refined over the next year. Investor decks I designed helped lead a successful Series A. The system scaled as needed in all forms, from FDA compliant packaging to brand videos, all while looking sleek, modern, high end, and trustworthy.</p></div>
+      <div class="case-block block-text"><p>FlyKitt launched in 30 days and refined over the next year. Investor decks I designed supported a successful Series A. The system scaled from FDA-compliant packaging to brand video: sleek, modern, high-end, and trustworthy.</p></div>
       <div class="case-block block-text"><p><a href="https://www.businesswire.com/news/home/20230315005126/en/Fount-Announces-%2412M-Series-A-Fundraise-to-Redefine-the-Future-of-Human-Health-and-Performance" target="_blank" rel="noopener">Fount announces $12M Series A</a>. Business Wire, March 2023.</p></div>
     </div>
   </section>

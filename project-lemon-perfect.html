@@ -57,8 +57,8 @@
   .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--bg);}
   .p-image img{width:100%; height:100%; object-fit:cover;}
 
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
-  .stat{background:var(--bg); padding:36px clamp(16px,3.5vw,48px);}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 auto 48px; max-width:var(--maxw); padding-inline:var(--gutter); box-sizing:border-box;}
+  .stat{background:var(--bg); padding:36px 0;} .stat:not(:first-child){padding-left:clamp(16px,2vw,28px);} .stat:not(:last-child){padding-right:clamp(16px,2vw,28px);}
   .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
   .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
 
@@ -259,7 +259,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:-0.35em;
   }
 
   .theme-toggle{
@@ -336,7 +335,7 @@
   <div class="wrap p-hero">
     <p class="p-eyebrow">Case study · Client Work</p>
     <h1 class="p-title">Lemon Perfect</h1>
-    <p class="p-sub">Freelance art direction and copywriting for Lemon Perfect, a Beyoncé-backed zero sugar organic beverage looking to make a name for itself. This project specifically was ambitious and aimed at getting their name and brand out there, with a billboard campaign built to challenge Coca-Cola in their own backyard while being memorable to anyone driving by.</p>
+    <p class="p-sub">Out loud in Coke’s backyard.</p>
 
     <div class="meta-row">
       <div>Role<strong>Freelance Art Director</strong></div>
@@ -353,14 +352,14 @@
     <section class="wrap case-section" data-section="challenge">
     <div class="case-header"><span class="section-label">01 · Challenge</span></div>
     <div class="case-blocks" data-blocks="challenge">
-      <div class="case-block block-text"><p>Lemon Perfect had a clear value proposition in zero sugar and organic ingredients, but needed a stronger personality to stand out in a category still dominated by legacy beverage brands.</p></div>
+      <div class="case-block block-text"><p>Zero sugar and organic weren’t enough in a category still owned by legacy beverage brands. Lemon Perfect needed a louder personality, especially in Atlanta.</p></div>
     </div>
   </section>
 
   <section class="wrap case-section" data-section="approach">
     <div class="case-header"><span class="section-label">02 · Approach</span></div>
     <div class="case-blocks" data-blocks="approach">
-      <div class="case-block block-text"><p>I led art direction and copywriting for the Atlanta campaign, pairing minimal visuals with confident headlines built for both a highway glance and the grocery aisle.</p></div>
+      <div class="case-block block-text"><p>I led art direction and copywriting for the Atlanta campaign: minimal visuals, confident headlines built for a highway glance and the grocery aisle.</p></div>
       <div class="case-block block-carousel" id="carousel-billboards-c2">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -393,7 +392,7 @@
   <section class="wrap case-section" data-section="outcome">
     <div class="case-header"><span class="section-label">03 · Outcome</span></div>
     <div class="case-blocks" data-blocks="outcome">
-      <div class="case-block block-text"><p>I delivered a full OOH and in store concept package, including board directions, headlines, and dump bin design for Lemon Perfect’s home market.</p></div>
+      <div class="case-block block-text"><p>I delivered a full OOH and in-store concept package for Lemon Perfect’s home market, including board directions, headlines, and dump bin design.</p></div>
       <div class="case-block block-image">
         <div class="p-image"><img src="images/lemon-perfect/DumpBin_Mockup_BinDesign_Store_v1_LR.jpg" alt="Lemon Perfect in-store dump bin display design"></div>
       </div>

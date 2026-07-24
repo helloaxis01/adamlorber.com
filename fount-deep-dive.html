@@ -59,8 +59,8 @@
   .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:#141413;}
   .p-image img{width:100%; height:100%; object-fit:contain; display:block; background:#141413;}
 
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
-  .stat{background:var(--bg); padding:36px clamp(16px,3.5vw,48px);}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 auto 48px; max-width:var(--maxw); padding-inline:var(--gutter); box-sizing:border-box;}
+  .stat{background:var(--bg); padding:36px 0;} .stat:not(:first-child){padding-left:clamp(16px,2vw,28px);} .stat:not(:last-child){padding-right:clamp(16px,2vw,28px);}
   .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
   .stat .stat-star{font-size:0.55em; margin-left:0.12em; vertical-align:0.2em;}
   .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
@@ -330,7 +330,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:-0.35em;
   }
 
   .theme-toggle{
@@ -454,12 +453,12 @@
   <div class="wrap p-hero">
     <p class="p-eyebrow">Private</p>
     <h1 class="p-title">Fount</h1>
-    <p class="p-sub">Deep dive — Lead Designer, 2022–2024. A fuller look at the rebrand, product launches, packaging, film, digital, and AI work beyond the public case study.</p>
+    <p class="p-sub">Deep dive. Lead Designer, 2022–2023. A fuller look at the rebrand, product launches, packaging, film, digital, and AI work beyond the public case study.</p>
     <p class="private-note">Unlisted · more context for hiring conversations</p>
     <div class="meta-row">
       <div>Role<strong>Lead Designer</strong></div>
       <div>Category<strong>In-House</strong></div>
-      <div>Years<strong>2022–2024</strong></div>
+      <div>Years<strong>2022–2023</strong></div>
       <div>Also see<strong><a href="/fount">Public case study</a></strong></div>
     </div>
   </div>
@@ -523,7 +522,7 @@
       </div>
       <div class="case-block block-image">
         <div class="p-image"><video controls playsinline muted loop preload="metadata" poster="images/fount-deep-dive/posters/video-loop-hero.jpg" src="images/fount-deep-dive/video-loop-hero.mp4"></video></div>
-        <p class="block-cap">Fount — Looping Hero Video (no audio)</p>
+        <p class="block-cap">Fount: Looping Hero Video (no audio)</p>
       </div>
       <div class="case-block block-image">
         <div class="p-image"><video controls playsinline preload="metadata" poster="images/fount-deep-dive/posters/video-brand.jpg" src="images/fount-deep-dive/video-brand.mp4"></video></div>
@@ -531,7 +530,7 @@
       </div>
       <div class="case-block block-image">
         <div class="p-image"><video controls playsinline muted loop preload="metadata" poster="images/fount-deep-dive/posters/video-flykitt-loop.jpg" src="images/fount-deep-dive/video-flykitt-loop.mp4"></video></div>
-        <p class="block-cap">FlyKitt — Looping Hero Video (no audio)</p>
+        <p class="block-cap">FlyKitt: Looping Hero Video (no audio)</p>
       </div>
     </div>
   </section>
@@ -575,14 +574,14 @@
           <div class="carousel-counter"><span class="carousel-current">01</span> / 12</div>
         </div>
       </div>
-<div class="case-block block-text"><p>The face of FlyKitt — AI Image created with Midjourney + ChatGPT + Generative AI in Photoshop. AI was used in place of an on-location photo shoot, which ultimately saved the company upwards of $50k.</p></div>
+<div class="case-block block-text"><p>The face of FlyKitt: AI Image created with Midjourney + ChatGPT + Generative AI in Photoshop. AI was used in place of an on-location photo shoot, which ultimately saved the company upwards of $50k.</p></div>
             <div class="case-block block-carousel crop-16x9" id="carousel-dd-4">
         <div class="carousel-viewport">
           <div class="carousel-track">
-            <div class="carousel-slide"><img src="images/fount-deep-dive/asset-19.jpg" alt="The face of FlyKitt — AI Image created w"></div>
-            <div class="carousel-slide"><img src="images/fount-deep-dive/Screenshot_2026-04-21_at_11.23.56_AM.png" alt="The face of FlyKitt — AI Image created w"></div>
-            <div class="carousel-slide"><img src="images/fount-deep-dive/4_Edit.jpg" alt="The face of FlyKitt — AI Image created w"></div>
-            <div class="carousel-slide"><img src="images/fount-deep-dive/4_Edit_Athlete.jpg" alt="The face of FlyKitt — AI Image created w"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/asset-19.jpg" alt="The face of FlyKitt: AI Image created w"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/Screenshot_2026-04-21_at_11.23.56_AM.png" alt="The face of FlyKitt: AI Image created w"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/4_Edit.jpg" alt="The face of FlyKitt: AI Image created w"></div>
+            <div class="carousel-slide"><img src="images/fount-deep-dive/4_Edit_Athlete.jpg" alt="The face of FlyKitt: AI Image created w"></div>
           </div>
           <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
           <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>

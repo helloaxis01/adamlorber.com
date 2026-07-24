@@ -57,8 +57,8 @@
   .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--bg);}
   .p-image img{width:100%; height:100%; object-fit:cover;}
 
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
-  .stat{background:var(--bg); padding:36px clamp(16px,3.5vw,48px);}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 auto 48px; max-width:var(--maxw); padding-inline:var(--gutter); box-sizing:border-box;}
+  .stat{background:var(--bg); padding:36px 0;} .stat:not(:first-child){padding-left:clamp(16px,2vw,28px);} .stat:not(:last-child){padding-right:clamp(16px,2vw,28px);}
   .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
   .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
 
@@ -267,7 +267,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:-0.35em;
   }
 
   .theme-toggle{
@@ -344,7 +343,7 @@
   <div class="wrap p-hero">
     <p class="p-eyebrow">Case study · Client Work</p>
     <h1 class="p-title">Olio Italian</h1>
-    <p class="p-sub">Brand identity for a Cincinnati restaurant built around hand-made pasta and a curated wine program.</p>
+    <p class="p-sub">Neighborhood trattoria energy, upscale without the frost.</p>
 
     <div class="meta-row">
       <div>Role<strong>Creative Lead</strong></div>
@@ -361,7 +360,7 @@
     <section class="wrap case-section" data-section="challenge">
     <div class="case-header"><span class="section-label">01 · Challenge</span></div>
     <div class="case-blocks" data-blocks="challenge">
-      <div class="case-block block-text"><p>Olio Italian needed a brand identity that mirrored the sophistication of their hand-made pasta and curated wine program. The challenge was to create a visual language that felt upscale and modern, yet kept the warmth and intimacy of a neighborhood trattoria.</p></div>
+      <div class="case-block block-text"><p>Olio Italian needed a brand that matched its hand-made pasta and curated wine program: upscale and modern, without losing the warmth of a neighborhood trattoria.</p></div>
       <div class="case-block block-image">
         <div class="p-image"><img src="images/olio/portfolio-04.jpg" alt="Olio Italian logo concept sheet"></div>
       </div>
@@ -373,7 +372,7 @@
     <div class="case-blocks" data-blocks="approach">
       <div class="case-block block-text"><p>I partnered with ownership before the restaurant was funded, helping shape the concept and name, then selling that story so the project could move forward. I stayed on through build-out and brand development as the idea became a real space.</p></div>
       <div class="case-block block-text"><p>From there I led the identity end to end, from logo concepts through environmental and tactile touchpoints, so the visual story matched the dining experience. Ownership wanted to lean into the Olio name, so olive tree leaves became part of the brand language. I moved away from common trattoria tropes toward a look that blends contemporary minimalism with classic Italian charm.</p></div>
-      <div class="case-block block-text"><p>Every physical element, from menus to merchandise, was treated as an extension of the interior space, keeping a cohesive aesthetic across guest touchpoints.</p></div>
+      <div class="case-block block-text"><p>Every physical element, from menus to merchandise, was treated as an extension of the interior space, so guest touchpoints felt like one aesthetic.</p></div>
       <div class="case-block block-carousel" id="carousel-olio-approach">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -397,7 +396,7 @@
   <section class="wrap case-section" data-section="outcome">
     <div class="case-header"><span class="section-label">03 · Outcome</span></div>
     <div class="case-blocks" data-blocks="outcome">
-      <div class="case-block block-text"><p>The brand was brought to life in Cincinnati, Ohio, across the physical restaurant space, and contributed to strong critical reception. The full package, from menu design to environmental signage, communicated the same level of care guests experienced at the table.</p></div>
+      <div class="case-block block-text"><p>The brand came to life across the Cincinnati restaurant, and contributed to strong critical reception. Menus through environmental signage communicated the same care guests felt at the table.</p></div>
       <div class="case-block block-image">
         <div class="p-image"><img src="images/olio/dsc-0663.jpg" alt="Olio Italian restaurant exterior"></div>
       </div>

@@ -57,8 +57,8 @@
   .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--bg);}
   .p-image img{width:100%; height:100%; object-fit:cover;}
 
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
-  .stat{background:var(--bg); padding:36px clamp(16px,3.5vw,48px);}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 auto 48px; max-width:var(--maxw); padding-inline:var(--gutter); box-sizing:border-box;}
+  .stat{background:var(--bg); padding:36px 0;} .stat:not(:first-child){padding-left:clamp(16px,2vw,28px);} .stat:not(:last-child){padding-right:clamp(16px,2vw,28px);}
   .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
   .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
 
@@ -110,7 +110,7 @@
   .case-block.block-gif{max-width:520px;}
   .case-block.block-gif .p-image{aspect-ratio:auto;}
   .case-block.block-gif .p-image img{width:100%; height:auto; object-fit:contain;}
-  .case-block.block-gif-centered{margin-left:auto; margin-right:auto;}
+  .case-block.block-gif-centered{margin-left:auto; margin-right:auto; max-width:390px;}
 
   .carousel-viewport{position:relative; width:100%; aspect-ratio:16/9; background:var(--bg); overflow:hidden; border-radius:0; touch-action:pan-y; cursor:grab;}
   .carousel-viewport:active{cursor:grabbing;}
@@ -262,7 +262,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:-0.35em;
   }
 
   .theme-toggle{
@@ -339,7 +338,7 @@
   <div class="wrap p-hero">
     <p class="p-eyebrow">Case study · In-House</p>
     <h1 class="p-title">Television Academy</h1>
-    <p class="p-sub">Sixteen years art directing the Television Academy and Emmy Awards. I kept the prestige intact while updating how the organization showed up for a digital first audience, and helped grow membership along the way.</p>
+    <p class="p-sub">Prestige that still feels current.</p>
 
     <div class="meta-row">
       <div>Role<strong>Art Director</strong></div>
@@ -362,15 +361,15 @@
     <section class="wrap case-section" data-section="challenge">
     <div class="case-header"><span class="section-label">01 · Challenge</span></div>
     <div class="case-blocks" data-blocks="challenge">
-      <div class="case-block block-text"><p>The Emmys risked reading as stuck in the past. Growing the Academy meant looking current to a younger audience without giving up the credibility built over decades.</p></div>
-      <div class="case-block block-text"><p>As <strong>Art Director and second in command</strong>, I ran day to day creative across the in-house team, ceremony design, vendors, and network partners.</p></div>
+      <div class="case-block block-text"><p>The Emmys were on the verge of being stuck in the past. Membership was stagnant and was made up of many entertainment veterans, many of whom had been out of the business for years. Growing the Academy meant looking current to a younger audience without giving up the credibility built over decades.</p></div>
+      <div class="case-block block-text"><p>As Art Director and second in command, I kept that balance across the in-house team, ceremony design, vendors, and network partners, season after season.</p></div>
     </div>
   </section>
 
   <section class="wrap case-section" data-section="approach">
     <div class="case-header"><span class="section-label">02 · Approach</span></div>
     <div class="case-blocks" data-blocks="approach">
-      <div class="case-block block-text"><p>For the 70th anniversary, the design department and an outside agency both pitched concepts. The mark I designed was chosen and ran year round on billboards, stationery, trade ads, digital, and even the Governors Ball hamburger boxes. It reached over 10 million people.</p></div>
+      <div class="case-block block-text"><p>For the 70th anniversary, the in-house design department and an outside agency both pitched concepts. The mark I designed was chosen. It ran year-round on billboards, stationery, trade, digital, even Governors Ball hamburger boxes, and reached over 10 million people.</p></div>
       <div class="case-block block-carousel" id="carousel-70th">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -396,7 +395,7 @@
         </div>
       </div>
 
-      <div class="case-block block-text"><p>Invitation design for Emmy related events, including the LA Area Emmys, the Performers Nominee Reception, and the awards show itself.</p></div>
+      <div class="case-block block-text"><p>I designed invitations for Emmy-related events, including the LA Area Emmys, the Performers Nominee Reception, and the awards show itself, as collectible brand objects, not paper to throw away.</p></div>
       <div class="case-block block-carousel" id="carousel-invites">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -410,7 +409,7 @@
         </div>
       </div>
 
-      <div class="case-block block-text"><p>For the 73rd Emmy Awards I designed a four color invitation suite with nine RSVP cards, printed on soft touch paper with reflective foils in gold, red, blue, and purple.</p></div>
+      <div class="case-block block-text"><p>For the 73rd Emmys I designed a four-color invitation suite with nine RSVP cards: soft-touch paper, reflective foils in gold, red, blue, and purple.</p></div>
       <div class="case-block block-carousel" id="carousel-73rd">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -496,7 +495,7 @@
   <section class="wrap case-section" data-section="outcome">
     <div class="case-header"><span class="section-label">03 · Outcome</span></div>
     <div class="case-blocks" data-blocks="outcome">
-      <div class="case-block block-text"><p>Over sixteen years membership grew <strong>257%, from about 7,000 to over 25,000</strong>, with design and marketing in that mix. Ceremonies and campaigns still had to land for millions of viewers every year.</p></div>
+      <div class="case-block block-text"><p>Over sixteen years, membership grew <strong>257%, from about 7,000 to over 25,000</strong>, with design and marketing in that mix. Ceremonies and campaigns still had to land for millions of viewers every year.</p></div>
       <div class="case-block block-gif block-gif-centered">
         <div class="p-image"><img src="images/televisionacademy/EmmySpin_Export_v2.gif" alt="Animated Emmy Awards statue"></div>
       </div>
@@ -506,7 +505,7 @@
   <section class="wrap case-section" data-section="returning">
     <div class="case-header"><span class="section-label">04 · Returning</span></div>
     <div class="case-blocks" data-blocks="returning">
-      <div class="case-block block-text"><p>In 2026 I came back as a consultant on specialty projects, including brand guidelines for Televerse and logistics materials for Emmy season.</p></div>
+      <div class="case-block block-text"><p>In 2026 I came back as a consultant on specialty projects, including brand guidelines for the Television Academy’s Televerse Festival and logistics materials for this year’s Emmy shows.</p></div>
     </div>
   </section>
 

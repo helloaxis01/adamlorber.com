@@ -57,8 +57,8 @@
   .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--bg);}
   .p-image img{width:100%; height:100%; object-fit:cover;}
 
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
-  .stat{background:var(--bg); padding:36px clamp(16px,3.5vw,48px);}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 auto 48px; max-width:var(--maxw); padding-inline:var(--gutter); box-sizing:border-box;}
+  .stat{background:var(--bg); padding:36px 0;} .stat:not(:first-child){padding-left:clamp(16px,2vw,28px);} .stat:not(:last-child){padding-right:clamp(16px,2vw,28px);}
   .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
   .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
 
@@ -267,7 +267,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:-0.35em;
   }
 
   .theme-toggle{
@@ -344,7 +343,7 @@
   <div class="wrap p-hero">
     <p class="p-eyebrow">Case study · Client Work</p>
     <h1 class="p-title">Mantra</h1>
-    <p class="p-sub">Brand identity and packaging for an adaptogen and CBD tincture line created for health conscious Whole Foods shoppers looking for a bit of calm in a chaotic world.</p>
+    <p class="p-sub">Calm on the shelf, without the cryptic vibe.</p>
 
     <div class="meta-row">
       <div>Role<strong>Art Director</strong></div>
@@ -361,7 +360,7 @@
     <section class="wrap case-section" data-section="challenge">
     <div class="case-header"><span class="section-label">01 · Challenge</span></div>
     <div class="case-blocks" data-blocks="challenge">
-      <div class="case-block block-text"><p>Mantra was entering a crowded wellness market and needed to feel premium and approachable to health conscious shoppers in their 30s and 40s, without reading like another cryptic tincture brand.</p></div>
+      <div class="case-block block-text"><p>Mantra was entering a crowded wellness market. It needed to feel premium and approachable to health-conscious shoppers in their 30s and 40s, without reading like another cryptic tincture brand.</p></div>
       <div class="case-block block-image">
         <div class="p-image"><img src="images/mantra/Mantra_Portfolio-03.jpg" alt="Mantra brand identity, primary packaging shot"></div>
       </div>
@@ -371,7 +370,7 @@
   <section class="wrap case-section" data-section="approach">
     <div class="case-header"><span class="section-label">02 · Approach</span></div>
     <div class="case-blocks" data-blocks="approach">
-      <div class="case-block block-text"><p>I developed a clean, ingredient forward visual system and managed overseas manufacturing directly, so the design held up from the factory floor to the shelf.</p></div>
+      <div class="case-block block-text"><p>I developed a clean, ingredient-forward visual system and managed overseas manufacturing directly, so the design held up from the factory floor to the shelf.</p></div>
       <div class="case-block block-carousel" id="carousel-mantra-approach">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -394,7 +393,7 @@
   <section class="wrap case-section" data-section="outcome">
     <div class="case-header"><span class="section-label">03 · Outcome</span></div>
     <div class="case-blocks" data-blocks="outcome">
-      <div class="case-block block-text"><p>A market ready product line, structured to support future product expansions.</p></div>
+      <div class="case-block block-text"><p>A market-ready product line, structured to support future expansions.</p></div>
       <div class="case-block block-image">
         <div class="p-image"><img src="images/mantra/Product3.jpg" alt="Hands using Mantra product on a bathroom counter"></div>
       </div>
