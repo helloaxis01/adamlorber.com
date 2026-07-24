@@ -18,6 +18,7 @@
 /private                  /private.html                             200
 /questions                /questions.html                           200
 /fount-deep-dive          /fount-deep-dive.html                     200
+/fount-sites              /fount-sites.html                         200
 /revyrie-decks            /revyrie-decks.html                       200
 /axis                     /axis.html                                200
 /mitzvahs                 /mitzvahs.html                            200
@@ -48,6 +49,7 @@
 /private.html                                       /private                301!
 /questions.html                                     /questions              301!
 /fount-deep-dive.html                               /fount-deep-dive        301!
+/fount-sites.html                                   /fount-sites            301!
 /revyrie-decks.html                                 /revyrie-decks          301!
 /axis.html                                          /axis                   301!
 /mitzvahs.html                                      /mitzvahs               301!

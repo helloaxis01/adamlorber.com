@@ -9,6 +9,8 @@ Disallow: /revyrie-decks
 Disallow: /revyrie-decks.html
 Disallow: /fount-deep-dive
 Disallow: /fount-deep-dive.html
+Disallow: /fount-sites
+Disallow: /fount-sites.html
 Disallow: /axis
 Disallow: /axis.html
 Disallow: /mitzvahs
