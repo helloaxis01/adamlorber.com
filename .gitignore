@@ -2,3 +2,4 @@
 *.zip
 .cursor/
 Thumbs.db
+.tmp-icloud-prev/
