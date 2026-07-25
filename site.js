@@ -235,44 +235,4 @@
   });
 
   // 4) View Transitions: CSS @view-transition { navigation: auto } in site.css
-
-  // 5) Selected Work cursor peek (home, desktop)
-  var workList = document.querySelector('.work-list');
-  if (workList && window.matchMedia && window.matchMedia('(min-width:901px)').matches && !prefersReducedMotion()) {
-    var peek = document.createElement('div');
-    peek.className = 'work-peek';
-    peek.setAttribute('aria-hidden', 'true');
-    var peekImg = document.createElement('img');
-    peekImg.alt = '';
-    peek.appendChild(peekImg);
-    document.body.appendChild(peek);
-    var peekRaf = 0;
-    var peekX = 0;
-    var peekY = 0;
-    function placePeek() {
-      peekRaf = 0;
-      var w = peek.offsetWidth || 220;
-      var h = peek.offsetHeight || 140;
-      var x = Math.min(window.innerWidth - w - 16, peekX + 18);
-      var y = Math.min(window.innerHeight - h - 16, peekY + 18);
-      peek.style.setProperty('--peek-x', x + 'px');
-      peek.style.setProperty('--peek-y', y + 'px');
-    }
-    workList.querySelectorAll('a.work-item').forEach(function (item) {
-      var mediaImg = item.querySelector('.work-media img');
-      if (!mediaImg) return;
-      item.addEventListener('pointerenter', function () {
-        peekImg.src = mediaImg.currentSrc || mediaImg.src;
-        peek.classList.add('is-on');
-      });
-      item.addEventListener('pointerleave', function () {
-        peek.classList.remove('is-on');
-      });
-      item.addEventListener('pointermove', function (e) {
-        peekX = e.clientX;
-        peekY = e.clientY;
-        if (!peekRaf) peekRaf = requestAnimationFrame(placePeek);
-      });
-    });
-  }
 })();
