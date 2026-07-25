@@ -130,27 +130,31 @@
   .carousel-slide img{max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; -webkit-user-drag:none; user-select:none; pointer-events:none;}
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); z-index:3;
-    width:28px; height:28px; border-radius:50%; border:1px solid rgba(220,218,211,0.22);
-    background:rgba(20,20,19,0.45); color:var(--ink); font-size:13px; line-height:1; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);
-    padding:0;
+    width:40px; height:40px; border:0; border-radius:0;
+    background:transparent; color:var(--ink); cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:0; opacity:0.55; transition:opacity 0.2s ease, color 0.2s ease;
   }
-  .carousel-arrow:hover{border-color:var(--gold); color:var(--gold); background:rgba(20,20,19,0.65);}
-  .carousel-prev{left:10px;}
-  .carousel-next{right:10px;}
+  .carousel-arrow svg{
+    width:18px; height:18px; display:block;
+    filter:drop-shadow(0 1px 2px rgba(0,0,0,0.45));
+  }
+  .carousel-arrow:hover{opacity:1; color:var(--gold); background:transparent;}
+  .carousel-prev{left:4px;}
+  .carousel-next{right:4px;}
   .carousel-counter{
     position:absolute; bottom:10px; right:10px; z-index:3; font-family:var(--mono); font-size:10px;
     letter-spacing:0.06em; color:var(--ink); background:rgba(20,20,19,0.45); padding:3px 7px; border-radius:2px; backdrop-filter:blur(4px);
   }
   html[data-theme="light"] .carousel-arrow{
     color:#faf9f6;
-    border-color:rgba(250,249,246,0.35);
-    background:rgba(20,20,19,0.55);
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-arrow:hover{
-    color:#faf9f6;
-    border-color:rgba(250,249,246,0.7);
-    background:rgba(20,20,19,0.75);
+    color:var(--gold);
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-counter{
     color:#faf9f6;
@@ -400,8 +404,8 @@
             <div class="carousel-slide"><img src="images/televisionacademy/JBU_5359.jpg" alt="Emmy Awards event photography"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/ABI52357.jpg" alt="Emmy Awards event photography"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 15</div>
         </div>
       </div>
@@ -414,8 +418,8 @@
             <div class="carousel-slide"><img src="images/televisionacademy/70th_LAArea_Invite.jpg" alt="70th LA Area Emmy Awards invitation"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/70th_PNR_Invite.jpg" alt="Performers Nominee Reception invitation"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
         </div>
       </div>
@@ -430,8 +434,8 @@
             <div class="carousel-slide"><img src="images/televisionacademy/Portfolio_73rdEmmys-03.jpg" alt="73rd Emmy Awards RSVP cards"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/Portfolio_73rdEmmys-04.jpg" alt="73rd Emmy Awards RSVP cards detail"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
         </div>
       </div>
@@ -450,8 +454,8 @@
             <div class="carousel-slide"><img src="images/televisionacademy/Penn_Portfolio.jpg" alt="Key art for Television Academy Penn event"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/Emmys101_1920x1080.jpg" alt="Key art for Emmys 101 event"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 09</div>
         </div>
       </div>
@@ -466,8 +470,8 @@
             <div class="carousel-slide"><img src="images/televisionacademy/BidForTheStars_Logo.jpg" alt="Bid for the Stars program logo"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/FredRogersMemorialScholarship-01.jpg" alt="Fred Rogers Memorial Scholarship logo"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
         </div>
       </div>
@@ -480,8 +484,8 @@
             <div class="carousel-slide"><img src="images/televisionacademy/Emmys_BannerAds-03.jpg" alt="Emmy Awards banner ad campaign"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/Emmys_BannerAds-01.jpg" alt="Emmy Awards banner ad campaign"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
         </div>
       </div>
@@ -495,8 +499,8 @@
             <div class="carousel-slide"><img src="images/televisionacademy/screenshot-04-21-8-57.png" alt="Emmy Awards campaign social asset"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/BUK_7532-jpg.jpg" alt="Emmy Awards campaign photography"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 06</div>
         </div>
       </div>
