@@ -260,21 +260,28 @@
     .contact-links.is-lit a,
     .contact-links.is-lit .email-toggle{transition-delay:0s;}
   }
-  /* Email stays clickable; address occupies a fixed slot so open/close never shifts layout. */
+  /* Collapsed: Email sits in the row with even gaps. Open: address expands and shifts LinkedIn right. */
   .email-slot{
     display:inline-flex;
     align-items:center;
-    gap:32px;
+    gap:0;
   }
+  .email-slot.is-open{gap:32px;}
   .contact-links .email-address,
   .about-actions .email-address{
     font-family:var(--mono); font-size:11px; letter-spacing:0.04em; text-transform:none; color:var(--ink);
-    transition:color .25s ease, background-color .25s ease, opacity .2s ease;
+    transition:color .25s ease, background-color .25s ease, opacity .2s ease, max-width .2s ease;
     line-height:1.4;
+    display:inline-block;
+    max-width:0;
     opacity:0;
+    overflow:hidden;
+    white-space:nowrap;
+    vertical-align:middle;
     pointer-events:none;
   }
   .email-slot.is-open .email-address{
+    max-width:20rem;
     opacity:1;
     pointer-events:auto;
   }
