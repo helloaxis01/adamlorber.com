@@ -30,25 +30,24 @@
 
   document.querySelectorAll('[data-email-reveal]').forEach(function (root) {
     var toggle = root.querySelector('.email-toggle');
-    var panel = root.querySelector('.email-panel');
-    if (!toggle || !panel) return;
+    var address = root.querySelector('.email-address');
+    if (!toggle || !address) return;
 
     function setOpen(open) {
-      panel.hidden = !open;
-      panel.classList.toggle('is-open', open);
+      address.hidden = !open;
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
 
     toggle.addEventListener('click', function () {
-      setOpen(panel.hidden);
+      setOpen(address.hidden);
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !panel.hidden) setOpen(false);
+      if (e.key === 'Escape' && !address.hidden) setOpen(false);
     });
 
     document.addEventListener('click', function (e) {
-      if (!panel.hidden && !root.contains(e.target)) setOpen(false);
+      if (!address.hidden && !root.contains(e.target)) setOpen(false);
     });
   });
 

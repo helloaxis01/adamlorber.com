@@ -236,8 +236,7 @@
   }
   .contact h2 em{font-style:italic; color:var(--ink);}
   .contact-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-top:40px;}
-  .contact-actions{display:flex; flex-direction:column; align-items:flex-start; gap:0;}
-  .contact-links{display:flex; flex-direction:row; gap:32px; flex-wrap:wrap;}
+  .contact-links{display:flex; flex-direction:row; align-items:baseline; gap:32px; flex-wrap:wrap;}
   .contact-links a,
   .contact-links .email-toggle{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
@@ -246,41 +245,28 @@
     appearance:none; -webkit-appearance:none;
   }
   .contact-links a:hover,
-  .contact-links.is-lit a,
+  .contact-links.is-lit a:not(.email-address),
   .contact-links .email-toggle:hover,
   .contact-links.is-lit .email-toggle,
   .contact-links .email-toggle[aria-expanded="true"]{/* highlight via shared mark styles */}
   .contact-links.is-lit a:nth-child(1){transition-delay:0s;}
-  .contact-links.is-lit .email-toggle:nth-child(2){transition-delay:0.1s;}
-  .contact-links.is-lit a:nth-child(3){transition-delay:0.2s;}
+  .contact-links.is-lit .email-toggle{transition-delay:0.1s;}
+  .contact-links.is-lit .contact-linkedin{transition-delay:0.2s;}
   @media (prefers-reduced-motion: reduce){
     .contact-links a,
     .contact-links .email-toggle{transition:none;}
     .contact-links.is-lit a,
     .contact-links.is-lit .email-toggle{transition-delay:0s;}
   }
-  .email-panel{
-    display:none;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:14px 18px;
-    margin-top:18px;
-    padding:14px 16px;
-    border:1px solid var(--line);
-    width:fit-content;
-    max-width:100%;
-  }
-  .email-panel.is-open{display:flex;}
-  .email-panel-address{
-    font-family:var(--mono); font-size:12px; letter-spacing:0.04em; color:var(--ink);
-    text-transform:none;
+  .contact-links .email-address,
+  .about-actions .email-address{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.04em; text-transform:none; color:var(--ink);
     transition:color .25s ease, background-color .25s ease;
-    width:fit-content;
-    padding-inline:var(--mark-pad-x);
-    margin-inline:calc(-1 * var(--mark-pad-x));
   }
-  .email-panel-address:hover{color:var(--chartreuse);}
-  html[data-theme="light"] .email-panel-address:hover{
+  .contact-links .email-address:hover,
+  .about-actions .email-address:hover{color:var(--chartreuse);}
+  html[data-theme="light"] .contact-links .email-address:hover,
+  html[data-theme="light"] .about-actions .email-address:hover{
     color:#1a1a19; background:var(--chartreuse);
   }
   .pointer-egg{
@@ -377,7 +363,6 @@
     .sitemap{grid-template-columns:1fr; gap:32px;}
     .contact{padding-block:56px;}
     .contact-links{flex-direction:column; align-items:flex-start; gap:18px;}
-    .email-panel{width:100%;}
   }
 
   html[data-theme="light"]{
@@ -406,12 +391,12 @@
   .next-title:hover,
   .study:hover h3,
   .study:hover span,
-  .contact-links a:hover,
-  .contact-links.is-lit a,
+  .contact-links a:not(.email-address):hover,
+  .contact-links.is-lit a:not(.email-address),
   .contact-links .email-toggle:hover,
   .contact-links.is-lit .email-toggle,
   .contact-links .email-toggle[aria-expanded="true"],
-  .about-actions a:hover,
+  .about-actions a:not(.email-address):hover,
   .about-actions .email-toggle:hover,
   .about-actions .email-toggle[aria-expanded="true"],
   .err-cta:hover,
@@ -424,12 +409,12 @@
   html[data-theme="light"] .next-title:hover,
   html[data-theme="light"] .study:hover h3,
   html[data-theme="light"] .study:hover span,
-  html[data-theme="light"] .contact-links a:hover,
-  html[data-theme="light"] .contact-links.is-lit a,
+  html[data-theme="light"] .contact-links a:not(.email-address):hover,
+  html[data-theme="light"] .contact-links.is-lit a:not(.email-address),
   html[data-theme="light"] .contact-links .email-toggle:hover,
   html[data-theme="light"] .contact-links.is-lit .email-toggle,
   html[data-theme="light"] .contact-links .email-toggle[aria-expanded="true"],
-  html[data-theme="light"] .about-actions a:hover,
+  html[data-theme="light"] .about-actions a:not(.email-address):hover,
   html[data-theme="light"] .about-actions .email-toggle:hover,
   html[data-theme="light"] .about-actions .email-toggle[aria-expanded="true"],
   html[data-theme="light"] .err-cta:hover,
@@ -626,15 +611,11 @@
   <section id="contact" class="wrap contact">
     <h2 class="reveal">Say <em>hello</em>.</h2>
     <div class="contact-row reveal">
-      <div class="contact-actions" data-email-reveal data-email="hello@adamlorber.com">
-        <div class="contact-links">
-          <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-          <button type="button" class="email-toggle" aria-expanded="false" aria-controls="contact-email-panel">Email</button>
-          <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-        <div class="email-panel" id="contact-email-panel" hidden>
-          <a class="email-panel-address" href="mailto:hello@adamlorber.com">hello@adamlorber.com</a>
-        </div>
+      <div class="contact-links" data-email-reveal>
+        <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <button type="button" class="email-toggle" aria-expanded="false" aria-controls="contact-email-address">Email</button>
+        <a class="email-address" id="contact-email-address" href="mailto:hello@adamlorber.com" hidden>hello@adamlorber.com</a>
+        <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </section>
