@@ -6,6 +6,28 @@ img, video{
   height:auto;
 }
 
+/* Next project: narrow chartreuse band, black type (sitewide mock) */
+a.next{
+  background:var(--chartreuse) !important;
+  padding:40px 0 !important;
+  transition:filter .2s ease;
+}
+a.next:hover{
+  filter:brightness(0.97);
+}
+a.next .next-label{
+  color:rgba(26,26,25,0.55) !important;
+  margin-bottom:8px !important;
+}
+a.next .next-title,
+a.next:hover .next-title,
+html[data-theme="light"] a.next .next-title,
+html[data-theme="light"] a.next:hover .next-title,
+html[data-theme="light"] a.next .next-title:hover{
+  color:#1a1a19 !important;
+  background:transparent !important;
+}
+
 /* Larger tap targets for interactive chrome */
 .burger{
   min-width:44px;
