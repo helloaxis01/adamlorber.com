@@ -191,16 +191,16 @@
     btn.click();
   });
 
-  // 2) Case-study reading progress (bottom edge of header)
+  // 2) Case-study reading progress (fixed under sticky header)
   var caseRoot = document.querySelector('main.p-page, main#top');
   var caseSections = document.querySelectorAll('.case-section');
-  var headerEl = document.querySelector('header');
-  if (caseRoot && caseSections.length && headerEl) {
+  if (caseRoot && caseSections.length) {
     var progress = document.createElement('div');
     progress.className = 'read-progress';
     progress.setAttribute('aria-hidden', 'true');
-    headerEl.appendChild(progress);
+    document.body.appendChild(progress);
     function updateProgress() {
+      syncHeaderOffset();
       var rect = caseRoot.getBoundingClientRect();
       var total = Math.max(1, caseRoot.scrollHeight - window.innerHeight);
       var scrolled = Math.min(total, Math.max(0, -rect.top));

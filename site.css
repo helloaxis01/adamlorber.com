@@ -22,17 +22,14 @@ img, video{
   }
 }
 
-/* Case-study reading progress — sits on the bottom edge of the header */
-header{
-  position:relative;
-}
+/* Case-study reading progress — fixed under the sticky header */
 .read-progress{
-  position:absolute;
+  position:fixed;
+  top:var(--header-offset, 84px);
   left:0;
-  bottom:0;
   height:3px;
   width:0;
-  z-index:2;
+  z-index:120;
   pointer-events:none;
   background:var(--chartreuse, #ebff12);
   transform-origin:left center;
