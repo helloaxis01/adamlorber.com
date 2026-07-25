@@ -18,6 +18,7 @@
 <meta name="twitter:title" content="Adam Lorber · Art Director">
 <meta name="twitter:description" content="Art Director and Lead Designer in Los Angeles. Branding, art direction, and strategy for established brands and ambitious startups.">
 <meta name="twitter:image" content="https://www.adamlorber.com/og-image.jpg">
+<link rel="canonical" href="https://www.adamlorber.com/">
 <script>!function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}}()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -145,11 +146,12 @@
   .stack-nav{display:flex; align-items:center; gap:18px;}
   .stack-count{font-family:var(--mono); font-size:11px; color:var(--ink-dim); min-width:52px; text-align:center;}
   .stack-btn{
-    width:36px; height:36px; border-radius:50%; border:1px solid var(--line); background:none; color:var(--ink);
-    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:14px;
-    transition:border-color .2s ease, color .2s ease;
+    width:40px; height:40px; border:0; border-radius:0; background:transparent; color:var(--ink);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0;
+    opacity:0.75; transition:opacity .2s ease, color .2s ease;
   }
-  .stack-btn:hover{border-color:var(--ink); color:var(--ink);}
+  .stack-btn svg{width:20px; height:20px; display:block;}
+  .stack-btn:hover{opacity:1; color:var(--ink);}
   .scroll-cue{display:none;}
 
   .reveal{opacity:1; transform:translateY(16px); transition:transform .7s ease;}
@@ -547,9 +549,9 @@
 
   <div class="stack-controls">
     <div class="stack-nav">
-      <button class="stack-btn" id="stackPrev" aria-label="Previous">←</button>
+      <button class="stack-btn" id="stackPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
       <span class="stack-count" id="stackCount">01 / 07</span>
-      <button class="stack-btn" id="stackNext" aria-label="Next">→</button>
+      <button class="stack-btn" id="stackNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     </div>
   </div>
 
