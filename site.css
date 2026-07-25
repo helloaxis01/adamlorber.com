@@ -59,6 +59,44 @@ a.next + .wrap.sitemap{
   align-items:center;
 }
 
+/* Mobile contact: tighter stack; open address under Email, not beside it */
+@media (max-width:900px){
+  .contact-links,
+  .about-actions{
+    gap:8px !important;
+  }
+  .contact-links a,
+  .contact-links .email-toggle,
+  .about-actions a,
+  .about-actions .email-toggle{
+    min-height:32px;
+  }
+  .email-slot{
+    flex-direction:column !important;
+    align-items:flex-start !important;
+  }
+  .email-slot.is-open{
+    gap:4px !important;
+  }
+  .contact-links .email-address,
+  .about-actions .email-address{
+    min-height:0 !important;
+    white-space:normal !important;
+  }
+  .email-slot:not(.is-open) .email-address{
+    max-height:0 !important;
+    padding:0 !important;
+    margin:0 !important;
+    overflow:hidden !important;
+  }
+  .email-slot.is-open .email-address{
+    max-width:100% !important;
+    min-height:32px !important;
+    display:inline-flex !important;
+    align-items:center;
+  }
+}
+
 /* Stats: pad every cell to the page gutter when stacked */
 @media (max-width:900px){
   .stats .stat{
