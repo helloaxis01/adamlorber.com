@@ -22,18 +22,20 @@ img, video{
   }
 }
 
-/* Case-study reading progress */
+/* Case-study reading progress — sits on the bottom edge of the header */
+header{
+  position:relative;
+}
 .read-progress{
-  position:fixed;
-  top:0;
+  position:absolute;
   left:0;
-  height:2px;
+  bottom:0;
+  height:3px;
   width:0;
-  z-index:200;
+  z-index:2;
   pointer-events:none;
   background:var(--chartreuse, #ebff12);
   transform-origin:left center;
-  transition:opacity .2s ease;
 }
 
 /* Next project: narrow chartreuse band, black type + light motion */
