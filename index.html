@@ -237,19 +237,20 @@
   }
   .contact h2 em{font-style:italic; color:var(--cream);}
   .contact-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-top:40px;}
-  .contact-links{display:flex; flex-direction:row; align-items:baseline; gap:32px; flex-wrap:wrap;}
+  .contact-links{display:flex; flex-direction:row; align-items:center; gap:32px; flex-wrap:wrap;}
   .contact-links a,
   .contact-links .email-toggle{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
     transition:color .25s ease, background-color .25s ease;
     background:none; border:0; padding:0; margin:0; cursor:pointer;
     appearance:none; -webkit-appearance:none;
+    line-height:1.4;
   }
   .contact-links a:hover,
   .contact-links.is-lit a:not(.email-address),
   .contact-links .email-toggle:hover,
   .contact-links.is-lit .email-toggle,
-  .contact-links .email-toggle[aria-expanded="true"]{/* highlight via shared mark styles */}
+  .contact-links .email-slot.is-open .email-toggle{/* highlight via shared mark styles */}
   .contact-links.is-lit a:nth-child(1){transition-delay:0s;}
   .contact-links.is-lit .email-toggle{transition-delay:0.1s;}
   .contact-links.is-lit .contact-linkedin{transition-delay:0.2s;}
@@ -259,10 +260,27 @@
     .contact-links.is-lit a,
     .contact-links.is-lit .email-toggle{transition-delay:0s;}
   }
+  .email-slot{
+    display:inline-grid;
+    justify-items:start;
+    align-items:center;
+  }
+  .email-slot > *{grid-area:1 / 1;}
   .contact-links .email-address,
   .about-actions .email-address{
-    font-family:var(--mono); font-size:12px; letter-spacing:0.04em; text-transform:none; color:var(--ink);
+    font-family:var(--mono); font-size:11px; letter-spacing:0.04em; text-transform:none; color:var(--ink);
     transition:color .25s ease, background-color .25s ease;
+    line-height:1.4;
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .email-slot.is-open .email-toggle{
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .email-slot.is-open .email-address{
+    visibility:visible;
+    pointer-events:auto;
   }
   .contact-links .email-address:hover,
   .about-actions .email-address:hover{color:var(--chartreuse);}
@@ -367,7 +385,7 @@
   }
 
   html[data-theme="light"]{
-    --bg:#f4f7dc; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19; --chartreuse:#ebff12;
+    --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19; --chartreuse:#ebff12;
     --cream:#1a1a19;
     --line:rgba(26,26,25,0.14);
   }
@@ -397,10 +415,10 @@
   .contact-links.is-lit a:not(.email-address),
   .contact-links .email-toggle:hover,
   .contact-links.is-lit .email-toggle,
-  .contact-links .email-toggle[aria-expanded="true"],
+  .contact-links .email-slot.is-open .email-toggle,
   .about-actions a:not(.email-address):hover,
   .about-actions .email-toggle:hover,
-  .about-actions .email-toggle[aria-expanded="true"],
+  .about-actions .email-slot.is-open .email-toggle,
   .err-cta:hover,
   .theme-toggle:hover{
     color:var(--chartreuse);
@@ -415,10 +433,10 @@
   html[data-theme="light"] .contact-links.is-lit a:not(.email-address),
   html[data-theme="light"] .contact-links .email-toggle:hover,
   html[data-theme="light"] .contact-links.is-lit .email-toggle,
-  html[data-theme="light"] .contact-links .email-toggle[aria-expanded="true"],
+  html[data-theme="light"] .contact-links .email-slot.is-open .email-toggle,
   html[data-theme="light"] .about-actions a:not(.email-address):hover,
   html[data-theme="light"] .about-actions .email-toggle:hover,
-  html[data-theme="light"] .about-actions .email-toggle[aria-expanded="true"],
+  html[data-theme="light"] .about-actions .email-slot.is-open .email-toggle,
   html[data-theme="light"] .err-cta:hover,
   html[data-theme="light"] .theme-toggle:hover{
     color:#1a1a19;
@@ -615,8 +633,10 @@
     <div class="contact-row reveal">
       <div class="contact-links" data-email-reveal>
         <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-        <button type="button" class="email-toggle" aria-expanded="false" aria-controls="contact-email-address">Email</button>
-        <a class="email-address" id="contact-email-address" href="mailto:hello@adamlorber.com" hidden>hello@adamlorber.com</a>
+        <span class="email-slot">
+          <button type="button" class="email-toggle" aria-expanded="false" aria-controls="contact-email-address">Email</button>
+          <a class="email-address" id="contact-email-address" href="mailto:hello@adamlorber.com" aria-hidden="true">hello@adamlorber.com</a>
+        </span>
         <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>

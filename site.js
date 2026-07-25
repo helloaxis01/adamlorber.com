@@ -29,25 +29,27 @@
   }
 
   document.querySelectorAll('[data-email-reveal]').forEach(function (root) {
+    var slot = root.querySelector('.email-slot');
     var toggle = root.querySelector('.email-toggle');
     var address = root.querySelector('.email-address');
-    if (!toggle || !address) return;
+    if (!slot || !toggle || !address) return;
 
     function setOpen(open) {
-      address.hidden = !open;
+      slot.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      address.setAttribute('aria-hidden', open ? 'false' : 'true');
     }
 
     toggle.addEventListener('click', function () {
-      setOpen(address.hidden);
+      setOpen(!slot.classList.contains('is-open'));
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !address.hidden) setOpen(false);
+      if (e.key === 'Escape' && slot.classList.contains('is-open')) setOpen(false);
     });
 
     document.addEventListener('click', function (e) {
-      if (!address.hidden && !root.contains(e.target)) setOpen(false);
+      if (slot.classList.contains('is-open') && !root.contains(e.target)) setOpen(false);
     });
   });
 
