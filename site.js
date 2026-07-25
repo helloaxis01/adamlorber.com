@@ -234,25 +234,7 @@
     a.addEventListener('focus', function () { prefetchHref(a.href); });
   });
 
-  // 4) View Transitions for same-origin navigations (when supported)
-  if (document.startViewTransition && !prefersReducedMotion()) {
-    document.addEventListener('click', function (e) {
-      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      var a = e.target.closest && e.target.closest('a[href]');
-      if (!a || a.target === '_blank' || a.hasAttribute('download')) return;
-      var href = a.getAttribute('href');
-      if (!href || href.charAt(0) === '#') return;
-      var url;
-      try { url = new URL(a.href, window.location.href); }
-      catch (err) { return; }
-      if (url.origin !== window.location.origin) return;
-      if (url.pathname === window.location.pathname && url.hash) return;
-      e.preventDefault();
-      document.startViewTransition(function () {
-        window.location.href = url.href;
-      });
-    });
-  }
+  // 4) View Transitions: CSS @view-transition { navigation: auto } in site.css
 
   // 5) Selected Work cursor peek (home, desktop)
   var workList = document.querySelector('.work-list');
