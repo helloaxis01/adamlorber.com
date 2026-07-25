@@ -27,6 +27,11 @@ html[data-theme="light"] a.next .next-title:hover{
   color:#1a1a19 !important;
   background:transparent !important;
 }
+/* Chartreuse band already separates; drop the hairline under it */
+a.next + .sitemap,
+a.next + .wrap.sitemap{
+  border-top:none !important;
+}
 
 /* Larger tap targets for interactive chrome */
 .burger{
