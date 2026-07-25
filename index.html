@@ -26,6 +26,7 @@
   :root{
     --mark-pad-x:0.18em;
     --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
+    --cream:#f2ebe1;
     --line:rgba(220,218,211,0.16);
     --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
     --maxw:1320px;
@@ -61,7 +62,7 @@
   /* ---------- HERO : FULL BLEED ---------- */
   .hero{padding-top:158px; padding-bottom:0;}
   .hero-text{margin-bottom:32px;}
-  .hero-name{font-family:var(--serif); font-weight:500; font-size:clamp(26px,3.6vw,42px); line-height:1.25; color:var(--ink); max-width:min(1100px,100%); margin-top:18px; text-wrap:wrap;}
+  .hero-name{font-family:var(--serif); font-weight:500; font-size:clamp(26px,3.6vw,42px); line-height:1.25; color:var(--cream); max-width:min(1100px,100%); margin-top:18px; text-wrap:wrap;}
   .hero-name .m-br{display:none;}
   .hero-name .d-br{display:none;}
   .hero-name .hero-end{white-space:normal;}
@@ -232,9 +233,9 @@
   .contact{padding-block:64px;}
   .contact h2{
     font-family:var(--serif); font-weight:500; font-size:clamp(44px,10vw,140px); line-height:0.95;
-    cursor:default; width:fit-content;
+    cursor:default; width:fit-content; color:var(--cream);
   }
-  .contact h2 em{font-style:italic; color:var(--ink);}
+  .contact h2 em{font-style:italic; color:var(--cream);}
   .contact-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-top:40px;}
   .contact-links{display:flex; flex-direction:row; align-items:baseline; gap:32px; flex-wrap:wrap;}
   .contact-links a,
@@ -367,6 +368,7 @@
 
   html[data-theme="light"]{
     --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19; --chartreuse:#ebff12;
+    --cream:#1a1a19;
     --line:rgba(26,26,25,0.14);
   }
 
