@@ -71,11 +71,46 @@
   .about-meta{display:flex; gap:64px; flex-wrap:wrap; margin-top:28px; margin-bottom:8px;}
   .about-meta div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
   .about-meta strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; max-width:420px; line-height:1.45;}
-  .about-actions{display:flex; flex-direction:row; flex-wrap:wrap; align-items:baseline; gap:32px; margin-top:28px;}
-  .about-actions a{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);}
-  
+  .about-contact{display:flex; flex-direction:column; align-items:flex-start; margin-top:28px;}
+  .about-actions{display:flex; flex-direction:row; flex-wrap:wrap; align-items:baseline; gap:32px; margin-top:0;}
+  .about-actions a,
+  .about-actions .email-toggle{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
+    background:none; border:0; padding:0; margin:0; cursor:pointer;
+    appearance:none; -webkit-appearance:none;
+  }
   .about-actions .resume{color:var(--ink); border-bottom:1px solid var(--line); padding-bottom:2px;}
   .about-actions .resume:hover{border-color:var(--line);}
+  .email-panel{
+    display:none;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px 18px;
+    margin-top:18px;
+    padding:14px 16px;
+    border:1px solid var(--line);
+    width:fit-content;
+    max-width:100%;
+  }
+  .email-panel.is-open{display:flex;}
+  .email-panel-address{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.04em; color:var(--ink);
+    text-transform:none;
+  }
+  .email-panel-copy{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-dim); background:none; border:0; padding:0; margin:0; cursor:pointer;
+    appearance:none; -webkit-appearance:none;
+    transition:color .25s ease, background-color .25s ease;
+  }
+  .email-panel-copy:hover{color:var(--chartreuse);}
+  .email-panel-copy.is-copied{color:var(--chartreuse);}
+  html[data-theme="light"] .email-panel-copy:hover,
+  html[data-theme="light"] .email-panel-copy.is-copied{
+    color:#1a1a19; background:var(--chartreuse);
+    padding-inline:var(--mark-pad-x);
+    margin-inline:calc(-1 * var(--mark-pad-x));
+  }
 
   .sitemap{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
   .sitemap-col{display:flex; flex-direction:column; gap:11px;}
@@ -100,6 +135,7 @@
     .tl-row .tl-year{width:auto;}
     .about-meta{flex-direction:column; gap:22px;}
     .about-actions{flex-direction:column; align-items:flex-start; gap:18px;}
+    .email-panel{width:100%;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
   }
 
@@ -115,7 +151,9 @@
   .study h3,
   .study span,
   .contact-links a,
+  .contact-links .email-toggle,
   .about-actions a,
+  .about-actions .email-toggle,
   .err-cta{
     width:fit-content;
     max-width:100%;
@@ -129,7 +167,12 @@
   .study:hover span,
   .contact-links a:hover,
   .contact-links.is-lit a,
+  .contact-links .email-toggle:hover,
+  .contact-links.is-lit .email-toggle,
+  .contact-links .email-toggle[aria-expanded="true"],
   .about-actions a:hover,
+  .about-actions .email-toggle:hover,
+  .about-actions .email-toggle[aria-expanded="true"],
   .err-cta:hover,
   .theme-toggle:hover{
     color:var(--chartreuse);
@@ -142,7 +185,12 @@
   html[data-theme="light"] .study:hover span,
   html[data-theme="light"] .contact-links a:hover,
   html[data-theme="light"] .contact-links.is-lit a,
+  html[data-theme="light"] .contact-links .email-toggle:hover,
+  html[data-theme="light"] .contact-links.is-lit .email-toggle,
+  html[data-theme="light"] .contact-links .email-toggle[aria-expanded="true"],
   html[data-theme="light"] .about-actions a:hover,
+  html[data-theme="light"] .about-actions .email-toggle:hover,
+  html[data-theme="light"] .about-actions .email-toggle[aria-expanded="true"],
   html[data-theme="light"] .err-cta:hover,
   html[data-theme="light"] .theme-toggle:hover{
     color:#1a1a19;
@@ -220,43 +268,6 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
   
-  .contact-links a.email-copy,
-  .about-actions a.email-copy{
-    position:relative; display:inline-block;
-    padding-inline:0;
-    margin-inline:0;
-  }
-  .email-copy .email-copy-label{
-    padding-inline:var(--mark-pad-x);
-    margin-inline:calc(-1 * var(--mark-pad-x));
-  }
-  .email-copy-status{
-    position:absolute; left:calc(100% + 10px); top:50%; transform:translateY(calc(-50% + 2px));
-    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
-    color:#faf9f6; opacity:0; white-space:nowrap; pointer-events:none;
-    transition:opacity .25s ease, transform .25s ease;
-  }
-  html[data-theme="light"] .email-copy-status{color:var(--ink);}
-  .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(-50%);}
-  .contact-links a.email-copy:hover,
-  .contact-links.is-lit a.email-copy,
-  .about-actions a.email-copy:hover,
-  html[data-theme="light"] .contact-links a.email-copy:hover,
-  html[data-theme="light"] .contact-links.is-lit a.email-copy,
-  html[data-theme="light"] .about-actions a.email-copy:hover{
-    background:transparent;
-  }
-  .contact-links a.email-copy:hover .email-copy-label,
-  .contact-links.is-lit a.email-copy .email-copy-label,
-  .about-actions a.email-copy:hover .email-copy-label{
-    color:var(--chartreuse);
-  }
-  html[data-theme="light"] .contact-links a.email-copy:hover .email-copy-label,
-  html[data-theme="light"] .contact-links.is-lit a.email-copy .email-copy-label,
-  html[data-theme="light"] .about-actions a.email-copy:hover .email-copy-label{
-    color:#1a1a19;
-    background:var(--chartreuse);
-  }
   .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
 </style>
 </head>
@@ -311,10 +322,16 @@
           <div class="tl-row"><span class="tl-year">Ongoing</span><span class="tl-role"><span>Freelance Art Director and Designer for CPG, food &amp; bev, and startups</span></span></div>
         </div>
 
-        <div class="about-actions">
-          <a class="resume" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-          <a href="mailto:hello@adamlorber.com" class="email-copy" data-email="hello@adamlorber.com" aria-label="Copy email hello@adamlorber.com"><span class="email-copy-label">Email</span><span class="email-copy-status" aria-live="polite"></span></a>
-          <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+        <div class="about-contact" data-email-reveal data-email="hello@adamlorber.com">
+          <div class="about-actions">
+            <a class="resume" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+            <button type="button" class="email-toggle" aria-expanded="false" aria-controls="about-email-panel">Email</button>
+            <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+          <div class="email-panel" id="about-email-panel" hidden>
+            <a class="email-panel-address" href="mailto:hello@adamlorber.com">hello@adamlorber.com</a>
+            <button type="button" class="email-panel-copy" aria-live="polite">Copy</button>
+          </div>
         </div>
       </div>
     </div>

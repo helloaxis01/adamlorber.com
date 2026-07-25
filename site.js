@@ -28,27 +28,67 @@
     });
   }
 
-  document.querySelectorAll('.email-copy').forEach(function (el) {
-    el.addEventListener('click', function (e) {
-      e.preventDefault();
-      var email = el.getAttribute('data-email') || 'hello@adamlorber.com';
-      var status = el.querySelector('.email-copy-status');
-      function confirm() {
-        el.classList.add('is-copied');
-        if (status) status.textContent = 'Copied';
-        clearTimeout(el._copyTimer);
-        el._copyTimer = setTimeout(function () {
-          el.classList.remove('is-copied');
-          if (status) status.textContent = '';
+  document.querySelectorAll('[data-email-reveal]').forEach(function (root) {
+    var toggle = root.querySelector('.email-toggle');
+    var panel = root.querySelector('.email-panel');
+    var copyBtn = root.querySelector('.email-panel-copy');
+    var email = root.getAttribute('data-email') || 'hello@adamlorber.com';
+    if (!toggle || !panel || !copyBtn) return;
+
+    function setOpen(open) {
+      panel.hidden = !open;
+      panel.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open) {
+        clearTimeout(copyBtn._copyTimer);
+        copyBtn.classList.remove('is-copied');
+        copyBtn.textContent = 'Copy';
+      }
+    }
+
+    toggle.addEventListener('click', function () {
+      setOpen(panel.hidden);
+    });
+
+    copyBtn.addEventListener('click', function () {
+      function confirmCopied() {
+        copyBtn.classList.add('is-copied');
+        copyBtn.textContent = 'Copied';
+        clearTimeout(copyBtn._copyTimer);
+        copyBtn._copyTimer = setTimeout(function () {
+          copyBtn.classList.remove('is-copied');
+          copyBtn.textContent = 'Copy';
         }, 1600);
       }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(confirm).catch(function () {
-          window.location.href = 'mailto:' + email;
-        });
-      } else {
-        window.location.href = 'mailto:' + email;
+
+      function fallbackCopy() {
+        var ta = document.createElement('textarea');
+        ta.value = email;
+        ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        var ok = false;
+        try { ok = document.execCommand('copy'); } catch (err) { ok = false; }
+        document.body.removeChild(ta);
+        if (ok) confirmCopied();
+        else window.location.href = 'mailto:' + email;
       }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(confirmCopied).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !panel.hidden) setOpen(false);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!panel.hidden && !root.contains(e.target)) setOpen(false);
     });
   });
 

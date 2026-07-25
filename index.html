@@ -236,25 +236,58 @@
   }
   .contact h2 em{font-style:italic; color:var(--ink);}
   .contact-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-top:40px;}
+  .contact-actions{display:flex; flex-direction:column; align-items:flex-start; gap:0;}
   .contact-links{display:flex; flex-direction:row; gap:32px; flex-wrap:wrap;}
-  .contact-links a{
+  .contact-links a,
+  .contact-links .email-toggle{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
     transition:color .25s ease, background-color .25s ease;
-  }
-  .contact-links .email-copy-label{
-    transition:color .25s ease, background-color .25s ease;
+    background:none; border:0; padding:0; margin:0; cursor:pointer;
+    appearance:none; -webkit-appearance:none;
   }
   .contact-links a:hover,
-  .contact-links.is-lit a{/* highlight via shared mark styles */}
+  .contact-links.is-lit a,
+  .contact-links .email-toggle:hover,
+  .contact-links.is-lit .email-toggle,
+  .contact-links .email-toggle[aria-expanded="true"]{/* highlight via shared mark styles */}
   .contact-links.is-lit a:nth-child(1){transition-delay:0s;}
-  .contact-links.is-lit a:nth-child(2),
-  .contact-links.is-lit a:nth-child(2) .email-copy-label{transition-delay:0.1s;}
+  .contact-links.is-lit .email-toggle:nth-child(2){transition-delay:0.1s;}
   .contact-links.is-lit a:nth-child(3){transition-delay:0.2s;}
   @media (prefers-reduced-motion: reduce){
     .contact-links a,
-    .contact-links .email-copy-label{transition:none;}
+    .contact-links .email-toggle{transition:none;}
     .contact-links.is-lit a,
-    .contact-links.is-lit a .email-copy-label{transition-delay:0s;}
+    .contact-links.is-lit .email-toggle{transition-delay:0s;}
+  }
+  .email-panel{
+    display:none;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px 18px;
+    margin-top:18px;
+    padding:14px 16px;
+    border:1px solid var(--line);
+    width:fit-content;
+    max-width:100%;
+  }
+  .email-panel.is-open{display:flex;}
+  .email-panel-address{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.04em; color:var(--ink);
+    text-transform:none;
+  }
+  .email-panel-copy{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-dim); background:none; border:0; padding:0; margin:0; cursor:pointer;
+    appearance:none; -webkit-appearance:none;
+    transition:color .25s ease, background-color .25s ease;
+  }
+  .email-panel-copy:hover{color:var(--chartreuse);}
+  .email-panel-copy.is-copied{color:var(--chartreuse);}
+  html[data-theme="light"] .email-panel-copy:hover,
+  html[data-theme="light"] .email-panel-copy.is-copied{
+    color:#1a1a19; background:var(--chartreuse);
+    padding-inline:var(--mark-pad-x);
+    margin-inline:calc(-1 * var(--mark-pad-x));
   }
   .pointer-egg{
     display:inline-flex; align-items:center;
@@ -350,6 +383,7 @@
     .sitemap{grid-template-columns:1fr; gap:32px;}
     .contact{padding-block:56px;}
     .contact-links{flex-direction:column; align-items:flex-start; gap:18px;}
+    .email-panel{width:100%;}
   }
 
   html[data-theme="light"]{
@@ -364,7 +398,9 @@
   .study h3,
   .study span,
   .contact-links a,
+  .contact-links .email-toggle,
   .about-actions a,
+  .about-actions .email-toggle,
   .err-cta{
     width:fit-content;
     max-width:100%;
@@ -378,7 +414,12 @@
   .study:hover span,
   .contact-links a:hover,
   .contact-links.is-lit a,
+  .contact-links .email-toggle:hover,
+  .contact-links.is-lit .email-toggle,
+  .contact-links .email-toggle[aria-expanded="true"],
   .about-actions a:hover,
+  .about-actions .email-toggle:hover,
+  .about-actions .email-toggle[aria-expanded="true"],
   .err-cta:hover,
   .theme-toggle:hover{
     color:var(--chartreuse);
@@ -391,7 +432,12 @@
   html[data-theme="light"] .study:hover span,
   html[data-theme="light"] .contact-links a:hover,
   html[data-theme="light"] .contact-links.is-lit a,
+  html[data-theme="light"] .contact-links .email-toggle:hover,
+  html[data-theme="light"] .contact-links.is-lit .email-toggle,
+  html[data-theme="light"] .contact-links .email-toggle[aria-expanded="true"],
   html[data-theme="light"] .about-actions a:hover,
+  html[data-theme="light"] .about-actions .email-toggle:hover,
+  html[data-theme="light"] .about-actions .email-toggle[aria-expanded="true"],
   html[data-theme="light"] .err-cta:hover,
   html[data-theme="light"] .theme-toggle:hover{
     color:#1a1a19;
@@ -453,43 +499,6 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
   
-  .contact-links a.email-copy,
-  .about-actions a.email-copy{
-    position:relative; display:inline-block;
-    padding-inline:0;
-    margin-inline:0;
-  }
-  .email-copy .email-copy-label{
-    padding-inline:var(--mark-pad-x);
-    margin-inline:calc(-1 * var(--mark-pad-x));
-  }
-  .email-copy-status{
-    position:absolute; left:calc(100% + 10px); top:50%; transform:translateY(calc(-50% + 2px));
-    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
-    color:#faf9f6; opacity:0; white-space:nowrap; pointer-events:none;
-    transition:opacity .25s ease, transform .25s ease;
-  }
-  html[data-theme="light"] .email-copy-status{color:var(--ink);}
-  .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(-50%);}
-  .contact-links a.email-copy:hover,
-  .contact-links.is-lit a.email-copy,
-  .about-actions a.email-copy:hover,
-  html[data-theme="light"] .contact-links a.email-copy:hover,
-  html[data-theme="light"] .contact-links.is-lit a.email-copy,
-  html[data-theme="light"] .about-actions a.email-copy:hover{
-    background:transparent;
-  }
-  .contact-links a.email-copy:hover .email-copy-label,
-  .contact-links.is-lit a.email-copy .email-copy-label,
-  .about-actions a.email-copy:hover .email-copy-label{
-    color:var(--chartreuse);
-  }
-  html[data-theme="light"] .contact-links a.email-copy:hover .email-copy-label,
-  html[data-theme="light"] .contact-links.is-lit a.email-copy .email-copy-label,
-  html[data-theme="light"] .about-actions a.email-copy:hover .email-copy-label{
-    color:#1a1a19;
-    background:var(--chartreuse);
-  }
   .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
 </style>
 </head>
@@ -623,10 +632,16 @@
   <section id="contact" class="wrap contact">
     <h2 class="reveal">Say <em>hello</em>.</h2>
     <div class="contact-row reveal">
-      <div class="contact-links">
-        <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-        <a href="mailto:hello@adamlorber.com" class="email-copy" data-email="hello@adamlorber.com" aria-label="Copy email hello@adamlorber.com"><span class="email-copy-label">Email</span><span class="email-copy-status" aria-live="polite"></span></a>
-        <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="contact-actions" data-email-reveal data-email="hello@adamlorber.com">
+        <div class="contact-links">
+          <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+          <button type="button" class="email-toggle" aria-expanded="false" aria-controls="contact-email-panel">Email</button>
+          <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <div class="email-panel" id="contact-email-panel" hidden>
+          <a class="email-panel-address" href="mailto:hello@adamlorber.com">hello@adamlorber.com</a>
+          <button type="button" class="email-panel-copy" aria-live="polite">Copy</button>
+        </div>
       </div>
     </div>
   </section>
