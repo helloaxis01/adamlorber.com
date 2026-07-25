@@ -34,6 +34,11 @@ img, video{
   background:var(--chartreuse, #ebff12);
   transform-origin:left center;
 }
+/* Progress bar replaces the header hairline on case pages */
+header.has-read-progress,
+header.has-read-progress.scrolled{
+  border-bottom-color:transparent !important;
+}
 
 /* Next project: narrow chartreuse band, black type + light motion */
 a.next{

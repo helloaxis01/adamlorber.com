@@ -199,6 +199,8 @@
     progress.className = 'read-progress';
     progress.setAttribute('aria-hidden', 'true');
     document.body.appendChild(progress);
+    var headerForProgress = document.querySelector('header');
+    if (headerForProgress) headerForProgress.classList.add('has-read-progress');
     function updateProgress() {
       syncHeaderOffset();
       var rect = caseRoot.getBoundingClientRect();
