@@ -128,27 +128,31 @@
   .carousel-slide img{width:100%; height:100%; object-fit:cover; -webkit-user-drag:none; user-select:none; pointer-events:none;}
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); z-index:3;
-    width:28px; height:28px; border-radius:50%; border:1px solid rgba(220,218,211,0.22);
-    background:rgba(20,20,19,0.45); color:var(--ink); font-size:13px; line-height:1; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);
-    padding:0;
+    width:40px; height:40px; border:0; border-radius:0;
+    background:transparent; color:#1a1a19; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:0; opacity:0.9; transition:opacity 0.2s ease, color 0.2s ease;
   }
-  .carousel-arrow:hover{border-color:var(--gold); color:var(--gold); background:rgba(20,20,19,0.65);}
-  .carousel-prev{left:10px;}
-  .carousel-next{right:10px;}
+  .carousel-arrow svg{
+    width:20px; height:20px; display:block;
+    filter:drop-shadow(0 0 1px rgba(250,249,246,0.95)) drop-shadow(0 1px 2px rgba(0,0,0,0.35));
+  }
+  .carousel-arrow:hover{opacity:1; color:#000; background:transparent;}
+  .carousel-prev{left:4px;}
+  .carousel-next{right:4px;}
   .carousel-counter{
     position:absolute; bottom:10px; right:10px; z-index:3; font-family:var(--mono); font-size:10px;
     letter-spacing:0.06em; color:var(--ink); background:rgba(20,20,19,0.45); padding:3px 7px; border-radius:2px; backdrop-filter:blur(4px);
   }
   html[data-theme="light"] .carousel-arrow{
-    color:#faf9f6;
-    border-color:rgba(250,249,246,0.35);
-    background:rgba(20,20,19,0.55);
+    color:#1a1a19;
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-arrow:hover{
-    color:#faf9f6;
-    border-color:rgba(250,249,246,0.7);
-    background:rgba(20,20,19,0.75);
+    color:#000;
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-counter{
     color:#faf9f6;
@@ -385,8 +389,8 @@
             <div class="carousel-slide"><img src="images/solmar/unsplash-beach.jpg" alt="Solmar coastal reference"></div>
             <div class="carousel-slide"><img src="images/solmar/unsplash-coast.jpg" alt="Solmar Mediterranean coastal mood"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 10</div>
         </div>
       </div>

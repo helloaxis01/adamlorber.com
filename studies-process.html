@@ -113,13 +113,18 @@
   }
   .ba-carousel .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%);
-    width:34px; height:34px; border-radius:50%; border:1px solid rgba(239,238,233,0.28);
-    background:rgba(20,20,19,0.45); color:#efeee9; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; font-size:13px; z-index:2;
+    width:40px; height:40px; border:0; border-radius:0;
+    background:transparent; color:#1a1a19; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; z-index:2;
+    padding:0; opacity:0.9; transition:opacity 0.2s ease, color 0.2s ease;
   }
-  .ba-carousel .carousel-arrow:hover{border-color:rgba(239,238,233,0.7); background:rgba(20,20,19,0.65);}
-  .ba-carousel .carousel-prev{left:10px;}
-  .ba-carousel .carousel-next{right:10px;}
+  .ba-carousel .carousel-arrow svg{
+    width:20px; height:20px; display:block;
+    filter:drop-shadow(0 0 1px rgba(250,249,246,0.95)) drop-shadow(0 1px 2px rgba(0,0,0,0.35));
+  }
+  .ba-carousel .carousel-arrow:hover{opacity:1; color:#000; background:transparent;}
+  .ba-carousel .carousel-prev{left:4px;}
+  .ba-carousel .carousel-next{right:4px;}
   .ba-carousel .carousel-counter{
     position:absolute; right:12px; bottom:10px; z-index:2;
     font-family:var(--mono); font-size:10px; letter-spacing:0.1em;
@@ -127,10 +132,10 @@
     padding:4px 8px; border-radius:999px; pointer-events:none;
   }
   html[data-theme="light"] .ba-carousel .carousel-arrow{
-    border-color:rgba(26,26,25,0.18); background:rgba(239,238,233,0.72); color:var(--ink);
+    border:0; background:transparent; color:#1a1a19;
   }
   html[data-theme="light"] .ba-carousel .carousel-arrow:hover{
-    border-color:rgba(26,26,25,0.4); background:rgba(239,238,233,0.92);
+    border:0; background:transparent; color:#000;
   }
   html[data-theme="light"] .ba-carousel .carousel-counter{
     color:var(--ink); background:rgba(239,238,233,0.78);
@@ -395,8 +400,8 @@
           <div class="carousel-slide"><img src="images/studies-process/NiceSupps_Mockup_NighttimeNutrients.jpg" alt="Nice Supps Nighttime Nutrients label"></div>
           <div class="carousel-slide"><img src="images/studies-process/NiceSupps_Mockup_ProbioticPal.jpg" alt="Nice Supps Probiotic Pal label"></div>
         </div>
-        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
         <div class="carousel-counter"><span class="carousel-current">01</span> / 04</div>
       </div>
     </div>
@@ -413,8 +418,8 @@
           <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-07.jpg" alt="Great Greek social mockups"></div>
           <div class="carousel-slide"><img src="images/studies-process/GreatGreek_Portfolio-02.jpg" alt="Great Greek t-shirt branding"></div>
         </div>
-        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
         <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
       </div>
     </div>
@@ -437,8 +442,8 @@
           <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-09.jpg" alt="Mootz &amp; Tom brand identity"></div>
           <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-10.jpg" alt="Mootz &amp; Tom brand identity"></div>
         </div>
-        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
         <div class="carousel-counter"><span class="carousel-current">01</span> / 11</div>
       </div>
     </div>
@@ -456,8 +461,8 @@
           <div class="carousel-slide"><img src="images/studies-process/RedShoes_RedPink_4K_Icons.jpg" alt="Red Shoes Pictures icon system"></div>
           <div class="carousel-slide"><img src="images/studies-process/RedShoes_BrandColors.jpg" alt="Red Shoes Pictures brand colors"></div>
         </div>
-        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
         <div class="carousel-counter"><span class="carousel-current">01</span> / 06</div>
       </div>
     </div>
@@ -480,8 +485,8 @@
               <div class="carousel-slide"><img src="images/studies-process/Lalo_BC_4.jpg" alt="Lalo navy business cards held in hand"></div>
               <div class="carousel-slide"><img src="images/studies-process/Lalo_4.jpg" alt="Lalo navy business card flat lay"></div>
             </div>
-            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
             <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
           </div>
         </div>
@@ -493,8 +498,8 @@
               <div class="carousel-slide"><img src="images/studies-process/Lalo_BC_5.jpg" alt="Lalo white business cards held in hand"></div>
               <div class="carousel-slide"><img src="images/studies-process/Lalo_5.jpg" alt="Lalo white business card flat lay"></div>
             </div>
-            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
             <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
           </div>
         </div>
@@ -515,8 +520,8 @@
           <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-08.jpg" alt="Victory! Extracts Golden Ginger Lemonade"></div>
           <div class="carousel-slide"><img src="images/studies-process/Victory_Portfolio-09.jpg" alt="Victory! Extracts Matcha Honey Lemonade"></div>
         </div>
-        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
         <div class="carousel-counter"><span class="carousel-current">01</span> / 07</div>
       </div>
     </div>
@@ -536,8 +541,8 @@
           <div class="carousel-slide"><img src="images/solmar/pack-extra-1.jpg" alt="Solmar packaging system"></div>
           <div class="carousel-slide"><img src="images/solmar/pack-extra-2.jpg" alt="Solmar packaging detail"></div>
         </div>
-        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
         <div class="carousel-counter"><span class="carousel-current">01</span> / 08</div>
       </div>
     </div>
@@ -553,8 +558,8 @@
           <div class="carousel-slide"><img src="images/studies-process/EB_Hat.jpg" alt="Eric Broad Real Estate hat branding"></div>
           <div class="carousel-slide"><img src="images/studies-process/EB_House.jpg" alt="Eric Broad Real Estate house signage"></div>
         </div>
-        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
         <div class="carousel-counter"><span class="carousel-current">01</span> / 04</div>
       </div>
     </div>
@@ -572,8 +577,8 @@
               <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---3.jpg" alt="Revyrie typography overlap comparison"></div>
               <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---2.jpg" alt="Revyrie old wordmark"></div>
             </div>
-            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
             <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
           </div>
         </div>
@@ -587,8 +592,8 @@
               <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---4.jpg" alt="Archetype new wordmark"></div>
               <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---5.jpg" alt="Archetype new logo mark"></div>
             </div>
-            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
             <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
           </div>
         </div>
@@ -603,8 +608,8 @@
               <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---8.jpg" alt="Clarity new logomark"></div>
               <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---9.jpg" alt="Clarity old wordmark"></div>
             </div>
-            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
             <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
           </div>
         </div>
@@ -618,8 +623,8 @@
               <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---10.jpg" alt="Gravity new wordmark"></div>
               <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---11.jpg" alt="AV new logomark"></div>
             </div>
-            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
             <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
           </div>
         </div>
@@ -634,8 +639,8 @@
               <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---14.jpg" alt="Legacie new logomark"></div>
               <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---15.jpg" alt="Legacie old wordmark and logomark"></div>
             </div>
-            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
             <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
           </div>
         </div>
@@ -659,8 +664,8 @@
           <div class="carousel-slide"><img src="images/studies-process/Nautilus_Portfolio-08.jpg" alt="The Nautilus Hotel branding"></div>
           <div class="carousel-slide"><img src="images/studies-process/Image.jpg" alt="Nautilus Hotel outdoor sign"></div>
         </div>
-        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+        <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
         <div class="carousel-counter"><span class="carousel-current">01</span> / 10</div>
       </div>
     </div>
