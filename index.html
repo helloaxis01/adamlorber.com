@@ -275,19 +275,24 @@
     font-family:var(--mono); font-size:12px; letter-spacing:0.04em; color:var(--ink);
     text-transform:none;
   }
+  .email-panel-actions{display:flex; align-items:center; gap:16px; flex-wrap:wrap;}
+  .email-panel-mail,
   .email-panel-copy{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
     color:var(--ink-dim); background:none; border:0; padding:0; margin:0; cursor:pointer;
     appearance:none; -webkit-appearance:none;
     transition:color .25s ease, background-color .25s ease;
+    width:fit-content;
+    padding-inline:var(--mark-pad-x);
+    margin-inline:calc(-1 * var(--mark-pad-x));
   }
+  .email-panel-mail:hover,
   .email-panel-copy:hover{color:var(--chartreuse);}
   .email-panel-copy.is-copied{color:var(--chartreuse);}
+  html[data-theme="light"] .email-panel-mail:hover,
   html[data-theme="light"] .email-panel-copy:hover,
   html[data-theme="light"] .email-panel-copy.is-copied{
     color:#1a1a19; background:var(--chartreuse);
-    padding-inline:var(--mark-pad-x);
-    margin-inline:calc(-1 * var(--mark-pad-x));
   }
   .pointer-egg{
     display:inline-flex; align-items:center;
@@ -639,8 +644,11 @@
           <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
         <div class="email-panel" id="contact-email-panel" hidden>
-          <a class="email-panel-address" href="mailto:hello@adamlorber.com">hello@adamlorber.com</a>
-          <button type="button" class="email-panel-copy" aria-live="polite">Copy</button>
+          <span class="email-panel-address">hello@adamlorber.com</span>
+          <div class="email-panel-actions">
+            <a class="email-panel-mail" href="mailto:hello@adamlorber.com">Mail</a>
+            <button type="button" class="email-panel-copy" aria-live="polite">Copy</button>
+          </div>
         </div>
       </div>
     </div>
