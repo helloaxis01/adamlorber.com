@@ -1,0 +1,61 @@
+/* Shared launch styles: responsive, tap targets, stats, media defaults.
+   Page-specific layout remains in each HTML <style> block. */
+
+img, video{
+  max-width:100%;
+  height:auto;
+}
+
+/* Larger tap targets for interactive chrome */
+.burger{
+  min-width:44px;
+  min-height:44px;
+  padding:10px !important;
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+}
+.carousel-arrow{
+  width:44px !important;
+  height:44px !important;
+}
+.stack-btn{
+  width:44px !important;
+  height:44px !important;
+}
+.contact-links a,
+.contact-links .email-toggle,
+.about-actions a,
+.about-actions .email-toggle{
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+}
+
+/* Stats: pad every cell to the page gutter when stacked */
+@media (max-width:900px){
+  .stats .stat{
+    padding-left:var(--gutter) !important;
+    padding-right:var(--gutter) !important;
+  }
+  .stat .num{
+    white-space:normal !important;
+  }
+}
+
+/* Tablet / iPad: breathe between phone and desktop */
+@media (min-width:901px) and (max-width:1100px){
+  .sitemap{
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+    gap:36px 40px !important;
+  }
+  .meta-row{
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  }
+  .stats{
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  }
+  .work-grid{
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  }
+}

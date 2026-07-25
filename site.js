@@ -149,4 +149,17 @@
       logo.addEventListener('click', function () { setMenuOpen(false); });
     }
   }
+
+  // Lazy-load below-the-fold images; keep early/hero images eager.
+  document.querySelectorAll('img').forEach(function (img, i) {
+    if (img.hasAttribute('loading')) return;
+    var eager = img.closest('.hero, .p-hero, .stack, .stack-wrap, header');
+    if (eager || i < 2) {
+      img.setAttribute('loading', 'eager');
+      img.setAttribute('decoding', 'async');
+      return;
+    }
+    img.setAttribute('loading', 'lazy');
+    img.setAttribute('decoding', 'async');
+  });
 })();
