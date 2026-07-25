@@ -38,10 +38,17 @@
       slot.classList.toggle('is-open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       address.setAttribute('aria-hidden', open ? 'false' : 'true');
+      address.tabIndex = open ? 0 : -1;
     }
 
-    toggle.addEventListener('click', function () {
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
       setOpen(!slot.classList.contains('is-open'));
+    });
+
+    address.addEventListener('click', function (e) {
+      e.stopPropagation();
     });
 
     document.addEventListener('keydown', function (e) {
@@ -49,7 +56,7 @@
     });
 
     document.addEventListener('click', function (e) {
-      if (slot.classList.contains('is-open') && !root.contains(e.target)) setOpen(false);
+      if (slot.classList.contains('is-open') && !slot.contains(e.target)) setOpen(false);
     });
   });
 

@@ -83,23 +83,19 @@
   .about-actions .resume{color:var(--ink); border-bottom:1px solid var(--line); padding-bottom:2px;}
   .about-actions .resume:hover{border-color:var(--line);}
   .email-slot{
-    display:inline-grid;
-    justify-items:start;
+    display:inline-flex;
     align-items:center;
+    gap:32px;
   }
-  .email-slot > *{grid-area:1 / 1;}
   .about-actions .email-address{
     font-family:var(--mono); font-size:11px; letter-spacing:0.04em; text-transform:none; color:var(--ink);
+    transition:color .25s ease, background-color .25s ease, opacity .2s ease;
     line-height:1.4;
-    visibility:hidden;
-    pointer-events:none;
-  }
-  .email-slot.is-open .email-toggle{
-    visibility:hidden;
+    opacity:0;
     pointer-events:none;
   }
   .email-slot.is-open .email-address{
-    visibility:visible;
+    opacity:1;
     pointer-events:auto;
   }
   .about-actions .email-address:hover{color:var(--chartreuse);}
@@ -134,7 +130,7 @@
   }
 
   html[data-theme="light"]{
-    --bg:#f4f7dc; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19; --chartreuse:#ebff12;
+    --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19; --chartreuse:#ebff12;
     --line:rgba(26,26,25,0.14);
   }
 
@@ -320,7 +316,7 @@
           <a class="resume" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
           <span class="email-slot">
             <button type="button" class="email-toggle" aria-expanded="false" aria-controls="about-email-address">Email</button>
-            <a class="email-address" id="about-email-address" href="mailto:hello@adamlorber.com" aria-hidden="true">hello@adamlorber.com</a>
+            <a class="email-address" id="about-email-address" href="mailto:hello@adamlorber.com" tabindex="-1" aria-hidden="true">hello@adamlorber.com</a>
           </span>
           <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
