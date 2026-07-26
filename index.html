@@ -27,7 +27,6 @@
   :root{
     --mark-pad-x:0.18em;
     --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
-    --cream:#f4f7dc;
     --line:rgba(220,218,211,0.16);
     --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
     --maxw:1320px;
@@ -63,7 +62,7 @@
   /* ---------- HERO : FULL BLEED ---------- */
   .hero{padding-top:158px; padding-bottom:0;}
   .hero-text{margin-bottom:32px;}
-  .hero-name{font-family:var(--serif); font-weight:500; font-size:clamp(26px,3.6vw,42px); line-height:1.25; color:var(--cream); max-width:min(1100px,100%); margin-top:18px; text-wrap:wrap;}
+  .hero-name{font-family:var(--serif); font-weight:500; font-size:clamp(26px,3.6vw,42px); line-height:1.25; color:var(--ink); max-width:min(1100px,100%); margin-top:18px; text-wrap:wrap;}
   .hero-name .m-br{display:none;}
   .hero-name .d-br{display:none;}
   .hero-name .hero-end{white-space:normal;}
@@ -235,9 +234,9 @@
   .contact{padding-block:64px;}
   .contact h2{
     font-family:var(--serif); font-weight:500; font-size:clamp(44px,10vw,140px); line-height:0.95;
-    cursor:default; width:fit-content; color:var(--cream);
+    cursor:default; width:fit-content;
   }
-  .contact h2 em{font-style:italic; color:var(--cream);}
+  .contact h2 em{font-style:italic; color:var(--ink);}
   .contact-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-top:40px;}
   .contact-links{display:flex; flex-direction:row; align-items:center; gap:32px; flex-wrap:wrap;}
   .contact-links a,
@@ -391,7 +390,6 @@
 
   html[data-theme="light"]{
     --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19; --chartreuse:#ebff12;
-    --cream:#1a1a19;
     --line:rgba(26,26,25,0.14);
   }
 
@@ -790,8 +788,8 @@
   function onPointerUp(){
     if (!dragging) return;
     dragging = false;
-    activeCard.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .45s ease, box-shadow .45s ease';
-    const elapsed = Date.now() - startTime;
+    const card = activeCard;
+    card.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .35s ease, box-shadow .45s ease';
     const absX = Math.abs(currentX);
     const absY = Math.abs(currentY);
     const intentionalSwipe = absX > 130 && absX > absY * 1.35;
@@ -799,9 +797,18 @@
     const intentionalTap = !didDrag && absX < 14 && absY < 14;
 
     if (intentionalSwipe){
-      advance(currentX < 0 ? 'next' : 'prev');
+      // Both directions peel like a photo stack (same as swipe-left).
+      const dir = currentX < 0 ? -1 : 1;
+      const fly = Math.max(window.innerWidth * 0.75, 480) * dir;
+      card.style.transform = `translate(${fly}px, 0) rotate(${dir * 16}deg)`;
+      card.style.opacity = '0';
+      window.setTimeout(function () {
+        card.style.transition = '';
+        card.style.opacity = '';
+        advance('next');
+      }, 280);
     } else if (intentionalTap){
-      const href = slugToHref[activeCard.dataset.slug];
+      const href = slugToHref[card.dataset.slug];
       if (href) window.location.href = href;
       else layout();
     } else {
