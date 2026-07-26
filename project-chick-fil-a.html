@@ -100,7 +100,8 @@
   .tiktok-pair{display:grid; grid-template-columns:1fr 1fr; gap:clamp(20px,3vw,40px); align-items:start; max-width:900px; margin:0 auto;}
   .tiktok-pair .shot{display:flex; flex-direction:column; gap:14px;}
   .tiktok-pair .p-image{aspect-ratio:auto; background:#0f0f0e;}
-  .tiktok-pair .p-image img{width:100%; height:auto; object-fit:contain;}
+  .tiktok-pair .p-image img,
+  .tiktok-pair .p-image video{width:100%; height:auto; object-fit:contain; display:block;}
 
   .labeled-shots{display:flex; flex-direction:column; gap:48px;}
   .labeled-shots .shot, .tiktok-pair .shot{display:flex; flex-direction:column; gap:14px;}
@@ -344,13 +345,13 @@
           <div class="shot">
             <span class="shot-label">Sauce Shuffle · Sandwich</span>
             <div class="p-image">
-              <img src="images/chick-fil-a/Chick-fil-A_Task2.gif" alt="Chick-fil-A TikTok sauce shuffle concept with sandwich background">
+              <video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with sandwich background" src="images/chick-fil-a/Chick-fil-A_Task2.mp4"></video>
             </div>
           </div>
           <div class="shot">
             <span class="shot-label">Sauce Shuffle · Nuggets</span>
             <div class="p-image">
-              <img src="images/chick-fil-a/Chick-fil-A_Task2_v2.gif" alt="Chick-fil-A TikTok sauce shuffle concept with nuggets">
+              <video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with nuggets" src="images/chick-fil-a/Chick-fil-A_Task2_v2.mp4"></video>
             </div>
           </div>
         </div>

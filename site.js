@@ -151,12 +151,21 @@
   }
 
   // Lazy-load below-the-fold images; keep early/hero images eager.
+  var prioritized = false;
   document.querySelectorAll('img').forEach(function (img, i) {
     if (img.hasAttribute('loading')) return;
     var eager = img.closest('.hero, .p-hero, .stack, .stack-wrap, header');
-    if (eager || i < 2) {
+    // First case-study hero frame after .p-hero
+    var caseHero = img.closest('.p-image') && img.closest('main') &&
+      img.closest('.p-image').previousElementSibling &&
+      img.closest('.p-image').previousElementSibling.classList.contains('p-hero');
+    if (eager || caseHero || i < 2) {
       img.setAttribute('loading', 'eager');
       img.setAttribute('decoding', 'async');
+      if (!prioritized && (caseHero || eager || i === 0)) {
+        img.setAttribute('fetchpriority', 'high');
+        prioritized = true;
+      }
       return;
     }
     img.setAttribute('loading', 'lazy');
