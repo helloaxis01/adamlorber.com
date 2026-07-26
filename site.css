@@ -151,16 +151,13 @@ html[data-theme="light"] .sitemap-col a.is-current{
   filter:none !important;
   -webkit-tap-highlight-color:transparent;
 }
-/* Crisp thin white outline (not a soft glow) so arrows read on any image */
+/* Outline is drawn in the SVG (white understroke + ink stroke). */
 .carousel-arrow svg{
-  stroke-width:1.5px !important;
-  filter:
-    drop-shadow(0.7px 0 0 #fff)
-    drop-shadow(-0.7px 0 0 #fff)
-    drop-shadow(0 0.7px 0 #fff)
-    drop-shadow(0 -0.7px 0 #fff) !important;
+  filter:none !important;
+  overflow:visible;
 }
 .carousel-arrow svg *{
+  filter:none !important;
   box-shadow:none !important;
 }
 .stack-btn{
