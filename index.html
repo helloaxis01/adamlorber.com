@@ -878,6 +878,7 @@
   });
 
   function onPointerDown(e){
+    if (peeling) return;
     const topCard = cards[order[0]];
     if (e.currentTarget !== topCard) return;
     dragging = true; activeCard = topCard; didDrag = false;
