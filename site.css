@@ -40,23 +40,26 @@ header.has-read-progress.scrolled{
   border-bottom-color:transparent !important;
 }
 
-/* Next project: narrow chartreuse band, black type + light motion */
+/* Next project: narrow ink-invert band + light motion
+   Dark page → light band; light page → dark band. Chartreuse only on title hover. */
 a.next{
-  background:var(--chartreuse) !important;
-  padding:40px 0 !important;
-  transition:filter .2s ease;
+  background:#dcdad3 !important;
+  padding:28px 0 !important;
   overflow:hidden;
+  transition:filter .2s ease;
 }
 a.next:hover{
-  filter:brightness(0.97);
+  filter:brightness(0.98);
 }
 a.next .next-label{
   color:rgba(26,26,25,0.55) !important;
-  margin-bottom:8px !important;
+  margin-bottom:6px !important;
   transition:letter-spacing .35s cubic-bezier(.65,0,.35,1), transform .35s cubic-bezier(.65,0,.35,1);
 }
 a.next .next-title{
-  transition:transform .4s cubic-bezier(.65,0,.35,1) !important;
+  color:#1a1a19 !important;
+  background:transparent !important;
+  transition:transform .4s cubic-bezier(.65,0,.35,1), color .25s ease, background-color .25s ease !important;
 }
 a.next:hover .next-label{
   letter-spacing:0.2em !important;
@@ -64,14 +67,23 @@ a.next:hover .next-label{
 }
 a.next:hover .next-title{
   transform:translateX(10px);
+  color:#1a1a19 !important;
+  background:var(--chartreuse) !important;
 }
-a.next .next-title,
-a.next:hover .next-title,
-html[data-theme="light"] a.next .next-title,
+html[data-theme="light"] a.next{
+  background:#1a1a19 !important;
+}
+html[data-theme="light"] a.next .next-label{
+  color:rgba(220,218,211,0.55) !important;
+}
+html[data-theme="light"] a.next .next-title{
+  color:#dcdad3 !important;
+  background:transparent !important;
+}
 html[data-theme="light"] a.next:hover .next-title,
 html[data-theme="light"] a.next .next-title:hover{
   color:#1a1a19 !important;
-  background:transparent !important;
+  background:var(--chartreuse) !important;
 }
 @media (prefers-reduced-motion:reduce){
   a.next .next-label,
@@ -85,7 +97,7 @@ html[data-theme="light"] a.next .next-title:hover{
   }
 }
 
-/* Chartreuse band already separates; drop the hairline under it */
+/* Invert band already separates; no hairline under it */
 a.next + .sitemap,
 a.next + .wrap.sitemap{
   border-top:none !important;
