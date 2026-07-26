@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://www.adamlorber.com/sitemap.xml
+
 Disallow: /private
 Disallow: /private.html
 Disallow: /questions
