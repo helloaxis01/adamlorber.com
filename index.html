@@ -839,6 +839,29 @@
     layout();
   }
 
+  // Arrow/keyboard: peel the front card off, then reorder.
+  // Next alone looked clean (deck undercard already visible); prev promoted a
+  // buried card (opacity 0) and faded in. Both directions now share one peel.
+  let peeling = false;
+  function peelAdvance(direction){
+    if (peeling) return;
+    peeling = true;
+    const card = cards[order[0]];
+    const dir = direction === 'next' ? -1 : 1;
+    const fly = Math.max(window.innerWidth * 0.75, 480) * dir;
+    card.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .35s ease, box-shadow .45s ease';
+    // Force a frame so the transition always runs from the current layout.
+    void card.offsetWidth;
+    card.style.transform = `translate(${fly}px, 0) rotate(${dir * 16}deg)`;
+    card.style.opacity = '0';
+    window.setTimeout(function () {
+      card.style.transition = '';
+      card.style.opacity = '';
+      advance(direction);
+      peeling = false;
+    }, 280);
+  }
+
   layout();
   var resizeTimer = null;
   window.addEventListener('resize', function () {
@@ -846,12 +869,12 @@
     resizeTimer = setTimeout(layout, 120);
   });
 
-  document.getElementById('stackNext').addEventListener('click', () => advance('next'));
-  document.getElementById('stackPrev').addEventListener('click', () => advance('prev'));
+  document.getElementById('stackNext').addEventListener('click', () => peelAdvance('next'));
+  document.getElementById('stackPrev').addEventListener('click', () => peelAdvance('prev'));
 
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') advance('next');
-    if (e.key === 'ArrowLeft') advance('prev');
+    if (e.key === 'ArrowRight') peelAdvance('next');
+    if (e.key === 'ArrowLeft') peelAdvance('prev');
   });
 
   function onPointerDown(e){
@@ -885,15 +908,19 @@
     const intentionalTap = !didDrag && absX < 14 && absY < 14;
 
     if (intentionalSwipe){
-      // Both directions peel like a photo stack (same as swipe-left).
-      const dir = currentX < 0 ? -1 : 1;
+      if (peeling) { layout(); return; }
+      peeling = true;
+      // Left swipe → next; right swipe → prev. Same peel, matching arrows.
+      const direction = currentX < 0 ? 'next' : 'prev';
+      const dir = direction === 'next' ? -1 : 1;
       const fly = Math.max(window.innerWidth * 0.75, 480) * dir;
       card.style.transform = `translate(${fly}px, 0) rotate(${dir * 16}deg)`;
       card.style.opacity = '0';
       window.setTimeout(function () {
         card.style.transition = '';
         card.style.opacity = '';
-        advance('next');
+        advance(direction);
+        peeling = false;
       }, 280);
     } else if (intentionalTap){
       const href = slugToHref[card.dataset.slug];
