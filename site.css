@@ -117,14 +117,12 @@ a.next + .wrap.sitemap{
 
 /* Active sitemap link */
 .sitemap-col a.is-current{
-  color:var(--ink) !important;
   text-decoration:underline !important;
   text-underline-offset:3px;
   text-decoration-thickness:1px;
   background:transparent !important;
 }
 html[data-theme="light"] .sitemap-col a.is-current{
-  color:var(--ink) !important;
   background:transparent !important;
 }
 
