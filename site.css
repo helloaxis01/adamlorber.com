@@ -146,6 +146,9 @@ html[data-theme="light"] .sitemap-col a.is-current{
   width:44px !important;
   height:44px !important;
 }
+.carousel-arrow svg{
+  filter:none !important;
+}
 .stack-btn{
   width:44px !important;
   height:44px !important;
