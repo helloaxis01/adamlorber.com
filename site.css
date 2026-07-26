@@ -47,7 +47,7 @@ a.next{
   overflow:hidden;
 }
 html[data-theme="light"] a.next{
-  background:color-mix(in srgb, #fff 10%, var(--bg)) !important;
+  background:color-mix(in srgb, #fff 20%, var(--bg)) !important;
 }
 a.next .next-label{
   color:var(--ink-dim) !important;
