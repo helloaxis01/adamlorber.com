@@ -259,33 +259,7 @@
     }
   }
 
-  // 6) Carousel ← → hint (once per session, first hover/focus)
-  var hintKey = 'carouselHintSeen';
-  var hintSeen = false;
-  try { hintSeen = sessionStorage.getItem(hintKey) === '1'; } catch (e) {}
-  if (!hintSeen && !prefersReducedMotion()) {
-    document.querySelectorAll('.block-carousel, .ba-carousel').forEach(function (carousel) {
-      var viewport = carousel.querySelector('.carousel-viewport') || carousel;
-      var hint = document.createElement('div');
-      hint.className = 'carousel-hint';
-      hint.textContent = '← →';
-      hint.setAttribute('aria-hidden', 'true');
-      viewport.appendChild(hint);
-      var shown = false;
-      function showHint() {
-        if (shown) return;
-        shown = true;
-        hint.classList.add('is-on');
-        try { sessionStorage.setItem(hintKey, '1'); } catch (err) {}
-        window.setTimeout(function () { hint.classList.remove('is-on'); }, 1800);
-        window.setTimeout(function () { if (hint.parentNode) hint.parentNode.removeChild(hint); }, 2200);
-      }
-      carousel.addEventListener('mouseenter', showHint, { once: true });
-      carousel.addEventListener('focusin', showHint, { once: true });
-    });
-  }
-
-  // 7) Active sitemap link for current page
+  // 6) Active sitemap link for current page
   (function () {
     var path = (window.location.pathname || '/').replace(/\/$/, '') || '/';
     document.querySelectorAll('.sitemap a[href]').forEach(function (a) {
@@ -302,7 +276,7 @@
     });
   })();
 
-  // 8) Stats count-up when metrics enter view
+  // 7) Stats count-up when metrics enter view
   (function () {
     if (prefersReducedMotion()) return;
     var nums = document.querySelectorAll('.stats .stat .num');

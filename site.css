@@ -115,36 +115,6 @@ a.next + .wrap.sitemap{
   }
 }
 
-/* Carousel keyboard hint */
-.carousel-hint{
-  position:absolute;
-  left:50%;
-  bottom:12px;
-  transform:translateX(-50%);
-  z-index:4;
-  font-family:var(--mono, 'IBM Plex Mono', monospace);
-  font-size:10px;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--ink, #dcdad3);
-  background:rgba(20,20,19,0.5);
-  padding:5px 9px;
-  border-radius:2px;
-  pointer-events:none;
-  opacity:0;
-  transition:opacity .25s ease;
-  backdrop-filter:blur(4px);
-  -webkit-backdrop-filter:blur(4px);
-}
-.carousel-hint.is-on{opacity:1;}
-html[data-theme="light"] .carousel-hint{
-  color:#faf9f6;
-  background:rgba(20,20,19,0.55);
-}
-@media (prefers-reduced-motion:reduce){
-  .carousel-hint{display:none !important;}
-}
-
 /* Active sitemap link */
 .sitemap-col a.is-current{
   color:var(--ink) !important;
