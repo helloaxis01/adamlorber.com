@@ -40,24 +40,23 @@ header.has-read-progress.scrolled{
   border-bottom-color:transparent !important;
 }
 
-/* Next project: narrow ink-invert band + light motion
-   Dark page → light band; light page → dark band. Chartreuse only on title hover. */
+/* Next project: narrow soft chartreuse wash + light motion */
 a.next{
-  background:#dcdad3 !important;
+  background:color-mix(in srgb, var(--chartreuse) 12%, var(--bg)) !important;
   padding:28px 0 !important;
   overflow:hidden;
   transition:filter .2s ease;
 }
 a.next:hover{
-  filter:brightness(0.98);
+  filter:brightness(0.99);
 }
 a.next .next-label{
-  color:rgba(26,26,25,0.55) !important;
+  color:var(--ink-dim) !important;
   margin-bottom:6px !important;
   transition:letter-spacing .35s cubic-bezier(.65,0,.35,1), transform .35s cubic-bezier(.65,0,.35,1);
 }
 a.next .next-title{
-  color:#1a1a19 !important;
+  color:var(--ink) !important;
   background:transparent !important;
   transition:transform .4s cubic-bezier(.65,0,.35,1), color .25s ease, background-color .25s ease !important;
 }
@@ -67,17 +66,7 @@ a.next:hover .next-label{
 }
 a.next:hover .next-title{
   transform:translateX(10px);
-  color:#1a1a19 !important;
-  background:var(--chartreuse) !important;
-}
-html[data-theme="light"] a.next{
-  background:#1a1a19 !important;
-}
-html[data-theme="light"] a.next .next-label{
-  color:rgba(220,218,211,0.55) !important;
-}
-html[data-theme="light"] a.next .next-title{
-  color:#dcdad3 !important;
+  color:var(--chartreuse) !important;
   background:transparent !important;
 }
 html[data-theme="light"] a.next:hover .next-title,
@@ -97,7 +86,7 @@ html[data-theme="light"] a.next .next-title:hover{
   }
 }
 
-/* Invert band already separates; no hairline under it */
+/* Soft wash still separates; no hairline under it */
 a.next + .sitemap,
 a.next + .wrap.sitemap{
   border-top:none !important;
