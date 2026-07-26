@@ -40,11 +40,14 @@ header.has-read-progress.scrolled{
   border-bottom-color:transparent !important;
 }
 
-/* Next project: narrow band ~10% darker than page bg; motion only on hover */
+/* Next project: narrow band — 10% darker in dark mode, 10% lighter in light; motion only on hover */
 a.next{
   background:color-mix(in srgb, #000 10%, var(--bg)) !important;
   padding:28px 0 !important;
   overflow:hidden;
+}
+html[data-theme="light"] a.next{
+  background:color-mix(in srgb, #fff 10%, var(--bg)) !important;
 }
 a.next .next-label{
   color:var(--ink-dim) !important;
