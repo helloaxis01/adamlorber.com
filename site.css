@@ -199,8 +199,30 @@ html[data-theme="light"] .sitemap-col a.is-current{
   }
 }
 
+/* Case sections: tighten vertical rhythm between 01–04 */
+.case-section{
+  padding-top:56px !important;
+  padding-bottom:56px !important;
+}
+.case-header{
+  margin-bottom:22px !important;
+}
+.case-blocks{
+  gap:28px !important;
+}
+.case-block.block-image + .case-block,
+.case-block.block-carousel + .case-block,
+.case-block.block-gif + .case-block,
+.case-block.block-gif-centered + .case-block{
+  padding-top:36px !important;
+}
+
 /* Stats: pad every cell to the page gutter when stacked */
 @media (max-width:900px){
+  .case-section{
+    padding-top:40px !important;
+    padding-bottom:40px !important;
+  }
   .stats .stat{
     padding-left:var(--gutter) !important;
     padding-right:var(--gutter) !important;
