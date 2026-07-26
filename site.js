@@ -242,7 +242,7 @@
   // 5) Case media fade-in on scroll
   if (!prefersReducedMotion()) {
     var revealNodes = document.querySelectorAll(
-      '.case-block.block-image, .case-block.block-carousel, .case-block.block-gif, .case-block.block-gif-centered, .case-section .p-image, .stats'
+      '.case-block.block-image, .case-block.block-carousel, .case-block.block-gif, .case-block.block-gif-centered, .stats'
     );
     if (revealNodes.length && 'IntersectionObserver' in window) {
       var mediaIo = new IntersectionObserver(function (entries) {
