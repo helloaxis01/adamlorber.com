@@ -145,9 +145,18 @@ html[data-theme="light"] .sitemap-col a.is-current{
 .carousel-arrow{
   width:44px !important;
   height:44px !important;
-}
-.carousel-arrow svg{
+  opacity:1 !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
   filter:none !important;
+  -webkit-tap-highlight-color:transparent;
+}
+.carousel-arrow svg,
+.carousel-arrow svg *{
+  filter:none !important;
+  box-shadow:none !important;
+  stroke-width:1.5px !important;
+  paint-order:normal;
 }
 .stack-btn{
   width:44px !important;
