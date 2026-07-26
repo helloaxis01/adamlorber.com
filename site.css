@@ -40,15 +40,11 @@ header.has-read-progress.scrolled{
   border-bottom-color:transparent !important;
 }
 
-/* Next project: narrow soft chartreuse wash + light motion */
+/* Next project: narrow band ~10% darker than page bg; motion only on hover */
 a.next{
-  background:color-mix(in srgb, var(--chartreuse) 12%, var(--bg)) !important;
+  background:color-mix(in srgb, #000 10%, var(--bg)) !important;
   padding:28px 0 !important;
   overflow:hidden;
-  transition:filter .2s ease;
-}
-a.next:hover{
-  filter:brightness(0.99);
 }
 a.next .next-label{
   color:var(--ink-dim) !important;
@@ -58,21 +54,19 @@ a.next .next-label{
 a.next .next-title{
   color:var(--ink) !important;
   background:transparent !important;
-  transition:transform .4s cubic-bezier(.65,0,.35,1), color .25s ease, background-color .25s ease !important;
+  transition:transform .4s cubic-bezier(.65,0,.35,1) !important;
 }
 a.next:hover .next-label{
   letter-spacing:0.2em !important;
   transform:translateX(2px);
 }
-a.next:hover .next-title{
-  transform:translateX(10px);
-  color:var(--chartreuse) !important;
-  background:transparent !important;
-}
+a.next:hover .next-title,
+a.next .next-title:hover,
 html[data-theme="light"] a.next:hover .next-title,
 html[data-theme="light"] a.next .next-title:hover{
-  color:#1a1a19 !important;
-  background:var(--chartreuse) !important;
+  transform:translateX(10px);
+  color:var(--ink) !important;
+  background:transparent !important;
 }
 @media (prefers-reduced-motion:reduce){
   a.next .next-label,
@@ -86,7 +80,7 @@ html[data-theme="light"] a.next .next-title:hover{
   }
 }
 
-/* Soft wash still separates; no hairline under it */
+/* Slightly darker band separates; no hairline under it */
 a.next + .sitemap,
 a.next + .wrap.sitemap{
   border-top:none !important;
