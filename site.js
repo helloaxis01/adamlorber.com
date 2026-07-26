@@ -28,27 +28,35 @@
     });
   }
 
-  document.querySelectorAll('.email-copy').forEach(function (el) {
-    el.addEventListener('click', function (e) {
+  document.querySelectorAll('[data-email-reveal]').forEach(function (root) {
+    var slot = root.querySelector('.email-slot');
+    var toggle = root.querySelector('.email-toggle');
+    var address = root.querySelector('.email-address');
+    if (!slot || !toggle || !address) return;
+
+    function setOpen(open) {
+      slot.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      address.setAttribute('aria-hidden', open ? 'false' : 'true');
+      address.tabIndex = open ? 0 : -1;
+    }
+
+    toggle.addEventListener('click', function (e) {
       e.preventDefault();
-      var email = el.getAttribute('data-email') || 'hello@adamlorber.com';
-      var status = el.querySelector('.email-copy-status');
-      function confirm() {
-        el.classList.add('is-copied');
-        if (status) status.textContent = 'Copied';
-        clearTimeout(el._copyTimer);
-        el._copyTimer = setTimeout(function () {
-          el.classList.remove('is-copied');
-          if (status) status.textContent = '';
-        }, 1600);
-      }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(email).then(confirm).catch(function () {
-          window.location.href = 'mailto:' + email;
-        });
-      } else {
-        window.location.href = 'mailto:' + email;
-      }
+      e.stopPropagation();
+      setOpen(!slot.classList.contains('is-open'));
+    });
+
+    address.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && slot.classList.contains('is-open')) setOpen(false);
+    });
+
+    document.addEventListener('click', function (e) {
+      if (slot.classList.contains('is-open') && !slot.contains(e.target)) setOpen(false);
     });
   });
 
@@ -141,4 +149,168 @@
       logo.addEventListener('click', function () { setMenuOpen(false); });
     }
   }
+
+  // Lazy-load below-the-fold images; keep early/hero images eager.
+  var prioritized = false;
+  document.querySelectorAll('img').forEach(function (img, i) {
+    if (img.hasAttribute('loading')) return;
+    var eager = img.closest('.hero, .p-hero, .stack, .stack-wrap, header');
+    // First case-study hero frame after .p-hero
+    var caseHero = img.closest('.p-image') && img.closest('main') &&
+      img.closest('.p-image').previousElementSibling &&
+      img.closest('.p-image').previousElementSibling.classList.contains('p-hero');
+    if (eager || caseHero || i < 2) {
+      img.setAttribute('loading', 'eager');
+      img.setAttribute('decoding', 'async');
+      if (!prioritized && (caseHero || eager || i === 0)) {
+        img.setAttribute('fetchpriority', 'high');
+        prioritized = true;
+      }
+      return;
+    }
+    img.setAttribute('loading', 'lazy');
+    img.setAttribute('decoding', 'async');
+  });
+
+  /* ---------- Launch interactions ---------- */
+
+  // 1) Carousel keyboard: ← / → while hovered or focused
+  var activeCarousel = null;
+  document.querySelectorAll('.block-carousel, .ba-carousel').forEach(function (carousel) {
+    if (!carousel.hasAttribute('tabindex')) carousel.setAttribute('tabindex', '0');
+    carousel.setAttribute('aria-label', carousel.getAttribute('aria-label') || 'Image gallery');
+    function activate() { activeCarousel = carousel; }
+    function deactivate() { if (activeCarousel === carousel) activeCarousel = null; }
+    carousel.addEventListener('mouseenter', activate);
+    carousel.addEventListener('mouseleave', deactivate);
+    carousel.addEventListener('focusin', activate);
+    carousel.addEventListener('focusout', function (e) {
+      if (!carousel.contains(e.relatedTarget)) deactivate();
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!activeCarousel) return;
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    if (e.target && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+    var btn = activeCarousel.querySelector(
+      e.key === 'ArrowLeft' ? '.carousel-prev' : '.carousel-next'
+    );
+    if (!btn) return;
+    e.preventDefault();
+    btn.click();
+  });
+
+  // 2) Case-study reading progress (fixed under sticky header)
+  var caseRoot = document.querySelector('main.p-page, main#top');
+  var caseSections = document.querySelectorAll('.case-section');
+  if (caseRoot && caseSections.length) {
+    var progress = document.createElement('div');
+    progress.className = 'read-progress';
+    progress.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(progress);
+    var headerForProgress = document.querySelector('header');
+    if (headerForProgress) headerForProgress.classList.add('has-read-progress');
+    function updateProgress() {
+      syncHeaderOffset();
+      var rect = caseRoot.getBoundingClientRect();
+      var total = Math.max(1, caseRoot.scrollHeight - window.innerHeight);
+      var scrolled = Math.min(total, Math.max(0, -rect.top));
+      progress.style.width = ((scrolled / total) * 100).toFixed(2) + '%';
+    }
+    updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+  }
+
+  // 3) Hover prefetch for internal project / study links
+  var prefetched = Object.create(null);
+  function prefetchHref(href) {
+    if (!href || prefetched[href]) return;
+    try {
+      var u = new URL(href, window.location.href);
+      if (u.origin !== window.location.origin) return;
+      if (u.pathname === window.location.pathname) return;
+    } catch (err) { return; }
+    prefetched[href] = true;
+    var link = document.createElement('link');
+    link.rel = 'prefetch';
+    link.href = href;
+    link.as = 'document';
+    document.head.appendChild(link);
+  }
+  document.querySelectorAll('a[href]').forEach(function (a) {
+    var href = a.getAttribute('href');
+    if (!href || href.charAt(0) === '#' || href.indexOf('mailto:') === 0) return;
+    if (/^(https?:)?\/\//i.test(href) && href.indexOf(window.location.origin) !== 0) return;
+    a.addEventListener('pointerenter', function () { prefetchHref(a.href); }, { passive: true });
+    a.addEventListener('focus', function () { prefetchHref(a.href); });
+  });
+
+  // 4) View Transitions: CSS @view-transition { navigation: auto } in site.css
+
+  // 5) Case media fade-in on scroll
+  if (!prefersReducedMotion()) {
+    var revealNodes = document.querySelectorAll(
+      '.case-block.block-image, .case-block.block-carousel, .case-block.block-gif, .case-block.block-gif-centered, .stats'
+    );
+    if (revealNodes.length && 'IntersectionObserver' in window) {
+      var mediaIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in');
+          mediaIo.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      revealNodes.forEach(function (el) {
+        el.classList.add('media-reveal');
+        mediaIo.observe(el);
+      });
+    }
+  }
+
+  // 6) Stats count-up when metrics enter view
+  (function () {
+    if (prefersReducedMotion()) return;
+    var nums = document.querySelectorAll('.stats .stat .num');
+    if (!nums.length || !('IntersectionObserver' in window)) return;
+
+    function parseStat(text) {
+      var raw = (text || '').replace(/\u00a0/g, ' ').trim();
+      var m = raw.match(/^([^\d]*)(\d+(?:\.\d+)?)(.*)$/);
+      if (!m) return null;
+      return { prefix: m[1], value: parseFloat(m[2]), suffix: m[3], decimals: (m[2].split('.')[1] || '').length };
+    }
+
+    function animateNum(el) {
+      var parsed = parseStat(el.textContent);
+      if (!parsed || !isFinite(parsed.value)) return;
+      var start = performance.now();
+      var dur = 900;
+      function frame(now) {
+        var t = Math.min(1, (now - start) / dur);
+        var eased = 1 - Math.pow(1 - t, 3);
+        var current = parsed.value * eased;
+        var display = parsed.decimals
+          ? current.toFixed(parsed.decimals)
+          : String(Math.round(current));
+        el.textContent = parsed.prefix + display + parsed.suffix;
+        if (t < 1) requestAnimationFrame(frame);
+        else el.textContent = parsed.prefix + (parsed.decimals ? parsed.value.toFixed(parsed.decimals) : String(Math.round(parsed.value))) + parsed.suffix;
+      }
+      el.textContent = parsed.prefix + (parsed.decimals ? (0).toFixed(parsed.decimals) : '0') + parsed.suffix;
+      requestAnimationFrame(frame);
+    }
+
+    var statsIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.num').forEach(animateNum);
+        statsIo.unobserve(entry.target);
+      });
+    }, { threshold: 0.35 });
+
+    document.querySelectorAll('.stats').forEach(function (stats) {
+      statsIo.observe(stats);
+    });
+  })();
 })();

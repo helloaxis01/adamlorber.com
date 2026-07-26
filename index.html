@@ -18,6 +18,94 @@
 <meta name="twitter:title" content="Adam Lorber · Art Director">
 <meta name="twitter:description" content="Art Director and Lead Designer in Los Angeles. Branding, art direction, and strategy for established brands and ambitious startups.">
 <meta name="twitter:image" content="https://www.adamlorber.com/og-image.jpg">
+<link rel="canonical" href="https://www.adamlorber.com/">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://www.adamlorber.com/#website",
+      "url": "https://www.adamlorber.com/",
+      "name": "Adam Lorber",
+      "description": "Art Director and Lead Designer in Los Angeles. Branding, art direction, and strategy for established brands and ambitious startups.",
+      "publisher": {"@id": "https://www.adamlorber.com/#person"}
+    },
+    {
+      "@type": "Person",
+      "@id": "https://www.adamlorber.com/#person",
+      "name": "Adam Lorber",
+      "url": "https://www.adamlorber.com/",
+      "image": "https://www.adamlorber.com/images/about/adam-lorber-portrait.jpg",
+      "jobTitle": "Art Director",
+      "description": "Art Director and Lead Designer based in Los Angeles.",
+      "email": "mailto:hello@adamlorber.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Los Angeles",
+        "addressRegion": "CA",
+        "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/adamlorber/"
+      ],
+      "knowsAbout": [
+        "Art Direction",
+        "Brand Identity",
+        "Packaging Design",
+        "Campaign Creative",
+        "Live Event Design"
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "name": "Selected work",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "Amazon Prime Video Sports",
+            "url": "https://www.adamlorber.com/amazon",
+            "creator": {"@id": "https://www.adamlorber.com/#person"}
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "Television Academy",
+            "url": "https://www.adamlorber.com/television-academy",
+            "creator": {"@id": "https://www.adamlorber.com/#person"}
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "Fount",
+            "url": "https://www.adamlorber.com/fount",
+            "creator": {"@id": "https://www.adamlorber.com/#person"}
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "CreativeWork",
+            "name": "Inflection",
+            "url": "https://www.adamlorber.com/inflection",
+            "creator": {"@id": "https://www.adamlorber.com/#person"}
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <script>!function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}}()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +127,7 @@
   img{display:block; max-width:100%;}
   ::selection{background:var(--gold); color:var(--bg);}
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
-  .wrap{max-width:var(--maxw); margin-left:0; margin-right:auto; padding-inline:var(--gutter);}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter);}
   .bleed{width:100%; margin-inline:calc(-1 * var(--gutter)); padding-inline:var(--gutter);}
 
   /* ---------- NAV ---------- */
@@ -144,11 +232,12 @@
   .stack-nav{display:flex; align-items:center; gap:18px;}
   .stack-count{font-family:var(--mono); font-size:11px; color:var(--ink-dim); min-width:52px; text-align:center;}
   .stack-btn{
-    width:36px; height:36px; border-radius:50%; border:1px solid var(--line); background:none; color:var(--ink);
-    display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:14px;
-    transition:border-color .2s ease, color .2s ease;
+    width:40px; height:40px; border:0; border-radius:0; background:transparent; color:var(--ink);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; padding:0;
+    opacity:0.75; transition:opacity .2s ease, color .2s ease;
   }
-  .stack-btn:hover{border-color:var(--ink); color:var(--ink);}
+  .stack-btn svg{width:20px; height:20px; display:block;}
+  .stack-btn:hover{opacity:1; color:var(--ink);}
   .scroll-cue{display:none;}
 
   .reveal{opacity:1; transform:translateY(16px); transition:transform .7s ease;}
@@ -236,25 +325,60 @@
   }
   .contact h2 em{font-style:italic; color:var(--ink);}
   .contact-row{display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; margin-top:40px;}
-  .contact-links{display:flex; flex-direction:row; gap:32px; flex-wrap:wrap;}
-  .contact-links a{
+  .contact-links{display:flex; flex-direction:row; align-items:center; gap:32px; flex-wrap:wrap;}
+  .contact-links a,
+  .contact-links .email-toggle{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
     transition:color .25s ease, background-color .25s ease;
-  }
-  .contact-links .email-copy-label{
-    transition:color .25s ease, background-color .25s ease;
+    background:none; border:0; padding:0; margin:0; cursor:pointer;
+    appearance:none; -webkit-appearance:none;
+    line-height:1;
   }
   .contact-links a:hover,
-  .contact-links.is-lit a{/* highlight via shared mark styles */}
+  .contact-links.is-lit a:not(.email-address),
+  .contact-links .email-toggle:hover,
+  .contact-links.is-lit .email-toggle,
+  .contact-links .email-slot.is-open .email-toggle{/* highlight via shared mark styles */}
   .contact-links.is-lit a:nth-child(1){transition-delay:0s;}
-  .contact-links.is-lit a:nth-child(2),
-  .contact-links.is-lit a:nth-child(2) .email-copy-label{transition-delay:0.1s;}
-  .contact-links.is-lit a:nth-child(3){transition-delay:0.2s;}
+  .contact-links.is-lit .email-toggle{transition-delay:0.1s;}
+  .contact-links.is-lit .contact-linkedin{transition-delay:0.2s;}
   @media (prefers-reduced-motion: reduce){
     .contact-links a,
-    .contact-links .email-copy-label{transition:none;}
+    .contact-links .email-toggle{transition:none;}
     .contact-links.is-lit a,
-    .contact-links.is-lit a .email-copy-label{transition-delay:0s;}
+    .contact-links.is-lit .email-toggle{transition-delay:0s;}
+  }
+  /* Collapsed: Email sits in the row with even gaps. Open: address expands and shifts LinkedIn right. */
+  .email-slot{
+    display:inline-flex;
+    align-items:center;
+    gap:0;
+  }
+  .email-slot.is-open{gap:32px;}
+  .contact-links .email-address,
+  .about-actions .email-address{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.04em; text-transform:none; color:var(--ink);
+    transition:color .25s ease, background-color .25s ease, opacity .2s ease, max-width .2s ease;
+    line-height:1;
+    display:inline-flex;
+    align-items:center;
+    max-width:0;
+    opacity:0;
+    overflow:hidden;
+    white-space:nowrap;
+    vertical-align:middle;
+    pointer-events:none;
+  }
+  .email-slot.is-open .email-address{
+    max-width:20rem;
+    opacity:1;
+    pointer-events:auto;
+  }
+  .contact-links .email-address:hover,
+  .about-actions .email-address:hover{color:var(--chartreuse);}
+  html[data-theme="light"] .contact-links .email-address:hover,
+  html[data-theme="light"] .about-actions .email-address:hover{
+    color:#1a1a19; background:var(--chartreuse);
   }
   .pointer-egg{
     display:inline-flex; align-items:center;
@@ -349,7 +473,7 @@
     .label-row{margin-bottom:36px;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
     .contact{padding-block:56px;}
-    .contact-links{flex-direction:column; align-items:flex-start; gap:18px;}
+    .contact-links{flex-direction:column; align-items:flex-start; gap:8px;}
   }
 
   html[data-theme="light"]{
@@ -364,7 +488,9 @@
   .study h3,
   .study span,
   .contact-links a,
+  .contact-links .email-toggle,
   .about-actions a,
+  .about-actions .email-toggle,
   .err-cta{
     width:fit-content;
     max-width:100%;
@@ -376,9 +502,14 @@
   .next-title:hover,
   .study:hover h3,
   .study:hover span,
-  .contact-links a:hover,
-  .contact-links.is-lit a,
-  .about-actions a:hover,
+  .contact-links a:not(.email-address):hover,
+  .contact-links.is-lit a:not(.email-address),
+  .contact-links .email-toggle:hover,
+  .contact-links.is-lit .email-toggle,
+  .contact-links .email-slot.is-open .email-toggle,
+  .about-actions a:not(.email-address):hover,
+  .about-actions .email-toggle:hover,
+  .about-actions .email-slot.is-open .email-toggle,
   .err-cta:hover,
   .theme-toggle:hover{
     color:var(--chartreuse);
@@ -389,9 +520,14 @@
   html[data-theme="light"] .next-title:hover,
   html[data-theme="light"] .study:hover h3,
   html[data-theme="light"] .study:hover span,
-  html[data-theme="light"] .contact-links a:hover,
-  html[data-theme="light"] .contact-links.is-lit a,
-  html[data-theme="light"] .about-actions a:hover,
+  html[data-theme="light"] .contact-links a:not(.email-address):hover,
+  html[data-theme="light"] .contact-links.is-lit a:not(.email-address),
+  html[data-theme="light"] .contact-links .email-toggle:hover,
+  html[data-theme="light"] .contact-links.is-lit .email-toggle,
+  html[data-theme="light"] .contact-links .email-slot.is-open .email-toggle,
+  html[data-theme="light"] .about-actions a:not(.email-address):hover,
+  html[data-theme="light"] .about-actions .email-toggle:hover,
+  html[data-theme="light"] .about-actions .email-slot.is-open .email-toggle,
   html[data-theme="light"] .err-cta:hover,
   html[data-theme="light"] .theme-toggle:hover{
     color:#1a1a19;
@@ -438,7 +574,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:calc(-1 * var(--mark-pad-x));
   }
   html[data-theme="light"] .flourish::before,
   html[data-theme="light"] .flourish::after{
@@ -453,46 +588,8 @@
     transition:color .15s ease, background-color .15s ease;
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
-  
-  .contact-links a.email-copy,
-  .about-actions a.email-copy{
-    position:relative; display:inline-block;
-    padding-inline:0;
-    margin-inline:0;
-  }
-  .email-copy .email-copy-label{
-    padding-inline:var(--mark-pad-x);
-    margin-inline:calc(-1 * var(--mark-pad-x));
-  }
-  .email-copy-status{
-    position:absolute; left:calc(100% + 10px); top:50%; transform:translateY(calc(-50% + 2px));
-    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
-    color:#faf9f6; opacity:0; white-space:nowrap; pointer-events:none;
-    transition:opacity .25s ease, transform .25s ease;
-  }
-  html[data-theme="light"] .email-copy-status{color:var(--ink);}
-  .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(-50%);}
-  .contact-links a.email-copy:hover,
-  .contact-links.is-lit a.email-copy,
-  .about-actions a.email-copy:hover,
-  html[data-theme="light"] .contact-links a.email-copy:hover,
-  html[data-theme="light"] .contact-links.is-lit a.email-copy,
-  html[data-theme="light"] .about-actions a.email-copy:hover{
-    background:transparent;
-  }
-  .contact-links a.email-copy:hover .email-copy-label,
-  .contact-links.is-lit a.email-copy .email-copy-label,
-  .about-actions a.email-copy:hover .email-copy-label{
-    color:var(--chartreuse);
-  }
-  html[data-theme="light"] .contact-links a.email-copy:hover .email-copy-label,
-  html[data-theme="light"] .contact-links.is-lit a.email-copy .email-copy-label,
-  html[data-theme="light"] .about-actions a.email-copy:hover .email-copy-label{
-    color:#1a1a19;
-    background:var(--chartreuse);
-  }
-  .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
 </style>
+  <link rel="stylesheet" href="/site.css?v=sitemap5">
 </head>
 <body>
 
@@ -538,9 +635,9 @@
 
   <div class="stack-controls">
     <div class="stack-nav">
-      <button class="stack-btn" id="stackPrev" aria-label="Previous">←</button>
-      <span class="stack-count" id="stackCount">01 / 06</span>
-      <button class="stack-btn" id="stackNext" aria-label="Next">→</button>
+      <button class="stack-btn" id="stackPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <span class="stack-count" id="stackCount">01 / 07</span>
+      <button class="stack-btn" id="stackNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     </div>
   </div>
 
@@ -624,10 +721,13 @@
   <section id="contact" class="wrap contact">
     <h2 class="reveal">Say <em>hello</em>.</h2>
     <div class="contact-row reveal">
-      <div class="contact-links">
-        <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-        <a href="mailto:hello@adamlorber.com" class="email-copy" data-email="hello@adamlorber.com" aria-label="Copy email hello@adamlorber.com"><span class="email-copy-label">Email</span><span class="email-copy-status" aria-live="polite"></span></a>
-        <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="contact-links" data-email-reveal>
+        <a href="resume.pdf" download="Resume_AdamLorber.pdf" target="_blank" rel="noopener">Resume</a>
+        <span class="email-slot">
+          <button type="button" class="email-toggle" aria-expanded="false" aria-controls="contact-email-address">Email</button>
+          <a class="email-address" id="contact-email-address" href="mailto:hello@adamlorber.com" tabindex="-1" aria-hidden="true">hello@adamlorber.com</a>
+        </span>
+        <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
   </section>
@@ -664,7 +764,7 @@
   </div>
 
   <footer class="wrap">
-    <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
+    <span>© 2026 Adam Lorber</span>
     <a href="#top">Back to top ↑</a>
   </footer>
 
@@ -776,8 +876,8 @@
   function onPointerUp(){
     if (!dragging) return;
     dragging = false;
-    activeCard.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .45s ease, box-shadow .45s ease';
-    const elapsed = Date.now() - startTime;
+    const card = activeCard;
+    card.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .35s ease, box-shadow .45s ease';
     const absX = Math.abs(currentX);
     const absY = Math.abs(currentY);
     const intentionalSwipe = absX > 130 && absX > absY * 1.35;
@@ -785,9 +885,18 @@
     const intentionalTap = !didDrag && absX < 14 && absY < 14;
 
     if (intentionalSwipe){
-      advance(currentX < 0 ? 'next' : 'prev');
+      // Both directions peel like a photo stack (same as swipe-left).
+      const dir = currentX < 0 ? -1 : 1;
+      const fly = Math.max(window.innerWidth * 0.75, 480) * dir;
+      card.style.transform = `translate(${fly}px, 0) rotate(${dir * 16}deg)`;
+      card.style.opacity = '0';
+      window.setTimeout(function () {
+        card.style.transition = '';
+        card.style.opacity = '';
+        advance('next');
+      }, 280);
     } else if (intentionalTap){
-      const href = slugToHref[activeCard.dataset.slug];
+      const href = slugToHref[card.dataset.slug];
       if (href) window.location.href = href;
       else layout();
     } else {

@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fount · Adam Lorber</title>
+<meta name="description" content="Lead Designer at Fount: Series A materials, FDA-compliant packaging, app UI, and brand systems for a health and wellness startup.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fount · Adam Lorber">
+<meta property="og:description" content="Lead Designer at Fount: Series A materials, FDA-compliant packaging, app UI, and brand systems for a health and wellness startup.">
+<meta property="og:image" content="https://www.adamlorber.com/images/fount/thumbnail.jpg">
+<meta property="og:url" content="https://www.adamlorber.com/fount">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fount · Adam Lorber">
+<meta name="twitter:description" content="Lead Designer at Fount: Series A materials, FDA-compliant packaging, app UI, and brand systems for a health and wellness startup.">
+<meta name="twitter:image" content="https://www.adamlorber.com/images/fount/thumbnail.jpg">
+<link rel="canonical" href="https://www.adamlorber.com/fount">
 <link rel="icon" href="/favicon.ico?v=3" sizes="any">
 <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
@@ -57,8 +68,8 @@
   .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--bg);}
   .p-image img{width:100%; height:100%; object-fit:cover;}
 
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
-  .stat{background:var(--bg); padding:36px clamp(16px,3.5vw,48px);}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 auto 48px; max-width:var(--maxw); width:100%; box-sizing:border-box;}
+  .stat{background:var(--bg); padding:36px clamp(16px,2vw,28px);} .stat:first-child{padding-left:var(--gutter);} .stat:last-child{padding-right:var(--gutter);}
   .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
   .stat .stat-star{font-size:0.55em; margin-left:0.12em; vertical-align:0.2em;}
   .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
@@ -98,6 +109,26 @@
   html[data-theme="light"] .case-block.block-text a:hover{color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;}
   .case-block.block-text strong{color:var(--ink); font-weight:600;}
   .case-block .p-image{aspect-ratio:16/9;}
+  .case-block.block-text a.press-link{
+    color:var(--chartreuse);
+    text-decoration:underline;
+    text-underline-offset:3px;
+  }
+  .case-block.block-text a.press-link:hover{
+    color:var(--chartreuse);
+    background:transparent;
+  }
+  html[data-theme="light"] .case-block.block-text a.press-link{
+    color:#1a1a19;
+    background:var(--chartreuse);
+    padding-inline:0.35em;
+    margin-inline:-0.35em;
+    text-decoration:none;
+  }
+  html[data-theme="light"] .case-block.block-text a.press-link:hover{
+    color:#1a1a19;
+    background:var(--chartreuse);
+  }
   .case-block video{width:100%; height:100%; object-fit:cover; display:block; background:#000;}
   .case-block .block-cap{font-family:var(--mono); font-size:11px; color:var(--ink-dim); margin-top:14px; max-width:820px; line-height:1.5;}
 
@@ -156,27 +187,30 @@
   }
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); z-index:3;
-    width:28px; height:28px; border-radius:50%; border:1px solid rgba(220,218,211,0.22);
-    background:rgba(20,20,19,0.45); color:var(--ink); font-size:13px; line-height:1; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);
-    padding:0;
+    width:40px; height:40px; border:0; border-radius:0;
+    background:transparent; color:#1a1a19; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:0; opacity:1; transition:opacity 0.2s ease, color 0.2s ease;
   }
-  .carousel-arrow:hover{border-color:var(--gold); color:var(--gold); background:rgba(20,20,19,0.65);}
-  .carousel-prev{left:10px;}
-  .carousel-next{right:10px;}
+  .carousel-arrow svg{
+    width:20px; height:20px; display:block;
+  }
+  .carousel-arrow:hover{opacity:1; color:#000; background:transparent;}
+  .carousel-prev{left:4px;}
+  .carousel-next{right:4px;}
   .carousel-counter{
     position:absolute; bottom:10px; right:10px; z-index:3; font-family:var(--mono); font-size:10px;
     letter-spacing:0.06em; color:var(--ink); background:rgba(20,20,19,0.45); padding:3px 7px; border-radius:2px; backdrop-filter:blur(4px);
   }
   html[data-theme="light"] .carousel-arrow{
-    color:#faf9f6;
-    border-color:rgba(250,249,246,0.35);
-    background:rgba(20,20,19,0.55);
+    color:#1a1a19;
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-arrow:hover{
-    color:#faf9f6;
-    border-color:rgba(250,249,246,0.7);
-    background:rgba(20,20,19,0.75);
+    color:#000;
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-counter{
     color:#faf9f6;
@@ -296,7 +330,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:-0.35em;
   }
 
   .theme-toggle{
@@ -345,8 +378,8 @@
     color:#1a1a19;
     background:var(--chartreuse);
   }
-  .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
 </style>
+  <link rel="stylesheet" href="/site.css?v=sitemap5">
 </head>
 <body>
 
@@ -369,15 +402,15 @@
   <a href="/#contact">Contact</a>
 </div>
 
-<main>
+<main id="top">
   <div class="wrap p-hero">
     <p class="p-eyebrow">Case study · In-House</p>
     <h1 class="p-title">Fount</h1>
-    <p class="p-sub">Sole creative for a wellness startup moving from concept to a premium brand. Full system, site redesign, and FlyKitt launch in my first 30 days.</p>
+    <p class="p-sub">Top-performer wellness. First public product. Thirty days.</p>
 
     <div class="meta-row">
       <div>Role<strong>Lead Designer</strong></div>
-      <div>Years<strong>2022–2025</strong></div>
+      <div>Years<strong>2022–2023</strong></div>
       <div>Scope<strong>Brand, identity, packaging, photo shoots, website and app UI</strong></div>
       <div>Milestone<strong>Series A support</strong></div>
     </div>
@@ -396,15 +429,15 @@
   <section class="wrap case-section" data-section="challenge">
     <div class="case-header"><span class="section-label">01 · Challenge</span></div>
     <div class="case-blocks" data-blocks="challenge">
-      <div class="case-block block-text"><p>Fount needed to look like a serious wellness brand while launching its first consumer product on a tight timeline. As the sole creative, I worked directly with leadership on brand strategy, packaging, photography, and app UI alongside engineering.</p></div>
+      <div class="case-block block-text"><p>Fount needed to look like a serious wellness brand while launching its first consumer product on a tight timeline. Strategy, packaging, photography, and app UI moved together with engineering, not in sequence.</p></div>
       <div class="case-block block-carousel" id="carousel-beforeafter">
         <div class="carousel-viewport">
           <div class="carousel-track">
             <div class="carousel-slide"><img src="images/fount/beforeafter-01.jpg" alt="FlyKitt packaging after redesign, full view"></div>
             <div class="carousel-slide"><img src="images/fount/beforeafter-02.jpg" alt="FlyKitt packaging before redesign, detail view"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
         </div>
         <p class="block-cap">The new FlyKitt packaging design features a lighter color palette for better visual recognition on nighttime flights, and enhanced color capsule callouts that include function names for easier pill identification.</p>
@@ -414,7 +447,7 @@
         <p class="block-cap">FlyKitt Bundle press photo, showing the redesigned packaging, product renders, and redesigned app UI.</p>
       </div>
 
-      <div class="case-block block-text"><p>Videos I art directed and produced for Fount and FlyKitt, including a brand film, a testimonial, and looping heroes for fount.bio and the FlyKitt site.</p></div>
+      <div class="case-block block-text"><p>Brand film, testimonial, and looping heroes for fount.bio and the FlyKitt site, art directed and produced to carry the same premium tone as the product.</p></div>
       <div class="case-block block-image">
         <div class="p-image"><video controls playsinline preload="metadata" poster="images/fount-deep-dive/posters/video-overview.jpg" src="images/fount-deep-dive/video-overview.mp4"></video></div>
         <p class="block-cap">Fount Overview Video</p>
@@ -431,13 +464,14 @@
         <div class="p-image"><video controls playsinline muted loop preload="metadata" poster="images/fount-deep-dive/posters/video-flykitt-loop.jpg" src="images/fount-deep-dive/video-flykitt-loop.mp4"></video></div>
         <p class="block-cap">FlyKitt looping hero video</p>
       </div>
+      <div class="case-block block-text"><p>As the first design hire and Lead Designer, I built the visual language from the ground up: Series A investor materials, FDA-compliant packaging for FlyKitt and the supplement lines, website and app with engineering, on-location lifestyle and product shoots, and the production systems that kept a lean team shipping.</p></div>
     </div>
   </section>
 
   <section class="wrap case-section" data-section="approach">
     <div class="case-header"><span class="section-label">02 · Approach</span></div>
     <div class="case-blocks" data-blocks="approach">
-      <div class="case-block block-text"><p>Samples of the lifestyle shoot I art directed. These ran on Axios, in press, and on fount.bio.</p></div>
+      <div class="case-block block-text"><p>Lifestyle photography built for press and product, work that ran on Axios, in coverage, and on fount.bio.</p></div>
       <div class="case-block block-carousel" id="carousel-lifestyle">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -454,13 +488,13 @@
             <div class="carousel-slide"><img src="images/fount/fount-bloodwork-2.jpeg" alt="Blood sample vials ready for lab analysis"></div>
             <div class="carousel-slide"><img src="images/fount/fount-training-session.jpeg" alt="Coach working with a client during a Fount training session"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 12</div>
         </div>
       </div>
 
-      <div class="case-block block-text"><p>I created brand guidelines so the box, the site, and the app felt like a cohesive brand. Product shots below use the final FlyKitt packaging.</p></div>
+      <div class="case-block block-text"><p>Brand guidelines so the box, the site, and the app felt like one system. Product shots below use the final FlyKitt packaging.</p></div>
       <div class="case-block block-carousel" id="carousel-product">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -471,19 +505,19 @@
             <div class="carousel-slide"><img src="images/fount/product-shoot-9671.jpg" alt="FlyKitt app screens shown on three phones"></div>
             <div class="carousel-slide"><img src="images/fount/flykitt-refill.jpg" alt="FlyKitt refill packaging boxes"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 06</div>
         </div>
       </div>
 
-      <div class="case-block block-text"><p>When shoot costs started climbing, I pitched an AI route instead. Through Midjourney and Photoshop I developed a hero that led FlyKitt for years and is still used to this day. Additional images were created for use in the app, website, marketing materials, and sales deck.</p></div>
+      <div class="case-block block-text"><p>When shoot costs climbed, I pitched an AI route. A Midjourney and Photoshop hero led FlyKitt for years and is still in use, with more images built for the app, site, marketing, and sales deck.</p></div>
       <div class="case-block block-image">
         <div class="p-image crop-16x9"><img src="images/fount/ai-hero-face.jpg" alt="AI-generated hero image, the face of FlyKitt"></div>
         <p class="block-cap">The face of FlyKitt, an AI image created with Midjourney, ChatGPT, and generative AI in Photoshop, used in place of an on-location photo shoot and saving the company upwards of $50K.</p>
       </div>
 
-      <div class="case-block block-text"><p>Identities and marks I designed for various products and pricing tiers, including FlyKitt, Fount Chat, and the membership tiers One, Pro, and Black.</p></div>
+      <div class="case-block block-text"><p>Identities and marks across the product line, including FlyKitt, Fount Chat, and membership tiers One, Pro, and Black.</p></div>
       <div class="case-block block-carousel" id="carousel-logos">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -493,30 +527,30 @@
             <div class="carousel-slide"><img src="images/fount/logo-05.jpg" alt="Fount Black logo"></div>
             <div class="carousel-slide"><img src="images/fount/logo-04.jpg" alt="Fount Chat logo"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
         </div>
       </div>
       <div class="case-block block-image joins-prev">
-        <div class="p-image"><img src="images/fount/fount-pricing-tiers.png" alt="Fount membership tiers, One, Pro, and Black pricing"></div>
+        <div class="p-image"><img src="images/fount/fount-pricing-tiers.jpg" alt="Fount membership tiers, One, Pro, and Black pricing"></div>
         <p class="block-cap">One brand system, three membership tiers, from $399/mo to a fully bespoke Black tier.</p>
       </div>
 
-      <div class="case-block block-text"><p>Website design for Fount and FlyKitt, featuring static heroes and looping video.</p></div>
+      <div class="case-block block-text"><p>Sites for Fount and FlyKitt with static heroes and looping video, tuned to the same system.</p></div>
       <div class="case-block block-carousel" id="carousel-websites">
         <div class="carousel-viewport">
           <div class="carousel-track">
-            <div class="carousel-slide"><img src="images/fount/website-flykitt.png" alt="FlyKitt website design"></div>
-            <div class="carousel-slide"><img src="images/fount/website-fount.png" alt="Fount website design"></div>
+            <div class="carousel-slide"><img src="images/fount/website-flykitt.jpg" alt="FlyKitt website design"></div>
+            <div class="carousel-slide"><img src="images/fount/website-fount.jpg" alt="Fount website design"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
         </div>
       </div>
 
-      <div class="case-block block-text"><p>I partnered with engineering on the FlyKitt app and website to simplify how performance data is presented, so it reads clearly at a glance. Because many members use the app on night flights, we built a permanent dark mode. The app holds a 4.7 star rating in the App Store.</p></div>
+      <div class="case-block block-text"><p>With engineering, FlyKitt’s performance data was simplified to read at a glance. Permanent dark mode for night flights. The app holds a 4.7 star rating in the App Store.</p></div>
       <div class="case-block block-appstore">
         <div class="appstore-row">
           <img src="images/fount/appstore-06.jpg" alt="FlyKitt App Store screenshot">
@@ -536,12 +570,11 @@
   <section class="wrap case-section" data-section="outcome">
     <div class="case-header"><span class="section-label">03 · Outcome</span></div>
     <div class="case-blocks" data-blocks="outcome">
-      <div class="case-block block-text"><p>FlyKitt launched in 30 days and was refined over the next year. Investor decks I designed helped lead a successful Series A. The system scaled as needed in all forms, from FDA compliant packaging to brand videos, all while looking sleek, modern, high end, and trustworthy.</p></div>
-      <div class="case-block block-text"><p><a href="https://www.businesswire.com/news/home/20230315005126/en/Fount-Announces-%2412M-Series-A-Fundraise-to-Redefine-the-Future-of-Human-Health-and-Performance" target="_blank" rel="noopener">Fount announces $12M Series A</a>. Business Wire, March 2023.</p></div>
+      <div class="case-block block-text"><p>FlyKitt launched in 30 days and refined over the next year. Investor decks I designed supported a successful Series A. The system scaled from FDA-compliant packaging to brand video: sleek, modern, high-end, and trustworthy.</p></div>
+      <div class="case-block block-text"><p><a class="press-link" href="https://www.businesswire.com/news/home/20230315005126/en/Fount-Announces-%2412M-Series-A-Fundraise-to-Redefine-the-Future-of-Human-Health-and-Performance" target="_blank" rel="noopener">Fount announces $12M Series A</a><br>Business Wire, March 2023</p></div>
     </div>
   </section>
 
-  <div class="wrap"><div class="section-end-rule"></div></div>
 
   <a href="/inflection" class="next">
     <div class="wrap">
@@ -582,8 +615,8 @@
   </div>
 
   <footer class="wrap">
-    <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
-    <a href="/#top">Back to top ↑</a>
+    <span>© 2026 Adam Lorber</span>
+    <a href="#top">Back to top ↑</a>
   </footer>
 </main>
 

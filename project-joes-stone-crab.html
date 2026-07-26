@@ -3,7 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Joe&rsquo;s Stone Crab · Adam Lorber</title>
+<title>Joe's Stone Crab · Adam Lorber</title>
+<meta name="description" content="Art direction and photography for Joe's Stone Crab 100th anniversary book.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Joe's Stone Crab · Adam Lorber">
+<meta property="og:description" content="Art direction and photography for Joe's Stone Crab 100th anniversary book.">
+<meta property="og:image" content="https://www.adamlorber.com/images/joes-stone-crab/thumbnail.jpg">
+<meta property="og:url" content="https://www.adamlorber.com/joes-stone-crab">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Joe's Stone Crab · Adam Lorber">
+<meta name="twitter:description" content="Art direction and photography for Joe's Stone Crab 100th anniversary book.">
+<meta name="twitter:image" content="https://www.adamlorber.com/images/joes-stone-crab/thumbnail.jpg">
+<link rel="canonical" href="https://www.adamlorber.com/joes-stone-crab">
 <link rel="icon" href="/favicon.ico?v=3" sizes="any">
 <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
@@ -57,8 +68,8 @@
   .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--bg);}
   .p-image img{width:100%; height:100%; object-fit:cover;}
 
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
-  .stat{background:var(--bg); padding:36px clamp(16px,3.5vw,48px);}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 auto 48px; max-width:var(--maxw); width:100%; box-sizing:border-box;}
+  .stat{background:var(--bg); padding:36px clamp(16px,2vw,28px);} .stat:first-child{padding-left:var(--gutter);} .stat:last-child{padding-right:var(--gutter);}
   .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
   .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
 
@@ -115,27 +126,30 @@
   .carousel-slide img{width:100%; height:100%; object-fit:cover; -webkit-user-drag:none; user-select:none; pointer-events:none;}
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); z-index:3;
-    width:28px; height:28px; border-radius:50%; border:1px solid rgba(220,218,211,0.22);
-    background:rgba(20,20,19,0.45); color:var(--ink); font-size:13px; line-height:1; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);
-    padding:0;
+    width:40px; height:40px; border:0; border-radius:0;
+    background:transparent; color:#1a1a19; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:0; opacity:1; transition:opacity 0.2s ease, color 0.2s ease;
   }
-  .carousel-arrow:hover{border-color:var(--gold); color:var(--gold); background:rgba(20,20,19,0.65);}
-  .carousel-prev{left:10px;}
-  .carousel-next{right:10px;}
+  .carousel-arrow svg{
+    width:20px; height:20px; display:block;
+  }
+  .carousel-arrow:hover{opacity:1; color:#000; background:transparent;}
+  .carousel-prev{left:4px;}
+  .carousel-next{right:4px;}
   .carousel-counter{
     position:absolute; bottom:10px; right:10px; z-index:3; font-family:var(--mono); font-size:10px;
     letter-spacing:0.06em; color:var(--ink); background:rgba(20,20,19,0.45); padding:3px 7px; border-radius:2px; backdrop-filter:blur(4px);
   }
   html[data-theme="light"] .carousel-arrow{
-    color:#faf9f6;
-    border-color:rgba(250,249,246,0.35);
-    background:rgba(20,20,19,0.55);
+    color:#1a1a19;
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-arrow:hover{
-    color:#faf9f6;
-    border-color:rgba(250,249,246,0.7);
-    background:rgba(20,20,19,0.75);
+    color:#000;
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-counter{
     color:#faf9f6;
@@ -255,7 +269,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:-0.35em;
   }
 
   .theme-toggle{
@@ -304,8 +317,8 @@
     color:#1a1a19;
     background:var(--chartreuse);
   }
-  .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
 </style>
+  <link rel="stylesheet" href="/site.css?v=sitemap5">
 </head>
 <body>
 
@@ -328,11 +341,11 @@
   <a href="/#contact">Contact</a>
 </div>
 
-<main>
+<main id="top">
   <div class="wrap p-hero">
     <p class="p-eyebrow">Case study · Client Work</p>
     <h1 class="p-title">Joe&rsquo;s Stone Crab</h1>
-    <p class="p-sub">Lead photographer and editorial art director for Waiting At Joe’s, a commemorative book marking the restaurant’s 100th anniversary.</p>
+    <p class="p-sub">100 years. The people behind one of America’s highest-grossing restaurants.</p>
 
     <div class="meta-row">
       <div>Role<strong>Photographer / Editorial AD</strong></div>
@@ -349,14 +362,15 @@
     <section class="wrap case-section" data-section="challenge">
     <div class="case-header"><span class="section-label">01 · Challenge</span></div>
     <div class="case-blocks" data-blocks="challenge">
-      <div class="case-block block-text"><p>Joe’s Stone Crab is famous for their up to 3 hour wait. For the centennial book, the brief was to put the people who built that legacy at the center, while still acknowledging the line that made the restaurant a legend.</p></div>
+      <div class="case-block block-text"><p>Joe’s Stone Crab is famous for waits that run up to three hours. For the centennial book, the brief was to put the people who built that legacy at the center, while still acknowledging the line that made the restaurant a legend.</p></div>
+      <div class="case-block block-text"><p>I art directed and photographed the staff portraits on site over three days, building a permanent visual record for the anniversary book instead of another round of food photography.</p></div>
     </div>
   </section>
 
   <section class="wrap case-section" data-section="approach">
     <div class="case-header"><span class="section-label">02 · Approach</span></div>
     <div class="case-blocks" data-blocks="approach">
-      <div class="case-block block-text"><p>With full access over three days, I skipped the usual food photography and photographed the servers instead, aiming for a permanent record feel rather than trendy editorial.</p></div>
+      <div class="case-block block-text"><p>With full access, I skipped the usual food photography and photographed the servers instead. The goal was a permanent record, not trendy editorial.</p></div>
       <div class="case-block block-carousel" id="carousel-joes-portraits">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -378,8 +392,8 @@
             <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0153.jpg" alt="Joe's Stone Crab staff portrait"></div>
             <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0155.jpg" alt="Joe's Stone Crab final portrait series"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 17</div>
         </div>
       </div>
@@ -389,7 +403,7 @@
   <section class="wrap case-section" data-section="outcome">
     <div class="case-header"><span class="section-label">03 · Outcome</span></div>
     <div class="case-blocks" data-blocks="outcome">
-      <div class="case-block block-text"><p>Waiting At Joe’s was published and distributed nationwide, and is available online at Amazon.com. One photograph of the captains now hangs permanently at the restaurant’s entrance next to one taken by legendary photographer Helmut Newton.</p></div>
+      <div class="case-block block-text"><p>Waiting At Joe’s was published and distributed nationwide, and is available on Amazon.com. One photograph of the captains now hangs permanently at the restaurant’s entrance next to one taken by Helmut Newton.</p></div>
       <div class="case-block block-image">
         <div class="p-image"><img src="images/joes-stone-crab/DSCF1488.jpg" alt="Joe's Stone Crab wait staff captains, photograph selected for permanent display"></div>
         <p class="block-cap">This photograph of the wait staff captains was selected for permanent display at the entrance, paired with a candid shot of the captains taken by Helmut Newton on one of his visits.</p>
@@ -401,7 +415,6 @@
     </div>
   </section>
 
-<div class="section-end-rule"></div></div>
 
   <a href="/amazon" class="next">
     <div class="wrap">
@@ -442,8 +455,8 @@
   </div>
 
   <footer class="wrap">
-    <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
-    <a href="/#top">Back to top ↑</a>
+    <span>© 2026 Adam Lorber</span>
+    <a href="#top">Back to top ↑</a>
   </footer>
 </main>
 

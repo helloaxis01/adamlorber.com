@@ -3,7 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Television Academy · Adam Lorber</title>
+<title>Television Academy & Emmy Awards · Adam Lorber</title>
+<meta name="description" content="Art direction for the Television Academy and Emmy Awards: 70th anniversary identity, membership growth, and live event design across sixteen years.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Television Academy & Emmy Awards · Adam Lorber">
+<meta property="og:description" content="Art direction for the Television Academy and Emmy Awards: 70th anniversary identity, membership growth, and live event design across sixteen years.">
+<meta property="og:image" content="https://www.adamlorber.com/images/televisionacademy/thumbnail.jpg">
+<meta property="og:url" content="https://www.adamlorber.com/television-academy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Television Academy & Emmy Awards · Adam Lorber">
+<meta name="twitter:description" content="Art direction for the Television Academy and Emmy Awards: 70th anniversary identity, membership growth, and live event design across sixteen years.">
+<meta name="twitter:image" content="https://www.adamlorber.com/images/televisionacademy/thumbnail.jpg">
+<link rel="canonical" href="https://www.adamlorber.com/television-academy">
 <link rel="icon" href="/favicon.ico?v=3" sizes="any">
 <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
@@ -57,8 +68,8 @@
   .p-image{position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; background:var(--bg);}
   .p-image img{width:100%; height:100%; object-fit:cover;}
 
-  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin-bottom:48px;}
-  .stat{background:var(--bg); padding:36px clamp(16px,3.5vw,48px);}
+  .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 auto 48px; max-width:var(--maxw); width:100%; box-sizing:border-box;}
+  .stat{background:var(--bg); padding:36px clamp(16px,2vw,28px);} .stat:first-child{padding-left:var(--gutter);} .stat:last-child{padding-right:var(--gutter);}
   .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
   .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
 
@@ -109,8 +120,9 @@
   .case-block .p-image{aspect-ratio:16/9;}
   .case-block.block-gif{max-width:520px;}
   .case-block.block-gif .p-image{aspect-ratio:auto;}
-  .case-block.block-gif .p-image img{width:100%; height:auto; object-fit:contain;}
-  .case-block.block-gif-centered{margin-left:auto; margin-right:auto;}
+  .case-block.block-gif .p-image img,
+  .case-block.block-gif .p-image video{width:100%; height:auto; object-fit:contain; display:block;}
+  .case-block.block-gif-centered{margin-left:auto; margin-right:auto; max-width:195px;}
 
   .carousel-viewport{position:relative; width:100%; aspect-ratio:16/9; background:var(--bg); overflow:hidden; border-radius:0; touch-action:pan-y; cursor:grab;}
   .carousel-viewport:active{cursor:grabbing;}
@@ -119,27 +131,30 @@
   .carousel-slide img{max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain; -webkit-user-drag:none; user-select:none; pointer-events:none;}
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); z-index:3;
-    width:28px; height:28px; border-radius:50%; border:1px solid rgba(220,218,211,0.22);
-    background:rgba(20,20,19,0.45); color:var(--ink); font-size:13px; line-height:1; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);
-    padding:0;
+    width:40px; height:40px; border:0; border-radius:0;
+    background:transparent; color:#1a1a19; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:0; opacity:1; transition:opacity 0.2s ease, color 0.2s ease;
   }
-  .carousel-arrow:hover{border-color:var(--gold); color:var(--gold); background:rgba(20,20,19,0.65);}
-  .carousel-prev{left:10px;}
-  .carousel-next{right:10px;}
+  .carousel-arrow svg{
+    width:20px; height:20px; display:block;
+  }
+  .carousel-arrow:hover{opacity:1; color:#000; background:transparent;}
+  .carousel-prev{left:4px;}
+  .carousel-next{right:4px;}
   .carousel-counter{
     position:absolute; bottom:10px; right:10px; z-index:3; font-family:var(--mono); font-size:10px;
     letter-spacing:0.06em; color:var(--ink); background:rgba(20,20,19,0.45); padding:3px 7px; border-radius:2px; backdrop-filter:blur(4px);
   }
   html[data-theme="light"] .carousel-arrow{
-    color:#faf9f6;
-    border-color:rgba(250,249,246,0.35);
-    background:rgba(20,20,19,0.55);
+    color:#1a1a19;
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-arrow:hover{
-    color:#faf9f6;
-    border-color:rgba(250,249,246,0.7);
-    background:rgba(20,20,19,0.75);
+    color:#000;
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-counter{
     color:#faf9f6;
@@ -262,7 +277,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:-0.35em;
   }
 
   .theme-toggle{
@@ -311,8 +325,8 @@
     color:#1a1a19;
     background:var(--chartreuse);
   }
-  .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
 </style>
+  <link rel="stylesheet" href="/site.css?v=sitemap5">
 </head>
 <body>
 
@@ -335,11 +349,11 @@
   <a href="/#contact">Contact</a>
 </div>
 
-<main>
+<main id="top">
   <div class="wrap p-hero">
     <p class="p-eyebrow">Case study · In-House</p>
     <h1 class="p-title">Television Academy</h1>
-    <p class="p-sub">Sixteen years art directing the Television Academy and Emmy Awards. I kept the prestige intact while updating how the organization showed up for a digital first audience, and helped grow membership along the way.</p>
+    <p class="p-sub">Award show prestige that still feels current.</p>
 
     <div class="meta-row">
       <div>Role<strong>Art Director</strong></div>
@@ -354,23 +368,23 @@
   </div>
 
   <div class="stats">
-    <div class="stat"><div class="num">257%</div><div class="label">Membership growth during this tenure, with design and marketing in the mix</div></div>
-    <div class="stat"><div class="num">16 yrs</div><div class="label">Emmy seasons, ceremonies, and galas</div></div>
-    <div class="stat"><div class="num">10M+</div><div class="label">People reached by the 70th anniversary mark</div></div>
+    <div class="stat"><div class="num">257%</div><div class="label">Membership growth during my time at the Television Academy</div></div>
+    <div class="stat"><div class="num">16 yrs</div><div class="label">Working on Emmy collateral, and attending the annual ceremonies and galas</div></div>
+    <div class="stat"><div class="num">10M+</div><div class="label">Reach for the 70th Emmys logo in 120 countries</div></div>
   </div>
 
     <section class="wrap case-section" data-section="challenge">
     <div class="case-header"><span class="section-label">01 · Challenge</span></div>
     <div class="case-blocks" data-blocks="challenge">
-      <div class="case-block block-text"><p>The Emmys risked reading as stuck in the past. Growing the Academy meant looking current to a younger audience without giving up the credibility built over decades.</p></div>
-      <div class="case-block block-text"><p>As <strong>Art Director and second in command</strong>, I ran day to day creative across the in-house team, ceremony design, vendors, and network partners.</p></div>
+      <div class="case-block block-text"><p>The Emmys were on the verge of being stuck in the past. Membership was stagnant and made up mostly of entertainment veterans, many of whom had been out of the business for years. Growing the Academy meant looking current to a younger audience without giving up the credibility built over decades.</p></div>
+      <div class="case-block block-text"><p>As Art Director and second in command, I kept that balance across the in-house team, ceremony design, vendors, and network partners, season after season. I oversaw the design department and the year-round Emmy Awards visual system: member acquisition, print and digital campaigns, large-scale environmental design for live events and galas, and the workflows and vendor partnerships that doubled departmental output without losing craft.</p></div>
     </div>
   </section>
 
   <section class="wrap case-section" data-section="approach">
     <div class="case-header"><span class="section-label">02 · Approach</span></div>
     <div class="case-blocks" data-blocks="approach">
-      <div class="case-block block-text"><p>For the 70th anniversary, the design department and an outside agency both pitched concepts. The mark I designed was chosen and ran year round on billboards, stationery, trade ads, digital, and even the Governors Ball hamburger boxes. It reached over 10 million people.</p></div>
+      <div class="case-block block-text"><p>For the 70th anniversary, the in-house design department and an outside agency both pitched concepts. The mark I designed was chosen. It ran year-round on billboards, stationery, trade, digital, even Governors Ball hamburger boxes, with 10M+ reach across 120 countries.</p></div>
       <div class="case-block block-carousel" id="carousel-70th">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -390,13 +404,13 @@
             <div class="carousel-slide"><img src="images/televisionacademy/JBU_5359.jpg" alt="Emmy Awards event photography"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/ABI52357.jpg" alt="Emmy Awards event photography"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 15</div>
         </div>
       </div>
 
-      <div class="case-block block-text"><p>Invitation design for Emmy related events, including the LA Area Emmys, the Performers Nominee Reception, and the awards show itself.</p></div>
+      <div class="case-block block-text"><p>I designed invitations for Emmy-related events, including the LA Area Emmys, the Performers Nominee Reception, and the awards show itself, as collectible brand objects, not paper to throw away.</p></div>
       <div class="case-block block-carousel" id="carousel-invites">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -404,13 +418,13 @@
             <div class="carousel-slide"><img src="images/televisionacademy/70th_LAArea_Invite.jpg" alt="70th LA Area Emmy Awards invitation"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/70th_PNR_Invite.jpg" alt="Performers Nominee Reception invitation"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
         </div>
       </div>
 
-      <div class="case-block block-text"><p>For the 73rd Emmy Awards I designed a four color invitation suite with nine RSVP cards, printed on soft touch paper with reflective foils in gold, red, blue, and purple.</p></div>
+      <div class="case-block block-text"><p>For the 73rd Emmys I designed a four-color invitation suite with nine RSVP cards: soft-touch paper, reflective foils in gold, red, blue, and purple.</p></div>
       <div class="case-block block-carousel" id="carousel-73rd">
         <div class="carousel-viewport">
           <div class="carousel-track">
@@ -420,8 +434,8 @@
             <div class="carousel-slide"><img src="images/televisionacademy/Portfolio_73rdEmmys-03.jpg" alt="73rd Emmy Awards RSVP cards"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/Portfolio_73rdEmmys-04.jpg" alt="73rd Emmy Awards RSVP cards detail"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
         </div>
       </div>
@@ -440,8 +454,8 @@
             <div class="carousel-slide"><img src="images/televisionacademy/Penn_Portfolio.jpg" alt="Key art for Television Academy Penn event"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/Emmys101_1920x1080.jpg" alt="Key art for Emmys 101 event"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 09</div>
         </div>
       </div>
@@ -456,8 +470,8 @@
             <div class="carousel-slide"><img src="images/televisionacademy/BidForTheStars_Logo.jpg" alt="Bid for the Stars program logo"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/FredRogersMemorialScholarship-01.jpg" alt="Fred Rogers Memorial Scholarship logo"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
         </div>
       </div>
@@ -470,23 +484,23 @@
             <div class="carousel-slide"><img src="images/televisionacademy/Emmys_BannerAds-03.jpg" alt="Emmy Awards banner ad campaign"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/Emmys_BannerAds-01.jpg" alt="Emmy Awards banner ad campaign"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
         </div>
       </div>
       <div class="case-block block-carousel" id="carousel-campaign">
         <div class="carousel-viewport">
           <div class="carousel-track">
-            <div class="carousel-slide"><img src="images/televisionacademy/emmys-key-art-nbc-peacock.png" alt="Emmys key art with statue, NBC and Peacock broadcast branding"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/emmys-key-art-nbc-peacock.jpg" alt="Emmys key art with statue, NBC and Peacock broadcast branding"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/Emmys20_HemispheresAd_RGB_CC.jpg" alt="Emmy Awards Hemispheres magazine ad"></div>
-            <div class="carousel-slide"><img src="images/televisionacademy/screenshot-04-21-9-01.png" alt="Emmy Awards campaign social asset"></div>
-            <div class="carousel-slide"><img src="images/televisionacademy/screenshot-04-21-9-02.png" alt="Emmy Awards campaign social asset"></div>
-            <div class="carousel-slide"><img src="images/televisionacademy/screenshot-04-21-8-57.png" alt="Emmy Awards campaign social asset"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/screenshot-04-21-9-01.jpg" alt="Emmy Awards campaign social asset"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/screenshot-04-21-9-02.jpg" alt="Emmy Awards campaign social asset"></div>
+            <div class="carousel-slide"><img src="images/televisionacademy/screenshot-04-21-8-57.jpg" alt="Emmy Awards campaign social asset"></div>
             <div class="carousel-slide"><img src="images/televisionacademy/BUK_7532-jpg.jpg" alt="Emmy Awards campaign photography"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 06</div>
         </div>
       </div>
@@ -496,7 +510,7 @@
   <section class="wrap case-section" data-section="outcome">
     <div class="case-header"><span class="section-label">03 · Outcome</span></div>
     <div class="case-blocks" data-blocks="outcome">
-      <div class="case-block block-text"><p>Over sixteen years membership grew <strong>257%, from about 7,000 to over 25,000</strong>, with design and marketing in that mix. Ceremonies and campaigns still had to land for millions of viewers every year.</p></div>
+      <div class="case-block block-text"><p>Over sixteen years, membership grew <strong>257%, from about 7,000 to over 25,000</strong>, with design and marketing in that mix. Ceremonies and campaigns still had to land for millions of viewers every year.</p></div>
       <div class="case-block block-gif block-gif-centered">
         <div class="p-image"><img src="images/televisionacademy/EmmySpin_Export_v2.gif" alt="Animated Emmy Awards statue"></div>
       </div>
@@ -506,11 +520,10 @@
   <section class="wrap case-section" data-section="returning">
     <div class="case-header"><span class="section-label">04 · Returning</span></div>
     <div class="case-blocks" data-blocks="returning">
-      <div class="case-block block-text"><p>In 2026 I came back as a consultant on specialty projects, including brand guidelines for Televerse and logistics materials for Emmy season.</p></div>
+      <div class="case-block block-text"><p>In 2026 I came back as Lead Design Consultant on specialty projects, including brand guidelines for the Television Academy’s Televerse Festival and logistics materials for this year’s Emmy shows.</p></div>
     </div>
   </section>
 
-<div class="section-end-rule"></div></div>
 
   <a href="/fount" class="next">
     <div class="wrap">
@@ -551,8 +564,8 @@
   </div>
 
   <footer class="wrap">
-    <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
-    <a href="/#top">Back to top ↑</a>
+    <span>© 2026 Adam Lorber</span>
+    <a href="#top">Back to top ↑</a>
   </footer>
 </main>
 

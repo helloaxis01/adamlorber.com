@@ -1,0 +1,274 @@
+/* Shared launch styles: responsive, tap targets, stats, media defaults.
+   Page-specific layout remains in each HTML <style> block. */
+
+img, video{
+  max-width:100%;
+  height:auto;
+}
+
+/* Soft same-origin page transitions (progressive enhancement) */
+@view-transition{
+  navigation:auto;
+}
+::view-transition-old(root),
+::view-transition-new(root){
+  animation-duration:.32s;
+  animation-timing-function:cubic-bezier(.65,0,.35,1);
+}
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-old(root),
+  ::view-transition-new(root){
+    animation-duration:.01ms;
+  }
+}
+
+/* Case-study reading progress — fixed under the sticky header */
+.read-progress{
+  position:fixed;
+  top:var(--header-offset, 84px);
+  left:0;
+  height:3px;
+  width:0;
+  z-index:120;
+  pointer-events:none;
+  background:var(--chartreuse, #ebff12);
+  transform-origin:left center;
+}
+/* Progress bar replaces the header hairline on case pages */
+header.has-read-progress,
+header.has-read-progress.scrolled{
+  border-bottom-color:transparent !important;
+}
+
+/* Next project: narrow band — 10% darker in dark mode, 10% lighter in light */
+.next{
+  background:color-mix(in srgb, #000 10%, var(--bg)) !important;
+  padding:28px 0 !important;
+  overflow:hidden;
+  display:block !important;
+}
+html[data-theme="light"] .next{
+  background:color-mix(in srgb, #fff 20%, var(--bg)) !important;
+}
+/* Keep label + title on the page content margin */
+.next .wrap{
+  width:100% !important;
+  max-width:var(--maxw, 1320px);
+  margin-left:auto !important;
+  margin-right:auto !important;
+  padding-inline:var(--gutter, clamp(20px,5vw,64px)) !important;
+  text-align:left;
+  box-sizing:border-box;
+}
+.next .next-label,
+.next .next-title{
+  display:block !important;
+  width:fit-content;
+  max-width:100%;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+  text-align:left;
+  transform:none !important;
+}
+.next .next-label{
+  color:var(--ink-dim) !important;
+  margin-bottom:6px !important;
+}
+.next .next-title{
+  color:var(--ink) !important;
+  background:transparent !important;
+}
+.next:hover .next-title,
+.next .next-title:hover,
+html[data-theme="light"] .next:hover .next-title,
+html[data-theme="light"] .next .next-title:hover{
+  color:var(--ink) !important;
+  background:transparent !important;
+}
+
+/* Slightly shaded band separates; no hairline under it */
+.next + .sitemap,
+.next + .wrap.sitemap,
+a.next + .sitemap,
+a.next + .wrap.sitemap{
+  border-top:none !important;
+}
+
+/* Case media: soft fade/rise on scroll */
+.media-reveal{
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .7s cubic-bezier(.65,0,.35,1), transform .7s cubic-bezier(.65,0,.35,1);
+  will-change:opacity, transform;
+}
+.media-reveal.is-in{
+  opacity:1;
+  transform:none;
+}
+@media (prefers-reduced-motion:reduce){
+  .media-reveal{
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+}
+
+/* Stack chevron press */
+.stack-btn{
+  transition:opacity .2s ease, color .2s ease, transform .15s ease !important;
+}
+.stack-btn:active{
+  transform:scale(0.9);
+  opacity:1;
+}
+
+/* Larger tap targets for interactive chrome */
+.burger{
+  min-width:44px;
+  min-height:44px;
+  padding:10px !important;
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+}
+.carousel-arrow{
+  width:44px !important;
+  height:44px !important;
+  opacity:1 !important;
+  box-shadow:none !important;
+  text-shadow:none !important;
+  filter:none !important;
+  -webkit-tap-highlight-color:transparent;
+}
+/* Outline is drawn in the SVG (white understroke + ink stroke). */
+.carousel-arrow svg{
+  filter:none !important;
+  overflow:visible;
+}
+.carousel-arrow svg *{
+  filter:none !important;
+  box-shadow:none !important;
+}
+.stack-btn{
+  width:44px !important;
+  height:44px !important;
+}
+/* Contact/About actions: large tap targets without inflating highlight boxes */
+.contact-links a,
+.contact-links .email-toggle,
+.about-actions a,
+.about-actions .email-toggle{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  line-height:1 !important;
+  min-height:0 !important;
+  padding-block:0 !important;
+}
+.contact-links a:not(.email-address)::before,
+.contact-links .email-toggle::before,
+.about-actions a:not(.email-address)::before,
+.about-actions .email-toggle::before{
+  content:"";
+  position:absolute;
+  inset:-12px -8px;
+}
+.contact-links .email-address,
+.about-actions .email-address{
+  position:relative;
+  display:inline-flex !important;
+  align-items:center !important;
+  line-height:1 !important;
+  min-height:0 !important;
+  padding-block:0 !important;
+  vertical-align:middle;
+}
+.email-slot{
+  display:inline-flex !important;
+  align-items:center !important;
+  align-self:flex-start;
+  flex-wrap:nowrap !important;
+}
+
+/* Mobile contact: left stack; address expands right, LinkedIn stays put */
+@media (max-width:900px){
+  .contact-links,
+  .about-actions{
+    align-items:flex-start !important;
+    gap:10px !important;
+  }
+  .email-slot{
+    flex-direction:row !important;
+    align-items:center !important;
+    align-self:flex-start !important;
+    flex-wrap:nowrap !important;
+  }
+  .email-slot.is-open{
+    gap:12px !important;
+  }
+  .contact-links .email-address,
+  .about-actions .email-address{
+    min-height:0 !important;
+    max-height:none !important;
+    white-space:nowrap !important;
+    /* Don't inherit mark negative margins that shift the open row left */
+    margin-inline:0 !important;
+    padding-inline:0 !important;
+  }
+  .email-slot:not(.is-open) .email-address{
+    max-width:0 !important;
+    padding:0 !important;
+    margin:0 !important;
+    overflow:hidden !important;
+  }
+  .email-slot.is-open .email-address{
+    max-width:min(16rem, calc(100vw - 8rem)) !important;
+  }
+}
+
+/* Case sections: tighten vertical rhythm between 01–04 */
+.case-section{
+  padding-top:56px !important;
+  padding-bottom:56px !important;
+}
+.case-header{
+  margin-bottom:22px !important;
+}
+.case-blocks{
+  gap:28px !important;
+}
+.case-block.block-image + .case-block,
+.case-block.block-carousel + .case-block,
+.case-block.block-gif + .case-block,
+.case-block.block-gif-centered + .case-block{
+  padding-top:36px !important;
+}
+
+/* Stats: pad every cell to the page gutter when stacked */
+@media (max-width:900px){
+  .case-section{
+    padding-top:40px !important;
+    padding-bottom:40px !important;
+  }
+  .stats .stat{
+    padding-left:var(--gutter) !important;
+    padding-right:var(--gutter) !important;
+  }
+  .stat .num{
+    white-space:normal !important;
+  }
+}
+
+/* Tablet / iPad: breathe between phone and desktop.
+   Keep sitemap at 4 columns (same as desktop). Do not force .stats to
+   2 columns — odd counts leave an empty grey cell. */
+@media (min-width:901px) and (max-width:1100px){
+  .meta-row{
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  }
+  .work-grid{
+    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+  }
+}

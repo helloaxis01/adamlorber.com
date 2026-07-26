@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Dream Clean · Adam Lorber</title>
+<meta name="description" content="Packaging redesign for Dream Clean, a plant-based cleaning brand built to stand out on shelf.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dream Clean · Adam Lorber">
+<meta property="og:description" content="Packaging redesign for Dream Clean, a plant-based cleaning brand built to stand out on shelf.">
+<meta property="og:image" content="https://www.adamlorber.com/images/dream-clean/thumbnail.jpg">
+<meta property="og:url" content="https://www.adamlorber.com/dream-clean">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dream Clean · Adam Lorber">
+<meta name="twitter:description" content="Packaging redesign for Dream Clean, a plant-based cleaning brand built to stand out on shelf.">
+<meta name="twitter:image" content="https://www.adamlorber.com/images/dream-clean/thumbnail.jpg">
+<link rel="canonical" href="https://www.adamlorber.com/dream-clean">
 <link rel="icon" href="/favicon.ico?v=3" sizes="any">
 <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
@@ -120,27 +131,30 @@
   .carousel-slide img{width:100%; height:100%; object-fit:cover; -webkit-user-drag:none; user-select:none; pointer-events:none;}
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); z-index:3;
-    width:28px; height:28px; border-radius:50%; border:1px solid rgba(220,218,211,0.22);
-    background:rgba(20,20,19,0.45); color:var(--ink); font-size:13px; line-height:1; cursor:pointer;
-    display:flex; align-items:center; justify-content:center; backdrop-filter:blur(4px);
-    padding:0;
+    width:40px; height:40px; border:0; border-radius:0;
+    background:transparent; color:#1a1a19; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:0; opacity:1; transition:opacity 0.2s ease, color 0.2s ease;
   }
-  .carousel-arrow:hover{border-color:var(--gold); color:var(--gold); background:rgba(20,20,19,0.65);}
-  .carousel-prev{left:10px;}
-  .carousel-next{right:10px;}
+  .carousel-arrow svg{
+    width:20px; height:20px; display:block;
+  }
+  .carousel-arrow:hover{opacity:1; color:#000; background:transparent;}
+  .carousel-prev{left:4px;}
+  .carousel-next{right:4px;}
   .carousel-counter{
     position:absolute; bottom:10px; right:10px; z-index:3; font-family:var(--mono); font-size:10px;
     letter-spacing:0.06em; color:var(--ink); background:rgba(20,20,19,0.45); padding:3px 7px; border-radius:2px; backdrop-filter:blur(4px);
   }
   html[data-theme="light"] .carousel-arrow{
-    color:#faf9f6;
-    border-color:rgba(250,249,246,0.35);
-    background:rgba(20,20,19,0.55);
+    color:#1a1a19;
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-arrow:hover{
-    color:#faf9f6;
-    border-color:rgba(250,249,246,0.7);
-    background:rgba(20,20,19,0.75);
+    color:#000;
+    border:0;
+    background:transparent;
   }
   html[data-theme="light"] .carousel-counter{
     color:#faf9f6;
@@ -260,7 +274,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:-0.35em;
   }
 
   .theme-toggle{
@@ -309,8 +322,8 @@
     color:#1a1a19;
     background:var(--chartreuse);
   }
-  .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
 </style>
+  <link rel="stylesheet" href="/site.css?v=sitemap5">
 </head>
 <body>
 
@@ -333,11 +346,11 @@
   <a href="/#contact">Contact</a>
 </div>
 
-<main>
+<main id="top">
   <div class="wrap p-hero">
     <p class="p-eyebrow">Case study · Client Work</p>
     <h1 class="p-title">Dream Clean</h1>
-    <p class="p-sub">Label redesign for a woman and Black owned cleaning brand, built to compete visually with national names like Mrs. Meyer’s.</p>
+    <p class="p-sub">A redesign built for health store shelves.</p>
 
     <div class="meta-row">
       <div>Role<strong>Art Director</strong></div>
@@ -355,7 +368,7 @@
     <div class="case-header"><span class="section-label">01 · Challenge</span></div>
     <div class="case-blocks">
       <div class="case-block block-text">
-        <p>The original packaging didn’t communicate how well the product worked. On shelf, it struggled to compete with national plant based brands.</p>
+        <p>The product worked. The packaging didn’t. On shelf, Dream Clean got lost next to national plant-based names.</p>
       </div>
       <div class="case-block block-carousel" id="carousel-dream-before">
         <div class="carousel-viewport">
@@ -364,11 +377,14 @@
             <div class="carousel-slide"><img src="images/dream-clean/DreamClean_Portfolio_Before_Side1.jpg" alt="Dream Clean before redesign, side panel"></div>
             <div class="carousel-slide"><img src="images/dream-clean/DreamClean_Portfolio_Before_Side2.jpg" alt="Dream Clean before redesign, other side panel"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
         </div>
         <p class="block-cap">Before: the original label didn't signal quality or communicate how well the product actually worked.</p>
+      </div>
+      <div class="case-block block-text">
+        <p>I led the packaging redesign end to end: a premium label system, custom iconography for plant-based and cruelty-free benefits, and shelf presence built to stand next to national brands.</p>
       </div>
     </div>
   </section>
@@ -377,7 +393,7 @@
     <div class="case-header"><span class="section-label">02 · Approach</span></div>
     <div class="case-blocks">
       <div class="case-block block-text">
-        <p>I designed a premium label system with custom icons that communicate plant based and cruelty free benefits at a glance, anchored by the line “Cleaning products with purpose.”</p>
+        <p>Custom icons communicate plant-based and cruelty-free benefits at a glance, anchored by the line “Cleaning products with purpose.”</p>
       </div>
       <div class="case-block block-carousel" id="carousel-dream-after">
         <div class="carousel-viewport">
@@ -386,8 +402,8 @@
             <div class="carousel-slide"><img src="images/dream-clean/DreamClean_Portfolio_After_Side1.jpg" alt="Dream Clean after redesign, side panel with icon system"></div>
             <div class="carousel-slide"><img src="images/dream-clean/DreamClean_Portfolio_After_Side2.jpg" alt="Dream Clean after redesign, other side panel"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
         </div>
         <p class="block-cap">After: a premium look built to signal quality the moment a shopper walks down the aisle.</p>
@@ -399,8 +415,8 @@
             <div class="carousel-slide"><img src="images/dream-clean/DreamClean_Portfolio_BeforeAfter_Side1.jpeg" alt="Dream Clean before and after comparison, side panel"></div>
             <div class="carousel-slide"><img src="images/dream-clean/DreamClean_Portfolio_BeforeAfter_Side2.jpeg" alt="Dream Clean before and after comparison, other side panel"></div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image">←</button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image">→</button>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
         </div>
         <p class="block-cap">Side by side, the full extent of the redesign: from generic label to a shelf-ready system.</p>
@@ -412,7 +428,7 @@
     <div class="case-header"><span class="section-label">03 · Outcome</span></div>
     <div class="case-blocks">
       <div class="case-block block-text">
-        <p>The rebrand secured shelf space at Lazy Acres, with expansion plans toward Sprouts and Whole Foods. The company also grew into a cleaning service using its own products.</p>
+        <p>The rebrand secured shelf space at Lazy Acres, with a path toward Sprouts and Whole Foods. The company also grew into a cleaning service using its own products.</p>
       </div>
       <div class="case-block block-image">
         <div class="gallery-stack">
@@ -425,7 +441,6 @@
     </div>
   </section>
 
-  <div class="wrap"><div class="section-end-rule"></div></div>
 
   <a href="/lemon-perfect" class="next">
     <div class="wrap">
@@ -466,8 +481,8 @@
   </div>
 
   <footer class="wrap">
-    <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
-    <a href="/#top">Back to top ↑</a>
+    <span>© 2026 Adam Lorber</span>
+    <a href="#top">Back to top ↑</a>
   </footer>
 </main>
 

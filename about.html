@@ -4,7 +4,64 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>About · Adam Lorber</title>
-<meta name="description" content="Adam Lorber. Art Director and Lead Designer based in Los Angeles.">
+<meta name="description" content="Art Director and Lead Designer in Los Angeles. Television Academy, Amazon Prime Video Sports, Fount, Inflection, and select client work.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="About · Adam Lorber">
+<meta property="og:description" content="Art Director and Lead Designer in Los Angeles. Television Academy, Amazon Prime Video Sports, Fount, Inflection, and select client work.">
+<meta property="og:image" content="https://www.adamlorber.com/images/about/adam-lorber-portrait.jpg">
+<meta property="og:url" content="https://www.adamlorber.com/about">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About · Adam Lorber">
+<meta name="twitter:description" content="Art Director and Lead Designer in Los Angeles. Television Academy, Amazon Prime Video Sports, Fount, Inflection, and select client work.">
+<meta name="twitter:image" content="https://www.adamlorber.com/images/about/adam-lorber-portrait.jpg">
+<link rel="canonical" href="https://www.adamlorber.com/about">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://www.adamlorber.com/#person",
+  "name": "Adam Lorber",
+  "url": "https://www.adamlorber.com/about",
+  "image": "https://www.adamlorber.com/images/about/adam-lorber-portrait.jpg",
+  "jobTitle": "Art Director",
+  "description": "Art Director and Lead Designer in Los Angeles. Television Academy, Amazon Prime Video Sports, Fount, Inflection, and select client work.",
+  "email": "mailto:hello@adamlorber.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Los Angeles",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/adamlorber/"
+  ],
+  "knowsAbout": [
+    "Art Direction",
+    "Brand Identity",
+    "Packaging Design",
+    "Campaign Creative",
+    "Live Event Design"
+  ],
+  "hasOccupation": [
+    {
+      "@type": "Occupation",
+      "name": "Lead Design Consultant",
+      "occupationLocation": {
+        "@type": "Organization",
+        "name": "Television Academy"
+      }
+    },
+    {
+      "@type": "Occupation",
+      "name": "Art Director III",
+      "occupationLocation": {
+        "@type": "Organization",
+        "name": "Amazon Prime Video Sports"
+      }
+    }
+  ]
+}
+</script>
 <link rel="icon" href="/favicon.ico?v=3" sizes="any">
 <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
@@ -71,11 +128,45 @@
   .about-meta{display:flex; gap:64px; flex-wrap:wrap; margin-top:28px; margin-bottom:8px;}
   .about-meta div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
   .about-meta strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; max-width:420px; line-height:1.45;}
-  .about-actions{display:flex; flex-direction:row; flex-wrap:wrap; align-items:baseline; gap:32px; margin-top:28px;}
-  .about-actions a{font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);}
-  
+  .about-actions{display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; gap:32px; margin-top:28px;}
+  .about-actions a,
+  .about-actions .email-toggle{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
+    background:none; border:0; padding:0; margin:0; cursor:pointer;
+    appearance:none; -webkit-appearance:none;
+    transition:color .25s ease, background-color .25s ease;
+    line-height:1;
+  }
   .about-actions .resume{color:var(--ink); border-bottom:1px solid var(--line); padding-bottom:2px;}
   .about-actions .resume:hover{border-color:var(--line);}
+  .email-slot{
+    display:inline-flex;
+    align-items:center;
+    gap:0;
+  }
+  .email-slot.is-open{gap:32px;}
+  .about-actions .email-address{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.04em; text-transform:none; color:var(--ink);
+    transition:color .25s ease, background-color .25s ease, opacity .2s ease, max-width .2s ease;
+    line-height:1;
+    display:inline-flex;
+    align-items:center;
+    max-width:0;
+    opacity:0;
+    overflow:hidden;
+    white-space:nowrap;
+    vertical-align:middle;
+    pointer-events:none;
+  }
+  .email-slot.is-open .email-address{
+    max-width:20rem;
+    opacity:1;
+    pointer-events:auto;
+  }
+  .about-actions .email-address:hover{color:var(--chartreuse);}
+  html[data-theme="light"] .about-actions .email-address:hover{
+    color:#1a1a19; background:var(--chartreuse);
+  }
 
   .sitemap{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
   .sitemap-col{display:flex; flex-direction:column; gap:11px;}
@@ -99,7 +190,7 @@
     .tl-row{flex-direction:column; gap:4px;}
     .tl-row .tl-year{width:auto;}
     .about-meta{flex-direction:column; gap:22px;}
-    .about-actions{flex-direction:column; align-items:flex-start; gap:18px;}
+    .about-actions{flex-direction:column; align-items:flex-start; gap:8px;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
   }
 
@@ -115,7 +206,9 @@
   .study h3,
   .study span,
   .contact-links a,
+  .contact-links .email-toggle,
   .about-actions a,
+  .about-actions .email-toggle,
   .err-cta{
     width:fit-content;
     max-width:100%;
@@ -127,9 +220,14 @@
   .next-title:hover,
   .study:hover h3,
   .study:hover span,
-  .contact-links a:hover,
-  .contact-links.is-lit a,
-  .about-actions a:hover,
+  .contact-links a:not(.email-address):hover,
+  .contact-links.is-lit a:not(.email-address),
+  .contact-links .email-toggle:hover,
+  .contact-links.is-lit .email-toggle,
+  .contact-links .email-slot.is-open .email-toggle,
+  .about-actions a:not(.email-address):hover,
+  .about-actions .email-toggle:hover,
+  .about-actions .email-slot.is-open .email-toggle,
   .err-cta:hover,
   .theme-toggle:hover{
     color:var(--chartreuse);
@@ -140,9 +238,14 @@
   html[data-theme="light"] .next-title:hover,
   html[data-theme="light"] .study:hover h3,
   html[data-theme="light"] .study:hover span,
-  html[data-theme="light"] .contact-links a:hover,
-  html[data-theme="light"] .contact-links.is-lit a,
-  html[data-theme="light"] .about-actions a:hover,
+  html[data-theme="light"] .contact-links a:not(.email-address):hover,
+  html[data-theme="light"] .contact-links.is-lit a:not(.email-address),
+  html[data-theme="light"] .contact-links .email-toggle:hover,
+  html[data-theme="light"] .contact-links.is-lit .email-toggle,
+  html[data-theme="light"] .contact-links .email-slot.is-open .email-toggle,
+  html[data-theme="light"] .about-actions a:not(.email-address):hover,
+  html[data-theme="light"] .about-actions .email-toggle:hover,
+  html[data-theme="light"] .about-actions .email-slot.is-open .email-toggle,
   html[data-theme="light"] .err-cta:hover,
   html[data-theme="light"] .theme-toggle:hover{
     color:#1a1a19;
@@ -209,7 +312,6 @@
     display:inline-block;
     width:fit-content;
     max-width:100%;
-    margin-inline-start:calc(-1 * var(--mark-pad-x));
   }
 
   .theme-toggle{
@@ -220,46 +322,8 @@
     transition:color .15s ease, background-color .15s ease;
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
-  
-  .contact-links a.email-copy,
-  .about-actions a.email-copy{
-    position:relative; display:inline-block;
-    padding-inline:0;
-    margin-inline:0;
-  }
-  .email-copy .email-copy-label{
-    padding-inline:var(--mark-pad-x);
-    margin-inline:calc(-1 * var(--mark-pad-x));
-  }
-  .email-copy-status{
-    position:absolute; left:calc(100% + 10px); top:50%; transform:translateY(calc(-50% + 2px));
-    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
-    color:#faf9f6; opacity:0; white-space:nowrap; pointer-events:none;
-    transition:opacity .25s ease, transform .25s ease;
-  }
-  html[data-theme="light"] .email-copy-status{color:var(--ink);}
-  .email-copy.is-copied .email-copy-status{opacity:1; transform:translateY(-50%);}
-  .contact-links a.email-copy:hover,
-  .contact-links.is-lit a.email-copy,
-  .about-actions a.email-copy:hover,
-  html[data-theme="light"] .contact-links a.email-copy:hover,
-  html[data-theme="light"] .contact-links.is-lit a.email-copy,
-  html[data-theme="light"] .about-actions a.email-copy:hover{
-    background:transparent;
-  }
-  .contact-links a.email-copy:hover .email-copy-label,
-  .contact-links.is-lit a.email-copy .email-copy-label,
-  .about-actions a.email-copy:hover .email-copy-label{
-    color:var(--chartreuse);
-  }
-  html[data-theme="light"] .contact-links a.email-copy:hover .email-copy-label,
-  html[data-theme="light"] .contact-links.is-lit a.email-copy .email-copy-label,
-  html[data-theme="light"] .about-actions a.email-copy:hover .email-copy-label{
-    color:#1a1a19;
-    background:var(--chartreuse);
-  }
-  .build-tag{color:var(--ink-dim); letter-spacing:0.06em;}
 </style>
+  <link rel="stylesheet" href="/site.css?v=sitemap5">
 </head>
 <body>
 
@@ -292,7 +356,7 @@
       <div class="about-body reveal">
         <p>I'm an Art Director and Lead Designer based in Los Angeles. For sixteen years I directed visual identity for the Television Academy and the Emmy Awards, the kind of work where the deadline is a live event and there's no version two.</p>
         <p>Since then I've taken that discipline into health tech, building brand and product for startups like Fount and Inflection, and into independent client work across CPG, hospitality, and brand identity.</p>
-        <p>I'm currently consulting for the Television Academy on the 2026 Emmy season and serving as Art Director III (contract) for Amazon Prime Video Sports, while taking on select client projects.</p>
+        <p>I'm currently Lead Design Consultant for the Television Academy on the 2026 Emmy season and Art Director III (contract) for Amazon Prime Video Sports, while taking on select client projects.</p>
         <p>When I'm not working, you can find me going on adventures with my wife and son, taking our dog on a long walk, in the kitchen, snapping photos, and exploring new places.</p>
 
         <div class="about-meta">
@@ -305,17 +369,20 @@
           <div class="tl-row current">
             <span class="tl-year"><span class="tl-mark">2026-Present</span></span>
             <span class="tl-role">
-              <span><span class="tl-mark">Consulting Art Director, Television Academy &amp; Emmy Awards</span></span>
+              <span><span class="tl-mark">Lead Design Consultant, Television Academy &amp; Emmy Awards</span></span>
               <span><span class="tl-mark">Art Director III (Contract), Amazon Prime Video Sports</span></span>
             </span>
           </div>
           <div class="tl-row"><span class="tl-year">Ongoing</span><span class="tl-role"><span>Freelance Art Director and Designer for CPG, food &amp; bev, and startups</span></span></div>
         </div>
 
-        <div class="about-actions">
-          <a class="resume" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
-          <a href="mailto:hello@adamlorber.com" class="email-copy" data-email="hello@adamlorber.com" aria-label="Copy email hello@adamlorber.com"><span class="email-copy-label">Email</span><span class="email-copy-status" aria-live="polite"></span></a>
-          <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+        <div class="about-actions" data-email-reveal>
+          <a class="resume" href="resume.pdf" download="Resume_AdamLorber.pdf" target="_blank" rel="noopener">Resume</a>
+          <span class="email-slot">
+            <button type="button" class="email-toggle" aria-expanded="false" aria-controls="about-email-address">Email</button>
+            <a class="email-address" id="about-email-address" href="mailto:hello@adamlorber.com" tabindex="-1" aria-hidden="true">hello@adamlorber.com</a>
+          </span>
+          <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
     </div>
@@ -353,7 +420,7 @@
   </div>
 
   <footer class="wrap">
-    <span>© 2026 Adam Lorber <span class="build-tag">· v1.0 · rebuilt 2026</span></span>
+    <span>© 2026 Adam Lorber</span>
     <a href="#top">Back to top ↑</a>
   </footer>
 </main>
