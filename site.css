@@ -40,50 +40,57 @@ header.has-read-progress.scrolled{
   border-bottom-color:transparent !important;
 }
 
-/* Next project: narrow band — 10% darker in dark mode, 10% lighter in light; motion only on hover */
-a.next{
+/* Next project: narrow band — 10% darker in dark mode, 10% lighter in light */
+.next{
   background:color-mix(in srgb, #000 10%, var(--bg)) !important;
   padding:28px 0 !important;
   overflow:hidden;
+  display:block !important;
 }
-html[data-theme="light"] a.next{
+html[data-theme="light"] .next{
   background:color-mix(in srgb, #fff 20%, var(--bg)) !important;
 }
-a.next .next-label{
+/* Keep label + title on the page content margin */
+.next .wrap{
+  width:100% !important;
+  max-width:var(--maxw, 1320px);
+  margin-left:auto !important;
+  margin-right:auto !important;
+  padding-inline:var(--gutter, clamp(20px,5vw,64px)) !important;
+  text-align:left;
+  box-sizing:border-box;
+}
+.next .next-label,
+.next .next-title{
+  display:block !important;
+  width:fit-content;
+  max-width:100%;
+  margin-left:0 !important;
+  margin-right:0 !important;
+  padding-left:0 !important;
+  padding-right:0 !important;
+  text-align:left;
+  transform:none !important;
+}
+.next .next-label{
   color:var(--ink-dim) !important;
   margin-bottom:6px !important;
-  transition:letter-spacing .35s cubic-bezier(.65,0,.35,1), transform .35s cubic-bezier(.65,0,.35,1);
 }
-a.next .next-title{
-  color:var(--ink) !important;
-  background:transparent !important;
-  transition:transform .4s cubic-bezier(.65,0,.35,1) !important;
-}
-a.next:hover .next-label{
-  letter-spacing:0.2em !important;
-  transform:translateX(2px);
-}
-a.next:hover .next-title,
-a.next .next-title:hover,
-html[data-theme="light"] a.next:hover .next-title,
-html[data-theme="light"] a.next .next-title:hover{
-  transform:translateX(10px);
+.next .next-title{
   color:var(--ink) !important;
   background:transparent !important;
 }
-@media (prefers-reduced-motion:reduce){
-  a.next .next-label,
-  a.next .next-title{
-    transition:none !important;
-  }
-  a.next:hover .next-label,
-  a.next:hover .next-title{
-    transform:none;
-    letter-spacing:inherit !important;
-  }
+.next:hover .next-title,
+.next .next-title:hover,
+html[data-theme="light"] .next:hover .next-title,
+html[data-theme="light"] .next .next-title:hover{
+  color:var(--ink) !important;
+  background:transparent !important;
 }
 
-/* Slightly darker band separates; no hairline under it */
+/* Slightly shaded band separates; no hairline under it */
+.next + .sitemap,
+.next + .wrap.sitemap,
 a.next + .sitemap,
 a.next + .wrap.sitemap{
   border-top:none !important;
