@@ -96,6 +96,73 @@ a.next + .wrap.sitemap{
   border-top:none !important;
 }
 
+/* Case media: soft fade/rise on scroll */
+.media-reveal{
+  opacity:0;
+  transform:translateY(14px);
+  transition:opacity .7s cubic-bezier(.65,0,.35,1), transform .7s cubic-bezier(.65,0,.35,1);
+  will-change:opacity, transform;
+}
+.media-reveal.is-in{
+  opacity:1;
+  transform:none;
+}
+@media (prefers-reduced-motion:reduce){
+  .media-reveal{
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+}
+
+/* Carousel keyboard hint */
+.carousel-hint{
+  position:absolute;
+  left:50%;
+  bottom:12px;
+  transform:translateX(-50%);
+  z-index:4;
+  font-family:var(--mono, 'IBM Plex Mono', monospace);
+  font-size:10px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--ink, #dcdad3);
+  background:rgba(20,20,19,0.5);
+  padding:5px 9px;
+  border-radius:2px;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .25s ease;
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+}
+.carousel-hint.is-on{opacity:1;}
+html[data-theme="light"] .carousel-hint{
+  color:#faf9f6;
+  background:rgba(20,20,19,0.55);
+}
+@media (prefers-reduced-motion:reduce){
+  .carousel-hint{display:none !important;}
+}
+
+/* Active sitemap link */
+.sitemap-col a.is-current{
+  color:var(--ink) !important;
+}
+html[data-theme="light"] .sitemap-col a.is-current{
+  color:var(--ink) !important;
+  background:transparent !important;
+}
+
+/* Stack chevron press */
+.stack-btn{
+  transition:opacity .2s ease, color .2s ease, transform .15s ease !important;
+}
+.stack-btn:active{
+  transform:scale(0.9);
+  opacity:1;
+}
+
 /* Larger tap targets for interactive chrome */
 .burger{
   min-width:44px;

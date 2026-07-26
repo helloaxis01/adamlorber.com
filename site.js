@@ -238,4 +238,113 @@
   });
 
   // 4) View Transitions: CSS @view-transition { navigation: auto } in site.css
+
+  // 5) Case media fade-in on scroll
+  if (!prefersReducedMotion()) {
+    var revealNodes = document.querySelectorAll(
+      '.case-block.block-image, .case-block.block-carousel, .case-block.block-gif, .case-block.block-gif-centered, .case-section .p-image, .stats'
+    );
+    if (revealNodes.length && 'IntersectionObserver' in window) {
+      var mediaIo = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-in');
+          mediaIo.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      revealNodes.forEach(function (el) {
+        el.classList.add('media-reveal');
+        mediaIo.observe(el);
+      });
+    }
+  }
+
+  // 6) Carousel ← → hint (once per session, first hover/focus)
+  var hintKey = 'carouselHintSeen';
+  var hintSeen = false;
+  try { hintSeen = sessionStorage.getItem(hintKey) === '1'; } catch (e) {}
+  if (!hintSeen && !prefersReducedMotion()) {
+    document.querySelectorAll('.block-carousel, .ba-carousel').forEach(function (carousel) {
+      var viewport = carousel.querySelector('.carousel-viewport') || carousel;
+      var hint = document.createElement('div');
+      hint.className = 'carousel-hint';
+      hint.textContent = '← →';
+      hint.setAttribute('aria-hidden', 'true');
+      viewport.appendChild(hint);
+      var shown = false;
+      function showHint() {
+        if (shown) return;
+        shown = true;
+        hint.classList.add('is-on');
+        try { sessionStorage.setItem(hintKey, '1'); } catch (err) {}
+        window.setTimeout(function () { hint.classList.remove('is-on'); }, 1800);
+        window.setTimeout(function () { if (hint.parentNode) hint.parentNode.removeChild(hint); }, 2200);
+      }
+      carousel.addEventListener('mouseenter', showHint, { once: true });
+      carousel.addEventListener('focusin', showHint, { once: true });
+    });
+  }
+
+  // 7) Active sitemap link for current page
+  (function () {
+    var path = (window.location.pathname || '/').replace(/\/$/, '') || '/';
+    document.querySelectorAll('.sitemap a[href]').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (!href || href.charAt(0) === '#') return;
+      try {
+        var u = new URL(a.href, window.location.href);
+        var p = u.pathname.replace(/\/$/, '') || '/';
+        if (p === path) {
+          a.classList.add('is-current');
+          a.setAttribute('aria-current', 'page');
+        }
+      } catch (err) {}
+    });
+  })();
+
+  // 8) Stats count-up when metrics enter view
+  (function () {
+    if (prefersReducedMotion()) return;
+    var nums = document.querySelectorAll('.stats .stat .num');
+    if (!nums.length || !('IntersectionObserver' in window)) return;
+
+    function parseStat(text) {
+      var raw = (text || '').replace(/\u00a0/g, ' ').trim();
+      var m = raw.match(/^([^\d]*)(\d+(?:\.\d+)?)(.*)$/);
+      if (!m) return null;
+      return { prefix: m[1], value: parseFloat(m[2]), suffix: m[3], decimals: (m[2].split('.')[1] || '').length };
+    }
+
+    function animateNum(el) {
+      var parsed = parseStat(el.textContent);
+      if (!parsed || !isFinite(parsed.value)) return;
+      var start = performance.now();
+      var dur = 900;
+      function frame(now) {
+        var t = Math.min(1, (now - start) / dur);
+        var eased = 1 - Math.pow(1 - t, 3);
+        var current = parsed.value * eased;
+        var display = parsed.decimals
+          ? current.toFixed(parsed.decimals)
+          : String(Math.round(current));
+        el.textContent = parsed.prefix + display + parsed.suffix;
+        if (t < 1) requestAnimationFrame(frame);
+        else el.textContent = parsed.prefix + (parsed.decimals ? parsed.value.toFixed(parsed.decimals) : String(Math.round(parsed.value))) + parsed.suffix;
+      }
+      el.textContent = parsed.prefix + (parsed.decimals ? (0).toFixed(parsed.decimals) : '0') + parsed.suffix;
+      requestAnimationFrame(frame);
+    }
+
+    var statsIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.querySelectorAll('.num').forEach(animateNum);
+        statsIo.unobserve(entry.target);
+      });
+    }, { threshold: 0.35 });
+
+    document.querySelectorAll('.stats').forEach(function (stats) {
+      statsIo.observe(stats);
+    });
+  })();
 })();
