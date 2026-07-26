@@ -155,13 +155,44 @@ a.next + .wrap.sitemap{
   width:44px !important;
   height:44px !important;
 }
+/* Contact/About actions: large tap targets without inflating highlight boxes */
+.contact-links,
+.about-actions{
+  align-items:center !important;
+}
 .contact-links a,
 .contact-links .email-toggle,
 .about-actions a,
 .about-actions .email-toggle{
-  min-height:44px;
+  position:relative;
   display:inline-flex;
   align-items:center;
+  line-height:1 !important;
+  min-height:0 !important;
+  padding-block:0.05em;
+}
+.contact-links a:not(.email-address)::before,
+.contact-links .email-toggle::before,
+.about-actions a:not(.email-address)::before,
+.about-actions .email-toggle::before{
+  content:"";
+  position:absolute;
+  inset:-14px -10px;
+}
+.contact-links .email-address,
+.about-actions .email-address{
+  position:relative;
+  display:inline-flex !important;
+  align-items:center !important;
+  line-height:1 !important;
+  min-height:0 !important;
+  padding-block:0.05em;
+  vertical-align:middle;
+}
+.email-slot{
+  display:inline-flex !important;
+  align-items:center !important;
+  flex-wrap:nowrap !important;
 }
 
 /* Mobile contact: tighter stack; address expands right, LinkedIn stays put */
@@ -169,12 +200,6 @@ a.next + .wrap.sitemap{
   .contact-links,
   .about-actions{
     gap:8px !important;
-  }
-  .contact-links a,
-  .contact-links .email-toggle,
-  .about-actions a,
-  .about-actions .email-toggle{
-    min-height:32px;
   }
   .email-slot{
     flex-direction:row !important;
@@ -198,9 +223,6 @@ a.next + .wrap.sitemap{
   }
   .email-slot.is-open .email-address{
     max-width:min(16rem, calc(100vw - 8rem)) !important;
-    min-height:32px !important;
-    display:inline-flex !important;
-    align-items:center;
   }
 }
 
