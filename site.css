@@ -151,12 +151,17 @@ html[data-theme="light"] .sitemap-col a.is-current{
   filter:none !important;
   -webkit-tap-highlight-color:transparent;
 }
-.carousel-arrow svg,
-.carousel-arrow svg *{
-  filter:none !important;
-  box-shadow:none !important;
+/* Crisp thin white outline (not a soft glow) so arrows read on any image */
+.carousel-arrow svg{
   stroke-width:1.5px !important;
-  paint-order:normal;
+  filter:
+    drop-shadow(0.7px 0 0 #fff)
+    drop-shadow(-0.7px 0 0 #fff)
+    drop-shadow(0 0.7px 0 #fff)
+    drop-shadow(0 -0.7px 0 #fff) !important;
+}
+.carousel-arrow svg *{
+  box-shadow:none !important;
 }
 .stack-btn{
   width:44px !important;
