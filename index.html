@@ -839,14 +839,24 @@
     layout();
   }
 
-  // Arrow/keyboard: peel the front card off, then reorder.
-  // Next alone looked clean (deck undercard already visible); prev promoted a
-  // buried card (opacity 0) and faded in. Both directions now share one peel.
+  // Arrow/keyboard/swipe: peel the front card off, then reorder.
+  // For prev, stage the incoming (last) card under the front first — otherwise
+  // the peel would reveal the next undercard, then snap/fade to the previous.
   let peeling = false;
   function peelAdvance(direction){
     if (peeling) return;
     peeling = true;
     const card = cards[order[0]];
+    if (direction === 'prev'){
+      const incoming = cards[order[order.length - 1]];
+      incoming.style.transition = 'none';
+      card.style.zIndex = String(total + 1);
+      incoming.style.zIndex = String(total);
+      incoming.style.transform = 'translate(0,0) scale(1) rotate(0deg)';
+      incoming.style.opacity = '1';
+      void incoming.offsetWidth;
+      incoming.style.transition = '';
+    }
     const dir = direction === 'next' ? -1 : 1;
     const fly = Math.max(window.innerWidth * 0.75, 480) * dir;
     card.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .35s ease, box-shadow .45s ease';
@@ -909,20 +919,15 @@
     const intentionalTap = !didDrag && absX < 14 && absY < 14;
 
     if (intentionalSwipe){
-      if (peeling) { layout(); return; }
-      peeling = true;
-      // Left swipe → next; right swipe → prev. Same peel, matching arrows.
+      // Left swipe → next; right swipe → prev. Same peel path as arrows.
       const direction = currentX < 0 ? 'next' : 'prev';
-      const dir = direction === 'next' ? -1 : 1;
-      const fly = Math.max(window.innerWidth * 0.75, 480) * dir;
-      card.style.transform = `translate(${fly}px, 0) rotate(${dir * 16}deg)`;
-      card.style.opacity = '0';
-      window.setTimeout(function () {
-        card.style.transition = '';
-        card.style.opacity = '';
-        advance(direction);
-        peeling = false;
-      }, 280);
+      // Hand control back to peelAdvance (re-applies fly from current drag pose).
+      currentX = 0;
+      currentY = 0;
+      activeCard = null;
+      didDrag = false;
+      peelAdvance(direction);
+      return;
     } else if (intentionalTap){
       const href = slugToHref[card.dataset.slug];
       if (href) window.location.href = href;
