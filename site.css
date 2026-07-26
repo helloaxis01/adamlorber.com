@@ -115,30 +115,6 @@ a.next + .wrap.sitemap{
   }
 }
 
-/* Active sitemap link — hairline only; same color/weight/size as siblings */
-.sitemap-col a.is-current{
-  color:var(--ink-dim) !important;
-  font-weight:400 !important;
-  font-size:11px !important;
-  letter-spacing:0.04em !important;
-  text-decoration:none !important;
-  background:transparent !important;
-  border-bottom:1px solid currentColor;
-  padding-bottom:1px;
-  border-radius:0;
-}
-.sitemap-col a.sitemap-caps.is-current{
-  color:var(--gold) !important;
-  letter-spacing:0.12em !important;
-}
-html[data-theme="light"] .sitemap-col a.is-current{
-  color:var(--ink-dim) !important;
-  background:transparent !important;
-}
-html[data-theme="light"] .sitemap-col a.sitemap-caps.is-current{
-  color:var(--gold) !important;
-}
-
 /* Stack chevron press */
 .stack-btn{
   transition:opacity .2s ease, color .2s ease, transform .15s ease !important;

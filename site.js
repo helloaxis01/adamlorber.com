@@ -259,24 +259,7 @@
     }
   }
 
-  // 6) Active sitemap link for current page
-  (function () {
-    var path = (window.location.pathname || '/').replace(/\/$/, '') || '/';
-    document.querySelectorAll('.sitemap a[href]').forEach(function (a) {
-      var href = a.getAttribute('href');
-      if (!href || href.charAt(0) === '#') return;
-      try {
-        var u = new URL(a.href, window.location.href);
-        var p = u.pathname.replace(/\/$/, '') || '/';
-        if (p === path) {
-          a.classList.add('is-current');
-          a.setAttribute('aria-current', 'page');
-        }
-      } catch (err) {}
-    });
-  })();
-
-  // 7) Stats count-up when metrics enter view
+  // 6) Stats count-up when metrics enter view
   (function () {
     if (prefersReducedMotion()) return;
     var nums = document.querySelectorAll('.stats .stat .num');
