@@ -750,9 +750,25 @@
       });
       const dots = Array.from(dotsEl.querySelectorAll('button'));
 
+      function viewportW(){
+        return Math.round(screen.getBoundingClientRect().width);
+      }
+      function syncSlideWidths(){
+        var w = viewportW();
+        for (var i = 0; i < slides.length; i++){
+          slides[i].style.flex = '0 0 ' + w + 'px';
+          slides[i].style.width = w + 'px';
+          slides[i].style.minWidth = w + 'px';
+          slides[i].style.maxWidth = w + 'px';
+        }
+      }
+      function slideX(dragPx){
+        return -(index * viewportW()) + (dragPx || 0);
+      }
       function render(){
+        syncSlideWidths();
         track.style.transition = 'transform 0.5s cubic-bezier(0.65,0,0.35,1)';
-        track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        track.style.transform = 'translate3d(' + slideX(0) + 'px,0,0)';
         const slide = slides[index];
         labelEl.textContent = slide.dataset.label || '';
         capEl.textContent = slide.dataset.cap || '';
@@ -780,7 +796,7 @@
       screen.addEventListener('pointermove', (e) => {
         if (!dragging || e.pointerId !== pointerId) return;
         deltaX = e.clientX - startX;
-        track.style.transform = 'translateX(calc(-' + (index * 100) + '% + ' + deltaX + 'px))';
+        track.style.transform = 'translate3d(' + slideX(deltaX) + 'px,0,0)';
       });
       function endDrag(e){
         if (!dragging || (e && e.pointerId !== pointerId)) return;
@@ -792,6 +808,7 @@
       }
       screen.addEventListener('pointerup', endDrag);
       screen.addEventListener('pointercancel', endDrag);
+      window.addEventListener('resize', function(){ if (!dragging) render(); });
       screen.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowLeft') go(-1);
         if (e.key === 'ArrowRight') go(1);

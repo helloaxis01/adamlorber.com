@@ -490,9 +490,25 @@
       let dragging = false;
       let pointerId = null;
 
+      function viewportW(){
+        return Math.round(viewport.getBoundingClientRect().width);
+      }
+      function syncSlideWidths(){
+        var w = viewportW();
+        for (var i = 0; i < slides.length; i++){
+          slides[i].style.flex = '0 0 ' + w + 'px';
+          slides[i].style.width = w + 'px';
+          slides[i].style.minWidth = w + 'px';
+          slides[i].style.maxWidth = w + 'px';
+        }
+      }
+      function slideX(dragPx){
+        return -(index * viewportW()) + (dragPx || 0);
+      }
       function update(){
+        syncSlideWidths();
         track.style.transition = 'transform 0.45s cubic-bezier(0.65,0,0.35,1)';
-        track.style.transform = `translateX(-${index * 100}%)`;
+        track.style.transform = 'translate3d(' + slideX(0) + 'px,0,0)';
         counter.textContent = String(index + 1).padStart(2, '0');
       }
       function go(dir){
@@ -516,7 +532,7 @@
       viewport.addEventListener('pointermove', (e) => {
         if (!dragging || e.pointerId !== pointerId) return;
         deltaX = e.clientX - startX;
-        track.style.transform = `translateX(calc(-${index * 100}% + ${deltaX}px))`;
+        track.style.transform = 'translate3d(' + slideX(deltaX) + 'px,0,0)';
       });
       function endDrag(e){
         if (!dragging || (e && e.pointerId !== pointerId)) return;
@@ -528,6 +544,8 @@
       }
       viewport.addEventListener('pointerup', endDrag);
       viewport.addEventListener('pointercancel', endDrag);
+      window.addEventListener('resize', function(){ if (!dragging) update(); });
+      update();
     });
   })();
 </script>
