@@ -151,6 +151,30 @@ a.next + .wrap.sitemap{
   filter:none !important;
   box-shadow:none !important;
 }
+
+/* Galleries: clip adjacent slides. % translates caused a 1px previous-slide bleed. */
+.carousel-viewport,
+.ba-carousel .carousel-viewport{
+  overflow:hidden !important;
+}
+.carousel-track,
+.ba-carousel .carousel-track{
+  gap:0 !important;
+  touch-action:pan-y;
+}
+.carousel-slide,
+.ba-carousel .carousel-slide{
+  box-sizing:border-box !important;
+  overflow:hidden !important;
+  position:relative;
+}
+.carousel-slide img,
+.ba-carousel .carousel-slide img{
+  display:block;
+  -webkit-user-drag:none;
+  user-select:none;
+  pointer-events:none;
+}
 .stack-btn{
   width:44px !important;
   height:44px !important;
