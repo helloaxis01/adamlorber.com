@@ -303,7 +303,7 @@
   }
   .private-hosts strong{color:var(--ink); font-weight:500;}
   .private-howto{
-    max-width:640px; margin:56px 0 96px; padding-top:36px; border-top:1px solid var(--line);
+    max-width:640px; margin:56px 0 40px; padding-top:36px; border-top:1px solid var(--line);
   }
   .private-howto h2{
     font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
@@ -312,6 +312,41 @@
   .private-howto ol{margin:0; padding-left:1.2em; color:var(--ink-dim); font-size:14px; line-height:1.7;}
   .private-howto li{margin-bottom:8px;}
   .private-howto code{font-family:var(--mono); font-size:12px; color:var(--ink);}
+
+  .private-checklist{
+    max-width:720px; margin:0 0 96px; padding-top:36px; border-top:1px solid var(--line);
+  }
+  .private-checklist > h2{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink); margin-bottom:10px; font-weight:400;
+  }
+  .private-checklist > .check-note{
+    font-size:13px; line-height:1.6; color:var(--ink-dim); margin-bottom:28px; max-width:560px;
+  }
+  .check-group{margin-bottom:28px;}
+  .check-group h3{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-dim); margin-bottom:12px; font-weight:400;
+  }
+  .check-list{list-style:none; margin:0; padding:0;}
+  .check-list li{
+    display:grid; grid-template-columns:18px 1fr; gap:12px; align-items:start;
+    font-size:14px; line-height:1.55; color:var(--ink-dim); padding:8px 0;
+    border-top:1px solid var(--line);
+  }
+  .check-list li:last-child{border-bottom:1px solid var(--line);}
+  .check-list .box{
+    width:14px; height:14px; margin-top:3px; border:1px solid var(--ink-dim);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    font-size:10px; line-height:1; color:transparent;
+  }
+  .check-list li.is-done{color:var(--ink-dim); opacity:0.72;}
+  .check-list li.is-done .box{
+    border-color:var(--chartreuse); background:var(--chartreuse); color:#1a1a19;
+  }
+  .check-list li.is-done .box::before{content:"✓"; font-weight:700;}
+  .check-list strong{color:var(--ink); font-weight:600;}
+  html[data-theme="light"] .check-list li.is-done .box{color:#1a1a19;}
 
 </style>
   <link rel="stylesheet" href="/site.css?v=sitemap5">
@@ -440,6 +475,53 @@
         <li>Add or refresh a case thumbnail + hero stack card if it should appear in the deck.</li>
         <li>Delete the entry here and in <code>HIDDEN-PAGES.txt</code>.</li>
       </ol>
+    </div>
+
+    <div class="private-checklist">
+      <h2>Site checklist</h2>
+      <p class="check-note">Features and enhancements we’ve shipped or still owe. Mark items done in the HTML (<code>class="is-done"</code> on the <code>&lt;li&gt;</code>) when something lands. Add new rows here when you or I recommend work.</p>
+
+      <div class="check-group">
+        <h3>Shipped</h3>
+        <ul class="check-list">
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Hero stack: left and right arrows use the same clean peel (no fade)</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Inflection LinkedIn banner sized (settled after 30% / +15% / +25% passes)</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Gallery edge bleed fixed (previous slide no longer peeks on the left)</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Netlify Forms working (Questions + Mitzvahs → native POST + thank-you pages)</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Questions thank-you copy finalized</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Public work grid = real projects only (concepts in Process / private)</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>SEO basics: titles, descriptions, OG, canonicals, sitemap, robots</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Editors + private routes noindex / robots Disallow</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>About H1 for SEO (visually hidden — no name/role echo under logo)</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Amazon sitemap priority softened while case is thin</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>GA4 + Search Console hooks in <code>site.js</code> (IDs blank until you paste)</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>/private dashboard: groups, copy URLs, Forms link, promote checklist</span></li>
+        </ul>
+      </div>
+
+      <div class="check-group">
+        <h3>Your launch steps</h3>
+        <ul class="check-list">
+          <li><span class="box" aria-hidden="true"></span><span>Soak on <code>adamlorber.netlify.app</code>, then point DNS from Squarespace/GoDaddy → Netlify</span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Confirm SSL / HTTPS on custom domain</span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Search Console: verify site + submit <code>sitemap.xml</code> (paste token into <code>AL_GSC_VERIFICATION</code>)</span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Optional: paste GA4 ID into <code>AL_GA4_MEASUREMENT_ID</code></span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Cancel Squarespace after DNS is stable</span></li>
+        </ul>
+      </div>
+
+      <div class="check-group">
+        <h3>Open / polish</h3>
+        <ul class="check-list">
+          <li><span class="box" aria-hidden="true"></span><span>Stronger captions on Television Academy + Olio galleries</span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Better alt text on Logos &amp; Marks grid</span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Lengthen short meta descriptions (Logos, Process, Mantra, etc.)</span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Compress heavy Fount videos / remaining large GIFs</span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Amazon case assets when work is public</span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Inflection: more showable assets if any leave the paywall</span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Optional: password-protect <code>/private</code> in Netlify</span></li>
+        </ul>
+      </div>
     </div>
   </div>
   <footer class="wrap">
