@@ -263,14 +263,55 @@
   .q-note{font-size:13px; color:var(--ink-dim); line-height:1.5;}
   .hp{position:absolute; left:-9999px; height:0; overflow:hidden;}
 
-  .private-list{list-style:none; display:flex; flex-direction:column; gap:0; max-width:720px; padding-bottom:96px;}
+  .private-list{list-style:none; display:flex; flex-direction:column; gap:0; max-width:720px; padding-bottom:24px;}
   .private-list li{border-top:1px solid var(--line); padding:22px 0;}
   .private-list li:last-child{border-bottom:1px solid var(--line);}
   .private-list a{font-family:var(--serif); font-weight:500; font-size:clamp(22px,3.5vw,32px); display:inline-block;}
-  .private-list .path{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; color:var(--ink-dim); margin-top:8px;}
+  .private-list .path-row{display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:8px;}
+  .private-list .path{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; color:var(--ink-dim);}
   .private-list .note{font-size:14px; line-height:1.55; color:var(--ink-dim); margin-top:8px; max-width:520px;}
-  .private-tip{font-size:14px; line-height:1.65; color:var(--ink-dim); max-width:640px; margin:28px 0 40px;}
+  .private-tip{font-size:14px; line-height:1.65; color:var(--ink-dim); max-width:640px; margin:28px 0 28px;}
   .private-tip code{font-family:var(--mono); font-size:12px; color:var(--ink);}
+  .private-section{max-width:720px; margin-top:48px;}
+  .private-section-label{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink); margin-bottom:4px;
+  }
+  .private-actions{
+    display:flex; flex-wrap:wrap; gap:10px; margin:0 0 8px; max-width:720px;
+  }
+  .private-actions button,
+  .private-actions a,
+  .copy-path{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-dim); background:transparent; border:1px solid var(--line);
+    padding:10px 12px; cursor:pointer; text-decoration:none; line-height:1;
+  }
+  .private-actions button:hover,
+  .private-actions a:hover,
+  .copy-path:hover{color:var(--ink); border-color:var(--ink-dim);}
+  .copy-path{padding:6px 8px; font-size:9px;}
+  .copy-path.is-copied,
+  .private-actions button.is-copied{color:var(--chartreuse); border-color:var(--chartreuse);}
+  html[data-theme="light"] .copy-path.is-copied,
+  html[data-theme="light"] .private-actions button.is-copied{
+    color:var(--ink); background:var(--chartreuse); border-color:var(--chartreuse);
+  }
+  .private-hosts{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.04em; color:var(--ink-dim);
+    margin:0 0 28px; line-height:1.7; max-width:720px;
+  }
+  .private-hosts strong{color:var(--ink); font-weight:500;}
+  .private-howto{
+    max-width:640px; margin:56px 0 96px; padding-top:36px; border-top:1px solid var(--line);
+  }
+  .private-howto h2{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--ink); margin-bottom:16px; font-weight:400;
+  }
+  .private-howto ol{margin:0; padding-left:1.2em; color:var(--ink-dim); font-size:14px; line-height:1.7;}
+  .private-howto li{margin-bottom:8px;}
+  .private-howto code{font-family:var(--mono); font-size:12px; color:var(--ink);}
 
 </style>
   <link rel="stylesheet" href="/site.css?v=sitemap5">
@@ -300,62 +341,106 @@
   <div class="wrap p-hero">
     <p class="p-eyebrow">Private</p>
     <h1 class="p-title">Hidden pages</h1>
-    <p class="p-sub">Unlisted routes — not in the public nav or sitemap. Bookmark this page on whatever host you're previewing.</p>
+    <p class="p-sub">Unlisted routes — not in the public nav or sitemap. Bookmark this page; it’s your index for archives, forms, and tools.</p>
   </div>
   <div class="wrap">
-    <p class="private-tip">Unlisted routes for archived cases and private tools. Bookmark <code>/private</code> on your live host. Same list lives in <code>HIDDEN-PAGES.txt</code> in the repo.</p>
-    <ul class="private-list">
-    <li>
-      <a href="/agra-wood">Agra Wood</a>
-      <div class="path">/agra-wood</div>
-      <p class="note">Archived case — Polish carpentry brand identity. Ready to restore to Selected Work.</p>
-    </li>
-    <li>
-      <a href="/solmar">Solmar</a>
-      <div class="path">/solmar</div>
-      <p class="note">Full case page kept private; selected work also appears in Process.</p>
-    </li>
-    <li>
-      <a href="/mootz-tom">Mootz &amp; Tom</a>
-      <div class="path">/mootz-tom</div>
-      <p class="note">Full case page kept off the public grid; concept work lives in Process.</p>
-    </li>
-    <li>
-      <a href="/fount-deep-dive">Fount Deep Dive</a>
-      <div class="path">/fount-deep-dive</div>
-      <p class="note">Private hiring deep dive — expanded Fount work, video, packaging, AI.</p>
-    </li>
-    <li>
-      <a href="/fount-sites">Fount Sites</a>
-      <div class="path">/fount-sites</div>
-      <p class="note">Full-page Fount, Fount Pro, and FlyKitt website captures from the old portfolio.</p>
-    </li>
-    <li>
-      <a href="/good-kernels">Good Kernels</a>
-      <div class="path">/good-kernels</div>
-      <p class="note">Popcorn brand identity and packaging. Ready for updated photos when you have them.</p>
-    </li>
-    <li>
-      <a href="/revyrie-decks">Revyrie Decks</a>
-      <div class="path">/revyrie-decks</div>
-      <p class="note">Password: Decks — client proposal and Clarity deck designs.</p>
-    </li>
-    <li>
-      <a href="/questions">Questions</a>
-      <div class="path">/questions</div>
-      <p class="note">Client branding questionnaire (Netlify form).</p>
-    </li>
-    <li>
-      <a href="/axis">AXIS</a>
-      <div class="path">/axis</div>
-      <p class="note">Product in progress — app screens, icon system, and wordmark. May graduate to Selected Work.</p>
-    </li>
-    <li>
-      <a href="/mitzvahs">Mitzvahs</a>
-      <div class="path">/mitzvahs</div>
-      <p class="note">Bespoke event identity concept + inquiry form.</p>
-    </li>
-    </ul>
+    <div class="private-actions">
+      <button type="button" id="copyPrivateUrl">Copy this page URL</button>
+      <a id="linkNetlify" href="https://adamlorber.netlify.app/private">Open on Netlify</a>
+      <a id="linkLive" href="https://www.adamlorber.com/private">Open on adamlorber.com</a>
+      <a href="https://app.netlify.com/projects/adamlorber/forms" target="_blank" rel="noopener">Netlify Forms</a>
+    </div>
+    <p class="private-hosts">You’re on <strong id="currentHost">—</strong>. Bookmark <code>/private</code> on whichever host you use day to day.</p>
+    <p class="private-tip">Same list lives in <code>HIDDEN-PAGES.txt</code> in the repo. Paths below include a copy button for sharing.</p>
+
+    <div class="private-section">
+      <div class="private-section-label">Tools &amp; forms</div>
+      <ul class="private-list">
+        <li>
+          <a href="/questions">Questions</a>
+          <div class="path-row"><span class="path">/questions</span><button type="button" class="copy-path" data-path="/questions">Copy</button></div>
+          <p class="note">Client branding questionnaire (Netlify form). Submissions → Netlify Forms → <code>questions</code>.</p>
+        </li>
+        <li>
+          <a href="/mitzvahs">Mitzvahs</a>
+          <div class="path-row"><span class="path">/mitzvahs</span><button type="button" class="copy-path" data-path="/mitzvahs">Copy</button></div>
+          <p class="note">Bespoke event identity + inquiry form. Submissions → Netlify Forms → <code>mitzvahs</code>.</p>
+        </li>
+        <li>
+          <a href="/revyrie-decks">Revyrie Decks</a>
+          <div class="path-row"><span class="path">/revyrie-decks</span><button type="button" class="copy-path" data-path="/revyrie-decks">Copy</button></div>
+          <p class="note">Password: <strong>Decks</strong> — client proposal and Clarity deck designs.</p>
+        </li>
+        <li>
+          <a href="/editor">Site editor</a>
+          <div class="path-row"><span class="path">/editor</span><button type="button" class="copy-path" data-path="/editor">Copy</button></div>
+          <p class="note">Local/preview homepage editor. Noindex — not for public use.</p>
+        </li>
+        <li>
+          <a href="/case-study-editor">Case study editor</a>
+          <div class="path-row"><span class="path">/case-study-editor</span><button type="button" class="copy-path" data-path="/case-study-editor">Copy</button></div>
+          <p class="note">Local/preview case editor. Noindex — not for public use.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="private-section">
+      <div class="private-section-label">Archived cases</div>
+      <ul class="private-list">
+        <li>
+          <a href="/agra-wood">Agra Wood</a>
+          <div class="path-row"><span class="path">/agra-wood</span><button type="button" class="copy-path" data-path="/agra-wood">Copy</button></div>
+          <p class="note">Polish carpentry brand identity. Ready to restore to Selected Work.</p>
+        </li>
+        <li>
+          <a href="/solmar">Solmar</a>
+          <div class="path-row"><span class="path">/solmar</span><button type="button" class="copy-path" data-path="/solmar">Copy</button></div>
+          <p class="note">Full case kept private; packaging also appears in Process.</p>
+        </li>
+        <li>
+          <a href="/mootz-tom">Mootz &amp; Tom</a>
+          <div class="path-row"><span class="path">/mootz-tom</span><button type="button" class="copy-path" data-path="/mootz-tom">Copy</button></div>
+          <p class="note">Full case off the public grid; concept work lives in Process.</p>
+        </li>
+        <li>
+          <a href="/good-kernels">Good Kernels</a>
+          <div class="path-row"><span class="path">/good-kernels</span><button type="button" class="copy-path" data-path="/good-kernels">Copy</button></div>
+          <p class="note">Popcorn brand identity and packaging. Ready for updated photos when you have them.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="private-section">
+      <div class="private-section-label">Deep dives &amp; in progress</div>
+      <ul class="private-list">
+        <li>
+          <a href="/fount-deep-dive">Fount Deep Dive</a>
+          <div class="path-row"><span class="path">/fount-deep-dive</span><button type="button" class="copy-path" data-path="/fount-deep-dive">Copy</button></div>
+          <p class="note">Hiring deep dive — expanded Fount work, video, packaging, AI.</p>
+        </li>
+        <li>
+          <a href="/fount-sites">Fount Sites</a>
+          <div class="path-row"><span class="path">/fount-sites</span><button type="button" class="copy-path" data-path="/fount-sites">Copy</button></div>
+          <p class="note">Full-page Fount, Fount Pro, and FlyKitt website captures from the old portfolio.</p>
+        </li>
+        <li>
+          <a href="/axis">AXIS</a>
+          <div class="path-row"><span class="path">/axis</span><button type="button" class="copy-path" data-path="/axis">Copy</button></div>
+          <p class="note">Product in progress — app screens, icon system, and wordmark. May graduate to Selected Work.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="private-howto">
+      <h2>Promote a page to Selected Work</h2>
+      <ol>
+        <li>Add a work-grid card + sitemap footer link on <code>index.html</code> (and About footer if needed).</li>
+        <li>Add the pretty URL to <code>sitemap.xml</code>; remove it from <code>robots.txt</code> Disallow.</li>
+        <li>Remove <code>noindex</code> from the page <code>&lt;head&gt;</code> if present.</li>
+        <li>Add or refresh a case thumbnail + hero stack card if it should appear in the deck.</li>
+        <li>Delete the entry here and in <code>HIDDEN-PAGES.txt</code>.</li>
+      </ol>
+    </div>
   </div>
   <footer class="wrap">
     <span>© 2026 Adam Lorber <span class="build-tag">· private index</span></span>
@@ -377,6 +462,41 @@
   window.addEventListener('scroll', () => {
     if (!headerTicking){ headerTicking = true; requestAnimationFrame(updateHeader); }
   }, { passive: true });
+
+  (function(){
+    var hostEl = document.getElementById('currentHost');
+    if (hostEl) hostEl.textContent = location.host || 'local file';
+
+    function flash(btn){
+      btn.classList.add('is-copied');
+      var prev = btn.textContent;
+      btn.textContent = 'Copied';
+      setTimeout(function(){ btn.classList.remove('is-copied'); btn.textContent = prev; }, 1200);
+    }
+    function copyText(text, btn){
+      function done(){ if (btn) flash(btn); }
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(done).catch(function(){
+          window.prompt('Copy this URL', text);
+        });
+      } else {
+        window.prompt('Copy this URL', text);
+      }
+    }
+
+    var copyPage = document.getElementById('copyPrivateUrl');
+    if (copyPage){
+      copyPage.addEventListener('click', function(){
+        copyText(location.origin + '/private', copyPage);
+      });
+    }
+    document.querySelectorAll('.copy-path').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var path = btn.getAttribute('data-path') || '';
+        copyText(location.origin + path, btn);
+      });
+    });
+  })();
 </script>
 <script src="site.js"></script>
 </body>
