@@ -29,3 +29,11 @@ Disallow: /project-mootz-tom.html
 Disallow: /good-kernels
 Disallow: /good-kernels.html
 Disallow: /project-good-kernels.html
+Disallow: /questions-thanks
+Disallow: /questions-thanks.html
+Disallow: /mitzvahs-thanks
+Disallow: /mitzvahs-thanks.html
+Disallow: /editor
+Disallow: /editor.html
+Disallow: /case-study-editor
+Disallow: /case-study-editor.html

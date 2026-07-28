@@ -15,6 +15,8 @@ files locally from this folder).
   /questions            questions.html               Client questionnaire form
   /axis                 axis.html                    AXIS app showcase (screens + brand)
   /mitzvahs             mitzvahs.html                Bespoke Mitzvahs (standalone client page)
+  /editor               editor.html                  Site editor tool (noindex)
+  /case-study-editor    case-study-editor.html       Case study editor tool (noindex)
 
 PUBLIC SELECTED WORK NOTES
 --------------------------

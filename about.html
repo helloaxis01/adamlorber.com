@@ -106,9 +106,15 @@
   .reveal{opacity:1; transform:translateY(16px); transition:transform .7s ease;}
   .reveal.in{transform:translateY(0);}
   .label-row{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:56px;}
+  .about .label-row{margin-bottom:14px;}
   .label-row .eyebrow-sm{font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);}
 
   .about{padding-top:158px; padding-bottom:140px;}
+  .about-title{
+    font-family:var(--serif); font-weight:500;
+    font-size:clamp(36px,5.5vw,64px); line-height:1.05; color:var(--ink);
+    margin:0 0 40px; max-width:18ch;
+  }
   .about-grid{display:grid; grid-template-columns:minmax(0,340px) minmax(0,1fr); gap:72px; align-items:start;}
   .about-photo{position:relative; aspect-ratio:4/5; max-width:340px; width:100%; overflow:hidden; border-radius:1px;}
   .about-photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 39%;}
@@ -349,6 +355,7 @@
 <main id="top">
   <section id="about" class="wrap about">
     <div class="label-row reveal"><span class="eyebrow-sm">About</span></div>
+    <h1 class="about-title reveal">Adam Lorber</h1>
     <div class="about-grid">
       <div class="about-photo reveal">
         <img src="images/about/adam-lorber-portrait.jpg" alt="Adam Lorber portrait">
