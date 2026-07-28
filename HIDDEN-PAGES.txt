@@ -40,4 +40,8 @@ Legacy /televisionacademy redirects to /television-academy.
 PREVIEW
 -------
   https://adamlorber.netlify.app/private
+  https://www.adamlorber.com/private   (after DNS)
   Local: open private.html in a browser from this folder.
+
+The /private page groups tools, archives, and deep dives; includes
+copy-URL buttons and a short “promote to Selected Work” checklist.
