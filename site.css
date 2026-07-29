@@ -4,6 +4,24 @@
 :root{ color-scheme: dark; }
 html[data-theme="light"]{ color-scheme: light; }
 
+/* Fill the iOS status-bar / overscroll region with the page ground */
+html, body{
+  background-color: var(--bg, #1a1a19);
+}
+
+/* Extend the sticky header into the notch/status-bar safe area */
+header{
+  padding-top: env(safe-area-inset-top, 0px);
+}
+header::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:env(safe-area-inset-top, 0px);
+  background:var(--bg, #1a1a19);
+  pointer-events:none;
+}
+
 img, video{
   max-width:100%;
   height:auto;
