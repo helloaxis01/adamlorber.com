@@ -74,56 +74,86 @@
 
   .resume-page{padding-top:140px; padding-bottom:120px;}
   .resume-head{
-    display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;
-    gap:18px 40px; margin-bottom:48px; padding-bottom:28px; border-bottom:1px solid var(--line);
+    margin-bottom:48px;
+    padding-bottom:28px;
+    border-bottom:1px solid var(--line);
+  }
+  .resume-topline{
+    display:flex; align-items:baseline; justify-content:space-between; gap:16px;
+    margin-bottom:14px;
   }
   .resume-kicker{
     font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);
-    margin-bottom:14px;
+    margin:0;
+  }
+  .resume-about{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-dim); line-height:1; white-space:nowrap;
+  }
+  .resume-about:hover{color:var(--chartreuse);}
+  html[data-theme="light"] .resume-about:hover{
+    color:#1a1a19; background:var(--chartreuse);
   }
   .resume-title{
     font-family:var(--serif); font-weight:500; font-size:clamp(28px,4vw,44px); line-height:1.15; color:var(--ink);
     white-space:nowrap;
   }
-  .resume-actions{
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px;
-    width:max-content; max-width:100%;
-  }
-  .resume-actions a{
-    font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--ink-dim); white-space:nowrap; padding:6px 0;
-  }
-  .resume-actions a.download{
-    color:var(--chartreuse);
-    border:1px solid var(--chartreuse);
-    padding:8px 14px;
-    line-height:1;
-    font-weight:700;
-  }
-  html[data-theme="light"] .resume-actions a.download{
-    color:#1a1a19;
-    background:var(--chartreuse);
-    border-color:var(--chartreuse);
-  }
-  .resume-actions a.download:hover{
-    color:#1a1a19; background:var(--chartreuse); border-color:var(--chartreuse);
-  }
-  html[data-theme="light"] .resume-actions a.download:hover{
-    color:#1a1a19; background:var(--chartreuse); border-color:#1a1a19;
-  }
-  .resume-actions a:not(.download):hover{color:var(--chartreuse);}
-  html[data-theme="light"] .resume-actions a:not(.download):hover{
-    color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;
-  }
+  .resume-title .title-br{display:none;}
 
-  .resume-contact{
-    display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:18px;
-    font-family:var(--mono); font-size:11px; letter-spacing:0.04em; color:var(--ink-dim);
+  .resume-meta{
+    margin-top:20px;
+    display:flex; flex-direction:column; align-items:flex-start; gap:12px;
   }
-  .resume-contact a{color:var(--ink-dim); border-bottom:1px solid transparent;}
-  .resume-contact a:hover{color:var(--chartreuse); border-color:currentColor;}
-  html[data-theme="light"] .resume-contact a:hover{
-    color:#1a1a19; background:var(--chartreuse); border-color:transparent;
+  .resume-pair{
+    display:flex; align-items:center; gap:28px;
+  }
+  .resume-pair .email-slot{
+    display:inline-flex; align-items:center; gap:0;
+  }
+  .resume-pair .email-slot.is-open{gap:28px;}
+  .resume-pair a,
+  .resume-pair .email-toggle,
+  .resume-download{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-dim); background:none; border:0; padding:0; margin:0; cursor:pointer;
+    appearance:none; -webkit-appearance:none;
+    transition:color .25s ease, background-color .25s ease;
+    line-height:1; text-decoration:none;
+  }
+  .resume-pair .email-address{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.04em; text-transform:none; color:var(--ink);
+    transition:color .25s ease, background-color .25s ease, opacity .2s ease, max-width .2s ease;
+    line-height:1;
+    display:inline-flex; align-items:center;
+    max-width:0; opacity:0; overflow:hidden; white-space:nowrap;
+    pointer-events:none;
+  }
+  .resume-pair .email-slot.is-open .email-address{
+    max-width:20rem; opacity:1; pointer-events:auto;
+  }
+  .resume-loc{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.04em;
+    color:var(--ink-dim); margin:0;
+  }
+  .resume-download{
+    color:var(--chartreuse);
+    margin-top:4px;
+  }
+  .resume-download:hover{color:var(--chartreuse);}
+  html[data-theme="light"] .resume-download{
+    color:#1a1a19; background:var(--chartreuse); padding:0.15em 0.35em; margin-inline:-0.35em;
+  }
+  .resume-pair a:hover,
+  .resume-pair .email-toggle:hover,
+  .resume-pair .email-slot.is-open .email-toggle,
+  .resume-pair .email-address:hover{
+    color:var(--chartreuse);
+  }
+  html[data-theme="light"] .resume-pair a:hover,
+  html[data-theme="light"] .resume-pair .email-toggle:hover,
+  html[data-theme="light"] .resume-pair .email-slot.is-open .email-toggle,
+  html[data-theme="light"] .resume-pair .email-address:hover{
+    color:#1a1a19; background:var(--chartreuse);
   }
 
   .resume-body{max-width:720px;}
@@ -174,7 +204,8 @@
     font-family:var(--grotesk); font-weight:400; font-size:14px; letter-spacing:0;
     color:var(--ink-dim); margin-bottom:12px; line-height:1.5;
   }
-  .r-job-lead{
+  .r-job .r-job-lead,
+  .r-section .r-job-lead{
     font-family:var(--grotesk); font-style:italic; font-weight:400;
     font-size:14px; line-height:1.6; color:var(--ink); margin-bottom:12px;
   }
@@ -193,26 +224,16 @@
   footer.wrap a{color:var(--ink-dim);}
   footer.wrap a:hover{color:var(--chartreuse);}
 
-  /* Stack head early so iPad / phone landscape don't stretch the action row */
-  @media (max-width:960px){
-    .resume-head{
-      flex-direction:column; align-items:flex-start; gap:22px;
-    }
-    .resume-actions{
-      width:auto; max-width:100%;
-    }
-  }
-
   @media (max-width:720px){
     .resume-page{padding-top:120px; padding-bottom:80px;}
-    .resume-head{gap:20px; margin-bottom:36px;}
-    .resume-title{white-space:normal;}
-    .resume-actions{
-      display:flex; flex-direction:column; align-items:flex-start; gap:12px;
-      width:auto;
+    .resume-head{margin-bottom:36px; padding-bottom:22px;}
+    .resume-title{
+      white-space:normal;
+      font-size:clamp(28px,8.2vw,36px);
     }
-    .r-grid{grid-template-columns:1fr; gap:32px;}
-    .r-section{margin-bottom:40px;}
+    .resume-title .title-br{display:inline;}
+    .resume-meta{margin-top:16px; gap:10px;}
+    .resume-pair{gap:20px;}
   }
 </style>
 <link rel="stylesheet" href="/site.css?v=themebar4">
@@ -238,21 +259,23 @@
 </div>
 
 <main id="top" class="wrap resume-page">
-  <div class="resume-head reveal">
-    <div>
+  <div class="resume-head reveal" data-email-reveal>
+    <div class="resume-topline">
       <p class="resume-kicker">Resume</p>
-      <h1 class="resume-title">Lead Designer/Art Director</h1>
-      <div class="resume-contact">
-        <a href="mailto:hello@adamlorber.com">hello@adamlorber.com</a>
-        <span>Los Angeles, CA</span>
-        <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
+      <a class="resume-about" href="/about">Back to About</a>
     </div>
-    <nav class="resume-actions" aria-label="Resume PDF">
-      <a href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
-      <a class="download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
-      <a href="/about">Return to About</a>
-    </nav>
+    <h1 class="resume-title">Lead Designer &amp;<span class="title-br"><br></span> Art Director</h1>
+    <div class="resume-meta">
+      <div class="resume-pair">
+        <span class="email-slot">
+          <button type="button" class="email-toggle" aria-expanded="false" aria-controls="resume-email-address">Email</button>
+          <a class="email-address" id="resume-email-address" href="mailto:hello@adamlorber.com" tabindex="-1" aria-hidden="true">hello@adamlorber.com</a>
+        </span>
+        <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <p class="resume-loc">Los Angeles, CA</p>
+      <a class="resume-download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
+    </div>
   </div>
 
   <div class="resume-body">
