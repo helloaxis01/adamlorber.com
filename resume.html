@@ -86,35 +86,26 @@
     white-space:nowrap;
   }
   .resume-actions{
-    display:flex; flex-wrap:wrap; align-items:center; gap:0;
+    display:flex; flex-wrap:wrap; align-items:center; gap:12px 18px;
   }
   .resume-actions a{
     font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
     color:var(--ink-dim); white-space:nowrap; padding:6px 0;
   }
-  .resume-actions a + a::before{
-    content:"·"; display:inline-block; margin:0 14px; opacity:0.4; pointer-events:none;
-  }
   .resume-actions a.download{
     color:var(--chartreuse);
     border:1px solid var(--chartreuse);
-    padding:7px 12px;
+    padding:8px 14px;
     line-height:1;
-  }
-  .resume-actions a + a.download::before,
-  .resume-actions a.download + a::before{
-    margin:0 14px;
   }
   .resume-actions a.download:hover,
   html[data-theme="light"] .resume-actions a.download:hover{
     color:#1a1a19; background:var(--chartreuse); border-color:var(--chartreuse);
-    margin-inline:0; padding-inline:12px;
   }
   .resume-actions a:not(.download):hover{color:var(--chartreuse);}
   html[data-theme="light"] .resume-actions a:not(.download):hover{
     color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;
   }
-  html[data-theme="light"] .resume-actions a:hover::before{background:transparent; color:var(--ink-dim);}
 
   .resume-contact{
     display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:18px;
@@ -164,9 +155,12 @@
   }
   .r-job-title .r-mark{
     font-weight:600;
-    line-height:1.2;
-    padding:0 0.08em;
+    line-height:1.15;
+    padding:0.02em 0.08em;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
   }
+
   .r-job-meta{
     font-family:var(--mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
     color:var(--ink-dim); margin-bottom:14px; line-height:1.5;
@@ -279,7 +273,7 @@
       </article>
 
       <article class="r-job">
-        <h3 class="r-job-title">Lead Designer, Inflection</h3>
+        <h3 class="r-job-title"><span class="r-mark">Lead Designer, Inflection</span></h3>
         <p class="r-job-meta">Remote · March 2025 – November 2025</p>
         <p class="r-job-lead">Drove visual consistency and brand strategy for Fortune 100 health/wellness and tech platform serving 6 million+ users worldwide.</p>
         <ul class="r-list">
@@ -292,7 +286,7 @@
       </article>
 
       <article class="r-job">
-        <h3 class="r-job-title">Independent Design Consultant &amp; Lead Designer, The Kitchen &amp; Revyrie</h3>
+        <h3 class="r-job-title"><span class="r-mark">Independent Design Consultant &amp; Lead Designer, The Kitchen &amp; Revyrie</span></h3>
         <p class="r-job-meta">Los Angeles, CA · November 2023 – March 2025</p>
         <ul class="r-list">
           <li>The Kitchen: Spearheaded global website redesign (35+ pages) and established a unified e-commerce and environmental brand experience.</li>
@@ -301,7 +295,7 @@
       </article>
 
       <article class="r-job">
-        <h3 class="r-job-title">Lead Designer, Fount</h3>
+        <h3 class="r-job-title"><span class="r-mark">Lead Designer, Fount</span></h3>
         <p class="r-job-meta">Los Angeles, CA · September 2022 – November 2023</p>
         <p class="r-job-lead">First design hire at health/wellness tech startup. Built visual language and brand infrastructure from ground zero.</p>
         <ul class="r-list">
@@ -314,7 +308,7 @@
       </article>
 
       <article class="r-job">
-        <h3 class="r-job-title">Freelance Art Director &amp; Creative Lead, Various Brands</h3>
+        <h3 class="r-job-title"><span class="r-mark">Freelance Art Director &amp; Creative Lead, Various Brands</span></h3>
         <p class="r-job-meta">Remote · January 2012 – Present</p>
         <p class="r-job-lead">Maintained independent creative practice throughout career. Designed branding projects, campaigns, concepts, and art direction for consumer brands and emerging startups.</p>
         <ul class="r-list">
@@ -323,7 +317,7 @@
       </article>
 
       <article class="r-job">
-        <h3 class="r-job-title">Art Director, Television Academy &amp; Emmy Awards</h3>
+        <h3 class="r-job-title"><span class="r-mark">Art Director, Television Academy &amp; Emmy Awards</span></h3>
         <p class="r-job-meta">North Hollywood, CA · April 2006 – September 2022</p>
         <p class="r-job-lead">Oversaw the design department, shaping the visual identity and creative direction for the Emmy Awards organization.</p>
         <ul class="r-list">
