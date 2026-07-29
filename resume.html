@@ -217,9 +217,14 @@
     .resume-title .title-br{display:inline;}
     .resume-contact{margin-top:12px;}
     .resume-actions{
-      display:flex; flex-direction:row; flex-wrap:wrap; align-items:center;
-      gap:8px 12px;
+      display:flex; flex-direction:row; flex-wrap:nowrap; align-items:center;
+      gap:8px 10px; max-width:100%;
     }
+    .resume-actions a{
+      font-size:10px; letter-spacing:0.08em; padding:5px 0;
+    }
+    .resume-actions a.download{padding:7px 10px;}
+    .resume-actions .about-long{display:none;}
     .r-grid{grid-template-columns:1fr; gap:32px;}
     .r-section{margin-bottom:40px;}
   }
@@ -257,11 +262,11 @@
         <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
-    <nav class="resume-actions" aria-label="Resume PDF">
-      <a href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
-      <a class="download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
-      <a href="/about">Return to About</a>
-    </nav>
+      <nav class="resume-actions" aria-label="Resume PDF">
+        <a href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
+        <a class="download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
+        <a class="about-link" href="/about"><span class="about-long">Return to </span>About</a>
+      </nav>
   </div>
 
   <div class="resume-body">
