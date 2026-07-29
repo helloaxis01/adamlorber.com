@@ -1,6 +1,9 @@
 /* Shared launch styles: responsive, tap targets, stats, media defaults.
    Page-specific layout remains in each HTML <style> block. */
 
+:root{ color-scheme: dark; }
+html[data-theme="light"]{ color-scheme: light; }
+
 img, video{
   max-width:100%;
   height:auto;
