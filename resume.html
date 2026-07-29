@@ -145,7 +145,10 @@
   }
   .r-job.is-current .r-job-meta{color:var(--chartreuse);}
   html[data-theme="light"] .r-job.is-current .r-job-meta{
-    color:#1a1a19; background:var(--chartreuse); padding-inline:0.2em;
+    color:#1a1a19 !important;
+    background:var(--chartreuse);
+    display:inline;
+    padding:0.1em 0.25em;
   }
   .r-job-title{
     font-family:var(--grotesk); font-weight:600; font-size:16px; line-height:1.35; color:var(--ink);
