@@ -74,9 +74,8 @@
 
   .resume-page{padding-top:140px; padding-bottom:120px;}
   .resume-head{
-    display:grid; grid-template-columns:minmax(0,1fr) auto;
-    align-items:end; column-gap:40px; row-gap:16px;
-    margin-bottom:48px; padding-bottom:28px; border-bottom:1px solid var(--line);
+    display:flex; flex-direction:column; align-items:stretch;
+    margin-bottom:48px;
   }
   .resume-kicker{
     font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);
@@ -87,10 +86,57 @@
     white-space:nowrap;
   }
   .resume-title .title-br{display:none;}
+
+  .resume-loc{
+    margin-top:18px;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.04em;
+    color:var(--ink-dim); text-align:left;
+  }
+
+  .resume-links{
+    display:flex; flex-direction:row; flex-wrap:wrap; align-items:center;
+    gap:32px; margin-top:22px;
+  }
+  .resume-links a,
+  .resume-links .email-toggle{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-dim); background:none; border:0; padding:0; margin:0; cursor:pointer;
+    appearance:none; -webkit-appearance:none;
+    transition:color .25s ease, background-color .25s ease;
+    line-height:1;
+  }
+  .resume-links .email-address{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.04em; text-transform:none; color:var(--ink);
+    transition:color .25s ease, background-color .25s ease, opacity .2s ease, max-width .2s ease;
+    line-height:1;
+    display:inline-flex; align-items:center;
+    max-width:0; opacity:0; overflow:hidden; white-space:nowrap;
+    vertical-align:middle; pointer-events:none;
+  }
+  .resume-links .email-slot.is-open .email-address{
+    max-width:20rem; opacity:1; pointer-events:auto;
+  }
+  .resume-links .email-address:hover{color:var(--chartreuse);}
+  html[data-theme="light"] .resume-links .email-address:hover{
+    color:#1a1a19; background:var(--chartreuse);
+  }
+  .resume-links a:not(.email-address):hover,
+  .resume-links .email-toggle:hover,
+  .resume-links .email-slot.is-open .email-toggle{
+    color:var(--chartreuse);
+  }
+  html[data-theme="light"] .resume-links a:not(.email-address):hover,
+  html[data-theme="light"] .resume-links .email-toggle:hover,
+  html[data-theme="light"] .resume-links .email-slot.is-open .email-toggle{
+    color:#1a1a19; background:var(--chartreuse);
+  }
+
   .resume-actions{
-    display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px;
-    justify-self:end;
-    margin:0; padding:0; max-width:none;
+    display:flex; flex-wrap:nowrap; align-items:center; justify-content:space-between;
+    width:100%; gap:12px;
+    margin:28px 0 0; padding:0 0 20px;
+    border-bottom:1px solid var(--line);
+    max-width:none;
   }
   .resume-actions a{
     font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
@@ -117,16 +163,6 @@
   .resume-actions a:not(.download):hover{color:var(--chartreuse);}
   html[data-theme="light"] .resume-actions a:not(.download):hover{
     color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;
-  }
-
-  .resume-contact{
-    display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:18px;
-    font-family:var(--mono); font-size:11px; letter-spacing:0.04em; color:var(--ink-dim);
-  }
-  .resume-contact a{color:var(--ink-dim); border-bottom:1px solid transparent;}
-  .resume-contact a:hover{color:var(--chartreuse); border-color:currentColor;}
-  html[data-theme="light"] .resume-contact a:hover{
-    color:#1a1a19; background:var(--chartreuse); border-color:transparent;
   }
 
   .resume-body{max-width:720px;}
@@ -199,38 +235,29 @@
 
   /* Stack head early so iPad / phone landscape don't stretch the action row */
   @media (max-width:960px){
-    .resume-head{
-      grid-template-columns:1fr;
-      align-items:start;
-      justify-items:start;
-    }
-    .resume-actions{
-      justify-self:start;
-      justify-content:flex-start;
-      margin:0;
-    }
+    .resume-links{gap:24px;}
   }
 
   @media (max-width:720px){
     .resume-page{padding-top:120px; padding-bottom:80px;}
-    .resume-head{margin-bottom:36px; padding-bottom:20px; row-gap:14px;}
+    .resume-head{margin-bottom:36px;}
     .resume-title{
       white-space:normal;
       font-size:clamp(28px,8.2vw,36px);
     }
     .resume-title .title-br{display:inline;}
-    .resume-contact{margin-top:12px;}
+    .resume-loc{margin-top:14px;}
+    .resume-links{
+      flex-direction:row; flex-wrap:wrap; align-items:center;
+      gap:18px; margin-top:18px;
+    }
     .resume-actions{
-      display:flex; flex-direction:row; flex-wrap:nowrap; align-items:center;
-      justify-content:flex-start; justify-self:start;
-      gap:8px 10px; width:max-content; max-width:100%;
-      margin:0;
+      margin-top:22px; padding-bottom:16px; gap:8px;
     }
     .resume-actions a{
       font-size:10px; letter-spacing:0.08em; padding:5px 0;
     }
     .resume-actions a.download{padding:7px 10px;}
-    .resume-actions .about-long{display:none;}
     .r-grid{grid-template-columns:1fr; gap:32px;}
     .r-section{margin-bottom:40px;}
   }
@@ -262,17 +289,20 @@
     <div class="resume-id">
       <p class="resume-kicker">Resume</p>
       <h1 class="resume-title">Lead Designer &amp;<span class="title-br"><br></span> Art Director</h1>
-      <div class="resume-contact">
-        <a href="mailto:hello@adamlorber.com">hello@adamlorber.com</a>
-        <span>Los Angeles, CA</span>
-        <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+      <p class="resume-loc">Los Angeles, CA</p>
+      <div class="resume-links about-actions" data-email-reveal>
+        <span class="email-slot">
+          <button type="button" class="email-toggle" aria-expanded="false" aria-controls="resume-email-address">Email</button>
+          <a class="email-address" id="resume-email-address" href="mailto:hello@adamlorber.com" tabindex="-1" aria-hidden="true">hello@adamlorber.com</a>
+        </span>
+        <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
-      <nav class="resume-actions" aria-label="Resume PDF">
-        <a href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
-        <a class="download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
-        <a class="about-link" href="/about"><span class="about-long">Return to </span>About</a>
-      </nav>
+    <nav class="resume-actions" aria-label="Resume PDF">
+      <a href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
+      <a class="download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
+      <a href="/about">Back to About</a>
+    </nav>
   </div>
 
   <div class="resume-body">
