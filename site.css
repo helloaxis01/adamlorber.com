@@ -306,6 +306,22 @@ a.next + .wrap.sitemap{
   }
 }
 
+/* Quiet place + live LA weather, between sitemap and copyright */
+.site-place{
+  font-family:var(--mono, 'IBM Plex Mono', monospace);
+  font-size:10px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--ink-dim, #8f8d85);
+  margin:-20px 0 0;
+  padding-top:0;
+  padding-bottom:0;
+}
+.site-place + footer.wrap{
+  padding-top:24px !important;
+}
+.site-place[hidden]{display:none;}
+
 /* Tablet / iPad: breathe between phone and desktop.
    Keep sitemap at 4 columns (same as desktop). Do not force .stats to
    2 columns — odd counts leave an empty grey cell. */

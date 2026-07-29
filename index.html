@@ -198,8 +198,6 @@
   }
   .hero-role{font-family:var(--mono); font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); display:flex; align-items:center; gap:12px; flex-wrap:wrap; row-gap:6px;}
   .hero-role::before{content:''; width:26px; height:1px; background:var(--ink-dim); flex-shrink:0;}
-  .hero-role-sep{letter-spacing:0.16em;}
-  .hero-role-loc{white-space:nowrap;}
   .hero-name .flourish{text-wrap:nowrap;}
 
   .stack-wrap{width:100%; margin-bottom:36px;}
@@ -426,11 +424,6 @@
       align-self:center;
       margin-top:0;
     }
-    .hero-role-sep{display:none;}
-    .hero-role-loc{
-      flex-basis:100%;
-      padding-left:38px;
-    }
     .hero-name{
       font-size:clamp(24px,7vw,30px);
       line-height:1.36;
@@ -589,7 +582,7 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
 </style>
-  <link rel="stylesheet" href="/site.css?v=themebar4">
+  <link rel="stylesheet" href="/site.css?v=laweather1">
 </head>
 <body>
 
@@ -616,7 +609,7 @@
 
   <div class="hero wrap">
     <div class="hero-text">
-      <p class="hero-role">Lead Designer / Art Director<span class="hero-role-sep"> · </span><span class="hero-role-loc">Los Angeles</span></p>
+      <p class="hero-role">Lead Designer / Art Director</p>
       <h1 class="hero-name">Branding, art direction,<br class="m-br"> and strategy for<br class="d-br"> <span class="hero-end"><span class="flourish" data-text="established brands">established brands</span> and<br class="m-br"> <span class="flourish" data-text="ambitious startups">ambitious startups</span>.</span></h1>
     </div>
   </div>
@@ -763,7 +756,8 @@
     </div>
   </div>
 
-  <footer class="wrap">
+  <p class="site-place wrap" data-la-weather aria-live="polite">Los Angeles</p>
+<footer class="wrap">
     <span>© 2026 Adam Lorber</span>
     <a href="#top">Back to top ↑</a>
   </footer>
@@ -984,6 +978,6 @@
   })();
 </script>
 
-<script src="site.js?v=themebar4"></script>
+<script src="site.js?v=laweather1"></script>
 </body>
 </html>
