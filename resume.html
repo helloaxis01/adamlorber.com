@@ -74,8 +74,9 @@
 
   .resume-page{padding-top:140px; padding-bottom:120px;}
   .resume-head{
-    display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;
-    gap:18px 40px; margin-bottom:48px; padding-bottom:28px; border-bottom:1px solid var(--line);
+    display:grid; grid-template-columns:minmax(0,1fr) auto;
+    align-items:end; column-gap:40px; row-gap:16px;
+    margin-bottom:48px; padding-bottom:28px; border-bottom:1px solid var(--line);
   }
   .resume-kicker{
     font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);
@@ -85,9 +86,10 @@
     font-family:var(--serif); font-weight:500; font-size:clamp(28px,4vw,44px); line-height:1.15; color:var(--ink);
     white-space:nowrap;
   }
+  .resume-title .title-br{display:none;}
   .resume-actions{
     display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px;
-    width:max-content; max-width:100%;
+    justify-self:end;
   }
   .resume-actions a{
     font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
@@ -174,7 +176,8 @@
     font-family:var(--grotesk); font-weight:400; font-size:14px; letter-spacing:0;
     color:var(--ink-dim); margin-bottom:12px; line-height:1.5;
   }
-  .r-job-lead{
+  .r-job .r-job-lead,
+  .r-section .r-job-lead{
     font-family:var(--grotesk); font-style:italic; font-weight:400;
     font-size:14px; line-height:1.6; color:var(--ink); margin-bottom:12px;
   }
@@ -196,20 +199,26 @@
   /* Stack head early so iPad / phone landscape don't stretch the action row */
   @media (max-width:960px){
     .resume-head{
-      flex-direction:column; align-items:flex-start; gap:22px;
+      grid-template-columns:1fr;
+      align-items:start;
     }
     .resume-actions{
-      width:auto; max-width:100%;
+      justify-self:start;
     }
   }
 
   @media (max-width:720px){
     .resume-page{padding-top:120px; padding-bottom:80px;}
-    .resume-head{gap:20px; margin-bottom:36px;}
-    .resume-title{white-space:normal;}
+    .resume-head{margin-bottom:36px; padding-bottom:20px; row-gap:14px;}
+    .resume-title{
+      white-space:normal;
+      font-size:clamp(28px,8.2vw,36px);
+    }
+    .resume-title .title-br{display:inline;}
+    .resume-contact{margin-top:12px;}
     .resume-actions{
-      display:flex; flex-direction:column; align-items:flex-start; gap:12px;
-      width:auto;
+      display:flex; flex-direction:row; flex-wrap:wrap; align-items:center;
+      gap:8px 12px;
     }
     .r-grid{grid-template-columns:1fr; gap:32px;}
     .r-section{margin-bottom:40px;}
@@ -239,9 +248,9 @@
 
 <main id="top" class="wrap resume-page">
   <div class="resume-head reveal">
-    <div>
+    <div class="resume-id">
       <p class="resume-kicker">Resume</p>
-      <h1 class="resume-title">Lead Designer/Art Director</h1>
+      <h1 class="resume-title">Lead Designer &amp;<span class="title-br"><br></span> Art Director</h1>
       <div class="resume-contact">
         <a href="mailto:hello@adamlorber.com">hello@adamlorber.com</a>
         <span>Los Angeles, CA</span>
