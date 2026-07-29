@@ -82,8 +82,8 @@
     margin-bottom:14px;
   }
   .resume-title{
-    font-family:var(--serif); font-weight:500; font-size:clamp(28px,4vw,44px); line-height:1.2; color:var(--ink);
-    max-width:16ch;
+    font-family:var(--serif); font-weight:500; font-size:clamp(28px,4vw,44px); line-height:1.15; color:var(--ink);
+    white-space:nowrap;
   }
   .resume-actions{
     display:flex; flex-wrap:wrap; align-items:center; gap:0;
@@ -95,8 +95,23 @@
   .resume-actions a + a::before{
     content:"·"; display:inline-block; margin:0 14px; opacity:0.4; pointer-events:none;
   }
-  .resume-actions a:hover{color:var(--chartreuse);}
-  html[data-theme="light"] .resume-actions a:hover{
+  .resume-actions a.download{
+    color:var(--chartreuse);
+    border:1px solid var(--chartreuse);
+    padding:7px 12px;
+    line-height:1;
+  }
+  .resume-actions a + a.download::before,
+  .resume-actions a.download + a::before{
+    margin:0 14px;
+  }
+  .resume-actions a.download:hover,
+  html[data-theme="light"] .resume-actions a.download:hover{
+    color:#1a1a19; background:var(--chartreuse); border-color:var(--chartreuse);
+    margin-inline:0; padding-inline:12px;
+  }
+  .resume-actions a:not(.download):hover{color:var(--chartreuse);}
+  html[data-theme="light"] .resume-actions a:not(.download):hover{
     color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;
   }
   html[data-theme="light"] .resume-actions a:hover::before{background:transparent; color:var(--ink-dim);}
@@ -124,7 +139,12 @@
     color:var(--chartreuse); font-weight:500;
   }
   html[data-theme="light"] .r-mark{
-    color:#1a1a19; background:var(--chartreuse); padding:0 0.12em; box-decoration-break:clone; -webkit-box-decoration-break:clone;
+    color:#1a1a19;
+    background:var(--chartreuse);
+    padding:0 0.1em;
+    line-height:1.15;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
   }
 
   .r-list{list-style:none; display:flex; flex-direction:column; gap:14px;}
@@ -138,21 +158,14 @@
 
   .r-job{padding:22px 0; border-top:1px solid var(--line);}
   .r-job:last-child{border-bottom:1px solid var(--line);}
-  .r-job.is-current{
-    border-left:2px solid var(--chartreuse);
-    padding-left:18px;
-    margin-left:-20px;
-  }
-  .r-job.is-current .r-job-meta{color:var(--chartreuse);}
-  html[data-theme="light"] .r-job.is-current .r-job-meta{
-    color:#1a1a19 !important;
-    background:var(--chartreuse);
-    display:inline;
-    padding:0.1em 0.25em;
-  }
   .r-job-title{
-    font-family:var(--grotesk); font-weight:600; font-size:16px; line-height:1.35; color:var(--ink);
+    font-family:var(--grotesk); font-weight:600; font-size:16px; line-height:1.25; color:var(--ink);
     margin-bottom:6px;
+  }
+  .r-job-title .r-mark{
+    font-weight:600;
+    line-height:1.2;
+    padding:0 0.08em;
   }
   .r-job-meta{
     font-family:var(--mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
@@ -179,6 +192,7 @@
   @media (max-width:720px){
     .resume-page{padding-top:120px; padding-bottom:80px;}
     .resume-head{flex-direction:column; align-items:flex-start; gap:20px; margin-bottom:36px;}
+    .resume-title{white-space:normal;}
     .resume-actions{width:100%;}
     .r-grid{grid-template-columns:1fr; gap:32px;}
     .r-section{margin-bottom:40px;}
@@ -210,7 +224,7 @@
   <div class="resume-head reveal">
     <div>
       <p class="resume-kicker">Resume</p>
-      <h1 class="resume-title">Lead Designer / Art Director</h1>
+      <h1 class="resume-title">Lead Designer/Art Director</h1>
       <div class="resume-contact">
         <a href="mailto:hello@adamlorber.com">hello@adamlorber.com</a>
         <span>Los Angeles, CA</span>
@@ -219,45 +233,45 @@
     </div>
     <nav class="resume-actions" aria-label="Resume PDF">
       <a href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
-      <a href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
-      <a href="/about">About</a>
+      <a class="download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
+      <a href="/about">Return to About</a>
     </nav>
   </div>
 
   <div class="resume-body">
     <section class="r-section reveal">
       <h2>Summary</h2>
-      <p>Art Director and Lead Designer shaping strategy, visuals, and identities for brands of all sizes — from award shows to corporate brands to startups. Hands-on with design and art direction while overseeing teams, vendors, and the creative operations that help companies <span class="r-mark">build and grow</span>.</p>
+      <p>Art Director and Lead Designer shaping strategy, visuals, and identities for brands of all sizes, from award shows to corporate brands to startups. Hands-on with design and art direction while overseeing teams, vendors, and the creative operations that help companies build and grow.</p>
     </section>
 
     <section class="r-section reveal">
       <h2>Career Highlights</h2>
       <ul class="r-list">
-        <li>Direct and design campaign creative and in-stadium graphics for <span class="r-mark">Amazon Prime Video Sports</span> — NFL, NBA, WNBA, NASCAR, and The Masters.</li>
+        <li>Direct and design high-visibility campaign creative and in-stadium graphics for <span class="r-mark">Amazon Prime Video Sports</span>, covering partnerships including the NFL, NBA, WNBA, NASCAR, and The Masters.</li>
         <li>Designed and art directed the visual identity for the <span class="r-mark">70th Emmy Awards</span>, seen by over <span class="r-mark">10M</span> broadcast viewers in 120 countries.</li>
         <li>Built and mentored a 4-person team, scaling production from 75 to <span class="r-mark">150+ projects</span> annually.</li>
         <li>Drove <span class="r-mark">257% membership growth</span> through strategy and art direction at the Television Academy.</li>
-        <li>Led brand and creative direction for Fount and Inflection — strategy that helped secure <span class="r-mark">$12M Series A</span> and <span class="r-mark">100% Fortune 100 renewals</span> in 2025.</li>
+        <li>Led brand and creative direction for Fount and Inflection, where strategy helped secure <span class="r-mark">$12M</span> in Series A funding and <span class="r-mark">100% Fortune 100</span> client renewals in 2025.</li>
       </ul>
     </section>
 
     <section class="r-section reveal">
       <h2>Experience</h2>
 
-      <article class="r-job is-current">
-        <h3 class="r-job-title">Art Director III, Amazon Prime Video Sports</h3>
+      <article class="r-job">
+        <h3 class="r-job-title"><span class="r-mark">Art Director III, Amazon Prime Video Sports</span></h3>
         <p class="r-job-meta">Culver City, CA (Contractor) · July 2026 – Present</p>
-        <p class="r-job-lead">Direct creative strategy and visual execution for live sports content, digital channels, and marketing campaigns across Prime Video.</p>
+        <p class="r-job-lead">Direct the creative strategy and visual execution for live sports content, digital channels, and marketing campaigns across the Prime Video platform.</p>
         <ul class="r-list">
-          <li>Design and scale multi-format promotional assets from complex league and network creative into on-brand graphics.</li>
-          <li>Partner with Operations, GTM, and internal design to streamline trafficking and the customer-facing streaming experience.</li>
+          <li>Design and scale a high volume of multi-format promotional assets, manipulating complex creative supplied by major networks and league partners into seamless on-brand graphics.</li>
+          <li>Partner cross-functionally with Operations, GTM, and internal design teams to streamline asset trafficking and optimize the customer-facing streaming product experience.</li>
         </ul>
       </article>
 
-      <article class="r-job is-current">
-        <h3 class="r-job-title">Lead Design Consultant, Television Academy &amp; Emmy Awards</h3>
+      <article class="r-job">
+        <h3 class="r-job-title"><span class="r-mark">Lead Design Consultant, Television Academy &amp; Emmy Awards</span></h3>
         <p class="r-job-meta">Los Angeles, CA · February 2026 – Present</p>
-        <p class="r-job-lead">Returned as strategic consultant for the 2026 Emmy season — visual brand consistency, seasonal campaigns, and production logistics.</p>
+        <p class="r-job-lead">Returned as strategic consultant for 2026 Emmy season. Overseeing visual brand consistency, seasonal campaigns, and complex production logistics.</p>
         <ul class="r-list">
           <li>Rebuilt Televerse Festival logo system and master brand guidelines across 20+ touchpoints.</li>
           <li>Directing visual strategy and production materials for the 2026 Emmy season.</li>
@@ -267,12 +281,12 @@
       <article class="r-job">
         <h3 class="r-job-title">Lead Designer, Inflection</h3>
         <p class="r-job-meta">Remote · March 2025 – November 2025</p>
-        <p class="r-job-lead">Visual consistency and brand strategy for a Fortune 100 health/wellness and tech platform serving 6 million+ users.</p>
+        <p class="r-job-lead">Drove visual consistency and brand strategy for Fortune 100 health/wellness and tech platform serving 6 million+ users worldwide.</p>
         <ul class="r-list">
-          <li>Cleaned up identity after rebrand for the main brand and six product lines.</li>
-          <li>Designed deal-supporting decks and client success material that backed Fortune 100 renewals.</li>
-          <li>Designed 400+ custom course graphics for complex wellness topics, improving cohesion across the platform.</li>
-          <li>Redesigned the member email journey — hierarchy, typography, and brand cohesion that lifted engagement.</li>
+          <li>Cleaned up identity after recent rebrand for main brand and six product lines.</li>
+          <li>Designed deal-supporting decks, membership and client success material, and collateral that directly supported Fortune 100 contract renewals.</li>
+          <li>Designed 400+ custom course graphics for complex wellness topics (elder care, divorce, infertility), improving visual cohesion across the Inflection platform.</li>
+          <li>Redesigned member email journey, eliminating outdated branding and improving click-through rates and engagement metrics through hierarchy, typography, and brand cohesion.</li>
           <li>Partnered with product and engineering to scale visual consistency across web and mobile.</li>
         </ul>
       </article>
@@ -281,41 +295,41 @@
         <h3 class="r-job-title">Independent Design Consultant &amp; Lead Designer, The Kitchen &amp; Revyrie</h3>
         <p class="r-job-meta">Los Angeles, CA · November 2023 – March 2025</p>
         <ul class="r-list">
-          <li><strong>The Kitchen:</strong> Spearheaded a global website redesign (35+ pages) and a unified e-commerce and environmental brand experience.</li>
-          <li><strong>Revyrie:</strong> Brand identities and guidelines for an enterprise portfolio, unifying parent architecture across four digital sub-brands.</li>
+          <li>The Kitchen: Spearheaded global website redesign (35+ pages) and established a unified e-commerce and environmental brand experience.</li>
+          <li>Revyrie: Created brand identities and comprehensive guidelines for an enterprise portfolio, unifying parent company architecture across four digital sub-brands.</li>
         </ul>
       </article>
 
       <article class="r-job">
         <h3 class="r-job-title">Lead Designer, Fount</h3>
         <p class="r-job-meta">Los Angeles, CA · September 2022 – November 2023</p>
-        <p class="r-job-lead">First design hire. Built visual language and brand infrastructure from the ground up.</p>
+        <p class="r-job-lead">First design hire at health/wellness tech startup. Built visual language and brand infrastructure from ground zero.</p>
         <ul class="r-list">
-          <li>Directed creative strategy for the Series A — pitch decks that supported the capital raise.</li>
-          <li>Designed FDA-compliant packaging systems for FlyKitt and four supplement lines with overseas and local manufacturers.</li>
-          <li>Oversaw website redesigns and an app launch that hit a <span class="r-mark">4.7-star</span> App Store rating.</li>
-          <li>Produced web, social, and press assets through on-location art-directed lifestyle and product shoots.</li>
-          <li>Cut visual asset production costs by over <span class="r-mark">$50K</span> by bringing generative AI into the creative workflow early.</li>
+          <li>Directed creative strategy for the Series A round, designing pitch decks that supported successful capital raises.</li>
+          <li>Designed FDA-compliant packaging systems for FlyKitt and four supplement product lines, coordinating directly with overseas and local manufacturers.</li>
+          <li>Oversaw website redesigns and an app buildout and launch, which achieved a <span class="r-mark">4.7-star</span> App Store rating through collaborative UI design work with the engineering team.</li>
+          <li>Produced a library of assets for web, social, and press through on-location art-directed lifestyle and product shoots.</li>
+          <li>Reduced visual asset production costs by over <span class="r-mark">$50K</span> by pioneering the early integration of generative AI tools into the creative workflow.</li>
         </ul>
       </article>
 
       <article class="r-job">
-        <h3 class="r-job-title">Freelance Art Director &amp; Creative Lead</h3>
-        <p class="r-job-meta">Various Brands · Remote · January 2012 – Present</p>
-        <p class="r-job-lead">Independent practice throughout — branding, campaigns, concepts, and art direction for consumer brands and startups.</p>
+        <h3 class="r-job-title">Freelance Art Director &amp; Creative Lead, Various Brands</h3>
+        <p class="r-job-meta">Remote · January 2012 – Present</p>
+        <p class="r-job-lead">Maintained independent creative practice throughout career. Designed branding projects, campaigns, concepts, and art direction for consumer brands and emerging startups.</p>
         <ul class="r-list">
-          <li>National OOH for Lemon Perfect, debut social concepts for Chick-fil-A, and editorial photography for Joe’s Stone Crab’s 100th anniversary book.</li>
+          <li>Notable projects include developing national OOH campaigns for Lemon Perfect, creating debut social concepts for Chick-fil-A, and art directing/shooting editorial photography for Joe's Stone Crab's 100th anniversary book.</li>
         </ul>
       </article>
 
       <article class="r-job">
         <h3 class="r-job-title">Art Director, Television Academy &amp; Emmy Awards</h3>
         <p class="r-job-meta">North Hollywood, CA · April 2006 – September 2022</p>
-        <p class="r-job-lead">Oversaw the design department — visual identity and creative direction for the Emmy Awards organization.</p>
+        <p class="r-job-lead">Oversaw the design department, shaping the visual identity and creative direction for the Emmy Awards organization.</p>
         <ul class="r-list">
-          <li>End-to-end visual identity for the 70th Primetime Emmy Awards across global markets.</li>
-          <li>Member acquisition, print and digital campaigns, and environmental design for live events and galas.</li>
-          <li>Modern workflows and creative systems that doubled departmental output while scaling vendor production quality.</li>
+          <li>Conceptualized and executed the end-to-end visual identity for the 70th Primetime Emmy Awards across global markets.</li>
+          <li>Directed visual strategy for member acquisition, print and digital campaigns, and large scale environmental design for live events and galas.</li>
+          <li>Established modern workflows and creative systems that doubled departmental output while overseeing vendor partnerships to scale production quality.</li>
         </ul>
       </article>
     </section>
@@ -327,7 +341,7 @@
       </section>
       <section class="r-section" style="margin-bottom:0">
         <h2>Education</h2>
-        <p>University of Miami — Coral Gables, FL<br>Bachelor of Science in Advertising</p>
+        <p>University of Miami – Coral Gables, FL<br>Bachelor of Science in Advertising</p>
       </section>
     </div>
   </div>
