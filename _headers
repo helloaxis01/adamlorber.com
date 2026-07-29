@@ -3,3 +3,81 @@
   Content-Type: application/pdf
   Content-Disposition: inline; filename="Resume_AdamLorber.pdf"
   X-Content-Type-Options: nosniff
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# HTML must not stick in Safari after the Squarespace → Netlify cutover.
+/
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/about
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/resume
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/amazon
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/television-academy
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/fount
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/inflection
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/dream-clean
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/lemon-perfect
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/mantra
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/chick-fil-a
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/olio
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/joes-stone-crab
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/logos-marks
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/process
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/private
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/questions
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/mitzvahs
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache

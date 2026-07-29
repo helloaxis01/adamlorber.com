@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
 <title>Resume · Adam Lorber</title>
 <meta name="description" content="Resume for Adam Lorber — Art Director and Lead Designer in Los Angeles.">
 <meta property="og:type" content="website">
@@ -15,9 +17,9 @@
 <meta name="twitter:description" content="Resume for Adam Lorber — Art Director and Lead Designer in Los Angeles.">
 <meta name="twitter:image" content="https://www.adamlorber.com/og-image.jpg">
 <link rel="canonical" href="https://www.adamlorber.com/resume">
-<link rel="icon" href="/favicon.ico?v=3" sizes="any">
-<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="icon" href="/favicon.ico?v=4" sizes="any">
+<link rel="icon" href="/favicon.svg?v=4" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4">
 <script>!function(){try{var t=localStorage.getItem("theme");if(t==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}}()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,21 +31,25 @@
     --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
     --maxw:1320px;
     --gutter:clamp(20px,5vw,64px);
+    --header-h:72px;
   }
   html[data-theme="light"]{
     --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19;
     --line:rgba(26,26,25,0.14);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html,body{height:100%;}
-  body{background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400; min-height:100%; display:flex; flex-direction:column;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400;
+    min-height:100dvh;
+  }
   a{color:inherit; text-decoration:none;}
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter);}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter); width:100%;}
 
   header{position:fixed; top:0; left:0; right:0; z-index:110; background-color:color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-bottom:1px solid transparent;}
   header.scrolled{background-color:color-mix(in srgb, var(--bg) 94%, transparent); border-color:var(--line);}
-  nav{max-width:100%; margin:0 auto; padding:26px var(--gutter); display:flex; align-items:center; justify-content:space-between;}
+  nav{max-width:100%; margin:0 auto; padding:18px var(--gutter); display:flex; align-items:center; justify-content:space-between;}
   .logo{font-family:var(--grotesk); font-weight:800; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink);}
   .nav-right{display:flex; align-items:center; gap:14px;}
   .theme-toggle{
@@ -63,38 +69,101 @@
   .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
   .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
 
-  main{flex:1; display:flex; flex-direction:column; padding-top:96px; min-height:0;}
+  main{padding-top:var(--header-h);}
   .resume-bar{
-    display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:16px 24px;
-    padding:18px 0 16px; border-bottom:1px solid var(--line);
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    gap:12px 28px; padding:14px 0 14px; border-bottom:1px solid var(--line);
+    position:sticky; top:var(--header-h); z-index:20;
+    background:color-mix(in srgb, var(--bg) 92%, transparent);
+    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px);
   }
-  .resume-bar .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim);}
+  .resume-bar .eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--ink); font-weight:500; word-spacing:0.35em;
+  }
   .sr-only{
     position:absolute; width:1px; height:1px; padding:0; margin:-1px;
     overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
   }
-  .resume-actions{display:flex; flex-wrap:wrap; gap:18px; align-items:center;}
+  .resume-actions{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; margin-left:auto;
+  }
   .resume-actions a{
-    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
+    font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--ink-dim); word-spacing:0.45em; white-space:nowrap;
+  }
+  .resume-actions .sep{
+    color:var(--ink-dim); opacity:0.55; font-family:var(--mono); font-size:11px;
+    user-select:none; line-height:1;
   }
   .resume-actions a:hover{color:var(--chartreuse);}
   html[data-theme="light"] .resume-actions a:hover{color:var(--ink); background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;}
-  .resume-frame-wrap{
-    flex:1; min-height:70vh; margin:18px 0 28px; border:1px solid var(--line); background:#111;
+
+  /* Wide, tall document stage — pages render as large canvases */
+  .resume-stage{
+    width:100%;
+    max-width:1100px;
+    margin:0 auto;
+    padding:28px 0 64px;
+  }
+  .resume-pages{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    align-items:stretch;
+  }
+  .resume-page{
+    width:100%;
+    background:#fff;
+    box-shadow:0 0 0 1px var(--line);
     overflow:hidden;
   }
-  html[data-theme="light"] .resume-frame-wrap{background:#fff;}
-  .resume-frame-wrap iframe,
-  .resume-frame-wrap object{
-    width:100%; height:100%; min-height:70vh; border:0; display:block;
+  .resume-page canvas{
+    display:block;
+    width:100% !important;
+    height:auto !important;
   }
+  .resume-status{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.06em;
+    color:var(--ink-dim); padding:48px 0; text-align:center;
+  }
+  .resume-status[hidden]{display:none !important;}
   .resume-fallback{
-    font-size:14px; line-height:1.6; color:var(--ink-dim); padding:28px; max-width:36em;
+    font-size:15px; line-height:1.6; color:var(--ink-dim); padding:40px 0; max-width:36em;
   }
   .resume-fallback a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
-  footer.wrap{padding:28px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between; border-top:1px solid var(--line);}
+
+  footer.site-footer{
+    width:100%;
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:18px var(--gutter) 28px;
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-dim);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:32px;
+    border-top:1px solid var(--line);
+    letter-spacing:0.04em;
+  }
+  footer.site-footer .footer-copy{word-spacing:0.15em;}
+  footer.site-footer a{
+    color:var(--ink-dim);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    flex-shrink:0;
+  }
+  footer.site-footer a:hover{color:var(--chartreuse);}
+
+  @media (max-width:560px){
+    .resume-actions{margin-left:0; width:100%;}
+    .resume-stage{padding:18px 0 40px;}
+    .resume-pages{gap:16px;}
+  }
 </style>
-<link rel="stylesheet" href="/site.css?v=sitemap5">
+<link rel="stylesheet" href="/site.css?v=sitemap6">
 </head>
 <body>
 <header id="siteHeader">
@@ -120,24 +189,27 @@
   <div class="resume-bar">
     <p class="eyebrow">Resume</p>
     <h1 class="sr-only">Resume · Adam Lorber</h1>
-    <div class="resume-actions">
+    <nav class="resume-actions" aria-label="Resume actions">
       <a href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
+      <span class="sep" aria-hidden="true">·</span>
       <a href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
+      <span class="sep" aria-hidden="true">·</span>
       <a href="/about">Back to About</a>
-    </div>
+    </nav>
   </div>
-  <div class="resume-frame-wrap">
-    <object data="/resume.pdf#view=FitH" type="application/pdf" aria-label="Adam Lorber resume">
-      <div class="resume-fallback">
-        <p>Your browser can’t display the PDF here.</p>
-        <p><a href="/resume.pdf" target="_blank" rel="noopener">Open the resume</a> or <a href="/resume.pdf" download="Resume_AdamLorber.pdf">download the PDF</a>.</p>
-      </div>
-    </object>
+
+  <div class="resume-stage">
+    <p class="resume-status" id="resumeStatus">Loading resume…</p>
+    <div class="resume-pages" id="resumePages" aria-label="Adam Lorber resume"></div>
+    <div class="resume-fallback" id="resumeFallback" hidden>
+      <p>Couldn’t render the resume in this browser.</p>
+      <p><a href="/resume.pdf" target="_blank" rel="noopener">Open the PDF</a> or <a href="/resume.pdf" download="Resume_AdamLorber.pdf">download it</a>.</p>
+    </div>
   </div>
 </main>
 
-<footer class="wrap">
-  <span>© 2026 Adam Lorber</span>
+<footer class="site-footer">
+  <span class="footer-copy">© 2026 Adam Lorber</span>
   <a href="/">Home</a>
 </footer>
 
@@ -156,6 +228,73 @@
   window.addEventListener('scroll', () => {
     if (!headerTicking){ headerTicking = true; requestAnimationFrame(updateHeader); }
   }, { passive: true });
+</script>
+<script type="module">
+  import * as pdfjsLib from '/vendor/pdfjs/pdf.min.mjs';
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs/pdf.worker.min.mjs';
+
+  const statusEl = document.getElementById('resumeStatus');
+  const pagesEl = document.getElementById('resumePages');
+  const fallbackEl = document.getElementById('resumeFallback');
+  let pdfDoc = null;
+  let renderToken = 0;
+
+  function showFallback(){
+    statusEl.hidden = true;
+    pagesEl.innerHTML = '';
+    fallbackEl.hidden = false;
+  }
+
+  async function renderAll(){
+    if (!pdfDoc) return;
+    const token = ++renderToken;
+    const cssWidth = Math.max(pagesEl.clientWidth || 0, 320);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+    const base = await pdfDoc.getPage(1);
+    const baseViewport = base.getViewport({ scale: 1 });
+    // Fill the stage; floor at 1.5× so body copy stays readable
+    const fitScale = cssWidth / baseViewport.width;
+    const scale = Math.max(fitScale, 1.5) * dpr;
+
+    pagesEl.innerHTML = '';
+    for (let n = 1; n <= pdfDoc.numPages; n++){
+      if (token !== renderToken) return;
+      const page = await pdfDoc.getPage(n);
+      const viewport = page.getViewport({ scale });
+      const wrap = document.createElement('div');
+      wrap.className = 'resume-page';
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.floor(viewport.width);
+      canvas.height = Math.floor(viewport.height);
+      canvas.style.width = '100%';
+      canvas.style.height = 'auto';
+      wrap.appendChild(canvas);
+      pagesEl.appendChild(wrap);
+      await page.render({
+        canvasContext: canvas.getContext('2d', { alpha: false }),
+        viewport
+      }).promise;
+    }
+    if (token === renderToken){
+      statusEl.hidden = true;
+      fallbackEl.hidden = true;
+    }
+  }
+
+  try{
+    pdfDoc = await pdfjsLib.getDocument({ url: '/resume.pdf' }).promise;
+    statusEl.textContent = 'Rendering resume…';
+    await renderAll();
+    let resizeTimer = 0;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { renderAll(); }, 180);
+    }, { passive: true });
+  } catch (err){
+    console.error(err);
+    showFallback();
+  }
 </script>
 <script src="site.js"></script>
 </body>
