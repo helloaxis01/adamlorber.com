@@ -29,6 +29,9 @@
     --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
     --maxw:1320px;
     --gutter:clamp(20px,5vw,64px);
+    --header-h:84px;
+    --bar-h:58px;
+    --footer-h:56px;
   }
   html[data-theme="light"]{
     --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19;
@@ -36,10 +39,13 @@
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html,body{height:100%;}
-  body{background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400; min-height:100%; display:flex; flex-direction:column;}
+  body{
+    background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400;
+    min-height:100dvh; display:flex; flex-direction:column;
+  }
   a{color:inherit; text-decoration:none;}
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
-  .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter);}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter); width:100%;}
 
   header{position:fixed; top:0; left:0; right:0; z-index:110; background-color:color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-bottom:1px solid transparent;}
   header.scrolled{background-color:color-mix(in srgb, var(--bg) 94%, transparent); border-color:var(--line);}
@@ -63,36 +69,90 @@
   .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
   .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
 
-  main{flex:1; display:flex; flex-direction:column; padding-top:96px; min-height:0;}
-  .resume-bar{
-    display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between; gap:16px 24px;
-    padding:18px 0 16px; border-bottom:1px solid var(--line);
+  main{
+    flex:1; display:flex; flex-direction:column; min-height:0;
+    padding-top:var(--header-h);
   }
-  .resume-bar .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim);}
+  .resume-bar{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    gap:12px 32px; padding:16px 0; border-bottom:1px solid var(--line); flex-shrink:0;
+  }
+  .resume-bar .eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--ink); font-weight:500; word-spacing:0.35em;
+  }
   .sr-only{
     position:absolute; width:1px; height:1px; padding:0; margin:-1px;
     overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
   }
-  .resume-actions{display:flex; flex-wrap:wrap; gap:18px; align-items:center;}
+  .resume-actions{
+    display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px; margin-left:auto;
+  }
   .resume-actions a{
-    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
+    font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--ink-dim); word-spacing:0.45em; white-space:nowrap;
+  }
+  .resume-actions .sep{
+    color:var(--ink-dim); opacity:0.55; font-family:var(--mono); font-size:11px;
+    user-select:none; line-height:1;
   }
   .resume-actions a:hover{color:var(--chartreuse);}
   html[data-theme="light"] .resume-actions a:hover{color:var(--ink); background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;}
+
   .resume-frame-wrap{
-    flex:1; min-height:70vh; margin:18px 0 28px; border:1px solid var(--line); background:#111;
-    overflow:hidden;
+    position:relative;
+    flex:1 1 auto;
+    width:100vw;
+    margin-left:calc(50% - 50vw);
+    height:calc(100dvh - var(--header-h) - var(--bar-h) - var(--footer-h));
+    min-height:70dvh;
+    background:#111;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
   }
-  html[data-theme="light"] .resume-frame-wrap{background:#fff;}
-  .resume-frame-wrap iframe,
-  .resume-frame-wrap object{
-    width:100%; height:100%; min-height:70vh; border:0; display:block;
+  html[data-theme="light"] .resume-frame-wrap{background:#e8e6e0;}
+  .resume-frame-wrap iframe{
+    position:absolute; inset:0; width:100%; height:100%; border:0; display:block; background:#111;
   }
+  html[data-theme="light"] .resume-frame-wrap iframe{background:#fff;}
   .resume-fallback{
+    position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center;
     font-size:14px; line-height:1.6; color:var(--ink-dim); padding:28px; max-width:36em;
   }
   .resume-fallback a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
-  footer.wrap{padding:28px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between; border-top:1px solid var(--line);}
+
+  footer.site-footer{
+    flex-shrink:0;
+    width:100%;
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:18px var(--gutter);
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--ink-dim);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:32px;
+    letter-spacing:0.04em;
+  }
+  footer.site-footer .footer-copy{
+    word-spacing:0.15em;
+  }
+  footer.site-footer a{
+    color:var(--ink-dim);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    flex-shrink:0;
+  }
+  footer.site-footer a:hover{color:var(--chartreuse);}
+  html[data-theme="light"] footer.site-footer a:hover{color:var(--ink); background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;}
+
+  @media (max-width:560px){
+    .resume-actions{margin-left:0; width:100%; gap:8px 12px;}
+    .resume-actions a{word-spacing:0.3em;}
+    footer.site-footer{gap:20px;}
+  }
 </style>
 <link rel="stylesheet" href="/site.css?v=sitemap5">
 </head>
@@ -120,24 +180,31 @@
   <div class="resume-bar">
     <p class="eyebrow">Resume</p>
     <h1 class="sr-only">Resume · Adam Lorber</h1>
-    <div class="resume-actions">
+    <nav class="resume-actions" aria-label="Resume actions">
       <a href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
+      <span class="sep" aria-hidden="true">·</span>
       <a href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
+      <span class="sep" aria-hidden="true">·</span>
       <a href="/about">Back to About</a>
-    </div>
+    </nav>
   </div>
   <div class="resume-frame-wrap">
-    <object data="/resume.pdf#view=FitH" type="application/pdf" aria-label="Adam Lorber resume">
+    <iframe
+      src="/resume.pdf#view=FitH"
+      title="Adam Lorber resume"
+      loading="eager"
+    ></iframe>
+    <noscript>
       <div class="resume-fallback">
         <p>Your browser can’t display the PDF here.</p>
         <p><a href="/resume.pdf" target="_blank" rel="noopener">Open the resume</a> or <a href="/resume.pdf" download="Resume_AdamLorber.pdf">download the PDF</a>.</p>
       </div>
-    </object>
+    </noscript>
   </div>
 </main>
 
-<footer class="wrap">
-  <span>© 2026 Adam Lorber</span>
+<footer class="site-footer">
+  <span class="footer-copy">© 2026 Adam Lorber</span>
   <a href="/">Home</a>
 </footer>
 
