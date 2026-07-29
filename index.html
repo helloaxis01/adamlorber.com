@@ -106,8 +106,7 @@
   ]
 }
 </script>
-<meta name="theme-color" content="#1a1a19">
-<script>!function(){try{var t=localStorage.getItem("theme"),l=t==="light",c=l?"#efeee9":"#1a1a19",r=document.documentElement;if(l)r.setAttribute("data-theme","light");r.style.colorScheme=l?"light":"dark";var m=document.querySelector('meta[name="theme-color"]');if(!m){m=document.createElement("meta");m.name="theme-color";document.head.appendChild(m)}m.content=c}catch(e){}}()</script>
+<script>!function(){try{var t=localStorage.getItem("theme"),l=t==="light",c=l?"#efeee9":"#1a1a19",r=document.documentElement;if(l)r.setAttribute("data-theme","light");r.style.colorScheme=l?"light":"dark";r.style.backgroundColor=c;document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.parentNode.removeChild(m)});var m=document.createElement("meta");m.name="theme-color";m.content=c;document.head.appendChild(m)}catch(e){}}()</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -590,7 +589,7 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
 </style>
-  <link rel="stylesheet" href="/site.css?v=themebar1">
+  <link rel="stylesheet" href="/site.css?v=themebar3">
 </head>
 <body>
 
@@ -985,6 +984,6 @@
   })();
 </script>
 
-<script src="site.js?v=themebar1"></script>
+<script src="site.js?v=themebar3"></script>
 </body>
 </html>

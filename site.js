@@ -33,16 +33,19 @@
   }
 
   function syncBrowserChrome(theme) {
-    // Keep iOS Safari / Android status bar + browser chrome matched to page bg.
+    // iOS Safari often ignores in-place theme-color edits — replace the meta node.
     var color = theme === 'light' ? '#efeee9' : '#1a1a19';
     root.style.colorScheme = theme === 'light' ? 'light' : 'dark';
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (!meta) {
-      meta = document.createElement('meta');
-      meta.name = 'theme-color';
-      document.head.appendChild(meta);
-    }
+    root.style.backgroundColor = color;
+    if (document.body) document.body.style.backgroundColor = color;
+
+    document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) {
+      m.parentNode.removeChild(m);
+    });
+    var meta = document.createElement('meta');
+    meta.setAttribute('name', 'theme-color');
     meta.setAttribute('content', color);
+    document.head.appendChild(meta);
   }
 
   function applyTheme(theme) {
