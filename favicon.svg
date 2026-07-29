@@ -2,5 +2,6 @@
   <rect width="32" height="32" fill="#ebff12"/>
   <path
     fill="#1a1a19"
+    transform="translate(2.0 1.0)"
     d="M9.2 5.2 L9.2 23.8 L13.9 20 L17.7 27.2 L20.7 25.7 L16.7 18.4 L23.6 18.4 Z"/>
 </svg>
