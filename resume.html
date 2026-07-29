@@ -90,6 +90,7 @@
   .resume-actions{
     display:flex; flex-wrap:wrap; align-items:center; gap:10px 14px;
     justify-self:end;
+    margin:0; padding:0; max-width:none;
   }
   .resume-actions a{
     font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
@@ -201,9 +202,12 @@
     .resume-head{
       grid-template-columns:1fr;
       align-items:start;
+      justify-items:start;
     }
     .resume-actions{
       justify-self:start;
+      justify-content:flex-start;
+      margin:0;
     }
   }
 
@@ -218,7 +222,9 @@
     .resume-contact{margin-top:12px;}
     .resume-actions{
       display:flex; flex-direction:row; flex-wrap:nowrap; align-items:center;
-      gap:8px 10px; max-width:100%;
+      justify-content:flex-start; justify-self:start;
+      gap:8px 10px; width:max-content; max-width:100%;
+      margin:0;
     }
     .resume-actions a{
       font-size:10px; letter-spacing:0.08em; padding:5px 0;
