@@ -317,8 +317,16 @@ a.next + .wrap.sitemap{
   padding-top:0;
   padding-bottom:0;
 }
+/* Place + copyright are one unit — no rule between weather and © */
 .site-place + footer.wrap{
-  padding-top:24px !important;
+  border-top:none !important;
+  padding-top:14px !important;
+}
+/* Pages without a sitemap: one rule above the place line */
+main + .site-place{
+  margin-top:0;
+  padding-top:48px;
+  border-top:1px solid var(--line, #2e2e2c);
 }
 .site-place[hidden]{display:none;}
 

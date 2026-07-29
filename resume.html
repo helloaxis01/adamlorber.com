@@ -213,15 +213,17 @@
   .r-job .r-list li{font-size:14px; line-height:1.6;}
 
   .r-grid{
-    display:flex; flex-direction:column; gap:40px;
-    max-width:none; width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+    margin-top:8px;
   }
-  .r-grid .r-section{max-width:none;}
+  .r-grid .r-section{margin-bottom:0;}
   .r-grid p{font-size:14px; line-height:1.65; color:var(--ink-dim);}
 
   footer.wrap{
     padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim);
-    display:flex; justify-content:space-between; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between;
   }
   footer.wrap a{color:var(--ink-dim);}
   footer.wrap a:hover{color:var(--chartreuse);}
@@ -236,9 +238,10 @@
     .resume-title .title-br{display:inline;}
     .resume-meta{margin-top:16px; gap:10px;}
     .resume-pair{gap:20px;}
+    .r-grid{grid-template-columns:1fr; gap:40px;}
   }
 </style>
-<link rel="stylesheet" href="/site.css?v=laweather1">
+<link rel="stylesheet" href="/site.css?v=laweather3">
 </head>
 <body>
 <header id="siteHeader">
@@ -376,17 +379,16 @@
       </article>
     </section>
 
-  </div>
-
-  <div class="r-grid reveal">
-    <section class="r-section" style="margin-bottom:0">
-      <h2>Software</h2>
-      <p>Figma, Adobe Creative Suite (Illustrator, Photoshop, InDesign, Lightroom, Premiere Pro), Squarespace, HubSpot, ActiveCampaign, Asana, Notion, Keynote, Shopify, Cursor</p>
-    </section>
-    <section class="r-section" style="margin-bottom:0">
-      <h2>Education</h2>
-      <p>University of Miami – Coral Gables, FL<br>Bachelor of Science in Advertising</p>
-    </section>
+    <div class="r-grid reveal">
+      <section class="r-section">
+        <h2>Software</h2>
+        <p>Figma, Adobe Creative Suite (Illustrator, Photoshop, InDesign, Lightroom, Premiere Pro), Squarespace, HubSpot, ActiveCampaign, Asana, Notion, Keynote, Shopify, Cursor</p>
+      </section>
+      <section class="r-section">
+        <h2>Education</h2>
+        <p>University of Miami – Coral Gables, FL<br>Bachelor of Science in Advertising</p>
+      </section>
+    </div>
   </div>
 </main>
 
@@ -417,6 +419,6 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 </script>
-<script src="site.js?v=laweather1"></script>
+<script src="site.js?v=laweather3"></script>
 </body>
 </html>
