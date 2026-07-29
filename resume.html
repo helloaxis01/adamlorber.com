@@ -99,9 +99,16 @@
     padding:8px 14px;
     line-height:1;
   }
-  .resume-actions a.download:hover,
-  html[data-theme="light"] .resume-actions a.download:hover{
+  html[data-theme="light"] .resume-actions a.download{
+    color:#1a1a19;
+    background:var(--chartreuse);
+    border-color:var(--chartreuse);
+  }
+  .resume-actions a.download:hover{
     color:#1a1a19; background:var(--chartreuse); border-color:var(--chartreuse);
+  }
+  html[data-theme="light"] .resume-actions a.download:hover{
+    color:#1a1a19; background:var(--chartreuse); border-color:#1a1a19;
   }
   .resume-actions a:not(.download):hover{color:var(--chartreuse);}
   html[data-theme="light"] .resume-actions a:not(.download):hover{
