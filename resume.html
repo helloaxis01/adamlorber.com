@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <title>Resume · Adam Lorber</title>
-<meta name="description" content="Resume for Adam Lorber — Art Director and Lead Designer in Los Angeles.">
+<meta name="description" content="Resume for Adam Lorber — Art Director and Lead Designer in Los Angeles. Amazon Prime Video Sports, Television Academy, Fount, Inflection.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Resume · Adam Lorber">
 <meta property="og:description" content="Resume for Adam Lorber — Art Director and Lead Designer in Los Angeles.">
@@ -31,7 +31,6 @@
     --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
     --maxw:1320px;
     --gutter:clamp(20px,5vw,64px);
-    --header-h:72px;
   }
   html[data-theme="light"]{
     --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19;
@@ -39,17 +38,14 @@
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
-  body{
-    background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400;
-    min-height:100dvh;
-  }
+  body{background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400; overflow-x:hidden;}
   a{color:inherit; text-decoration:none;}
   :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
   .wrap{max-width:var(--maxw); margin:0 auto; padding-inline:var(--gutter); width:100%;}
 
   header{position:fixed; top:0; left:0; right:0; z-index:110; background-color:color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-bottom:1px solid transparent;}
   header.scrolled{background-color:color-mix(in srgb, var(--bg) 94%, transparent); border-color:var(--line);}
-  nav{max-width:100%; margin:0 auto; padding:18px var(--gutter); display:flex; align-items:center; justify-content:space-between;}
+  nav{max-width:100%; margin:0 auto; padding:26px var(--gutter); display:flex; align-items:center; justify-content:space-between;}
   .logo{font-family:var(--grotesk); font-weight:800; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink);}
   .nav-right{display:flex; align-items:center; gap:14px;}
   .theme-toggle{
@@ -69,116 +65,131 @@
   .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
   .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
 
-  main{padding-top:var(--header-h);}
-  .resume-bar{
-    display:flex; align-items:center; justify-content:space-between;
-    gap:12px 32px; padding:16px 0; border-bottom:1px solid var(--line);
-    position:sticky; top:var(--header-h); z-index:20;
-    background:var(--bg);
-  }
-  .resume-bar .eyebrow{
-    font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
-    color:var(--ink); font-weight:500; flex-shrink:0;
-  }
   .sr-only{
     position:absolute; width:1px; height:1px; padding:0; margin:-1px;
     overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
   }
+  .reveal{opacity:1; transform:translateY(16px); transition:transform .7s ease;}
+  .reveal.in{transform:translateY(0);}
+
+  .resume-page{padding-top:140px; padding-bottom:120px;}
+  .resume-head{
+    display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between;
+    gap:18px 40px; margin-bottom:48px; padding-bottom:28px; border-bottom:1px solid var(--line);
+  }
+  .resume-kicker{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);
+    margin-bottom:14px;
+  }
+  .resume-title{
+    font-family:var(--serif); font-weight:500; font-size:clamp(28px,4vw,44px); line-height:1.15; color:var(--ink);
+    white-space:nowrap;
+  }
   .resume-actions{
-    display:flex; flex-wrap:nowrap; align-items:center; justify-content:flex-end;
-    gap:0; margin-left:auto; min-width:0;
+    display:flex; flex-wrap:wrap; align-items:center; gap:12px 18px;
   }
   .resume-actions a{
     font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
     color:var(--ink-dim); white-space:nowrap; padding:6px 0;
   }
-  /* Separator lives on the link so it can’t wrap alone */
-  .resume-actions a + a::before{
-    content:"·";
-    display:inline-block;
-    margin:0 14px;
-    color:var(--ink-dim);
-    opacity:0.4;
-    letter-spacing:0;
-    pointer-events:none;
+  .resume-actions a.download{
+    color:var(--chartreuse);
+    border:1px solid var(--chartreuse);
+    padding:8px 14px;
+    line-height:1;
   }
-  .resume-actions a:hover{color:var(--chartreuse);}
-  html[data-theme="light"] .resume-actions a:hover{
-    color:var(--ink); background:var(--chartreuse);
-    padding-inline:0.35em; margin-inline:-0.35em;
+  .resume-actions a.download:hover,
+  html[data-theme="light"] .resume-actions a.download:hover{
+    color:#1a1a19; background:var(--chartreuse); border-color:var(--chartreuse);
   }
-  html[data-theme="light"] .resume-actions a:hover::before{
-    background:transparent; color:var(--ink-dim);
+  .resume-actions a:not(.download):hover{color:var(--chartreuse);}
+  html[data-theme="light"] .resume-actions a:not(.download):hover{
+    color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;
   }
 
-  /* Wide, tall document stage — pages render as large canvases */
-  .resume-stage{
-    width:100%;
-    max-width:1100px;
-    margin:0 auto;
-    padding:28px 0 64px;
+  .resume-contact{
+    display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:18px;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.04em; color:var(--ink-dim);
   }
-  .resume-pages{
-    display:flex;
-    flex-direction:column;
-    gap:28px;
-    align-items:stretch;
+  .resume-contact a{color:var(--ink-dim); border-bottom:1px solid transparent;}
+  .resume-contact a:hover{color:var(--chartreuse); border-color:currentColor;}
+  html[data-theme="light"] .resume-contact a:hover{
+    color:#1a1a19; background:var(--chartreuse); border-color:transparent;
   }
-  .resume-page{
-    width:100%;
-    background:#fff;
-    box-shadow:0 0 0 1px var(--line);
-    overflow:hidden;
-  }
-  .resume-page canvas{
-    display:block;
-    width:100% !important;
-    height:auto !important;
-  }
-  .resume-status{
-    font-family:var(--mono); font-size:12px; letter-spacing:0.06em;
-    color:var(--ink-dim); padding:48px 0; text-align:center;
-  }
-  .resume-status[hidden]{display:none !important;}
-  .resume-fallback{
-    font-size:15px; line-height:1.6; color:var(--ink-dim); padding:40px 0; max-width:36em;
-  }
-  .resume-fallback a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
 
-  footer.site-footer{
-    width:100%;
-    max-width:var(--maxw);
-    margin:0 auto;
-    padding:18px var(--gutter) 28px;
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--ink-dim);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:32px;
-    border-top:1px solid var(--line);
-    letter-spacing:0.04em;
+  .resume-body{max-width:720px;}
+  .r-section{margin-bottom:48px;}
+  .r-section h2{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:18px;
   }
-  footer.site-footer .footer-copy{word-spacing:0.15em;}
-  footer.site-footer a{
-    color:var(--ink-dim);
-    letter-spacing:0.08em;
-    text-transform:uppercase;
-    flex-shrink:0;
+  .r-section p{
+    font-size:16px; line-height:1.75; color:var(--ink-dim); margin-bottom:0;
   }
-  footer.site-footer a:hover{color:var(--chartreuse);}
+  .r-mark{
+    color:var(--chartreuse); font-weight:500;
+  }
+  html[data-theme="light"] .r-mark{
+    color:#1a1a19;
+    background:var(--chartreuse);
+    padding:0 0.1em;
+    line-height:1.15;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
 
-  @media (max-width:640px){
-    .resume-bar{
-      flex-direction:column; align-items:flex-start; gap:10px; padding:14px 0;
-    }
-    .resume-actions{
-      margin-left:0; width:100%; justify-content:flex-start; flex-wrap:wrap; row-gap:2px;
-    }
-    .resume-actions a + a::before{margin:0 12px;}
-    .resume-stage{padding:18px 0 40px;}
-    .resume-pages{gap:16px;}
+  .r-list{list-style:none; display:flex; flex-direction:column; gap:14px;}
+  .r-list li{
+    position:relative; padding-left:1.1em;
+    font-size:15px; line-height:1.65; color:var(--ink-dim);
+  }
+  .r-list li::before{
+    content:"·"; position:absolute; left:0; color:var(--ink-dim);
+  }
+
+  .r-job{padding:22px 0; border-top:1px solid var(--line);}
+  .r-job:last-child{border-bottom:1px solid var(--line);}
+  .r-job-title{
+    font-family:var(--grotesk); font-weight:600; font-size:16px; line-height:1.25; color:var(--ink);
+    margin-bottom:6px;
+  }
+  .r-job-title .r-mark{
+    font-weight:600;
+    line-height:1.15;
+    padding:0.02em 0.08em;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
+  }
+
+  .r-job-meta{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--ink-dim); margin-bottom:14px; line-height:1.5;
+  }
+  .r-job-lead{
+    font-size:15px; line-height:1.65; color:var(--ink-dim); margin-bottom:14px;
+  }
+  .r-job .r-list{gap:10px;}
+  .r-job .r-list li{font-size:14px; line-height:1.6;}
+
+  .r-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:40px 48px;
+  }
+  .r-grid p{font-size:14px; line-height:1.65; color:var(--ink-dim);}
+
+  footer.wrap{
+    padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim);
+    display:flex; justify-content:space-between; border-top:1px solid var(--line);
+  }
+  footer.wrap a{color:var(--ink-dim);}
+  footer.wrap a:hover{color:var(--chartreuse);}
+
+  @media (max-width:720px){
+    .resume-page{padding-top:120px; padding-bottom:80px;}
+    .resume-head{flex-direction:column; align-items:flex-start; gap:20px; margin-bottom:36px;}
+    .resume-title{white-space:normal;}
+    .resume-actions{width:100%;}
+    .r-grid{grid-template-columns:1fr; gap:32px;}
+    .r-section{margin-bottom:40px;}
   }
 </style>
 <link rel="stylesheet" href="/site.css?v=themebar4">
@@ -203,30 +214,136 @@
   <a href="/#contact">Contact</a>
 </div>
 
-<main class="wrap">
-  <div class="resume-bar">
-    <p class="eyebrow">Resume</p>
-    <h1 class="sr-only">Resume · Adam Lorber</h1>
-    <nav class="resume-actions" aria-label="Resume actions">
+<main id="top" class="wrap resume-page">
+  <div class="resume-head reveal">
+    <div>
+      <p class="resume-kicker">Resume</p>
+      <h1 class="resume-title">Lead Designer/Art Director</h1>
+      <div class="resume-contact">
+        <a href="mailto:hello@adamlorber.com">hello@adamlorber.com</a>
+        <span>Los Angeles, CA</span>
+        <a href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+    <nav class="resume-actions" aria-label="Resume PDF">
       <a href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
-      <a href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
-      <a href="/about">About</a>
+      <a class="download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
+      <a href="/about">Return to About</a>
     </nav>
   </div>
 
-  <div class="resume-stage">
-    <p class="resume-status" id="resumeStatus">Loading resume…</p>
-    <div class="resume-pages" id="resumePages" aria-label="Adam Lorber resume"></div>
-    <div class="resume-fallback" id="resumeFallback" hidden>
-      <p>Couldn’t render the resume in this browser.</p>
-      <p><a href="/resume.pdf" target="_blank" rel="noopener">Open the PDF</a> or <a href="/resume.pdf" download="Resume_AdamLorber.pdf">download it</a>.</p>
+  <div class="resume-body">
+    <section class="r-section reveal">
+      <h2>Summary</h2>
+      <p>Art Director and Lead Designer shaping strategy, visuals, and identities for brands of all sizes, from award shows to corporate brands to startups. Hands-on with design and art direction while overseeing teams, vendors, and the creative operations that help companies build and grow.</p>
+    </section>
+
+    <section class="r-section reveal">
+      <h2>Career Highlights</h2>
+      <ul class="r-list">
+        <li>Direct and design high-visibility campaign creative and in-stadium graphics for <span class="r-mark">Amazon Prime Video Sports</span>, covering partnerships including the NFL, NBA, WNBA, NASCAR, and The Masters.</li>
+        <li>Designed and art directed the visual identity for the <span class="r-mark">70th Emmy Awards</span>, seen by over <span class="r-mark">10M</span> broadcast viewers in 120 countries.</li>
+        <li>Built and mentored a 4-person team, scaling production from 75 to <span class="r-mark">150+ projects</span> annually.</li>
+        <li>Drove <span class="r-mark">257% membership growth</span> through strategy and art direction at the Television Academy.</li>
+        <li>Led brand and creative direction for Fount and Inflection, where strategy helped secure <span class="r-mark">$12M</span> in Series A funding and <span class="r-mark">100% Fortune 100</span> client renewals in 2025.</li>
+      </ul>
+    </section>
+
+    <section class="r-section reveal">
+      <h2>Experience</h2>
+
+      <article class="r-job">
+        <h3 class="r-job-title"><span class="r-mark">Art Director III, Amazon Prime Video Sports</span></h3>
+        <p class="r-job-meta">Culver City, CA (Contractor) · July 2026 – Present</p>
+        <p class="r-job-lead">Direct the creative strategy and visual execution for live sports content, digital channels, and marketing campaigns across the Prime Video platform.</p>
+        <ul class="r-list">
+          <li>Design and scale a high volume of multi-format promotional assets, manipulating complex creative supplied by major networks and league partners into seamless on-brand graphics.</li>
+          <li>Partner cross-functionally with Operations, GTM, and internal design teams to streamline asset trafficking and optimize the customer-facing streaming product experience.</li>
+        </ul>
+      </article>
+
+      <article class="r-job">
+        <h3 class="r-job-title"><span class="r-mark">Lead Design Consultant, Television Academy &amp; Emmy Awards</span></h3>
+        <p class="r-job-meta">Los Angeles, CA · February 2026 – Present</p>
+        <p class="r-job-lead">Returned as strategic consultant for 2026 Emmy season. Overseeing visual brand consistency, seasonal campaigns, and complex production logistics.</p>
+        <ul class="r-list">
+          <li>Rebuilt Televerse Festival logo system and master brand guidelines across 20+ touchpoints.</li>
+          <li>Directing visual strategy and production materials for the 2026 Emmy season.</li>
+        </ul>
+      </article>
+
+      <article class="r-job">
+        <h3 class="r-job-title"><span class="r-mark">Lead Designer, Inflection</span></h3>
+        <p class="r-job-meta">Remote · March 2025 – November 2025</p>
+        <p class="r-job-lead">Drove visual consistency and brand strategy for Fortune 100 health/wellness and tech platform serving 6 million+ users worldwide.</p>
+        <ul class="r-list">
+          <li>Cleaned up identity after recent rebrand for main brand and six product lines.</li>
+          <li>Designed deal-supporting decks, membership and client success material, and collateral that directly supported Fortune 100 contract renewals.</li>
+          <li>Designed 400+ custom course graphics for complex wellness topics (elder care, divorce, infertility), improving visual cohesion across the Inflection platform.</li>
+          <li>Redesigned member email journey, eliminating outdated branding and improving click-through rates and engagement metrics through hierarchy, typography, and brand cohesion.</li>
+          <li>Partnered with product and engineering to scale visual consistency across web and mobile.</li>
+        </ul>
+      </article>
+
+      <article class="r-job">
+        <h3 class="r-job-title"><span class="r-mark">Independent Design Consultant &amp; Lead Designer, The Kitchen &amp; Revyrie</span></h3>
+        <p class="r-job-meta">Los Angeles, CA · November 2023 – March 2025</p>
+        <ul class="r-list">
+          <li>The Kitchen: Spearheaded global website redesign (35+ pages) and established a unified e-commerce and environmental brand experience.</li>
+          <li>Revyrie: Created brand identities and comprehensive guidelines for an enterprise portfolio, unifying parent company architecture across four digital sub-brands.</li>
+        </ul>
+      </article>
+
+      <article class="r-job">
+        <h3 class="r-job-title"><span class="r-mark">Lead Designer, Fount</span></h3>
+        <p class="r-job-meta">Los Angeles, CA · September 2022 – November 2023</p>
+        <p class="r-job-lead">First design hire at health/wellness tech startup. Built visual language and brand infrastructure from ground zero.</p>
+        <ul class="r-list">
+          <li>Directed creative strategy for the Series A round, designing pitch decks that supported successful capital raises.</li>
+          <li>Designed FDA-compliant packaging systems for FlyKitt and four supplement product lines, coordinating directly with overseas and local manufacturers.</li>
+          <li>Oversaw website redesigns and an app buildout and launch, which achieved a <span class="r-mark">4.7-star</span> App Store rating through collaborative UI design work with the engineering team.</li>
+          <li>Produced a library of assets for web, social, and press through on-location art-directed lifestyle and product shoots.</li>
+          <li>Reduced visual asset production costs by over <span class="r-mark">$50K</span> by pioneering the early integration of generative AI tools into the creative workflow.</li>
+        </ul>
+      </article>
+
+      <article class="r-job">
+        <h3 class="r-job-title"><span class="r-mark">Freelance Art Director &amp; Creative Lead, Various Brands</span></h3>
+        <p class="r-job-meta">Remote · January 2012 – Present</p>
+        <p class="r-job-lead">Maintained independent creative practice throughout career. Designed branding projects, campaigns, concepts, and art direction for consumer brands and emerging startups.</p>
+        <ul class="r-list">
+          <li>Notable projects include developing national OOH campaigns for Lemon Perfect, creating debut social concepts for Chick-fil-A, and art directing/shooting editorial photography for Joe's Stone Crab's 100th anniversary book.</li>
+        </ul>
+      </article>
+
+      <article class="r-job">
+        <h3 class="r-job-title"><span class="r-mark">Art Director, Television Academy &amp; Emmy Awards</span></h3>
+        <p class="r-job-meta">North Hollywood, CA · April 2006 – September 2022</p>
+        <p class="r-job-lead">Oversaw the design department, shaping the visual identity and creative direction for the Emmy Awards organization.</p>
+        <ul class="r-list">
+          <li>Conceptualized and executed the end-to-end visual identity for the 70th Primetime Emmy Awards across global markets.</li>
+          <li>Directed visual strategy for member acquisition, print and digital campaigns, and large scale environmental design for live events and galas.</li>
+          <li>Established modern workflows and creative systems that doubled departmental output while overseeing vendor partnerships to scale production quality.</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="r-grid reveal">
+      <section class="r-section" style="margin-bottom:0">
+        <h2>Software</h2>
+        <p>Figma, Adobe Creative Suite (Illustrator, Photoshop, InDesign, Lightroom, Premiere Pro), Squarespace, HubSpot, ActiveCampaign, Asana, Notion, Keynote, Shopify, Cursor</p>
+      </section>
+      <section class="r-section" style="margin-bottom:0">
+        <h2>Education</h2>
+        <p>University of Miami – Coral Gables, FL<br>Bachelor of Science in Advertising</p>
+      </section>
     </div>
   </div>
 </main>
 
-<footer class="site-footer">
-  <span class="footer-copy">© 2026 Adam Lorber</span>
-  <a href="/">Home</a>
+<footer class="wrap">
+  <span>© 2026 Adam Lorber</span>
+  <a href="#top">Back to top ↑</a>
 </footer>
 
 <script>
@@ -244,73 +361,10 @@
   window.addEventListener('scroll', () => {
     if (!headerTicking){ headerTicking = true; requestAnimationFrame(updateHeader); }
   }, { passive: true });
-</script>
-<script type="module">
-  import * as pdfjsLib from '/vendor/pdfjs/pdf.min.mjs';
-
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '/vendor/pdfjs/pdf.worker.min.mjs';
-
-  const statusEl = document.getElementById('resumeStatus');
-  const pagesEl = document.getElementById('resumePages');
-  const fallbackEl = document.getElementById('resumeFallback');
-  let pdfDoc = null;
-  let renderToken = 0;
-
-  function showFallback(){
-    statusEl.hidden = true;
-    pagesEl.innerHTML = '';
-    fallbackEl.hidden = false;
-  }
-
-  async function renderAll(){
-    if (!pdfDoc) return;
-    const token = ++renderToken;
-    const cssWidth = Math.max(pagesEl.clientWidth || 0, 320);
-    const dpr = Math.min(window.devicePixelRatio || 1, 2.5);
-    const base = await pdfDoc.getPage(1);
-    const baseViewport = base.getViewport({ scale: 1 });
-    // Fill the stage; floor at 1.5× so body copy stays readable
-    const fitScale = cssWidth / baseViewport.width;
-    const scale = Math.max(fitScale, 1.5) * dpr;
-
-    pagesEl.innerHTML = '';
-    for (let n = 1; n <= pdfDoc.numPages; n++){
-      if (token !== renderToken) return;
-      const page = await pdfDoc.getPage(n);
-      const viewport = page.getViewport({ scale });
-      const wrap = document.createElement('div');
-      wrap.className = 'resume-page';
-      const canvas = document.createElement('canvas');
-      canvas.width = Math.floor(viewport.width);
-      canvas.height = Math.floor(viewport.height);
-      canvas.style.width = '100%';
-      canvas.style.height = 'auto';
-      wrap.appendChild(canvas);
-      pagesEl.appendChild(wrap);
-      await page.render({
-        canvasContext: canvas.getContext('2d', { alpha: false }),
-        viewport
-      }).promise;
-    }
-    if (token === renderToken){
-      statusEl.hidden = true;
-      fallbackEl.hidden = true;
-    }
-  }
-
-  try{
-    pdfDoc = await pdfjsLib.getDocument({ url: '/resume.pdf' }).promise;
-    statusEl.textContent = 'Rendering resume…';
-    await renderAll();
-    let resizeTimer = 0;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => { renderAll(); }, 180);
-    }, { passive: true });
-  } catch (err){
-    console.error(err);
-    showFallback();
-  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 </script>
 <script src="site.js?v=themebar4"></script>
 </body>
