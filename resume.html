@@ -213,8 +213,10 @@
   .r-job .r-list li{font-size:14px; line-height:1.6;}
 
   .r-grid{
-    display:grid; grid-template-columns:1fr 1fr; gap:40px 48px;
+    display:flex; flex-direction:column; gap:40px;
+    max-width:none; width:100%;
   }
+  .r-grid .r-section{max-width:none;}
   .r-grid p{font-size:14px; line-height:1.65; color:var(--ink-dim);}
 
   footer.wrap{
@@ -386,6 +388,7 @@
     </div>
   </div>
 </main>
+
 
 <p class="site-place wrap" data-la-weather aria-live="polite">Los Angeles</p>
 <footer class="wrap">
