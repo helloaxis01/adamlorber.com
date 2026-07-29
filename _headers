@@ -1,0 +1,5 @@
+# Serve resume PDF inline so browsers can preview it (download is opt-in via link).
+/resume.pdf
+  Content-Type: application/pdf
+  Content-Disposition: inline; filename="Resume_AdamLorber.pdf"
+  X-Content-Type-Options: nosniff

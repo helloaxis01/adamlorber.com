@@ -1,5 +1,6 @@
 # Pretty URLs (serve HTML without exposing filenames)
 /about                    /about.html                               200
+/resume                   /resume.html                              200
 /process                  /studies-process.html                     200
 /logos-marks              /studies-logos-marks.html                 200
 /amazon                   /project-amazon-prime-video-sports.html   200
@@ -36,6 +37,7 @@
 
 # Prefer pretty URLs when someone hits the .html file directly
 /about.html                                         /about                  301!
+/resume.html                                        /resume                 301!
 /studies-process.html                               /process                301!
 /studies-logos-marks.html                           /logos-marks            301!
 /project-amazon-prime-video-sports.html             /amazon                 301!
