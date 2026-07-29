@@ -368,4 +368,51 @@
       statsIo.observe(stats);
     });
   })();
+
+  // Quiet LA weather for footer place line. Fail silent → "Los Angeles".
+  (function () {
+    var nodes = document.querySelectorAll('[data-la-weather]');
+    if (!nodes.length) return;
+
+    var CACHE_KEY = 'al-la-weather-f';
+    var CACHE_MS = 30 * 60 * 1000;
+    var LA_LAT = 34.0522;
+    var LA_LON = -118.2437;
+
+    function setText(text) {
+      nodes.forEach(function (el) { el.textContent = text; });
+    }
+
+    function applyTemp(tempF) {
+      if (typeof tempF !== 'number' || !isFinite(tempF)) return;
+      setText('Los Angeles · ' + Math.round(tempF) + '°');
+    }
+
+    try {
+      var cached = JSON.parse(sessionStorage.getItem(CACHE_KEY) || 'null');
+      if (cached && cached.t && (Date.now() - cached.t) < CACHE_MS && typeof cached.temp === 'number') {
+        applyTemp(cached.temp);
+        return;
+      }
+    } catch (e) {}
+
+    var url = 'https://api.open-meteo.com/v1/forecast'
+      + '?latitude=' + LA_LAT
+      + '&longitude=' + LA_LON
+      + '&current=temperature_2m'
+      + '&temperature_unit=fahrenheit'
+      + '&timezone=America%2FLos_Angeles';
+
+    fetch(url, { credentials: 'omit' })
+      .then(function (res) { if (!res.ok) throw new Error('weather'); return res.json(); })
+      .then(function (data) {
+        var temp = data && data.current && data.current.temperature_2m;
+        if (typeof temp !== 'number') return;
+        try {
+          sessionStorage.setItem(CACHE_KEY, JSON.stringify({ t: Date.now(), temp: temp }));
+        } catch (e) {}
+        applyTemp(temp);
+      })
+      .catch(function () { /* keep Los Angeles */ });
+  })();
 })();
