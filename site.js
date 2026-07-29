@@ -32,10 +32,24 @@
     return root.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
   }
 
+  function syncBrowserChrome(theme) {
+    // Keep iOS Safari / Android status bar + browser chrome matched to page bg.
+    var color = theme === 'light' ? '#efeee9' : '#1a1a19';
+    root.style.colorScheme = theme === 'light' ? 'light' : 'dark';
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'theme-color';
+      document.head.appendChild(meta);
+    }
+    meta.setAttribute('content', color);
+  }
+
   function applyTheme(theme) {
     if (theme === 'light') root.setAttribute('data-theme', 'light');
     else root.removeAttribute('data-theme');
     try { localStorage.setItem('theme', theme); } catch (e) {}
+    syncBrowserChrome(theme);
     if (btn) {
       btn.dataset.theme = theme;
       btn.setAttribute('aria-label', theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
