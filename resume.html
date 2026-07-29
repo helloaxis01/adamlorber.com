@@ -176,6 +176,15 @@
     box-decoration-break:clone;
     -webkit-box-decoration-break:clone;
   }
+  /* Career Highlights: ink emphasis; save chartreuse for titles/companies */
+  .r-highlights .r-mark{
+    color:var(--ink); font-weight:500;
+  }
+  html[data-theme="light"] .r-highlights .r-mark{
+    color:var(--ink);
+    background:transparent;
+    padding:0;
+  }
 
   .r-list{list-style:none; display:flex; flex-direction:column; gap:14px;}
   .r-list li{
@@ -289,7 +298,7 @@
       <p>Art Director and Lead Designer shaping strategy, visuals, and identities for brands of all sizes, from award shows to corporate brands to startups. Hands-on with design and art direction while overseeing teams, vendors, and the creative operations that help companies build and grow.</p>
     </section>
 
-    <section class="r-section reveal">
+    <section class="r-section r-highlights reveal">
       <h2>Career Highlights</h2>
       <ul class="r-list">
         <li>Direct and design high-visibility campaign creative and in-stadium graphics for <span class="r-mark">Amazon Prime Video Sports</span>, covering partnerships including the NFL, NBA, WNBA, NASCAR, and The Masters.</li>
