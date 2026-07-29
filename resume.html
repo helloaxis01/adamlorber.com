@@ -101,6 +101,7 @@
   .resume-title .title-br{display:none;}
 
   .resume-util{display:contents;}
+  .resume-row{display:contents;}
   .resume-loc{
     grid-area:loc;
     margin:16px 0 0;
@@ -256,70 +257,36 @@
       grid-template-areas:
         "kicker"
         "title"
-        "util";
+        "loc"
+        "row";
       row-gap:0;
     }
-    .resume-util{
-      grid-area:util;
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      margin-top:20px;
-      border-top:1px solid var(--line);
-      border-left:1px solid var(--line);
-    }
-    .resume-pair{display:contents;}
-    .resume-loc,
-    .resume-pair .email-slot,
-    .resume-pair .contact-linkedin,
-    .resume-open,
-    .resume-download,
-    .resume-about{
-      grid-area:auto;
-      justify-self:stretch;
-      align-self:stretch;
-      margin:0;
-      min-height:48px;
-      padding:12px 8px;
-      border-right:1px solid var(--line);
-      border-bottom:1px solid var(--line);
+    .resume-util{display:contents;}
+    .resume-row{
+      grid-area:row;
       display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      box-sizing:border-box;
-      font-size:10px;
-      letter-spacing:0.08em;
-    }
-    .resume-pair .email-slot{
-      gap:0;
       flex-wrap:wrap;
+      align-items:center;
+      gap:12px 16px;
+      margin-top:16px;
     }
-    .resume-pair .email-slot.is-open{gap:6px;}
-    .resume-pair .email-address{
-      max-width:0;
-      font-size:9px;
-      letter-spacing:0.02em;
+    .resume-pair{
+      display:contents;
     }
-    .resume-pair .email-slot.is-open .email-address{
-      max-width:9rem;
+    .resume-loc{
+      margin:14px 0 0;
+      text-align:left;
     }
     .resume-download{
-      border-color:var(--line);
-      border-right:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      color:var(--chartreuse);
-      background:transparent;
-      font-weight:700;
-      padding:12px 8px;
+      justify-self:start;
+      align-self:center;
+      margin:0;
+      padding:8px 12px;
     }
-    html[data-theme="light"] .resume-download{
-      color:#1a1a19;
-      background:var(--chartreuse);
-      border-color:var(--line);
-      border-right-color:var(--line);
-      border-bottom-color:var(--line);
+    .resume-open,
+    .resume-about{
+      display:none;
     }
-    .resume-loc{letter-spacing:0.04em;}
   }
 
   @media (max-width:720px){
@@ -330,6 +297,7 @@
       font-size:clamp(28px,8.2vw,36px);
     }
     .resume-title .title-br{display:inline;}
+    .resume-row{gap:12px 14px; margin-top:14px;}
     .r-grid{grid-template-columns:1fr; gap:32px;}
     .r-section{margin-bottom:40px;}
   }
@@ -362,16 +330,18 @@
     <h1 class="resume-title">Lead Designer &amp;<span class="title-br"><br></span> Art Director</h1>
     <div class="resume-util">
       <p class="resume-loc">Los Angeles, CA</p>
-      <div class="resume-pair">
-        <span class="email-slot">
-          <button type="button" class="email-toggle" aria-expanded="false" aria-controls="resume-email-address">Email</button>
-          <a class="email-address" id="resume-email-address" href="mailto:hello@adamlorber.com" tabindex="-1" aria-hidden="true">hello@adamlorber.com</a>
-        </span>
-        <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="resume-row">
+        <div class="resume-pair">
+          <span class="email-slot">
+            <button type="button" class="email-toggle" aria-expanded="false" aria-controls="resume-email-address">Email</button>
+            <a class="email-address" id="resume-email-address" href="mailto:hello@adamlorber.com" tabindex="-1" aria-hidden="true">hello@adamlorber.com</a>
+          </span>
+          <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <a class="resume-open" href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
+        <a class="resume-download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
+        <a class="resume-about" href="/about">Back to About</a>
       </div>
-      <a class="resume-open" href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
-      <a class="resume-download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
-      <a class="resume-about" href="/about">Back to About</a>
     </div>
   </div>
 
