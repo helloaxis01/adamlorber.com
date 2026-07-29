@@ -74,54 +74,46 @@
 
   .resume-page{padding-top:140px; padding-bottom:120px;}
   .resume-head{
-    display:grid;
-    grid-template-columns:minmax(0,1fr) auto;
-    grid-template-areas:
-      "kicker kicker"
-      "title  download"
-      "loc    open"
-      "pair   about";
-    column-gap:56px;
-    row-gap:0;
-    align-items:start;
     margin-bottom:48px;
     padding-bottom:28px;
     border-bottom:1px solid var(--line);
   }
-  .resume-kicker{
-    grid-area:kicker;
-    font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);
+  .resume-topline{
+    display:flex; align-items:baseline; justify-content:space-between; gap:16px;
     margin-bottom:14px;
   }
+  .resume-kicker{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);
+    margin:0;
+  }
+  .resume-about{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-dim); line-height:1; white-space:nowrap;
+  }
+  .resume-about:hover{color:var(--chartreuse);}
+  html[data-theme="light"] .resume-about:hover{
+    color:#1a1a19; background:var(--chartreuse);
+  }
   .resume-title{
-    grid-area:title;
     font-family:var(--serif); font-weight:500; font-size:clamp(28px,4vw,44px); line-height:1.15; color:var(--ink);
     white-space:nowrap;
   }
   .resume-title .title-br{display:none;}
 
-  .resume-util{display:contents;}
-  .resume-row{display:contents;}
-  .resume-loc{
-    grid-area:loc;
-    margin:16px 0 0;
-    font-family:var(--mono); font-size:11px; letter-spacing:0.04em;
-    color:var(--ink-dim);
+  .resume-meta{
+    margin-top:20px;
+    display:flex; flex-direction:column; align-items:flex-start; gap:12px;
   }
   .resume-pair{
-    grid-area:pair;
     display:flex; align-items:center; gap:28px;
-    margin-top:20px;
   }
   .resume-pair .email-slot{
     display:inline-flex; align-items:center; gap:0;
   }
   .resume-pair .email-slot.is-open{gap:28px;}
-
   .resume-pair a,
   .resume-pair .email-toggle,
-  .resume-open,
-  .resume-about{
+  .resume-download{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
     color:var(--ink-dim); background:none; border:0; padding:0; margin:0; cursor:pointer;
     appearance:none; -webkit-appearance:none;
@@ -139,47 +131,28 @@
   .resume-pair .email-slot.is-open .email-address{
     max-width:20rem; opacity:1; pointer-events:auto;
   }
+  .resume-loc{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.04em;
+    color:var(--ink-dim); margin:0;
+  }
   .resume-download{
-    grid-area:download;
-    justify-self:end; align-self:end;
-    font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--chartreuse); border:1px solid var(--chartreuse);
-    padding:10px 16px; line-height:1; font-weight:700; white-space:nowrap;
-    margin-bottom:2px;
+    color:var(--chartreuse);
+    margin-top:4px;
   }
+  .resume-download:hover{color:var(--chartreuse);}
   html[data-theme="light"] .resume-download{
-    color:#1a1a19; background:var(--chartreuse); border-color:var(--chartreuse);
-  }
-  .resume-download:hover{
-    color:#1a1a19; background:var(--chartreuse); border-color:var(--chartreuse);
-  }
-  html[data-theme="light"] .resume-download:hover{
-    border-color:#1a1a19;
-  }
-  .resume-open{
-    grid-area:open;
-    justify-self:end;
-    margin-top:16px;
-  }
-  .resume-about{
-    grid-area:about;
-    justify-self:end;
-    margin-top:14px;
+    color:#1a1a19; background:var(--chartreuse); padding:0.15em 0.35em; margin-inline:-0.35em;
   }
   .resume-pair a:hover,
   .resume-pair .email-toggle:hover,
   .resume-pair .email-slot.is-open .email-toggle,
-  .resume-pair .email-address:hover,
-  .resume-open:hover,
-  .resume-about:hover{
+  .resume-pair .email-address:hover{
     color:var(--chartreuse);
   }
   html[data-theme="light"] .resume-pair a:hover,
   html[data-theme="light"] .resume-pair .email-toggle:hover,
   html[data-theme="light"] .resume-pair .email-slot.is-open .email-toggle,
-  html[data-theme="light"] .resume-pair .email-address:hover,
-  html[data-theme="light"] .resume-open:hover,
-  html[data-theme="light"] .resume-about:hover{
+  html[data-theme="light"] .resume-pair .email-address:hover{
     color:#1a1a19; background:var(--chartreuse);
   }
 
@@ -251,44 +224,6 @@
   footer.wrap a{color:var(--ink-dim);}
   footer.wrap a:hover{color:var(--chartreuse);}
 
-  @media (max-width:900px){
-    .resume-head{
-      grid-template-columns:1fr;
-      grid-template-areas:
-        "kicker"
-        "title"
-        "loc"
-        "row";
-      row-gap:0;
-    }
-    .resume-util{display:contents;}
-    .resume-row{
-      grid-area:row;
-      display:flex;
-      flex-wrap:wrap;
-      align-items:center;
-      gap:12px 16px;
-      margin-top:16px;
-    }
-    .resume-pair{
-      display:contents;
-    }
-    .resume-loc{
-      margin:14px 0 0;
-      text-align:left;
-    }
-    .resume-download{
-      justify-self:start;
-      align-self:center;
-      margin:0;
-      padding:8px 12px;
-    }
-    .resume-open,
-    .resume-about{
-      display:none;
-    }
-  }
-
   @media (max-width:720px){
     .resume-page{padding-top:120px; padding-bottom:80px;}
     .resume-head{margin-bottom:36px; padding-bottom:22px;}
@@ -297,9 +232,8 @@
       font-size:clamp(28px,8.2vw,36px);
     }
     .resume-title .title-br{display:inline;}
-    .resume-row{gap:12px 14px; margin-top:14px;}
-    .r-grid{grid-template-columns:1fr; gap:32px;}
-    .r-section{margin-bottom:40px;}
+    .resume-meta{margin-top:16px; gap:10px;}
+    .resume-pair{gap:20px;}
   }
 </style>
 <link rel="stylesheet" href="/site.css?v=themebar4">
@@ -326,22 +260,21 @@
 
 <main id="top" class="wrap resume-page">
   <div class="resume-head reveal" data-email-reveal>
-    <p class="resume-kicker">Resume</p>
+    <div class="resume-topline">
+      <p class="resume-kicker">Resume</p>
+      <a class="resume-about" href="/about">Back to About</a>
+    </div>
     <h1 class="resume-title">Lead Designer &amp;<span class="title-br"><br></span> Art Director</h1>
-    <div class="resume-util">
-      <p class="resume-loc">Los Angeles, CA</p>
-      <div class="resume-row">
-        <div class="resume-pair">
-          <span class="email-slot">
-            <button type="button" class="email-toggle" aria-expanded="false" aria-controls="resume-email-address">Email</button>
-            <a class="email-address" id="resume-email-address" href="mailto:hello@adamlorber.com" tabindex="-1" aria-hidden="true">hello@adamlorber.com</a>
-          </span>
-          <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-        <a class="resume-open" href="/resume.pdf" target="_blank" rel="noopener">Open PDF</a>
-        <a class="resume-download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
-        <a class="resume-about" href="/about">Back to About</a>
+    <div class="resume-meta">
+      <div class="resume-pair">
+        <span class="email-slot">
+          <button type="button" class="email-toggle" aria-expanded="false" aria-controls="resume-email-address">Email</button>
+          <a class="email-address" id="resume-email-address" href="mailto:hello@adamlorber.com" tabindex="-1" aria-hidden="true">hello@adamlorber.com</a>
+        </span>
+        <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
+      <p class="resume-loc">Los Angeles, CA</p>
+      <a class="resume-download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
     </div>
   </div>
 
