@@ -33,7 +33,8 @@
   }
 
   function syncBrowserChrome(theme) {
-    // iOS Safari often ignores in-place theme-color edits — replace the meta node.
+    // Keep meta/theme-color for Chrome/Android; iOS 26 Safari ignores it and
+    // samples the fixed header’s opaque background-color instead.
     var color = theme === 'light' ? '#efeee9' : '#1a1a19';
     root.style.colorScheme = theme === 'light' ? 'light' : 'dark';
     root.style.backgroundColor = color;
@@ -46,6 +47,17 @@
     meta.setAttribute('name', 'theme-color');
     meta.setAttribute('content', color);
     document.head.appendChild(meta);
+
+    // Nudge Safari to re-sample the top fixed header after a theme toggle.
+    var header = document.querySelector('header');
+    if (header) {
+      header.style.backgroundColor = color;
+      var y = window.scrollY || 0;
+      header.style.transform = 'translateZ(0) translateY(0.1px)';
+      void header.offsetHeight;
+      header.style.transform = '';
+      if (y) window.scrollTo(0, y);
+    }
   }
 
   function applyTheme(theme) {

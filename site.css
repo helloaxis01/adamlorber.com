@@ -4,22 +4,22 @@
 :root{ color-scheme: dark; }
 html[data-theme="light"]{ color-scheme: light; }
 
-/* Fill the iOS status-bar / overscroll region with the page ground */
+/* Fill overscroll + give Safari a real ground color */
 html, body{
   background-color: var(--bg, #1a1a19);
 }
 
-/* Extend the sticky header into the notch/status-bar safe area */
+/*
+  iOS 26+ Safari ignores theme-color and tints the status bar from the
+  background-color of fixed/sticky elements at the top edge. Our headers
+  used translucent color-mix(... transparent), which samples as black in
+  light mode. Force an opaque page ground + safe-area padding.
+*/
 header{
   padding-top: env(safe-area-inset-top, 0px);
-}
-header::before{
-  content:"";
-  position:absolute;
-  left:0; right:0; top:0;
-  height:env(safe-area-inset-top, 0px);
-  background:var(--bg, #1a1a19);
-  pointer-events:none;
+  background-color: var(--bg, #1a1a19) !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
 }
 
 img, video{
