@@ -208,6 +208,14 @@
     will-change:transform;
     box-shadow:none;
   }
+  /* During a peel, freeze every card except the one flying off — prevents
+     iOS/WebKit from interpolating the staged prev card’s scale underneath. */
+  .stack.is-peeling .stack-card{
+    transition:none;
+  }
+  .stack.is-peeling .stack-card.is-flying{
+    transition:transform .45s cubic-bezier(.22,.9,.3,1), opacity .35s ease, box-shadow .45s ease;
+  }
   .stack-card.is-front{
     box-shadow:0 12px 28px rgba(0,0,0,0.22);
   }
@@ -803,7 +811,11 @@
       : { y: 14, scale: 0.028, rot: 1.15 };
   }
 
+  let peeling = false;
+
   function layout(){
+    // iOS toolbar show/hide fires resize mid-gesture; never reshuffle during a peel.
+    if (peeling) return;
     const peek = peekParams();
     order.forEach((cardIndex, pos) => {
       const card = cards[cardIndex];
@@ -841,42 +853,67 @@
   // Arrow/keyboard/swipe: peel the front card off, then reorder.
   // For prev, stage the incoming (last) card under the front first — otherwise
   // the peel would reveal the next undercard, then snap/fade to the previous.
-  let peeling = false;
   const PEEL_MS = 450;
+  function clearCardMotion(el){
+    el.style.transition = 'none';
+    el.style.transform = '';
+    el.style.opacity = '';
+  }
+  function restoreCardMotion(el){
+    el.style.transition = '';
+  }
   function peelAdvance(direction){
     if (peeling) return;
     peeling = true;
+    stack.classList.add('is-peeling');
     const card = cards[order[0]];
+    let incoming = null;
     if (direction === 'prev'){
-      const incoming = cards[order[order.length - 1]];
+      incoming = cards[order[order.length - 1]];
+      // Keep transition off — restoring it here lets WebKit/iOS animate
+      // scale(0.9)→1 under the peel (reads as shrink/pop on mobile).
       incoming.style.transition = 'none';
       card.style.zIndex = String(total + 1);
       incoming.style.zIndex = String(total);
       incoming.style.transform = 'translate(0,0) scale(1) rotate(0deg)';
       incoming.style.opacity = '1';
+      incoming.classList.add('is-front');
       void incoming.offsetWidth;
-      incoming.style.transition = '';
     }
     const dir = direction === 'next' ? -1 : 1;
-    const fly = Math.max(window.innerWidth * 0.75, 480) * dir;
+    // Use viewport width so the card fully clears a phone screen.
+    const fly = Math.max(stack.offsetWidth || window.innerWidth, 320) * 1.15 * dir;
+    card.classList.add('is-flying');
     card.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .35s ease, box-shadow .45s ease';
     // Force a frame so the transition always runs from the current layout.
     void card.offsetWidth;
     card.style.transform = `translate(${fly}px, 0) rotate(${dir * 16}deg)`;
     card.style.opacity = '0';
-    window.setTimeout(function () {
-      // Kill transition before layout so the peeled card doesn't animate
-      // from the fly pose back into an undercard (shrink + pop on prev).
-      card.style.transition = 'none';
-      card.style.transform = '';
-      card.style.opacity = '';
+
+    let settled = false;
+    function settle(){
+      if (settled) return;
+      settled = true;
+      card.removeEventListener('transitionend', onFlyEnd);
+      clearCardMotion(card);
+      card.classList.remove('is-flying');
+      if (incoming) clearCardMotion(incoming);
       void card.offsetWidth;
+      peeling = false;
+      stack.classList.remove('is-peeling');
       advance(direction);
+      // Re-enable CSS transitions after the post-peel layout paints.
       requestAnimationFrame(function () {
-        card.style.transition = '';
-        peeling = false;
+        cards.forEach(restoreCardMotion);
       });
-    }, PEEL_MS);
+    }
+    function onFlyEnd(e){
+      if (e.target !== card) return;
+      if (e.propertyName && e.propertyName !== 'transform' && e.propertyName !== 'opacity') return;
+      settle();
+    }
+    card.addEventListener('transitionend', onFlyEnd);
+    window.setTimeout(settle, PEEL_MS + 80);
   }
 
   layout();
