@@ -930,7 +930,7 @@
       incoming.classList.add('is-front');
       void incoming.offsetWidth;
     }
-    const dir = direction === 'next' ? -1 : 1;
+    const dir = opts.flyDir != null ? opts.flyDir : (direction === 'next' ? -1 : 1);
     const fly = flyDist * dir;
     card.classList.add('is-flying');
     card.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .35s ease, box-shadow .45s ease';
@@ -1007,14 +1007,14 @@
     const intentionalTap = !didDrag && absX < 14 && absY < 14;
 
     if (intentionalSwipe){
-      // Left swipe → next; right swipe → prev. Continue the drag peel —
-      // do not use the mobile button slide-in (that would move a second card).
-      const direction = currentX < 0 ? 'next' : 'prev';
+      // Both directions peel like a photo stack and reveal the undercard.
+      // (Right-swipe must NOT run prev-staging — that pulls a buried card.)
+      const dir = currentX < 0 ? -1 : 1;
       currentX = 0;
       currentY = 0;
       activeCard = null;
       didDrag = false;
-      peelAdvance(direction, { fromSwipe: true });
+      peelAdvance('next', { fromSwipe: true, flyDir: dir });
       return;
     } else if (intentionalTap){
       const href = slugToHref[card.dataset.slug];
