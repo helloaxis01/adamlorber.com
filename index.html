@@ -853,19 +853,63 @@
   // Arrow/keyboard/swipe: peel the front card off, then reorder.
   // For prev, stage the incoming (last) card under the front first — otherwise
   // the peel would reveal the next undercard, then snap/fade to the previous.
+  // Mobile prev uses a slide-in on top instead — staging+peel was still popping
+  // the flyer back into the undercard on iOS.
   const PEEL_MS = 450;
-  function clearCardMotion(el){
-    el.style.transition = 'none';
-    el.style.transform = '';
-    el.style.opacity = '';
-  }
   function restoreCardMotion(el){
     el.style.transition = '';
+  }
+  function unlockPeel(){
+    // Keep is-peeling through layout; only unlock after transforms are committed.
+    void stack.offsetWidth;
+    stack.classList.remove('is-peeling');
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        cards.forEach(restoreCardMotion);
+      });
+    });
   }
   function peelAdvance(direction){
     if (peeling) return;
     peeling = true;
     stack.classList.add('is-peeling');
+    const mobile = window.matchMedia('(max-width:900px)').matches;
+    const flyDist = Math.max(stack.offsetWidth || window.innerWidth, 320) * 1.15;
+
+    // Mobile prev: slide previous card in from the left on top of the deck.
+    if (direction === 'prev' && mobile){
+      const incoming = cards[order[order.length - 1]];
+      incoming.style.transition = 'none';
+      incoming.style.zIndex = String(total + 2);
+      incoming.style.transform = 'translate(' + (-flyDist) + 'px, 0) rotate(-12deg)';
+      incoming.style.opacity = '1';
+      incoming.classList.add('is-front', 'is-flying');
+      void incoming.offsetWidth;
+      incoming.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1)';
+      incoming.style.transform = 'translate(0,0) scale(1) rotate(0deg)';
+
+      let settled = false;
+      function settle(){
+        if (settled) return;
+        settled = true;
+        incoming.removeEventListener('transitionend', onFlyEnd);
+        cards.forEach(function (c) { c.style.transition = 'none'; });
+        incoming.classList.remove('is-flying');
+        void stack.offsetWidth;
+        peeling = false;
+        advance('prev');
+        unlockPeel();
+      }
+      function onFlyEnd(e){
+        if (e.target !== incoming) return;
+        if (e.propertyName && e.propertyName !== 'transform') return;
+        settle();
+      }
+      incoming.addEventListener('transitionend', onFlyEnd);
+      window.setTimeout(settle, PEEL_MS + 80);
+      return;
+    }
+
     const card = cards[order[0]];
     let incoming = null;
     if (direction === 'prev'){
@@ -881,8 +925,7 @@
       void incoming.offsetWidth;
     }
     const dir = direction === 'next' ? -1 : 1;
-    // Use viewport width so the card fully clears a phone screen.
-    const fly = Math.max(stack.offsetWidth || window.innerWidth, 320) * 1.15 * dir;
+    const fly = flyDist * dir;
     card.classList.add('is-flying');
     card.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .35s ease, box-shadow .45s ease';
     // Force a frame so the transition always runs from the current layout.
@@ -895,17 +938,15 @@
       if (settled) return;
       settled = true;
       card.removeEventListener('transitionend', onFlyEnd);
-      clearCardMotion(card);
+      // Reorder while transitions stay frozen (is-peeling still on).
+      // Clearing is-peeling first re-enabled CSS transitions so the flyer
+      // animated back into the undercard — shrink/pop on mobile.
+      cards.forEach(function (c) { c.style.transition = 'none'; });
       card.classList.remove('is-flying');
-      if (incoming) clearCardMotion(incoming);
-      void card.offsetWidth;
+      void stack.offsetWidth;
       peeling = false;
-      stack.classList.remove('is-peeling');
       advance(direction);
-      // Re-enable CSS transitions after the post-peel layout paints.
-      requestAnimationFrame(function () {
-        cards.forEach(restoreCardMotion);
-      });
+      unlockPeel();
     }
     function onFlyEnd(e){
       if (e.target !== card) return;
