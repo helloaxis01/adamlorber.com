@@ -145,14 +145,16 @@ a.next + .wrap.sitemap{
   opacity:1;
 }
 
-/* Larger tap targets for interactive chrome */
+/* Larger tap targets for interactive chrome.
+   Flush the burger icon to the content right edge (padding on the left only)
+   so nav chrome lines up with page rules / “Back to About”. */
 .burger{
   min-width:44px;
   min-height:44px;
-  padding:10px !important;
+  padding:10px 0 10px 12px !important;
   display:inline-flex !important;
   align-items:center;
-  justify-content:center;
+  justify-content:flex-end;
 }
 .carousel-arrow{
   width:44px !important;
@@ -312,9 +314,9 @@ a.next + .wrap.sitemap{
   justify-content:space-between;
   align-items:center;
   gap:24px;
-  margin:-20px 0 0;
-  padding-top:0;
-  padding-bottom:0;
+  margin:8px 0 0;
+  padding-top:12px;
+  padding-bottom:16px;
 }
 .site-place-copy{
   display:flex;
@@ -338,12 +340,13 @@ a.next + .wrap.sitemap{
 /* Place + copyright are one unit — no rule between weather and © */
 .site-place + footer.wrap{
   border-top:none !important;
-  padding-top:14px !important;
+  padding-top:24px !important;
 }
 /* Pages without a sitemap: one rule above the place line */
 main + .site-place{
   margin-top:0;
-  padding-top:48px;
+  padding-top:56px;
+  padding-bottom:16px;
   border-top:1px solid var(--line, #2e2e2c);
 }
 .site-place[hidden]{display:none;}
