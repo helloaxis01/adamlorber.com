@@ -3,3 +3,4 @@
 .cursor/
 Thumbs.db
 .tmp-icloud-prev/
+node_modules/
