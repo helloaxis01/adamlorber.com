@@ -842,6 +842,7 @@
   // For prev, stage the incoming (last) card under the front first — otherwise
   // the peel would reveal the next undercard, then snap/fade to the previous.
   let peeling = false;
+  const PEEL_MS = 450;
   function peelAdvance(direction){
     if (peeling) return;
     peeling = true;
@@ -864,11 +865,18 @@
     card.style.transform = `translate(${fly}px, 0) rotate(${dir * 16}deg)`;
     card.style.opacity = '0';
     window.setTimeout(function () {
-      card.style.transition = '';
+      // Kill transition before layout so the peeled card doesn't animate
+      // from the fly pose back into an undercard (shrink + pop on prev).
+      card.style.transition = 'none';
+      card.style.transform = '';
       card.style.opacity = '';
+      void card.offsetWidth;
       advance(direction);
-      peeling = false;
-    }, 280);
+      requestAnimationFrame(function () {
+        card.style.transition = '';
+        peeling = false;
+      });
+    }, PEEL_MS);
   }
 
   layout();
