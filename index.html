@@ -812,6 +812,7 @@
   }
 
   let peeling = false;
+  let undercardStaged = false;
 
   function layout(force){
     // iOS toolbar show/hide fires resize mid-gesture; never reshuffle during a peel.
@@ -835,6 +836,11 @@
         card.style.opacity = '0';
       }
     });
+    // Staging freezes the undercard's transition; restore on reset/abort.
+    if (undercardStaged && order.length > 1) {
+      cards[order[1]].style.transition = '';
+    }
+    undercardStaged = false;
     const frontOriginalIndex = order[0];
     countEl.textContent = `${pad(frontOriginalIndex+1)} / ${pad(total)}`;
   }
@@ -848,6 +854,21 @@
       order.unshift(last);
     }
     layout(true);
+  }
+
+  // Put the undercard in the front pose now (no scale-up after the peel).
+  // Transition off so it doesn't animate into place under the flyer.
+  function stageUndercard(){
+    if (undercardStaged || order.length < 2) return;
+    const front = cards[order[0]];
+    const under = cards[order[1]];
+    under.style.transition = 'none';
+    front.style.zIndex = String(total + 1);
+    under.style.zIndex = String(total);
+    under.style.transform = 'translate(0,0) scale(1) rotate(0deg)';
+    under.style.opacity = '1';
+    void under.offsetWidth;
+    undercardStaged = true;
   }
 
   // Arrow/keyboard/swipe: peel the front card off, then reorder.
@@ -929,6 +950,9 @@
       incoming.style.opacity = '1';
       incoming.classList.add('is-front');
       void incoming.offsetWidth;
+    } else {
+      // Next (swipe or button): undercard already in the front pose.
+      stageUndercard();
     }
     const dir = opts.flyDir != null ? opts.flyDir : (direction === 'next' ? -1 : 1);
     const fly = flyDist * dir;
@@ -987,12 +1011,17 @@
     currentY = 0;
     startTime = Date.now();
     activeCard.style.transition = 'none';
+    // Park the undercard in the front pose before the peel opens a gap.
+    stageUndercard();
   }
   function onPointerMove(e){
     if (!dragging) return;
     currentX = e.clientX - startX;
     currentY = e.clientY - startY;
     if (Math.abs(currentX) > 18 || Math.abs(currentY) > 18) didDrag = true;
+    // As soon as the peel opens a gap, park the undercard in the front pose
+    // so it doesn't scale/settle into place after the flyer leaves.
+    if (Math.abs(currentX) > 28) stageUndercard();
     activeCard.style.transform = `translate(${currentX}px, 0) rotate(${currentX * 0.04}deg)`;
   }
   function onPointerUp(){
