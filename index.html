@@ -249,23 +249,29 @@
   .reveal{opacity:1; transform:translateY(16px); transition:transform .7s ease;}
   .reveal.in{transform:translateY(0);}
 
-  /* ---------- WORK : FULL-BLEED SEQUENCE ---------- */
-  .work-list{display:flex; flex-direction:column; gap:90px;}
+  /* ---------- WORK : TWO-UP (single column on mobile) ---------- */
+  .work-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    column-gap:28px;
+    row-gap:56px;
+  }
+  /* Flatten group wrappers so In-House + Client flow as one continuous grid. */
+  .work-group{display:contents;}
   .work-item{
     display:grid;
     grid-template-columns:auto minmax(0,1fr) auto;
     grid-template-areas:
       "media media media"
       "num name cat";
-    column-gap:16px;
+    column-gap:12px;
     row-gap:0;
     align-items:baseline;
   }
-  .work-group{display:flex; flex-direction:column; gap:90px;}
   .work-num{
     grid-area:num;
     font-family:var(--mono); font-size:11px; color:var(--gold); font-weight:400;
-    padding-top:22px;
+    padding-top:14px;
   }
   .work-media{grid-area:media; position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:1px;}
   .work-media > img, .work-media .ph, .work-media .ph img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.25,.7,.35,1);}
@@ -281,13 +287,13 @@
   .work-cap{display:contents;}
   .work-cap .name{
     grid-area:name;
-    font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.2vw,28px);
-    min-width:0; text-wrap:pretty; padding-top:22px;
+    font-family:var(--serif); font-weight:500; font-size:clamp(16px,1.6vw,22px);
+    min-width:0; text-wrap:pretty; padding-top:14px;
   }
   .work-cap .cat{
     grid-area:cat;
     font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--ink-dim); white-space:nowrap; flex-shrink:0; padding-top:22px;
+    color:var(--ink-dim); white-space:nowrap; flex-shrink:0; padding-top:14px;
   }
 
   section.pad{padding-top:96px; padding-bottom:90px;}
@@ -442,6 +448,16 @@
     .hero-name .m-br{display:inline;}
     .hero-name .d-br{display:none;}
     .hero-name .hero-end{white-space:normal;}
+    .work-list{
+      display:flex;
+      flex-direction:column;
+      gap:48px;
+    }
+    .work-group{
+      display:flex;
+      flex-direction:column;
+      gap:48px;
+    }
     .work-item{
       grid-template-columns:minmax(0,1fr) auto;
       grid-template-areas:
@@ -467,7 +483,6 @@
       max-width:100%;
       padding-top:10px;
     }
-    .work-list, .work-group{gap:48px;}
     .studies-row{padding-bottom:0;}
     .study{padding:22px 0;}
     section.pad{padding-top:48px; padding-bottom:40px;}
