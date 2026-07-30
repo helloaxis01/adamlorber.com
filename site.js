@@ -369,24 +369,24 @@
     });
   })();
 
-  // Quiet LA weather for footer place line. Fail silent → "Made in Los Angeles".
+  // Quiet LA weather for footer place line.
+  // Fail silent → "Made in Los Angeles." only (hide temp line).
   (function () {
     var nodes = document.querySelectorAll('[data-la-weather]');
     if (!nodes.length) return;
 
-    var FALLBACK = 'Made in Los Angeles';
-    var CACHE_KEY = 'al-la-weather-f2';
+    var CACHE_KEY = 'al-la-weather-f3';
     var CACHE_MS = 30 * 60 * 1000;
     var LA_LAT = 34.0522;
     var LA_LON = -118.2437;
 
-    function setText(text) {
-      nodes.forEach(function (el) { el.textContent = text; });
-    }
-
     function applyTemp(tempF) {
       if (typeof tempF !== 'number' || !isFinite(tempF)) return;
-      setText(FALLBACK + ' · ' + Math.round(tempF) + '°');
+      var line = "It's about " + Math.round(tempF) + '\u00B0 today.';
+      nodes.forEach(function (el) {
+        el.textContent = line;
+        el.hidden = false;
+      });
     }
 
     try {
@@ -414,6 +414,6 @@
         } catch (e) {}
         applyTemp(temp);
       })
-      .catch(function () { /* keep Made in Los Angeles */ });
+      .catch(function () { /* keep Made in Los Angeles. only */ });
   })();
 })();

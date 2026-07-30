@@ -328,7 +328,7 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
 </style>
-  <link rel="stylesheet" href="/site.css?v=laweather3">
+  <link rel="stylesheet" href="/site.css?v=laweather4">
 </head>
 <body>
 
@@ -419,13 +419,18 @@
     <div class="sitemap-col">
       <a href="/about" class="sitemap-caps">About</a>
       <a href="/#contact" class="sitemap-caps">Contact</a>
-      <a href="https://pointerpointer.com" target="_blank" rel="noopener" class="pointer-egg" aria-label="pointerpointer.com">
-        <svg width="20" height="27" viewBox="0 0 24 32" fill="currentColor"><path d="M4 3 L4 25 L9.5 20.5 L14 29 L17.5 27.3 L12.8 18.7 L21 18.7 Z"/></svg>
-      </a>
     </div>
   </div>
 
-  <p class="site-place wrap" data-la-weather aria-live="polite">Made in Los Angeles</p>
+  <div class="site-place wrap" aria-live="polite">
+  <div class="site-place-copy">
+    <p class="site-place-line">Made in Los Angeles.</p>
+    <p class="site-place-temp" data-la-weather hidden>It's about —° today.</p>
+  </div>
+  <a href="https://pointerpointer.com" target="_blank" rel="noopener" class="pointer-egg" aria-label="pointerpointer.com">
+    <svg width="20" height="27" viewBox="0 0 24 32" fill="currentColor"><path d="M4 3 L4 25 L9.5 20.5 L14 29 L17.5 27.3 L12.8 18.7 L21 18.7 Z"/></svg>
+  </a>
+</div>
 <footer class="wrap">
     <span>© 2026 Adam Lorber</span>
     <a href="#top">Back to top ↑</a>
@@ -453,6 +458,6 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
-<script src="site.js?v=laweather3"></script>
+<script src="site.js?v=laweather4"></script>
 </body>
 </html>
