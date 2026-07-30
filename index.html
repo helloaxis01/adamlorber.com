@@ -813,9 +813,9 @@
 
   let peeling = false;
 
-  function layout(){
+  function layout(force){
     // iOS toolbar show/hide fires resize mid-gesture; never reshuffle during a peel.
-    if (peeling) return;
+    if (peeling && !force) return;
     const peek = peekParams();
     order.forEach((cardIndex, pos) => {
       const card = cards[cardIndex];
@@ -847,38 +847,45 @@
       const last = order.pop();
       order.unshift(last);
     }
-    layout();
+    layout(true);
   }
 
   // Arrow/keyboard/swipe: peel the front card off, then reorder.
-  // For prev, stage the incoming (last) card under the front first — otherwise
-  // the peel would reveal the next undercard, then snap/fade to the previous.
-  // Mobile prev uses a slide-in on top instead — staging+peel was still popping
-  // the flyer back into the undercard on iOS.
+  // Mobile *button* prev uses a slide-in on top (staging+peel popped on iOS).
+  // Swipes must NOT use that path — the front card is already mid-drag, so a
+  // slide-in would move a second card and feel like a double-step.
   const PEEL_MS = 450;
+  let peelToken = 0;
   function restoreCardMotion(el){
     el.style.transition = '';
   }
   function unlockPeel(){
-    // Keep is-peeling through layout; only unlock after transforms are committed.
     void stack.offsetWidth;
     stack.classList.remove('is-peeling');
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
         cards.forEach(restoreCardMotion);
+        peeling = false;
       });
     });
   }
-  function peelAdvance(direction){
+  function peelAdvance(direction, opts){
+    opts = opts || {};
     if (peeling) return;
     peeling = true;
+    const token = ++peelToken;
     stack.classList.add('is-peeling');
     const mobile = window.matchMedia('(max-width:900px)').matches;
     const flyDist = Math.max(stack.offsetWidth || window.innerWidth, 320) * 1.15;
+    const fromSwipe = !!opts.fromSwipe;
 
-    // Mobile prev: slide previous card in from the left on top of the deck.
-    if (direction === 'prev' && mobile){
+    // Mobile button-only prev: slide previous card in from the left on top.
+    if (direction === 'prev' && mobile && !fromSwipe){
+      const front = cards[order[0]];
       const incoming = cards[order[order.length - 1]];
+      // Park the current front so only one card is in motion.
+      front.style.transition = 'none';
+      front.style.opacity = '0';
       incoming.style.transition = 'none';
       incoming.style.zIndex = String(total + 2);
       incoming.style.transform = 'translate(' + (-flyDist) + 'px, 0) rotate(-12deg)';
@@ -890,13 +897,12 @@
 
       let settled = false;
       function settle(){
-        if (settled) return;
+        if (settled || token !== peelToken) return;
         settled = true;
         incoming.removeEventListener('transitionend', onFlyEnd);
         cards.forEach(function (c) { c.style.transition = 'none'; });
         incoming.classList.remove('is-flying');
         void stack.offsetWidth;
-        peeling = false;
         advance('prev');
         unlockPeel();
       }
@@ -914,8 +920,8 @@
     let incoming = null;
     if (direction === 'prev'){
       incoming = cards[order[order.length - 1]];
-      // Keep transition off — restoring it here lets WebKit/iOS animate
-      // scale(0.9)→1 under the peel (reads as shrink/pop on mobile).
+      // Keep transition off while staging — restoring it lets WebKit animate
+      // scale(0.9)→1 under the peel (shrink/pop on mobile).
       incoming.style.transition = 'none';
       card.style.zIndex = String(total + 1);
       incoming.style.zIndex = String(total);
@@ -928,23 +934,20 @@
     const fly = flyDist * dir;
     card.classList.add('is-flying');
     card.style.transition = 'transform .45s cubic-bezier(.22,.9,.3,1), opacity .35s ease, box-shadow .45s ease';
-    // Force a frame so the transition always runs from the current layout.
-    void card.offsetWidth;
+    // From a swipe, continue from the drag pose (don't reflow back to center).
+    if (!fromSwipe) void card.offsetWidth;
     card.style.transform = `translate(${fly}px, 0) rotate(${dir * 16}deg)`;
     card.style.opacity = '0';
 
     let settled = false;
     function settle(){
-      if (settled) return;
+      if (settled || token !== peelToken) return;
       settled = true;
       card.removeEventListener('transitionend', onFlyEnd);
       // Reorder while transitions stay frozen (is-peeling still on).
-      // Clearing is-peeling first re-enabled CSS transitions so the flyer
-      // animated back into the undercard — shrink/pop on mobile.
       cards.forEach(function (c) { c.style.transition = 'none'; });
       card.classList.remove('is-flying');
       void stack.offsetWidth;
-      peeling = false;
       advance(direction);
       unlockPeel();
     }
@@ -1004,14 +1007,14 @@
     const intentionalTap = !didDrag && absX < 14 && absY < 14;
 
     if (intentionalSwipe){
-      // Left swipe → next; right swipe → prev. Same peel path as arrows.
+      // Left swipe → next; right swipe → prev. Continue the drag peel —
+      // do not use the mobile button slide-in (that would move a second card).
       const direction = currentX < 0 ? 'next' : 'prev';
-      // Hand control back to peelAdvance (re-applies fly from current drag pose).
       currentX = 0;
       currentY = 0;
       activeCard = null;
       didDrag = false;
-      peelAdvance(direction);
+      peelAdvance(direction, { fromSwipe: true });
       return;
     } else if (intentionalTap){
       const href = slugToHref[card.dataset.slug];
