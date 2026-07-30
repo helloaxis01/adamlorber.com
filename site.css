@@ -314,7 +314,10 @@ a.next + .wrap.sitemap{
   justify-content:space-between;
   align-items:center;
   gap:24px;
-  margin:8px 0 0;
+  /* longhands only — a margin shorthand zeroes left/right and
+     breaks .wrap’s margin:auto centering (Made in LA drifts past ©) */
+  margin-top:8px;
+  margin-bottom:0;
   padding-top:12px;
   padding-bottom:16px;
 }
