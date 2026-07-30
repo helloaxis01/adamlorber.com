@@ -370,19 +370,19 @@
   })();
 
   // Quiet LA weather for footer place line.
-  // Fail silent → "Made in Los Angeles." only (hide temp line).
+  // Fail silent → "Made in sunny Los Angeles." only (hide temp line).
   (function () {
     var nodes = document.querySelectorAll('[data-la-weather]');
     if (!nodes.length) return;
 
-    var CACHE_KEY = 'al-la-weather-f3';
+    var CACHE_KEY = 'al-la-weather-f4';
     var CACHE_MS = 30 * 60 * 1000;
     var LA_LAT = 34.0522;
     var LA_LON = -118.2437;
 
     function applyTemp(tempF) {
       if (typeof tempF !== 'number' || !isFinite(tempF)) return;
-      var line = "It's about " + Math.round(tempF) + '\u00B0 today.';
+      var line = "It's about " + Math.round(tempF) + '\u00B0 right now.';
       nodes.forEach(function (el) {
         el.textContent = line;
         el.hidden = false;
@@ -414,6 +414,6 @@
         } catch (e) {}
         applyTemp(temp);
       })
-      .catch(function () { /* keep Made in Los Angeles. only */ });
+      .catch(function () { /* keep Made in sunny Los Angeles. only */ });
   })();
 })();
