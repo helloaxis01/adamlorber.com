@@ -308,14 +308,32 @@ a.next + .wrap.sitemap{
 
 /* Quiet place + live LA weather, between sitemap and copyright */
 .site-place{
-  font-family:var(--mono, 'IBM Plex Mono', monospace);
-  font-size:10px;
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  color:var(--ink-dim, #8f8d85);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:24px;
   margin:-20px 0 0;
   padding-top:0;
   padding-bottom:0;
+}
+.site-place-copy{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-width:0;
+}
+.site-place-line,
+.site-place-temp{
+  font-family:var(--mono, 'IBM Plex Mono', monospace);
+  font-size:10px;
+  letter-spacing:0.04em;
+  color:var(--ink-dim, #8f8d85);
+  margin:0;
+}
+.site-place-temp[hidden]{display:none !important;}
+.site-place .pointer-egg{
+  flex-shrink:0;
+  align-self:center;
 }
 /* Place + copyright are one unit — no rule between weather and © */
 .site-place + footer.wrap{
@@ -329,6 +347,39 @@ main + .site-place{
   border-top:1px solid var(--line, #2e2e2c);
 }
 .site-place[hidden]{display:none;}
+
+/* Pointer egg (footer place row + any local sitemap leftovers) */
+.pointer-egg{
+  display:inline-flex;
+  align-items:center;
+  background:none;
+  padding:0;
+  margin:0;
+  border:none;
+  -webkit-tap-highlight-color:transparent;
+}
+.pointer-egg svg{
+  display:block;
+  color:var(--ink, #efeee9);
+  animation:pointerFlickerMark 2.2s steps(1) infinite;
+}
+html[data-theme="light"] .pointer-egg svg{color:#1a1a19;}
+.pointer-egg:hover,
+.pointer-egg:focus-visible{background:none;}
+.pointer-egg:hover svg{
+  color:var(--chartreuse, #d6ff4b);
+  animation-play-state:paused;
+}
+@keyframes pointerFlickerMark{
+  0%,100%{ color:var(--ink, #efeee9); }
+  8%{ color:var(--chartreuse, #d6ff4b); }
+  14%{ color:var(--ink, #efeee9); }
+  46%{ color:var(--ink, #efeee9); }
+  52%{ color:var(--chartreuse, #d6ff4b); }
+  58%{ color:var(--ink, #efeee9); }
+  81%{ color:var(--chartreuse, #d6ff4b); }
+  86%{ color:var(--ink, #efeee9); }
+}
 
 /* Tablet / iPad: breathe between phone and desktop.
    Keep sitemap at 4 columns (same as desktop). Do not force .stats to
