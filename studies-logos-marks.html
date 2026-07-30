@@ -42,7 +42,7 @@
 
   header{position:fixed; top:0; left:0; right:0; z-index:110; background-color:color-mix(in srgb, var(--bg) 78%, transparent); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-bottom:1px solid transparent; transition:background-color .2s ease, border-color .2s ease; transform:translateZ(0); -webkit-backface-visibility:hidden; backface-visibility:hidden;}
   header.scrolled{background-color:color-mix(in srgb, var(--bg) 94%, transparent); border-color:var(--line);}
-  nav{max-width:100%; margin:0 auto; padding:26px var(--gutter); display:flex; align-items:center; justify-content:space-between;}
+  nav{max-width:var(--maxw); width:100%; margin:0 auto; padding:26px var(--gutter); display:flex; align-items:center; justify-content:space-between;}
   .logo{font-family:var(--grotesk); font-weight:800; font-size:13px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink);}
   .burger{display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px; z-index:110;}
   .nav-right{display:flex; align-items:center; gap:14px;}
@@ -253,7 +253,7 @@
     background:var(--chartreuse);
   }
 </style>
-  <link rel="stylesheet" href="/site.css?v=laweather6">
+  <link rel="stylesheet" href="/site.css?v=laweather7">
 </head>
 <body>
 <header id="siteHeader">
@@ -385,6 +385,6 @@
     if (!headerTicking){ headerTicking = true; requestAnimationFrame(updateHeader); }
   }, { passive: true });
 </script>
-<script src="site.js?v=laweather6"></script>
+<script src="site.js?v=laweather7"></script>
 </body>
 </html>

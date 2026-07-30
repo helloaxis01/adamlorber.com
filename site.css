@@ -153,8 +153,9 @@ a.next + .wrap.sitemap{
   min-height:44px;
   padding:10px 0 10px 12px !important;
   display:inline-flex !important;
-  align-items:center;
-  justify-content:flex-end;
+  flex-direction:column !important;
+  align-items:flex-end !important;
+  justify-content:center;
 }
 .carousel-arrow{
   width:44px !important;
