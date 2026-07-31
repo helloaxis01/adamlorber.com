@@ -186,12 +186,19 @@
     if (!burger || !menu) return;
     menu.classList.toggle('open', open);
     burger.classList.toggle('open', open);
-    // Lock scroll without a layout jump when the scrollbar disappears.
-    var sb = open ? Math.max(0, window.innerWidth - document.documentElement.clientWidth) : 0;
-    document.body.style.overflow = open ? 'hidden' : '';
-    document.body.style.paddingRight = sb ? sb + 'px' : '';
     var header = document.getElementById('siteHeader') || document.querySelector('header');
-    if (header) header.style.paddingRight = sb ? sb + 'px' : '';
+    if (open) {
+      // Measure while the scrollbar is still visible, then lock + pad.
+      var sb = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+      document.body.style.overflow = 'hidden';
+      document.body.style.paddingRight = sb ? sb + 'px' : '';
+      if (header) header.style.paddingRight = sb ? sb + 'px' : '';
+    } else {
+      // Clear pad and overflow together so the scrollbar return doesn’t nudge layout.
+      document.body.style.paddingRight = '';
+      if (header) header.style.paddingRight = '';
+      document.body.style.overflow = '';
+    }
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   }
