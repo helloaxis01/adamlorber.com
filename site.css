@@ -421,7 +421,7 @@ html[data-theme="light"] .pointer-egg svg{color:#1a1a19;}
   .meta-row{
     grid-template-columns:repeat(2, minmax(0,1fr)) !important;
   }
-  .work-grid{
+  .work-list{
     grid-template-columns:repeat(2, minmax(0,1fr)) !important;
   }
 }
