@@ -240,6 +240,9 @@ a.next + .wrap.sitemap{
   align-self:flex-start;
   flex-wrap:nowrap !important;
 }
+.about-actions .email-slot{
+  align-self:center !important;
+}
 
 /* Mobile contact: left stack; address expands right, LinkedIn stays put */
 @media (max-width:900px){

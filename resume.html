@@ -105,10 +105,11 @@
     display:flex; flex-direction:column; align-items:flex-start; gap:12px;
   }
   .resume-pair{
-    display:flex; align-items:center; gap:28px;
+    display:flex; align-items:center; flex-wrap:wrap; gap:28px;
   }
   .resume-pair .email-slot{
     display:inline-flex; align-items:center; gap:0;
+    align-self:center;
   }
   .resume-pair .email-slot.is-open{gap:28px;}
   .resume-pair a,
@@ -127,6 +128,7 @@
     display:inline-flex; align-items:center;
     max-width:0; opacity:0; overflow:hidden; white-space:nowrap;
     pointer-events:none;
+    padding:0; margin:0;
   }
   .resume-pair .email-slot.is-open .email-address{
     max-width:20rem; opacity:1; pointer-events:auto;
@@ -135,12 +137,12 @@
     font-family:var(--mono); font-size:11px; letter-spacing:0.04em;
     color:var(--ink-dim); margin:0;
   }
-  .resume-download{
+  .resume-pair .resume-download{
     color:var(--chartreuse);
-    margin-top:8px;
+    margin-top:0;
   }
-  .resume-download:hover{color:var(--chartreuse);}
-  html[data-theme="light"] .resume-download{
+  .resume-pair .resume-download:hover{color:var(--chartreuse);}
+  html[data-theme="light"] .resume-pair .resume-download{
     color:#1a1a19; background:var(--chartreuse); padding:0.15em 0.35em; margin-inline:-0.35em;
   }
   .resume-pair a:hover,
@@ -246,7 +248,7 @@
     .resume-pair{gap:20px;}
   }
 </style>
-<link rel="stylesheet" href="/site.css?v=resume-box1">
+<link rel="stylesheet" href="/site.css?v=actions-align1">
 </head>
 <body>
 <header id="siteHeader">
@@ -283,8 +285,8 @@
           <a class="email-address" id="resume-email-address" href="mailto:hello@adamlorber.com" tabindex="-1" aria-hidden="true">hello@adamlorber.com</a>
         </span>
         <a class="contact-linkedin" href="https://www.linkedin.com/in/adamlorber/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="resume-download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
       </div>
-      <a class="resume-download" href="/resume.pdf" download="Resume_AdamLorber.pdf">Download PDF</a>
     </div>
   </div>
 
