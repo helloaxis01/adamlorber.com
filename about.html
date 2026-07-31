@@ -133,7 +133,14 @@
   .about-meta{display:flex; gap:64px; flex-wrap:wrap; margin-top:28px; margin-bottom:8px;}
   .about-meta div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
   .about-meta strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; max-width:420px; line-height:1.45;}
-  .about-actions{display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; gap:32px; margin-top:48px;}
+  .about-actions{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:28px;
+    margin-top:48px;
+  }
   .about-actions a,
   .about-actions .email-toggle{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
@@ -143,7 +150,8 @@
     line-height:1;
   }
   .about-actions .resume{
-    display:inline-block;
+    display:inline-flex;
+    align-items:center;
     color:var(--ink);
     border:1px solid var(--line);
     padding:8px 12px;
@@ -152,12 +160,24 @@
     max-width:100%;
     box-sizing:border-box;
   }
+  /* Keep Email / LinkedIn on the same vertical center as the Resume box */
+  .about-actions .email-slot{
+    align-self:center !important;
+  }
+  .about-actions .email-toggle,
+  .about-actions a.contact-linkedin{
+    display:inline-flex !important;
+    align-items:center;
+    min-height:31px;
+    padding-block:8px !important;
+    box-sizing:border-box;
+  }
   .email-slot{
     display:inline-flex;
     align-items:center;
     gap:0;
   }
-  .email-slot.is-open{gap:32px;}
+  .email-slot.is-open{gap:28px;}
   .about-actions .email-address{
     font-family:var(--mono); font-size:11px; letter-spacing:0.04em; text-transform:none; color:var(--ink);
     transition:color .25s ease, background-color .25s ease, opacity .2s ease, max-width .2s ease;
@@ -170,6 +190,8 @@
     white-space:nowrap;
     vertical-align:middle;
     pointer-events:none;
+    padding:0 !important;
+    margin:0 !important;
   }
   .email-slot.is-open .email-address{
     max-width:20rem;
@@ -220,7 +242,7 @@
   .study span,
   .contact-links a,
   .contact-links .email-toggle,
-  .about-actions a:not(.resume),
+  .about-actions a:not(.resume):not(.email-address),
   .about-actions .email-toggle,
   .err-cta{
     width:fit-content;
@@ -345,7 +367,7 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
 </style>
-  <link rel="stylesheet" href="/site.css?v=resume-box1">
+  <link rel="stylesheet" href="/site.css?v=actions-align1">
 </head>
 <body>
 
