@@ -381,16 +381,18 @@
     });
   })();
 
-  // Quiet LA weather for footer place line.
+  // Quiet LA weather for footer place line — Encino / Valley coords
+  // (downtown runs cooler; Valley matches where Adam actually is).
   // Fail silent → "Made in sunny Los Angeles." only (hide temp line).
   (function () {
     var nodes = document.querySelectorAll('[data-la-weather]');
     if (!nodes.length) return;
 
-    var CACHE_KEY = 'al-la-weather-f4';
+    var CACHE_KEY = 'al-la-weather-encino1';
     var CACHE_MS = 30 * 60 * 1000;
-    var LA_LAT = 34.0522;
-    var LA_LON = -118.2437;
+    // Encino, San Fernando Valley
+    var LA_LAT = 34.1592;
+    var LA_LON = -118.5013;
 
     function applyTemp(tempF) {
       if (typeof tempF !== 'number' || !isFinite(tempF)) return;
