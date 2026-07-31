@@ -251,7 +251,9 @@ a.next + .wrap.sitemap{
     align-items:flex-start !important;
     gap:10px !important;
   }
-  .email-slot{
+  .email-slot,
+  .about-actions .email-slot,
+  .resume-pair .email-slot{
     flex-direction:row !important;
     align-items:center !important;
     align-self:flex-start !important;
@@ -261,7 +263,8 @@ a.next + .wrap.sitemap{
     gap:12px !important;
   }
   .contact-links .email-address,
-  .about-actions .email-address{
+  .about-actions .email-address,
+  .resume-pair .email-address{
     min-height:0 !important;
     max-height:none !important;
     white-space:nowrap !important;
@@ -277,6 +280,10 @@ a.next + .wrap.sitemap{
   }
   .email-slot.is-open .email-address{
     max-width:min(16rem, calc(100vw - 8rem)) !important;
+  }
+  /* Place + egg: keep breathing room on very narrow phones */
+  .site-place{
+    gap:12px;
   }
 }
 
@@ -330,7 +337,8 @@ a.next + .wrap.sitemap{
   display:flex;
   flex-direction:column;
   gap:4px;
-  min-width:0;
+  /* Keep each place line on one row (avoids “Los” / “Angeles.”). */
+  min-width:min-content;
 }
 .site-place-line,
 .site-place-temp{
@@ -339,9 +347,10 @@ a.next + .wrap.sitemap{
   letter-spacing:0.04em;
   color:var(--chartreuse, #ebff12);
   margin:0;
+  white-space:nowrap;
 }
 /* Light mode: static-label mark (black highlighter). Dark mode keeps
-   chartreuse text above. nowrap avoids “Los” / “Angeles.” split. */
+   chartreuse text above. */
 html[data-theme="light"] .site-place-line,
 html[data-theme="light"] .site-place-temp{
   color:var(--bg, #efeee9);
@@ -352,10 +361,6 @@ html[data-theme="light"] .site-place-temp{
   margin-inline:-0.18em;
   padding-block:0.05em;
   line-height:1.25;
-  white-space:nowrap;
-}
-html[data-theme="light"] .site-place-copy{
-  min-width:min-content;
 }
 .site-place-temp[hidden]{display:none !important;}
 .site-place .pointer-egg{

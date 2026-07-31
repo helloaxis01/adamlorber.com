@@ -276,12 +276,15 @@
   }
   .work-media{grid-area:media; position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:1px;}
   .work-media > img, .work-media .ph, .work-media .ph img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.25,.7,.35,1);}
-  /* Image hover: established subtle scale (same as before). Text hover joins the shared chartreuse mark rules below. */
-  .work-item:hover .work-media > img, .work-item:hover .work-media .ph{transform:scale(1.025);}
   .work-num,
   .work-cap .name,
   .work-cap .cat{
     transition:color .2s ease, background-color .2s ease;
+  }
+  /* Image hover only on fine pointers — avoids sticky :hover after tap on iOS */
+  @media (hover:hover) and (pointer:fine){
+    .work-item:hover .work-media > img,
+    .work-item:hover .work-media .ph{transform:scale(1.025);}
   }
   .work-media .ph::after{
     content:''; position:absolute; inset:0; opacity:0.05; mix-blend-mode:multiply;
@@ -538,9 +541,6 @@
   .next-title:hover,
   .study:hover h3,
   .study:hover span,
-  .work-item:hover .work-num,
-  .work-item:hover .work-cap .name,
-  .work-item:hover .work-cap .cat,
   .contact-links a:not(.email-address):hover,
   .contact-links.is-lit a:not(.email-address),
   .contact-links .email-toggle:hover,
@@ -572,15 +572,23 @@
     color:#1a1a19;
     background:var(--chartreuse);
   }
-  /* Work-row marks: tight to the glyphs (spacing lives in grid row-gap). */
-  html[data-theme="light"] .work-item:hover .work-num,
-  html[data-theme="light"] .work-item:hover .work-cap .name,
-  html[data-theme="light"] .work-item:hover .work-cap .cat{
-    color:#1a1a19;
-    background:var(--chartreuse);
-    padding-block:0.02em;
-    box-decoration-break:clone;
-    -webkit-box-decoration-break:clone;
+  /* Work-row chartreuse marks: desktop/fine pointer only */
+  @media (hover:hover) and (pointer:fine){
+    .work-item:hover .work-num,
+    .work-item:hover .work-cap .name,
+    .work-item:hover .work-cap .cat{
+      color:var(--chartreuse);
+      background:transparent;
+    }
+    html[data-theme="light"] .work-item:hover .work-num,
+    html[data-theme="light"] .work-item:hover .work-cap .name,
+    html[data-theme="light"] .work-item:hover .work-cap .cat{
+      color:#1a1a19;
+      background:var(--chartreuse);
+      padding-block:0.02em;
+      box-decoration-break:clone;
+      -webkit-box-decoration-break:clone;
+    }
   }
   .theme-toggle:hover,
   .err-cta:hover,
@@ -638,7 +646,7 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
 </style>
-  <link rel="stylesheet" href="/site.css?v=menu-shift2">
+  <link rel="stylesheet" href="/site.css?v=mobile-tonight1">
 </head>
 <body>
 
@@ -1150,6 +1158,6 @@
   })();
 </script>
 
-<script src="site.js?v=menu-shift2"></script>
+<script src="site.js?v=mobile-tonight1"></script>
 </body>
 </html>

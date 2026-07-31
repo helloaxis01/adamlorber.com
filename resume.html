@@ -236,7 +236,7 @@
   footer.wrap a{color:var(--ink-dim);}
   footer.wrap a:hover{color:var(--chartreuse);}
 
-  @media (max-width:720px){
+  @media (max-width:900px){
     .resume-page{padding-top:120px; padding-bottom:80px;}
     .resume-head{margin-bottom:36px; padding-bottom:22px;}
     .resume-title{
@@ -245,10 +245,20 @@
     }
     .resume-title .title-br{display:inline;}
     .resume-meta{margin-top:16px; gap:10px;}
-    .resume-pair{gap:20px;}
+    /* Stack Email / LinkedIn / PDF so open Email doesn’t wrap awkwardly */
+    .resume-pair{
+      flex-direction:column;
+      align-items:flex-start;
+      gap:12px;
+    }
+    .resume-pair .email-slot{align-self:flex-start;}
+    .resume-pair .email-slot.is-open{gap:12px;}
+    .resume-pair .email-slot.is-open .email-address{
+      max-width:min(16rem, calc(100vw - 8rem));
+    }
   }
 </style>
-<link rel="stylesheet" href="/site.css?v=menu-shift2">
+<link rel="stylesheet" href="/site.css?v=mobile-tonight1">
 </head>
 <body>
 <header id="siteHeader">
@@ -448,6 +458,6 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 </script>
-<script src="site.js?v=menu-shift2"></script>
+<script src="site.js?v=mobile-tonight1"></script>
 </body>
 </html>
