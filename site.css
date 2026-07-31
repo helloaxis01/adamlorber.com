@@ -248,7 +248,8 @@ a.next + .wrap.sitemap{
 @media (max-width:900px){
   .contact-links{
     align-items:flex-start !important;
-    gap:10px !important;
+    /* Keep gap ≥ hit-area inset so Resume / Email / LinkedIn don’t fight on tap */
+    gap:24px !important;
   }
   .about-actions{
     align-items:center !important;
