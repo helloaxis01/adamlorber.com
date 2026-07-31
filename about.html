@@ -225,7 +225,10 @@
     .tl-row{flex-direction:column; gap:4px;}
     .tl-row .tl-year{width:auto;}
     .about-meta{flex-direction:column; gap:22px;}
-    .about-actions{flex-direction:column; align-items:flex-start; gap:8px;}
+    .about-actions{flex-direction:column; align-items:flex-start; gap:8px; margin-top:36px;}
+    /* Beat desktop align-self:center so Email lines up with Resume / LinkedIn */
+    .about-actions .email-slot{align-self:flex-start !important;}
+    .about-actions .email-slot.is-open{gap:12px;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
   }
 
@@ -367,7 +370,7 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
 </style>
-  <link rel="stylesheet" href="/site.css?v=menu-shift2">
+  <link rel="stylesheet" href="/site.css?v=mobile-tonight1">
 </head>
 <body>
 
@@ -497,6 +500,6 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
-<script src="site.js?v=menu-shift2"></script>
+<script src="site.js?v=mobile-tonight1"></script>
 </body>
 </html>
