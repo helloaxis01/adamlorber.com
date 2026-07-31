@@ -230,8 +230,8 @@
       margin-inline:0;
       background:#f7fadf;
     }
-    /* Face-centered in the 1:1 crop. */
-    .about-photo img{object-position:48% 18%;}
+    /* Eyes above the midline in the 1:1 crop. */
+    .about-photo img{object-position:48% 52%;}
     .tl-row{flex-direction:column; gap:4px;}
     .tl-row .tl-year{width:auto;}
     .about-meta{flex-direction:column; gap:22px;}
@@ -257,9 +257,9 @@
       flex-shrink:0;
       min-width:0;
     }
+    /* Keep row gaps stable so Email doesn’t jump when opened */
     .about-actions .email-slot.is-open{
       gap:8px;
-      flex-shrink:1;
     }
     .about-actions .email-toggle,
     .about-actions a.contact-linkedin{
@@ -270,12 +270,8 @@
       max-width:none;
       letter-spacing:0.02em;
     }
-    .about-actions:has(.email-slot.is-open){
-      gap:8px;
-    }
     @media (max-width:380px){
       .about-actions{gap:10px;}
-      .about-actions:has(.email-slot.is-open){gap:6px;}
       .about-actions .email-slot.is-open{gap:6px;}
       .about-actions .resume{padding:6px 8px;}
       .about-actions .email-toggle,
@@ -423,7 +419,7 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
 </style>
-  <link rel="stylesheet" href="/site.css?v=hello-tap1">
+  <link rel="stylesheet" href="/site.css?v=about-eyes-email1">
 </head>
 <body>
 
@@ -555,6 +551,6 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
-<script src="site.js?v=hello-tap1"></script>
+<script src="site.js?v=about-eyes-email1"></script>
 </body>
 </html>
