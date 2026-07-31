@@ -133,17 +133,23 @@
   .about-meta{display:flex; gap:64px; flex-wrap:wrap; margin-top:28px; margin-bottom:8px;}
   .about-meta div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
   .about-meta strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; max-width:420px; line-height:1.45;}
-  .about-actions{display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; gap:32px; margin-top:28px;}
+  .about-actions{display:flex; flex-direction:row; flex-wrap:wrap; align-items:center; gap:32px; margin-top:48px;}
   .about-actions a,
   .about-actions .email-toggle{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-dim);
     background:none; border:0; padding:0; margin:0; cursor:pointer;
     appearance:none; -webkit-appearance:none;
-    transition:color .25s ease, background-color .25s ease;
+    transition:color .25s ease, background-color .25s ease, border-color .25s ease;
     line-height:1;
   }
-  .about-actions .resume{color:var(--ink); border-bottom:1px solid var(--line); padding-bottom:2px;}
-  .about-actions .resume:hover{border-color:var(--line);}
+  .about-actions .resume{
+    color:var(--ink);
+    border:1px solid var(--line);
+    padding:0.55em 0.75em;
+    line-height:1.2;
+    width:fit-content;
+    max-width:100%;
+  }
   .email-slot{
     display:inline-flex;
     align-items:center;
@@ -212,7 +218,7 @@
   .study span,
   .contact-links a,
   .contact-links .email-toggle,
-  .about-actions a,
+  .about-actions a:not(.resume),
   .about-actions .email-toggle,
   .err-cta{
     width:fit-content;
@@ -230,7 +236,7 @@
   .contact-links .email-toggle:hover,
   .contact-links.is-lit .email-toggle,
   .contact-links .email-slot.is-open .email-toggle,
-  .about-actions a:not(.email-address):hover,
+  .about-actions a:not(.email-address):not(.resume):hover,
   .about-actions .email-toggle:hover,
   .about-actions .email-slot.is-open .email-toggle,
   .err-cta:hover,
@@ -248,7 +254,7 @@
   html[data-theme="light"] .contact-links .email-toggle:hover,
   html[data-theme="light"] .contact-links.is-lit .email-toggle,
   html[data-theme="light"] .contact-links .email-slot.is-open .email-toggle,
-  html[data-theme="light"] .about-actions a:not(.email-address):hover,
+  html[data-theme="light"] .about-actions a:not(.email-address):not(.resume):hover,
   html[data-theme="light"] .about-actions .email-toggle:hover,
   html[data-theme="light"] .about-actions .email-slot.is-open .email-toggle,
   html[data-theme="light"] .err-cta:hover,
@@ -257,9 +263,18 @@
     background:var(--chartreuse);
   }
   .theme-toggle:hover,
-  .err-cta:hover,
-  .about-actions .resume:hover{
+  .err-cta:hover{
     border-color:var(--line);
+  }
+  .about-actions .resume:hover{
+    color:var(--chartreuse);
+    border-color:var(--chartreuse);
+    background:transparent;
+  }
+  html[data-theme="light"] .about-actions .resume:hover{
+    color:#1a1a19;
+    background:var(--chartreuse);
+    border-color:var(--chartreuse);
   }
   .pointer-egg{
     display:inline-flex; align-items:center;
