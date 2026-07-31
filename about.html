@@ -224,33 +224,64 @@
     .about{padding-top:120px; padding-bottom:90px;}
     .about-grid{grid-template-columns:1fr; gap:28px;}
     .about-photo{
-      /* Square crop; keep cream board through the bottom edge so its
-         paper cutline doesn’t sit flush with the frame (reads as a rule). */
       aspect-ratio:1;
       max-width:none;
       width:100%;
       margin-inline:0;
       background:#f7fadf;
     }
-    .about-photo img{object-position:50% 0%;}
+    /* Face-centered in the 1:1 crop. */
+    .about-photo img{object-position:48% 18%;}
     .tl-row{flex-direction:column; gap:4px;}
     .tl-row .tl-year{width:auto;}
     .about-meta{flex-direction:column; gap:22px;}
+    /* One row: Resume · Email · LinkedIn (address expands in place). */
     .about-actions{
-      flex-direction:column;
-      align-items:flex-start;
-      gap:28px; /* Resume box, then Email + LinkedIn as a group */
+      flex-direction:row;
+      flex-wrap:nowrap;
+      align-items:center;
+      gap:12px;
       margin-top:36px;
+      width:100%;
+      max-width:100%;
     }
     .about-actions-links{
-      flex-direction:row;
-      flex-wrap:wrap;
-      align-items:center;
-      gap:20px;
+      display:contents;
     }
-    /* Beat desktop align-self:center so Email lines up with Resume / LinkedIn */
-    .about-actions .email-slot{align-self:flex-start !important;}
-    .about-actions .email-slot.is-open{gap:12px;}
+    .about-actions .resume{
+      flex-shrink:0;
+      padding:7px 10px;
+    }
+    .about-actions .email-slot{
+      align-self:center !important;
+      flex-shrink:0;
+      min-width:0;
+    }
+    .about-actions .email-slot.is-open{
+      gap:8px;
+      flex-shrink:1;
+    }
+    .about-actions .email-toggle,
+    .about-actions a.contact-linkedin{
+      flex-shrink:0;
+      letter-spacing:0.08em;
+    }
+    .about-actions .email-slot.is-open .email-address{
+      max-width:none;
+      letter-spacing:0.02em;
+    }
+    .about-actions:has(.email-slot.is-open){
+      gap:8px;
+    }
+    @media (max-width:380px){
+      .about-actions{gap:10px;}
+      .about-actions:has(.email-slot.is-open){gap:6px;}
+      .about-actions .email-slot.is-open{gap:6px;}
+      .about-actions .resume{padding:6px 8px;}
+      .about-actions .email-toggle,
+      .about-actions a.contact-linkedin{letter-spacing:0.06em;}
+      .about-actions .email-slot.is-open .email-address{font-size:10px;}
+    }
     .sitemap{grid-template-columns:1fr; gap:32px;}
   }
 
@@ -392,7 +423,7 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
 </style>
-  <link rel="stylesheet" href="/site.css?v=about-mobile-actions1">
+  <link rel="stylesheet" href="/site.css?v=about-face-row1">
 </head>
 <body>
 
@@ -524,6 +555,6 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
-<script src="site.js?v=about-mobile-actions1"></script>
+<script src="site.js?v=about-face-row1"></script>
 </body>
 </html>

@@ -251,18 +251,23 @@ a.next + .wrap.sitemap{
     gap:10px !important;
   }
   .about-actions{
-    align-items:flex-start !important;
+    align-items:center !important;
   }
   .email-slot,
   .about-actions .email-slot,
   .resume-pair .email-slot{
     flex-direction:row !important;
     align-items:center !important;
-    align-self:flex-start !important;
     flex-wrap:nowrap !important;
+  }
+  .resume-pair .email-slot{
+    align-self:flex-start !important;
   }
   .email-slot.is-open{
     gap:12px !important;
+  }
+  .about-actions .email-slot.is-open{
+    gap:8px !important;
   }
   .contact-links .email-address,
   .about-actions .email-address,
@@ -282,6 +287,10 @@ a.next + .wrap.sitemap{
   }
   .email-slot.is-open .email-address{
     max-width:min(16rem, calc(100vw - 8rem)) !important;
+  }
+  /* About actions stay one row — don’t clamp the address into a wrap. */
+  .about-actions .email-slot.is-open .email-address{
+    max-width:none !important;
   }
   /* Place + egg: keep breathing room on very narrow phones */
   .site-place{
