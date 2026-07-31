@@ -309,6 +309,18 @@
   .label-row{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:56px;}
   .label-row .eyebrow-sm{font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold);}
   .label-row .count{font-family:var(--mono); font-size:11px; color:var(--ink-dim);}
+  /* Light mode only: static “Selected work” label — black mark (not interactive/chartreuse). */
+  html[data-theme="light"] #work .label-row .eyebrow-sm{
+    color:var(--bg);
+    background:var(--ink);
+    width:fit-content;
+    max-width:100%;
+    padding-inline:var(--mark-pad-x);
+    margin-inline:calc(-1 * var(--mark-pad-x));
+    padding-block:0.05em;
+    line-height:1.25;
+    white-space:nowrap;
+  }
 
   /* ---------- STUDIES ---------- */
   /* One section rule into Studies; list dividers only after that. */
