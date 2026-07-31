@@ -203,10 +203,11 @@ a.next + .wrap.sitemap{
   width:44px !important;
   height:44px !important;
 }
-/* Contact/About actions: large tap targets without inflating highlight boxes */
+/* Contact/About actions: large tap targets without inflating highlight boxes.
+   About Resume keeps its own bordered box — exclude it from the zeroed pad. */
 .contact-links a,
 .contact-links .email-toggle,
-.about-actions a,
+.about-actions a:not(.resume),
 .about-actions .email-toggle{
   position:relative;
   display:inline-flex;
@@ -217,7 +218,7 @@ a.next + .wrap.sitemap{
 }
 .contact-links a:not(.email-address)::before,
 .contact-links .email-toggle::before,
-.about-actions a:not(.email-address)::before,
+.about-actions a:not(.email-address):not(.resume)::before,
 .about-actions .email-toggle::before{
   content:"";
   position:absolute;
