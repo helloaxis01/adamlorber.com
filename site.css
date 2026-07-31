@@ -333,8 +333,18 @@ a.next + .wrap.sitemap{
   font-family:var(--mono, 'IBM Plex Mono', monospace);
   font-size:10px;
   letter-spacing:0.04em;
-  color:var(--ink-dim, #8f8d85);
+  color:var(--chartreuse, #ebff12);
   margin:0;
+}
+/* Light mode: chartreuse as a mark (yellow-on-cream fails contrast). */
+html[data-theme="light"] .site-place-line,
+html[data-theme="light"] .site-place-temp{
+  color:#1a1a19;
+  background:var(--chartreuse, #ebff12);
+  width:fit-content;
+  max-width:100%;
+  padding-inline:0.18em;
+  margin-inline:-0.18em;
 }
 .site-place-temp[hidden]{display:none !important;}
 .site-place .pointer-egg{
