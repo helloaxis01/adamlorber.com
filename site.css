@@ -4,7 +4,11 @@
 :root{ color-scheme: dark; }
 html[data-theme="light"]{ color-scheme: light; }
 
-/* Fill overscroll + give Safari a real ground color */
+/* Fill overscroll + give Safari a real ground color.
+   Stable gutter avoids a horizontal jump if a scrollbar appears/disappears. */
+html{
+  scrollbar-gutter: stable;
+}
 html, body{
   background-color: var(--bg, #1a1a19);
 }

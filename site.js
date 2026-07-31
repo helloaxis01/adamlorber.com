@@ -186,7 +186,12 @@
     if (!burger || !menu) return;
     menu.classList.toggle('open', open);
     burger.classList.toggle('open', open);
+    // Lock scroll without a layout jump when the scrollbar disappears.
+    var sb = open ? Math.max(0, window.innerWidth - document.documentElement.clientWidth) : 0;
     document.body.style.overflow = open ? 'hidden' : '';
+    document.body.style.paddingRight = sb ? sb + 'px' : '';
+    var header = document.getElementById('siteHeader') || document.querySelector('header');
+    if (header) header.style.paddingRight = sb ? sb + 'px' : '';
     burger.setAttribute('aria-expanded', open ? 'true' : 'false');
     burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   }
