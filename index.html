@@ -572,23 +572,27 @@
     color:#1a1a19;
     background:var(--chartreuse);
   }
-  /* Work-row chartreuse marks: desktop/fine pointer only */
-  @media (hover:hover) and (pointer:fine){
-    .work-item:hover .work-num,
-    .work-item:hover .work-cap .name,
-    .work-item:hover .work-cap .cat{
-      color:var(--chartreuse);
-      background:transparent;
-    }
-    html[data-theme="light"] .work-item:hover .work-num,
-    html[data-theme="light"] .work-item:hover .work-cap .name,
-    html[data-theme="light"] .work-item:hover .work-cap .cat{
-      color:#1a1a19;
-      background:var(--chartreuse);
-      padding-block:0.02em;
-      box-decoration-break:clone;
-      -webkit-box-decoration-break:clone;
-    }
+  /* Work-row chartreuse marks — including touch :hover on tap */
+  .work-item:hover .work-num,
+  .work-item:hover .work-cap .name,
+  .work-item:hover .work-cap .cat,
+  .work-item:active .work-num,
+  .work-item:active .work-cap .name,
+  .work-item:active .work-cap .cat{
+    color:var(--chartreuse);
+    background:transparent;
+  }
+  html[data-theme="light"] .work-item:hover .work-num,
+  html[data-theme="light"] .work-item:hover .work-cap .name,
+  html[data-theme="light"] .work-item:hover .work-cap .cat,
+  html[data-theme="light"] .work-item:active .work-num,
+  html[data-theme="light"] .work-item:active .work-cap .name,
+  html[data-theme="light"] .work-item:active .work-cap .cat{
+    color:#1a1a19;
+    background:var(--chartreuse);
+    padding-block:0.02em;
+    box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;
   }
   .theme-toggle:hover,
   .err-cta:hover,
@@ -646,7 +650,7 @@
   }
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
 </style>
-  <link rel="stylesheet" href="/site.css?v=work-tap-mark1">
+  <link rel="stylesheet" href="/site.css?v=about-crop-ref1">
 </head>
 <body>
 
@@ -1158,6 +1162,6 @@
   })();
 </script>
 
-<script src="site.js?v=work-tap-mark1"></script>
+<script src="site.js?v=about-crop-ref1"></script>
 </body>
 </html>
