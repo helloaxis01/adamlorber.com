@@ -116,6 +116,7 @@
   .about{padding-top:158px; padding-bottom:140px;}
   .about-grid{display:grid; grid-template-columns:minmax(0,340px) minmax(0,1fr); gap:72px; align-items:start;}
   .about-photo{position:relative; aspect-ratio:4/5; max-width:340px; width:100%; overflow:hidden; border-radius:0;}
+  .about-photo picture{position:absolute; inset:0; display:block;}
   .about-photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 39%; display:block;}
   .about-body p{font-family:var(--grotesk); font-weight:400; font-size:15px; line-height:1.8; color:var(--ink-dim); max-width:560px; margin-bottom:18px;}
   .about-body p strong{color:var(--ink); font-weight:600;}
@@ -230,8 +231,8 @@
       margin-inline:0;
       background:#f7fadf;
     }
-    /* Eyes above the midline in the 1:1 crop. */
-    .about-photo img{object-position:48% 52%;}
+    /* Square asset is pre-cropped with eyes on the midline */
+    .about-photo img{object-position:50% 50%;}
     .tl-row{flex-direction:column; gap:4px;}
     .tl-row .tl-year{width:auto;}
     .about-meta{flex-direction:column; gap:22px;}
@@ -448,7 +449,10 @@
     <h1 class="sr-only">About Adam Lorber</h1>
     <div class="about-grid">
       <div class="about-photo reveal">
-        <img src="images/about/adam-lorber-portrait.jpg" alt="Adam Lorber portrait">
+        <picture>
+          <source media="(max-width:900px)" srcset="images/about/adam-lorber-portrait-square.jpg">
+          <img src="images/about/adam-lorber-portrait.jpg" alt="Adam Lorber portrait" width="1024" height="1536">
+        </picture>
       </div>
       <div class="about-body reveal">
         <p>I'm an Art Director and Lead Designer based in Los Angeles. For sixteen years I directed visual identity for the Television Academy and the Emmy Awards, the kind of work where the deadline is a live event and there's no version two.</p>
