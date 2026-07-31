@@ -246,10 +246,12 @@ a.next + .wrap.sitemap{
 
 /* Mobile contact: left stack; address expands right, LinkedIn stays put */
 @media (max-width:900px){
-  .contact-links,
-  .about-actions{
+  .contact-links{
     align-items:flex-start !important;
     gap:10px !important;
+  }
+  .about-actions{
+    align-items:flex-start !important;
   }
   .email-slot,
   .about-actions .email-slot,
