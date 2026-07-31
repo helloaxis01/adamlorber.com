@@ -322,24 +322,23 @@
     white-space:nowrap;
   }
 
-  /* ---------- STUDIES ---------- */
-  /* One section rule into Studies; list dividers only after that. */
+  /* ---------- AFTER WORK: About + studies list (no section title) ---------- */
   .studies-row{
     padding-top:0;
     padding-bottom:0;
     border-top:1px solid var(--line);
   }
-  .studies-row .label-row{
-    margin-bottom:0;
+  .studies-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
     padding-top:var(--gutter);
-    padding-bottom:22px;
   }
   #studies,
   #contact,
   #work{
     scroll-margin-top:var(--header-offset, 84px);
   }
-  .studies-list{display:flex; flex-direction:column; gap:0;}
   .study{
     display:flex; align-items:baseline; justify-content:space-between; gap:24px;
     padding:28px 0; border-bottom:1px solid var(--line);
@@ -657,7 +656,6 @@
   <span class="m-eyebrow">Menu</span>
   <a href="#top">Home</a>
   <a href="#work">Work</a>
-  <a href="#studies">Studies</a>
   <a href="/about">About</a>
   <a href="#contact">Contact</a>
 </div>
@@ -756,9 +754,11 @@
     </div>
   </section>
 
-  <section id="studies" class="wrap studies-row">
-    <div class="label-row reveal"><span class="eyebrow-sm">Studies</span></div>
+  <section id="studies" class="wrap studies-row" aria-label="About and studies">
     <div class="studies-list reveal">
+      <a href="/about" class="study">
+        <h3>About</h3><span>View</span>
+      </a>
       <a href="/logos-marks" class="study">
         <h3>Logos &amp; Marks</h3><span>View</span>
       </a>
