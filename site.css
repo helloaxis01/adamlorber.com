@@ -336,16 +336,18 @@ a.next + .wrap.sitemap{
   color:var(--chartreuse, #ebff12);
   margin:0;
 }
-/* Light mode: chartreuse as a mark (yellow-on-cream fails contrast).
-   nowrap keeps each sentence on one mark — no “Los” / “Angeles.” split. */
+/* Light mode: static-label mark (black highlighter). Dark mode keeps
+   chartreuse text above. nowrap avoids “Los” / “Angeles.” split. */
 html[data-theme="light"] .site-place-line,
 html[data-theme="light"] .site-place-temp{
-  color:#1a1a19;
-  background:var(--chartreuse, #ebff12);
+  color:var(--bg, #efeee9);
+  background:var(--ink, #1a1a19);
   width:fit-content;
   max-width:100%;
   padding-inline:0.18em;
   margin-inline:-0.18em;
+  padding-block:0.05em;
+  line-height:1.25;
   white-space:nowrap;
 }
 html[data-theme="light"] .site-place-copy{
