@@ -275,7 +275,13 @@
   }
   .work-media{grid-area:media; position:relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:1px;}
   .work-media > img, .work-media .ph, .work-media .ph img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .8s cubic-bezier(.25,.7,.35,1);}
+  /* Image hover: established subtle scale (same as before). Text hover joins the shared chartreuse mark rules below. */
   .work-item:hover .work-media > img, .work-item:hover .work-media .ph{transform:scale(1.025);}
+  .work-num,
+  .work-cap .name,
+  .work-cap .cat{
+    transition:color .2s ease, background-color .2s ease;
+  }
   .work-media .ph::after{
     content:''; position:absolute; inset:0; opacity:0.05; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -503,6 +509,9 @@
   .next-title,
   .study h3,
   .study span,
+  .work-num,
+  .work-cap .name,
+  .work-cap .cat,
   .contact-links a,
   .contact-links .email-toggle,
   .about-actions a,
@@ -518,6 +527,9 @@
   .next-title:hover,
   .study:hover h3,
   .study:hover span,
+  .work-item:hover .work-num,
+  .work-item:hover .work-cap .name,
+  .work-item:hover .work-cap .cat,
   .contact-links a:not(.email-address):hover,
   .contact-links.is-lit a:not(.email-address),
   .contact-links .email-toggle:hover,
@@ -536,6 +548,9 @@
   html[data-theme="light"] .next-title:hover,
   html[data-theme="light"] .study:hover h3,
   html[data-theme="light"] .study:hover span,
+  html[data-theme="light"] .work-item:hover .work-num,
+  html[data-theme="light"] .work-item:hover .work-cap .name,
+  html[data-theme="light"] .work-item:hover .work-cap .cat,
   html[data-theme="light"] .contact-links a:not(.email-address):hover,
   html[data-theme="light"] .contact-links.is-lit a:not(.email-address),
   html[data-theme="light"] .contact-links .email-toggle:hover,
