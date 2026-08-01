@@ -64,9 +64,12 @@ header.has-read-progress.scrolled{
 /* Next project: narrow band — 10% darker in dark mode, 10% lighter in light */
 .next{
   background:color-mix(in srgb, #000 10%, var(--bg)) !important;
-  padding:28px 0 !important;
+  padding:64px 0 !important;
   overflow:hidden;
-  display:block !important;
+  display:flex !important;
+  align-items:center !important;
+  min-height:180px;
+  box-sizing:border-box;
 }
 html[data-theme="light"] .next{
   background:color-mix(in srgb, #fff 20%, var(--bg)) !important;
