@@ -328,7 +328,7 @@ a.next + .wrap.sitemap{
   letter-spacing:normal !important;
   text-transform:none !important;
   line-height:inherit !important;
-  color:var(--chartreuse) !important;
+  color:var(--ink) !important;
 }
 .case-section .section-label--stacked .section-num{
   display:block;
@@ -339,7 +339,7 @@ a.next + .wrap.sitemap{
   letter-spacing:0.14em;
   text-transform:uppercase;
   line-height:1.4;
-  color:var(--chartreuse);
+  color:var(--ink);
 }
 .case-section .section-label--stacked .section-word{
   display:block;
@@ -349,7 +349,7 @@ a.next + .wrap.sitemap{
   letter-spacing:-0.02em;
   text-transform:none;
   line-height:1.15;
-  color:var(--chartreuse);
+  color:var(--ink);
 }
 /* Optional short title under the label (left column balance).
    Quieter than body: grey title, white prose + captions. */
@@ -372,11 +372,15 @@ a.next + .wrap.sitemap{
 .case-blocks{
   gap:28px !important;
 }
+/* Extra air after media so the next prose reads as a new beat, not a caption */
 .case-block.block-image + .case-block,
 .case-block.block-carousel + .case-block,
 .case-block.block-gif + .case-block,
 .case-block.block-gif-centered + .case-block{
-  padding-top:36px !important;
+  padding-top:64px !important;
+}
+.case-block .block-cap{
+  margin-top:22px;
 }
 .case-block.block-image + .case-block.joins-prev,
 .case-block.block-carousel + .case-block.joins-prev,
