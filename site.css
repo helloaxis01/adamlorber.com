@@ -319,13 +319,17 @@ a.next + .wrap.sitemap{
 
 /*
   Desktop: split narrative — section title left / body right,
-  media full-bleed below. Mobile unchanged (stacked).
+  media full-bleed below. Captions + extra copy share the body
+  column (same spacing/width as text beside the section number).
+  Mobile unchanged (stacked).
 */
 @media (min-width:901px){
   .case-section.wrap{
+    --case-split-cols:minmax(10rem, 0.85fr) minmax(0, 1.4fr);
+    --case-split-gap:clamp(32px, 5vw, 72px);
     display:grid;
-    grid-template-columns:minmax(10rem, 0.85fr) minmax(0, 1.4fr);
-    column-gap:clamp(32px, 5vw, 72px);
+    grid-template-columns:var(--case-split-cols);
+    column-gap:var(--case-split-gap);
     row-gap:28px;
     align-items:start;
   }
@@ -337,18 +341,44 @@ a.next + .wrap.sitemap{
   .case-section.wrap > .case-blocks{
     display:contents;
   }
+  /* All prose (with or without a section number beside it) */
   .case-section.wrap .case-block.block-text{
     grid-column:2;
   }
   .case-section.wrap .case-block.block-text:first-child{
     grid-row:1;
   }
+  /* Full-bleed media; caption locks to the body column */
   .case-section.wrap .case-block.block-image,
   .case-section.wrap .case-block.block-carousel,
-  .case-section.wrap .case-block.block-gif,
-  .case-section.wrap .case-block.block-gif-centered,
   .case-section.wrap .case-block.block-appstore{
     grid-column:1 / -1;
+    display:grid;
+    grid-template-columns:var(--case-split-cols);
+    column-gap:var(--case-split-gap);
+  }
+  @supports (grid-template-columns:subgrid){
+    .case-section.wrap .case-block.block-image,
+    .case-section.wrap .case-block.block-carousel,
+    .case-section.wrap .case-block.block-appstore{
+      grid-template-columns:subgrid;
+    }
+  }
+  .case-section.wrap .case-block.block-image > :not(.block-cap),
+  .case-section.wrap .case-block.block-carousel > :not(.block-cap),
+  .case-section.wrap .case-block.block-appstore > :not(.block-cap){
+    grid-column:1 / -1;
+  }
+  .case-section.wrap .case-block .block-cap{
+    grid-column:2;
+    max-width:none;
+  }
+  /* Narrow gifs live in the body column, not full-bleed */
+  .case-section.wrap .case-block.block-gif,
+  .case-section.wrap .case-block.block-gif-centered{
+    grid-column:2;
+    margin-left:0;
+    margin-right:auto;
   }
   .case-section.wrap .section-label{
     font-family:var(--grotesk, "Archivo", sans-serif);
@@ -363,9 +393,6 @@ a.next + .wrap.sitemap{
   .case-section.wrap .case-block.block-text p,
   .case-section.wrap .case-block.block-text ul{
     max-width:none;
-  }
-  .case-section.wrap .case-block .block-cap{
-    max-width:40rem;
   }
 }
 
