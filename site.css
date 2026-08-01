@@ -339,7 +339,7 @@ a.next + .wrap.sitemap{
   letter-spacing:0.14em;
   text-transform:uppercase;
   line-height:1.4;
-  color:var(--chartreuse);
+  color:var(--ink);
 }
 .case-section .section-label--stacked .section-word{
   display:block;
