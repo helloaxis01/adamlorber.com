@@ -309,6 +309,7 @@ a.next + .wrap.sitemap{
 }
 /* 01 · Challenge etc. — small chartreuse mono, sitewide */
 .case-section .section-label{
+  display:block;
   font-family:var(--mono, "IBM Plex Mono", monospace) !important;
   font-weight:500 !important;
   font-size:11px !important;
@@ -317,6 +318,16 @@ a.next + .wrap.sitemap{
   line-height:1.4 !important;
   color:var(--chartreuse) !important;
   padding-top:4px !important;
+}
+/* Optional short title under the label (left column balance) */
+.case-section .section-title{
+  margin:14px 0 0;
+  font-family:var(--grotesk, "Archivo", sans-serif);
+  font-weight:700;
+  font-size:clamp(26px, 3vw, 36px);
+  line-height:1.15;
+  letter-spacing:-0.02em;
+  color:var(--ink);
 }
 .case-blocks{
   gap:28px !important;
