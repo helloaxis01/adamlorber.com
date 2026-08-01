@@ -64,11 +64,12 @@ header.has-read-progress.scrolled{
 /* Next project: narrow band — 10% darker in dark mode, 10% lighter in light */
 .next{
   background:color-mix(in srgb, #000 10%, var(--bg)) !important;
-  padding:80px 0 !important;
+  padding:0 !important;
+  min-height:220px;
   overflow:hidden;
-  display:flex !important;
+  display:grid !important;
+  align-content:center !important;
   align-items:center !important;
-  justify-content:flex-start;
 }
 html[data-theme="light"] .next{
   background:color-mix(in srgb, #fff 20%, var(--bg)) !important;
@@ -310,17 +311,14 @@ a.next + .wrap.sitemap{
 }
 /* Rules between sections — margin to margin (content width), not edge to edge */
 .case-section + .case-section{
-  border-top:none;
-  position:relative;
-}
-.case-section + .case-section::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:var(--gutter, clamp(20px,5vw,64px));
-  right:var(--gutter, clamp(20px,5vw,64px));
-  border-top:1px solid var(--line, rgba(220,218,211,0.16));
-  pointer-events:none;
+  border-top:none !important;
+  background-image:linear-gradient(
+    var(--line, rgba(220,218,211,0.16)),
+    var(--line, rgba(220,218,211,0.16))
+  );
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-size:calc(100% - (2 * var(--gutter, clamp(20px,5vw,64px)))) 1px;
 }
 /* Double the air after the last section, before Next project */
 .case-section:has(+ a.next),
