@@ -598,11 +598,15 @@ html[data-theme="light"] .pointer-egg svg{color:#1a1a19;}
 
 /* Tablet / iPad: breathe between phone and desktop.
    Keep sitemap at 4 columns (same as desktop). Do not force .stats to
-   2 columns — odd counts leave an empty grey cell. */
-@media (min-width:901px) and (max-width:1100px){
+   2 columns — odd counts leave an empty grey cell.
+   Meta stays 3 equal columns on desktop (Role · Scope · Timeline). */
+@media (min-width:901px){
   .meta-row{
-    grid-template-columns:repeat(2, minmax(0,1fr)) !important;
+    grid-template-columns:repeat(3, minmax(0,1fr)) !important;
+    width:100%;
   }
+}
+@media (min-width:901px) and (max-width:1100px){
   .work-list{
     grid-template-columns:repeat(2, minmax(0,1fr)) !important;
   }
