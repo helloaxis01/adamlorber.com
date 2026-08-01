@@ -319,6 +319,38 @@ a.next + .wrap.sitemap{
   color:var(--chartreuse) !important;
   padding-top:4px !important;
 }
+/* B: stacked callout — small number above large section word */
+.case-section .section-label.section-label--stacked{
+  margin:0;
+  font-family:inherit !important;
+  font-weight:inherit !important;
+  font-size:inherit !important;
+  letter-spacing:normal !important;
+  text-transform:none !important;
+  line-height:inherit !important;
+  color:var(--chartreuse) !important;
+}
+.case-section .section-label--stacked .section-num{
+  display:block;
+  margin:0 0 12px;
+  font-family:var(--mono, "IBM Plex Mono", monospace);
+  font-weight:500;
+  font-size:11px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  line-height:1.4;
+  color:var(--chartreuse);
+}
+.case-section .section-label--stacked .section-word{
+  display:block;
+  font-family:var(--grotesk, "Archivo", sans-serif);
+  font-weight:700;
+  font-size:clamp(26px, 3vw, 36px);
+  letter-spacing:-0.02em;
+  text-transform:none;
+  line-height:1.15;
+  color:var(--chartreuse);
+}
 /* Optional short title under the label (left column balance).
    Quieter than body: grey title, white prose + captions. */
 .case-section .section-title{
