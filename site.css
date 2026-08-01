@@ -64,9 +64,12 @@ header.has-read-progress.scrolled{
 /* Next project: narrow band — 10% darker in dark mode, 10% lighter in light */
 .next{
   background:color-mix(in srgb, #000 10%, var(--bg)) !important;
-  padding:28px 0 !important;
+  padding:0 !important;
+  min-height:220px;
   overflow:hidden;
-  display:block !important;
+  display:grid !important;
+  align-content:center !important;
+  align-items:center !important;
 }
 html[data-theme="light"] .next{
   background:color-mix(in srgb, #fff 20%, var(--bg)) !important;
@@ -306,9 +309,16 @@ a.next + .wrap.sitemap{
   padding-top:56px !important;
   padding-bottom:56px !important;
 }
-/* Rules between sections (not between samples within a section) */
+/* Rules between sections — margin to margin (content width), not edge to edge */
 .case-section + .case-section{
-  border-top:1px solid var(--line, rgba(220,218,211,0.16));
+  border-top:none !important;
+  background-image:linear-gradient(
+    var(--line, rgba(220,218,211,0.16)),
+    var(--line, rgba(220,218,211,0.16))
+  );
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-size:calc(100% - (2 * var(--gutter, clamp(20px,5vw,64px)))) 1px;
 }
 /* Double the air after the last section, before Next project */
 .case-section:has(+ a.next),
