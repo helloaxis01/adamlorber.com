@@ -316,10 +316,11 @@ a.next + .wrap.sitemap{
 }
 .case-section + .case-section::before{
   content:"";
-  display:block;
-  grid-column:1 / -1;
+  position:absolute;
+  top:0;
+  left:var(--gutter, clamp(20px,5vw,64px));
+  right:var(--gutter, clamp(20px,5vw,64px));
   border-top:1px solid var(--line, rgba(220,218,211,0.16));
-  margin:0;
   pointer-events:none;
 }
 /* Double the air after the last section, before Next project */
