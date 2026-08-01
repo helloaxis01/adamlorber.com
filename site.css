@@ -309,9 +309,18 @@ a.next + .wrap.sitemap{
   padding-top:56px !important;
   padding-bottom:56px !important;
 }
-/* Rules between sections (not between samples within a section) */
+/* Rules between sections — margin to margin (content width), not edge to edge */
 .case-section + .case-section{
+  border-top:none;
+  position:relative;
+}
+.case-section + .case-section::before{
+  content:"";
+  display:block;
+  grid-column:1 / -1;
   border-top:1px solid var(--line, rgba(220,218,211,0.16));
+  margin:0;
+  pointer-events:none;
 }
 /* Double the air after the last section, before Next project */
 .case-section:has(+ a.next),
