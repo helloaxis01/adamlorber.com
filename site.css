@@ -319,7 +319,8 @@ a.next + .wrap.sitemap{
   color:var(--chartreuse) !important;
   padding-top:4px !important;
 }
-/* Optional short title under the label (left column balance) */
+/* Optional short title under the label (left column balance).
+   Quieter than body: grey title, white prose + captions. */
 .case-section .section-title{
   margin:14px 0 0;
   font-family:var(--grotesk, "Archivo", sans-serif);
@@ -327,6 +328,13 @@ a.next + .wrap.sitemap{
   font-size:clamp(26px, 3vw, 36px);
   line-height:1.15;
   letter-spacing:-0.02em;
+  color:var(--ink-dim);
+}
+.case-section:has(.section-title) .case-block.block-text p,
+.case-section:has(.section-title) .case-block.block-text li{
+  color:var(--ink);
+}
+.case-section:has(.section-title) .case-block .block-cap{
   color:var(--ink);
 }
 .case-blocks{
