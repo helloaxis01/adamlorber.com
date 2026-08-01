@@ -317,6 +317,58 @@ a.next + .wrap.sitemap{
   padding-top:36px !important;
 }
 
+/*
+  Desktop: split narrative — section title left / body right,
+  media full-bleed below. Mobile unchanged (stacked).
+*/
+@media (min-width:901px){
+  .case-section.wrap{
+    display:grid;
+    grid-template-columns:minmax(10rem, 0.85fr) minmax(0, 1.4fr);
+    column-gap:clamp(32px, 5vw, 72px);
+    row-gap:28px;
+    align-items:start;
+  }
+  .case-section.wrap > .case-header{
+    grid-column:1;
+    grid-row:1;
+    margin-bottom:0 !important;
+  }
+  .case-section.wrap > .case-blocks{
+    display:contents;
+  }
+  .case-section.wrap .case-block.block-text{
+    grid-column:2;
+  }
+  .case-section.wrap .case-block.block-text:first-child{
+    grid-row:1;
+  }
+  .case-section.wrap .case-block.block-image,
+  .case-section.wrap .case-block.block-carousel,
+  .case-section.wrap .case-block.block-gif,
+  .case-section.wrap .case-block.block-gif-centered,
+  .case-section.wrap .case-block.block-appstore{
+    grid-column:1 / -1;
+  }
+  .case-section.wrap .section-label{
+    font-family:var(--grotesk, "Archivo", sans-serif);
+    font-weight:700;
+    font-size:clamp(22px, 2.5vw, 32px);
+    letter-spacing:-0.02em;
+    text-transform:none;
+    line-height:1.2;
+    color:var(--ink);
+    padding-top:0;
+  }
+  .case-section.wrap .case-block.block-text p,
+  .case-section.wrap .case-block.block-text ul{
+    max-width:none;
+  }
+  .case-section.wrap .case-block .block-cap{
+    max-width:40rem;
+  }
+}
+
 /* Stats: pad every cell to the page gutter when stacked */
 @media (max-width:900px){
   .case-section{
