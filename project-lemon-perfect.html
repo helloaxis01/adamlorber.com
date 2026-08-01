@@ -86,10 +86,10 @@
   .gallery.full .p-image{grid-column:1 / -1;}
 
   .section-end-rule{border-top:1px solid var(--line); margin:0 0 64px;}
-  .next{background:var(--next-bg); padding:70px 0; display:flex; align-items:center;}
+  .next{background:var(--next-bg); padding:72px 0; display:flex; align-items:center;}
   .next .wrap{width:100%;}
-  .next-label{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:14px;}
-  .next-title{font-family:var(--serif); font-weight:500; font-size:clamp(32px,6vw,64px); display:inline-flex; align-items:center; gap:18px;}
+  .next-label{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--chartreuse); margin-bottom:14px;}
+  .next-title{font-family:var(--serif); font-weight:500; font-size:clamp(26px,4.8vw,51px); display:inline-flex; align-items:center; gap:18px;}
   
 
   .sitemap{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
@@ -106,7 +106,7 @@
   .case-block.block-carousel + .case-block,
   .case-block.block-gif + .case-block,
   .case-block.block-gif-centered + .case-block{
-    border-top:1px solid var(--line); padding-top:48px;
+    border-top:none; padding-top:64px;
   }
   .case-block.block-carousel + .case-block.joins-prev,
   .case-block.block-image + .case-block.joins-prev{
@@ -118,11 +118,11 @@
   .case-block.block-gif-centered + .case-block.block-text p{
     font-size:13px;
   }
-  .case-block.block-text p{font-family:var(--grotesk); font-weight:400; font-size:15px; line-height:1.8; color:var(--ink-dim); max-width:none;}
+  .case-block.block-text p{font-family:var(--grotesk); font-weight:400; font-size:15px; line-height:1.8; color:var(--ink); max-width:none;}
   .case-block.block-text strong{color:var(--ink); font-weight:600;}
   .case-block .p-image{aspect-ratio:16/9;}
   .case-block video{width:100%; height:100%; object-fit:cover; display:block; background:#000;}
-  .case-block .block-cap{font-family:var(--mono); font-size:11px; color:var(--ink-dim); margin-top:14px; max-width:none; line-height:1.7;}
+  .case-block .block-cap{font-family:var(--mono); font-size:11px; color:var(--ink); margin-top:22px; max-width:none; line-height:1.7;}
   .carousel-viewport{position:relative; width:100%; aspect-ratio:16/9; background:var(--bg); overflow:hidden; border-radius:0; touch-action:pan-y; cursor:grab;}
   .carousel-viewport:active{cursor:grabbing;}
   .carousel-track{display:flex; height:100%; transition:transform 0.45s cubic-bezier(0.65,0,0.35,1);}
@@ -322,7 +322,7 @@
     background:var(--chartreuse);
   }
 </style>
-  <link rel="stylesheet" href="/site.css?v=next-center5">
+  <link rel="stylesheet" href="/site.css?v=case-format1">
 </head>
 <body>
 
@@ -364,7 +364,12 @@
   </div>
 
     <section class="wrap case-section" data-section="challenge">
-    <div class="case-header"><span class="section-label">01 · Challenge</span></div>
+    <div class="case-header">
+      <h2 class="section-label section-label--stacked">
+        <span class="section-num">01</span>
+        <span class="section-word">Challenge</span>
+      </h2>
+    </div>
     <div class="case-blocks" data-blocks="challenge">
       <div class="case-block block-text"><p>Zero sugar and organic weren’t enough in a category still owned by legacy beverage brands. Lemon Perfect needed a louder personality, especially in Atlanta.</p></div>
       <div class="case-block block-text"><p>I art directed the national out-of-home campaign that gave Lemon Perfect that personality: bold, city-specific creative that could hold its own next to legacy beverage brands on the street.</p></div>
@@ -372,7 +377,12 @@
   </section>
 
   <section class="wrap case-section" data-section="approach">
-    <div class="case-header"><span class="section-label">02 · Approach</span></div>
+    <div class="case-header">
+      <h2 class="section-label section-label--stacked">
+        <span class="section-num">02</span>
+        <span class="section-word">Approach</span>
+      </h2>
+    </div>
     <div class="case-blocks" data-blocks="approach">
       <div class="case-block block-text"><p>I led art direction and copywriting for the Atlanta campaign: minimal visuals, confident headlines built for a highway glance and the grocery aisle.</p></div>
       <div class="case-block block-carousel" id="carousel-billboards-c2">
@@ -405,7 +415,12 @@
   </section>
 
   <section class="wrap case-section" data-section="outcome">
-    <div class="case-header"><span class="section-label">03 · Outcome</span></div>
+    <div class="case-header">
+      <h2 class="section-label section-label--stacked">
+        <span class="section-num">03</span>
+        <span class="section-word">Outcome</span>
+      </h2>
+    </div>
     <div class="case-blocks" data-blocks="outcome">
       <div class="case-block block-text"><p>I delivered a full OOH and in-store concept package for Lemon Perfect’s home market, including board directions, headlines, and dump bin design.</p></div>
       <div class="case-block block-image">

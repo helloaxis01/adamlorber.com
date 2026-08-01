@@ -95,7 +95,7 @@ html[data-theme="light"] .next{
   transform:none !important;
 }
 .next .next-label{
-  color:var(--ink-dim) !important;
+  color:var(--chartreuse, #ebff12) !important;
   margin-bottom:6px !important;
 }
 .next .next-title{
@@ -381,11 +381,12 @@ a.next + .wrap.sitemap{
   letter-spacing:-0.02em;
   color:var(--ink-dim);
 }
-.case-section:has(.section-title) .case-block.block-text p,
-.case-section:has(.section-title) .case-block.block-text li{
+/* Case body + captions lead (white/ink) sitewide */
+.case-section .case-block.block-text p,
+.case-section .case-block.block-text li{
   color:var(--ink);
 }
-.case-section:has(.section-title) .case-block .block-cap{
+.case-section .case-block .block-cap{
   color:var(--ink);
 }
 .case-blocks{
