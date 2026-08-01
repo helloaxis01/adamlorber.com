@@ -381,13 +381,19 @@ a.next + .wrap.sitemap{
   letter-spacing:-0.02em;
   color:var(--ink-dim);
 }
-/* Case body + captions lead (white/ink) sitewide */
+/* Case body + captions lead (white/ink) sitewide.
+   Shared reading measure — stay inside page gutters; don’t kiss the edge. */
 .case-section .case-block.block-text p,
-.case-section .case-block.block-text li{
-  color:var(--ink);
-}
+.case-section .case-block.block-text ul,
+.case-section .case-block.block-text li,
 .case-section .case-block .block-cap{
   color:var(--ink);
+  max-width:min(36rem, 100%);
+  overflow-wrap:break-word;
+}
+.case-section .case-block.block-text{
+  min-width:0;
+  max-width:100%;
 }
 .case-blocks{
   gap:28px !important;
@@ -439,6 +445,7 @@ a.next + .wrap.sitemap{
   /* All prose (with or without a section number beside it) */
   .case-section.wrap .case-block.block-text{
     grid-column:2;
+    min-width:0;
   }
   .case-section.wrap .case-block.block-text:first-child{
     grid-row:1;
@@ -451,6 +458,7 @@ a.next + .wrap.sitemap{
     display:grid;
     grid-template-columns:var(--case-split-cols);
     column-gap:var(--case-split-gap);
+    min-width:0;
   }
   @supports (grid-template-columns:subgrid){
     .case-section.wrap .case-block.block-image,
@@ -463,10 +471,11 @@ a.next + .wrap.sitemap{
   .case-section.wrap .case-block.block-carousel > :not(.block-cap),
   .case-section.wrap .case-block.block-appstore > :not(.block-cap){
     grid-column:1 / -1;
+    min-width:0;
   }
   .case-section.wrap .case-block .block-cap{
     grid-column:2;
-    max-width:none;
+    min-width:0;
   }
   /* Narrow gifs live in the body column, not full-bleed */
   .case-section.wrap .case-block.block-gif,
@@ -474,10 +483,7 @@ a.next + .wrap.sitemap{
     grid-column:2;
     margin-left:0;
     margin-right:auto;
-  }
-  .case-section.wrap .case-block.block-text p,
-  .case-section.wrap .case-block.block-text ul{
-    max-width:none;
+    min-width:0;
   }
 }
 
