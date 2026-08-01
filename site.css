@@ -100,6 +100,8 @@ html[data-theme="light"] .next{
 .next .next-title{
   color:var(--ink) !important;
   background:transparent !important;
+  /* 20% smaller than the prior clamp(32px, 6vw, 64px) */
+  font-size:clamp(26px, 4.8vw, 51px) !important;
 }
 .next:hover .next-title,
 .next .next-title:hover,
@@ -303,6 +305,15 @@ a.next + .wrap.sitemap{
 .case-section{
   padding-top:56px !important;
   padding-bottom:56px !important;
+}
+/* Rules between sections (not between samples within a section) */
+.case-section + .case-section{
+  border-top:1px solid var(--line, rgba(220,218,211,0.16));
+}
+/* Double the air after the last section, before Next project */
+.case-section:has(+ a.next),
+.case-section:has(+ .next){
+  padding-bottom:112px !important;
 }
 .case-header{
   margin-bottom:22px !important;
