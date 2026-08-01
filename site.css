@@ -328,7 +328,7 @@ a.next + .wrap.sitemap{
   letter-spacing:normal !important;
   text-transform:none !important;
   line-height:inherit !important;
-  color:var(--chartreuse) !important;
+  color:var(--ink) !important;
 }
 .case-section .section-label--stacked .section-num{
   display:block;
