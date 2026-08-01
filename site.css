@@ -383,11 +383,13 @@ a.next + .wrap.sitemap{
 .case-blocks{
   gap:28px !important;
 }
-/* Extra air after media so the next prose reads as a new beat, not a caption */
+/* Extra air after media so the next prose reads as a new beat, not a caption.
+   No rule here — section dividers live between .case-section blocks. */
 .case-block.block-image + .case-block,
 .case-block.block-carousel + .case-block,
 .case-block.block-gif + .case-block,
 .case-block.block-gif-centered + .case-block{
+  border-top:none !important;
   padding-top:64px !important;
 }
 .case-block .block-cap{
