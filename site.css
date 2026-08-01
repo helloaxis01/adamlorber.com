@@ -307,6 +307,17 @@ a.next + .wrap.sitemap{
 .case-header{
   margin-bottom:22px !important;
 }
+/* 01 · Challenge etc. — small chartreuse mono, sitewide */
+.case-section .section-label{
+  font-family:var(--mono, "IBM Plex Mono", monospace) !important;
+  font-weight:500 !important;
+  font-size:11px !important;
+  letter-spacing:0.14em !important;
+  text-transform:uppercase !important;
+  line-height:1.4 !important;
+  color:var(--chartreuse) !important;
+  padding-top:4px !important;
+}
 .case-blocks{
   gap:28px !important;
 }
@@ -315,6 +326,13 @@ a.next + .wrap.sitemap{
 .case-block.block-gif + .case-block,
 .case-block.block-gif-centered + .case-block{
   padding-top:36px !important;
+}
+.case-block.block-image + .case-block.joins-prev,
+.case-block.block-carousel + .case-block.joins-prev,
+.case-block.block-gif + .case-block.joins-prev,
+.case-block.block-gif-centered + .case-block.joins-prev{
+  border-top:none !important;
+  padding-top:0 !important;
 }
 
 /*
@@ -379,16 +397,6 @@ a.next + .wrap.sitemap{
     grid-column:2;
     margin-left:0;
     margin-right:auto;
-  }
-  .case-section.wrap .section-label{
-    font-family:var(--grotesk, "Archivo", sans-serif);
-    font-weight:700;
-    font-size:clamp(22px, 2.5vw, 32px);
-    letter-spacing:-0.02em;
-    text-transform:none;
-    line-height:1.2;
-    color:var(--ink);
-    padding-top:0;
   }
   .case-section.wrap .case-block.block-text p,
   .case-section.wrap .case-block.block-text ul{
