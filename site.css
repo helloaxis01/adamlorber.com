@@ -55,6 +55,9 @@ img, video{
   background:var(--chartreuse, #ebff12);
   transform-origin:left center;
 }
+html[data-theme="light"] .read-progress{
+  background:#1a1a19;
+}
 /* Progress bar replaces the header hairline on case pages */
 header.has-read-progress,
 header.has-read-progress.scrolled{
@@ -98,6 +101,15 @@ html[data-theme="light"] .next{
   color:var(--chartreuse, #ebff12) !important;
   margin-bottom:6px !important;
 }
+/* Light mode: Next project = chartreuse highlight, not chartreuse type */
+html[data-theme="light"] .next .next-label{
+  color:#1a1a19 !important;
+  background:var(--chartreuse, #ebff12) !important;
+  padding-inline:0.35em;
+  margin-inline:-0.35em;
+  width:fit-content;
+  max-width:100%;
+}
 .next .next-title{
   color:var(--ink) !important;
   background:transparent !important;
@@ -105,11 +117,14 @@ html[data-theme="light"] .next{
   font-size:clamp(26px, 4.8vw, 51px) !important;
 }
 .next:hover .next-title,
-.next .next-title:hover,
-html[data-theme="light"] .next:hover .next-title,
-html[data-theme="light"] .next .next-title:hover{
+.next .next-title:hover{
   color:var(--ink) !important;
   background:transparent !important;
+}
+html[data-theme="light"] .next:hover .next-title,
+html[data-theme="light"] .next .next-title:hover{
+  color:#1a1a19 !important;
+  background:var(--chartreuse, #ebff12) !important;
 }
 
 /* Slightly shaded band separates; no hairline under it */
