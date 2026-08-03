@@ -1,12 +1,15 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.adamlorber.com/sitemap.xml
+Sitemap: https://adamlorber.com/sitemap.xml
 
+# Private / unlisted tools and archives
 Disallow: /private
 Disallow: /private.html
 Disallow: /questions
 Disallow: /questions.html
+Disallow: /questions-thanks
+Disallow: /questions-thanks.html
 Disallow: /revyrie-decks
 Disallow: /revyrie-decks.html
 Disallow: /fount-deep-dive
@@ -17,23 +20,19 @@ Disallow: /axis
 Disallow: /axis.html
 Disallow: /mitzvahs
 Disallow: /mitzvahs.html
-Disallow: /agra-wood
-Disallow: /agra-wood.html
-Disallow: /project-agra-wood.html
-Disallow: /solmar
-Disallow: /solmar.html
-Disallow: /project-solmar.html
-Disallow: /mootz-tom
-Disallow: /mootz-tom.html
-Disallow: /project-mootz-tom.html
-Disallow: /good-kernels
-Disallow: /good-kernels.html
-Disallow: /project-good-kernels.html
-Disallow: /questions-thanks
-Disallow: /questions-thanks.html
 Disallow: /mitzvahs-thanks
 Disallow: /mitzvahs-thanks.html
 Disallow: /editor
 Disallow: /editor.html
 Disallow: /case-study-editor
 Disallow: /case-study-editor.html
+Disallow: /og-preview
+Disallow: /og-preview.html
+Disallow: /agra-wood
+Disallow: /project-agra-wood.html
+Disallow: /solmar
+Disallow: /project-solmar.html
+Disallow: /mootz-tom
+Disallow: /project-mootz-tom.html
+Disallow: /good-kernels
+Disallow: /project-good-kernels.html
