@@ -158,16 +158,13 @@
 
   /* ========== Option A — Site lockup + hero line + stack ========== */
   .card-a{
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
+    display:grid;
+    grid-template-rows:auto 1fr auto;
+    height:100%;
     padding:44px 64px 40px;
   }
-  .card-a .lockup{
-    display:flex;
-    flex-direction:column;
-    gap:0;
-    max-width:920px;
+  .card-a .top{
+    align-self:start;
   }
   /* Site .logo, scaled for OG */
   .card-a .name{
@@ -178,7 +175,7 @@
     text-transform:uppercase;
     line-height:1;
     color:var(--ink);
-    margin-bottom:32px;
+    margin-bottom:14px;
   }
   /* Site .hero-role */
   .card-a .role{
@@ -190,7 +187,6 @@
     display:flex;
     align-items:center;
     gap:12px;
-    margin-bottom:18px;
   }
   .card-a .role::before{
     content:'';
@@ -199,13 +195,22 @@
     background:var(--ink-dim);
     flex-shrink:0;
   }
-  /* Site .hero-name + .flourish — line breaks match homepage */
+  /* Vertically center the headline between name block and thumbs */
+  .card-a .mid{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    min-height:0;
+  }
+  /* Two-line hero line */
   .card-a .headline{
     font-family:var(--serif);
     font-weight:500;
-    font-size:40px;
-    line-height:1.32;
+    font-size:38px;
+    line-height:1.3;
     color:var(--ink);
+    max-width:980px;
+    margin:0;
   }
   .card-a .flourish{
     font-style:italic;
@@ -213,6 +218,7 @@
     white-space:nowrap;
   }
   .card-a .thumbs{
+    align-self:stretch;
     display:grid;
     grid-template-columns:repeat(7, 1fr);
     gap:10px;
@@ -409,10 +415,13 @@
       <div class="stage">
         <div class="og">
           <article class="card card-a">
-            <div class="lockup">
+            <div class="top">
               <h2 class="name">Adam Lorber</h2>
               <p class="role">Lead Designer / Art Director</p>
-              <p class="headline">Branding, art direction,<br> and strategy for<br> <span class="flourish">established brands</span> and<br> <span class="flourish">ambitious startups</span>.</p>
+            </div>
+            <div class="mid">
+              <p class="headline">Branding, art direction, and strategy for<br>
+              <span class="flourish">established brands</span> and <span class="flourish">ambitious startups</span>.</p>
             </div>
             <div class="thumbs" aria-hidden="true">
               <div class="thumb thumb-tv"><img src="images/televisionacademy/hero-stack.jpg?v=6" alt=""></div>
@@ -482,10 +491,13 @@
       <div class="stage" aria-label="Option A artboard">
         <div class="og">
           <article class="card card-a">
-            <div class="lockup">
+            <div class="top">
               <h2 class="name">Adam Lorber</h2>
               <p class="role">Lead Designer / Art Director</p>
-              <p class="headline">Branding, art direction,<br> and strategy for<br> <span class="flourish">established brands</span> and<br> <span class="flourish">ambitious startups</span>.</p>
+            </div>
+            <div class="mid">
+              <p class="headline">Branding, art direction, and strategy for<br>
+              <span class="flourish">established brands</span> and <span class="flourish">ambitious startups</span>.</p>
             </div>
             <div class="thumbs" aria-hidden="true">
               <div class="thumb thumb-tv"><img src="images/televisionacademy/hero-stack.jpg?v=6" alt=""></div>
