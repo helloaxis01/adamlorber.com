@@ -1,3 +1,13 @@
+# Global security headers (apply to every path).
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+# Aggressive caching for versioned/static assets under /assets/.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # Serve resume PDF inline so browsers can preview it (download is opt-in via link).
 /resume.pdf
   Content-Type: application/pdf
@@ -79,5 +89,37 @@
   Pragma: no-cache
 
 /mitzvahs
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/mootz-tom
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/agra-wood
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/solmar
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/good-kernels
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/fount-deep-dive
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/fount-sites
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/revyrie-decks
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
+/axis
   Cache-Control: no-cache, no-store, must-revalidate
   Pragma: no-cache
