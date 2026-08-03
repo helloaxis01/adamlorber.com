@@ -614,11 +614,15 @@ html[data-theme="light"] .pointer-egg svg{color:#1a1a19;}
 /* Tablet / iPad: breathe between phone and desktop.
    Keep sitemap at 4 columns (same as desktop). Do not force .stats to
    2 columns — odd counts leave an empty grey cell.
-   Meta stays 3 equal columns on desktop (Role · Scope · Timeline). */
+   Meta: 4 equal columns when Sector is present (Role · Scope · Sector · Timeline),
+   otherwise 3 (Role · Scope · Timeline). */
 @media (min-width:901px){
   .meta-row{
     grid-template-columns:repeat(3, minmax(0,1fr)) !important;
     width:100%;
+  }
+  .meta-row:has(> :nth-child(4)){
+    grid-template-columns:repeat(4, minmax(0,1fr)) !important;
   }
 }
 @media (max-width:900px){
