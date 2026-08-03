@@ -84,7 +84,8 @@
   .case-section{padding-top:88px; padding-bottom:88px;}
   .case-header{margin-bottom:32px;}
   .case-blocks{display:flex; flex-direction:column; gap:36px;}
-  .case-block.block-text p{font-size:15px; line-height:1.55; color:var(--ink)}
+  .case-block.block-text p{font-family:var(--grotesk); font-weight:400; font-size:15px; line-height:1.8; color:var(--ink); margin-bottom:16px}
+  .case-block.block-text p:last-child{margin-bottom:0;}
   .case-block.block-image + .case-block,
   .case-block.block-carousel + .case-block,
   .case-block.block-gif + .case-block,
@@ -97,12 +98,6 @@
     border-top:none;
     padding-top:0;
   }
-  .case-block.block-image + .case-block.block-text p,
-  .case-block.block-carousel + .case-block.block-text p,
-  .case-block.block-gif + .case-block.block-text p,
-  .case-block.block-gif-centered + .case-block.block-text p,
-  .case-block.block-appstore + .case-block.block-text p{
-    font-size:13px}
   .case-block.block-text a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
   .case-block.block-text a:hover{color:var(--chartreuse); background:transparent;}
   html[data-theme="light"] .case-block.block-text a:hover{color:#1a1a19; background:var(--chartreuse); padding-inline:0.35em; margin-inline:-0.35em;}
@@ -378,7 +373,7 @@
     background:var(--chartreuse);
   }
 </style>
-  <link rel="stylesheet" href="/site.css?v=ink-e2e8f0">
+  <link rel="stylesheet" href="/site.css?v=fount-copy1">
 </head>
 <body>
 
@@ -463,6 +458,23 @@
         <p class="block-cap">FlyKitt Bundle press photo, showing the redesigned packaging, product renders, and redesigned app UI.</p>
       </div>
 
+      <div class="case-block block-text"><p>Brand guidelines so the box, the site, and the app felt like one system. Product shots below use the final FlyKitt packaging.</p></div>
+      <div class="case-block block-carousel" id="carousel-product">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/fount/product-shoot-01.jpg" alt="FlyKitt capsules held in an open palm"></div>
+            <div class="carousel-slide"><img src="images/fount/product-shoot-9554.jpg" alt="Pouring FlyKitt Circadian Reset mix into a glass of coffee"></div>
+            <div class="carousel-slide"><img src="images/fount/product-shoot-9597.jpg" alt="FlyKitt travel kit flat lay with packaging, app, and accessories"></div>
+            <div class="carousel-slide"><img src="images/fount/product-shoot-9661.jpg" alt="FlyKitt supplement capsules on a studio surface"></div>
+            <div class="carousel-slide"><img src="images/fount/product-shoot-9671.jpg" alt="FlyKitt app screens shown on three phones"></div>
+            <div class="carousel-slide"><img src="images/fount/flykitt-refill.jpg" alt="FlyKitt refill packaging boxes"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / 06</div>
+        </div>
+      </div>
+
       <div class="case-block block-text"><p>Brand film, testimonial, and looping heroes for fount.bio and the FlyKitt site, art directed and produced to carry the same premium tone as the product.</p></div>
       <div class="case-block block-image">
         <div class="p-image"><video controls playsinline preload="metadata" poster="images/fount-deep-dive/posters/video-overview.jpg" src="images/fount-deep-dive/video-overview.mp4"></video></div>
@@ -501,23 +513,6 @@
           <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <div class="carousel-counter"><span class="carousel-current">01</span> / 12</div>
-        </div>
-      </div>
-
-      <div class="case-block block-text"><p>Brand guidelines so the box, the site, and the app felt like one system. Product shots below use the final FlyKitt packaging.</p></div>
-      <div class="case-block block-carousel" id="carousel-product">
-        <div class="carousel-viewport">
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="images/fount/product-shoot-01.jpg" alt="FlyKitt capsules held in an open palm"></div>
-            <div class="carousel-slide"><img src="images/fount/product-shoot-9554.jpg" alt="Pouring FlyKitt Circadian Reset mix into a glass of coffee"></div>
-            <div class="carousel-slide"><img src="images/fount/product-shoot-9597.jpg" alt="FlyKitt travel kit flat lay with packaging, app, and accessories"></div>
-            <div class="carousel-slide"><img src="images/fount/product-shoot-9661.jpg" alt="FlyKitt supplement capsules on a studio surface"></div>
-            <div class="carousel-slide"><img src="images/fount/product-shoot-9671.jpg" alt="FlyKitt app screens shown on three phones"></div>
-            <div class="carousel-slide"><img src="images/fount/flykitt-refill.jpg" alt="FlyKitt refill packaging boxes"></div>
-          </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="carousel-counter"><span class="carousel-current">01</span> / 06</div>
         </div>
       </div>
 
