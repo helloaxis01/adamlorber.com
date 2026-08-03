@@ -196,8 +196,7 @@
   .r-job{padding:26px 0; border-top:1px solid var(--line);}
   .r-job:last-child{border-bottom:1px solid var(--line);}
   /* Title + location + summary as one lockup; bullets sit a beat below */
-  .r-job-lockup{margin-bottom:0;}
-  .r-job-lockup:has(+ .r-list){margin-bottom:18px;}
+  .r-job-lockup{margin-bottom:20px;}
   .r-job-title{
     font-family:var(--grotesk); font-weight:600; font-size:17px; line-height:1.3; color:var(--ink);
     margin-bottom:4px;
@@ -213,9 +212,9 @@
 
   .r-job-meta{
     font-family:var(--grotesk); font-weight:400; font-size:13px; letter-spacing:0.01em;
-    color:var(--ink-dim); margin-bottom:0; line-height:1.4;
+    color:var(--ink-dim); margin-bottom:8px; line-height:1.4;
   }
-  .r-job-lockup .r-job-meta:has(+ .r-job-lead){margin-bottom:8px;}
+  .r-job-lockup > .r-job-meta:last-child{margin-bottom:0;}
   .r-job .r-job-lead,
   .r-section .r-job-lead{
     font-family:var(--grotesk); font-style:normal; font-weight:400;
