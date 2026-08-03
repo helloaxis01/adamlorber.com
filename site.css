@@ -620,6 +620,7 @@ html[data-theme="light"] .pointer-egg svg{color:#1a1a19;}
   .meta-row{
     grid-template-columns:repeat(3, minmax(0,1fr)) !important;
     width:100%;
+    align-items:start;
   }
   .meta-row:has(> :nth-child(4)){
     grid-template-columns:repeat(4, minmax(0,1fr)) !important;
@@ -628,7 +629,24 @@ html[data-theme="light"] .pointer-egg svg{color:#1a1a19;}
 @media (max-width:900px){
   .meta-row{
     grid-template-columns:repeat(2, minmax(0,1fr)) !important;
-    gap:20px;
+    column-gap:1.5rem !important;
+    row-gap:1.5rem !important;
+    align-items:start !important;
+    width:100%;
+  }
+  .meta-row > div{
+    min-width:0;
+    font-family:var(--mono, ui-monospace, monospace) !important;
+    font-size:10px !important;
+    letter-spacing:0.1em !important;
+    text-transform:uppercase !important;
+  }
+  .meta-row strong{
+    display:block;
+    overflow-wrap:break-word;
+    word-break:break-word;
+    hyphens:auto;
+    min-width:0;
   }
 }
 @media (min-width:901px) and (max-width:1100px){

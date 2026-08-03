@@ -52,9 +52,9 @@
   .p-title{font-family:var(--serif); font-weight:500; font-size:clamp(40px,7.6vw,104px); line-height:0.98;}
   .p-sub{font-family:var(--grotesk); font-weight:400; font-size:clamp(15px,1.6vw,17px); color:var(--ink-dim); max-width:720px; margin-top:22px; line-height:1.6;}
 
-  .meta-row{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px; margin-top:56px; border-top:1px solid var(--line); padding:24px 0 56px; width:100%;}
-  .meta-row div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim);}
-  .meta-row strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; line-height:1.4;}
+  .meta-row{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px; margin-top:56px; border-top:1px solid var(--line); padding:24px 0 56px; width:100%; align-items:start;}
+  .meta-row div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim); min-width:0;}
+  .meta-row strong{display:block; font-family:var(--grotesk); font-weight:600; font-size:14px; color:var(--ink); text-transform:none; letter-spacing:0; margin-top:8px; line-height:1.4; overflow-wrap:break-word; word-break:break-word; hyphens:auto; min-width:0;}
 
   .study-section{padding-top:72px; padding-bottom:24px;}
   .study-section .sec-label{font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink); margin-bottom:14px;}
@@ -88,7 +88,7 @@
 
   @media (max-width:900px){
     .p-hero{padding-top:120px;}
-    .meta-row{grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px;}
+    .meta-row{grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:1.5rem; row-gap:1.5rem; align-items:start;}
     .logo-grid{grid-template-columns:repeat(2,1fr);}
     .proc-gallery{grid-template-columns:1fr;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
@@ -265,7 +265,7 @@
   .deck-page[hidden]{display:none;}
 
 </style>
-  <link rel="stylesheet" href="/site.css?v=meta-m2col1">
+  <link rel="stylesheet" href="/site.css?v=meta-m2pol1">
 </head>
 <body>
 
