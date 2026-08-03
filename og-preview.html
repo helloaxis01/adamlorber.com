@@ -156,52 +156,67 @@
     overflow:hidden;
   }
 
-  /* ========== Option A — Typographic ========== */
+  /* ========== Option A — Typographic (site lockup + hero stack) ========== */
   .card-a{
     display:flex;
     flex-direction:column;
-    justify-content:center;
-    padding:72px 88px;
+    justify-content:space-between;
+    padding:56px 64px 52px;
   }
-  .card-a .mark{
-    width:48px;
-    height:4px;
-    background:var(--chartreuse);
-    margin-bottom:36px;
+  .card-a .lockup{
+    display:flex;
+    flex-direction:column;
+    gap:0;
   }
+  /* Matches site .logo treatment, scaled for OG readability */
   .card-a .name{
     font-family:var(--grotesk);
     font-weight:800;
-    font-size:96px;
-    letter-spacing:-0.02em;
-    line-height:0.95;
+    font-size:42px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    line-height:1;
     color:var(--ink);
-    margin-bottom:28px;
+    margin-bottom:22px;
   }
+  /* Matches site .hero-role; chartreuse rule = site hover accent */
   .card-a .role{
     font-family:var(--mono);
-    font-size:22px;
+    font-size:18px;
     letter-spacing:0.16em;
     text-transform:uppercase;
     color:var(--ink-dim);
     display:flex;
     align-items:center;
-    gap:16px;
+    gap:14px;
   }
   .card-a .role::before{
     content:'';
-    width:32px;
-    height:1px;
+    width:28px;
+    height:2px;
     background:var(--chartreuse);
     flex-shrink:0;
   }
-  .card-a .place{
-    margin-top:18px;
-    font-family:var(--mono);
-    font-size:18px;
-    letter-spacing:0.08em;
-    color:var(--gold);
+  .card-a .thumbs{
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    gap:10px;
+    width:100%;
   }
+  .card-a .thumb{
+    aspect-ratio:16 / 9;
+    overflow:hidden;
+    border-radius:1px;
+    background:color-mix(in srgb, var(--ink) 6%, var(--bg));
+    border:1px solid var(--line);
+  }
+  .card-a .thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .card-a .thumb-tv img{object-position:68% 35%;}
 
   /* ========== Option B — Grid / System ========== */
   .card-b{
@@ -375,14 +390,23 @@
 
   <section class="compare" aria-label="Side-by-side comparison">
     <div class="compare-item">
-      <p class="option-label"><strong>A</strong> · Typographic</p>
+      <p class="option-label"><strong>A</strong> · Site lockup + stack</p>
       <div class="stage">
         <div class="og">
           <article class="card card-a">
-            <div class="mark" aria-hidden="true"></div>
-            <h2 class="name">Adam Lorber</h2>
-            <p class="role">Art Director &amp; Lead Designer</p>
-            <p class="place">Los Angeles</p>
+            <div class="lockup">
+              <h2 class="name">Adam Lorber</h2>
+              <p class="role">Lead Designer / Art Director</p>
+            </div>
+            <div class="thumbs" aria-hidden="true">
+              <div class="thumb thumb-tv"><img src="images/televisionacademy/hero-stack.jpg?v=6" alt=""></div>
+              <div class="thumb"><img src="images/fount/hero-stack.jpg" alt=""></div>
+              <div class="thumb"><img src="images/joes-stone-crab/hero-stack.jpg" alt=""></div>
+              <div class="thumb"><img src="images/lemon-perfect/hero-stack.jpg" alt=""></div>
+              <div class="thumb"><img src="images/dream-clean/hero-stack.jpg" alt=""></div>
+              <div class="thumb"><img src="images/olio/hero-stack.jpg" alt=""></div>
+              <div class="thumb"><img src="images/mantra/hero-stack.jpg?v=2" alt=""></div>
+            </div>
           </article>
         </div>
       </div>
@@ -436,16 +460,25 @@
 
     <section class="option" aria-labelledby="opt-a">
       <div class="option-meta">
-        <p class="option-label" id="opt-a"><strong>Option A</strong> · Typographic Card</p>
-        <p class="option-hint">Bold Archivo name · chartreuse bar · mono role</p>
+        <p class="option-label" id="opt-a"><strong>Option A</strong> · Site lockup + hero stack</p>
+        <p class="option-hint">Logo-style name · hero role · stack thumbnails</p>
       </div>
       <div class="stage" aria-label="Option A artboard">
         <div class="og">
           <article class="card card-a">
-            <div class="mark" aria-hidden="true"></div>
-            <h2 class="name">Adam Lorber</h2>
-            <p class="role">Art Director &amp; Lead Designer</p>
-            <p class="place">Los Angeles</p>
+            <div class="lockup">
+              <h2 class="name">Adam Lorber</h2>
+              <p class="role">Lead Designer / Art Director</p>
+            </div>
+            <div class="thumbs" aria-hidden="true">
+              <div class="thumb thumb-tv"><img src="images/televisionacademy/hero-stack.jpg?v=6" alt=""></div>
+              <div class="thumb"><img src="images/fount/hero-stack.jpg" alt=""></div>
+              <div class="thumb"><img src="images/joes-stone-crab/hero-stack.jpg" alt=""></div>
+              <div class="thumb"><img src="images/lemon-perfect/hero-stack.jpg" alt=""></div>
+              <div class="thumb"><img src="images/dream-clean/hero-stack.jpg" alt=""></div>
+              <div class="thumb"><img src="images/olio/hero-stack.jpg" alt=""></div>
+              <div class="thumb"><img src="images/mantra/hero-stack.jpg?v=2" alt=""></div>
+            </div>
           </article>
         </div>
       </div>
