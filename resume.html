@@ -195,37 +195,34 @@
 
   .r-job{padding:26px 0; border-top:1px solid var(--line);}
   .r-job:last-child{border-bottom:1px solid var(--line);}
-  /* Title + location + summary as one lockup; bullets sit a beat below */
-  .r-job-lockup{margin-bottom:20px;}
+  /* Title + location + summary as one lockup; bullets sit a beat below.
+     Hierarchy: title (17) → meta (12, dim) → lead/bullets (14, same ink). */
+  .r-job-lockup{margin-bottom:22px;}
   .r-job-title{
     font-family:var(--grotesk); font-weight:600; font-size:17px; line-height:1.3; color:var(--ink);
-    margin-bottom:4px;
+    margin-bottom:6px;
   }
   .r-job-title .r-mark{
     font-weight:600;
     font-size:inherit;
-    line-height:1.25;
-    padding:0.06em 0.1em;
+    line-height:1.3;
+    padding:0.08em 0.12em;
     box-decoration-break:clone;
     -webkit-box-decoration-break:clone;
   }
 
   .r-job-meta{
-    font-family:var(--grotesk); font-weight:400; font-size:13px; letter-spacing:0.01em;
-    color:var(--ink-dim); margin-bottom:8px; line-height:1.4;
+    font-family:var(--grotesk); font-weight:400; font-size:12px; letter-spacing:0.02em;
+    color:var(--ink-dim); margin-bottom:10px; line-height:1.4;
   }
   .r-job-lockup > .r-job-meta:last-child{margin-bottom:0;}
   .r-job .r-job-lead,
   .r-section .r-job-lead{
     font-family:var(--grotesk); font-style:normal; font-weight:400;
-    font-size:14px; line-height:20px; color:#CBD5E1; margin-bottom:0;
-  }
-  html[data-theme="light"] .r-job .r-job-lead,
-  html[data-theme="light"] .r-section .r-job-lead{
-    color:#334155;
+    font-size:14px; line-height:20px; color:var(--ink); margin-bottom:0;
   }
   .r-job .r-list{gap:10px;}
-  .r-job .r-list li{font-size:14px; line-height:20px;}
+  .r-job .r-list li{font-size:14px; line-height:20px; color:var(--ink);}
 
   .r-grid{
     display:flex;
@@ -265,7 +262,7 @@
     }
   }
 </style>
-<link rel="stylesheet" href="/site.css?v=r-lockup1">
+<link rel="stylesheet" href="/site.css?v=r-type2">
 </head>
 <body>
 <header id="siteHeader">
