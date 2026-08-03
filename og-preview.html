@@ -156,46 +156,63 @@
     overflow:hidden;
   }
 
-  /* ========== Option A — Typographic (site lockup + hero stack) ========== */
+  /* ========== Option A — Site lockup + hero line + stack ========== */
   .card-a{
     display:flex;
     flex-direction:column;
     justify-content:space-between;
-    padding:56px 64px 52px;
+    padding:48px 64px 44px;
   }
   .card-a .lockup{
     display:flex;
     flex-direction:column;
     gap:0;
+    max-width:1000px;
   }
-  /* Matches site .logo treatment, scaled for OG readability */
+  /* Site .logo, scaled for OG */
   .card-a .name{
     font-family:var(--grotesk);
     font-weight:800;
-    font-size:42px;
+    font-size:28px;
     letter-spacing:0.16em;
     text-transform:uppercase;
     line-height:1;
     color:var(--ink);
-    margin-bottom:22px;
+    margin-bottom:28px;
   }
-  /* Matches site .hero-role; chartreuse rule = site hover accent */
+  /* Site .hero-role */
   .card-a .role{
     font-family:var(--mono);
-    font-size:18px;
+    font-size:15px;
     letter-spacing:0.16em;
     text-transform:uppercase;
     color:var(--ink-dim);
     display:flex;
     align-items:center;
-    gap:14px;
+    gap:12px;
+    margin-bottom:16px;
   }
   .card-a .role::before{
     content:'';
-    width:28px;
-    height:2px;
-    background:var(--chartreuse);
+    width:26px;
+    height:1px;
+    background:var(--ink-dim);
     flex-shrink:0;
+  }
+  /* Site .hero-name + .flourish */
+  .card-a .headline{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:36px;
+    line-height:1.28;
+    color:var(--ink);
+    text-wrap:pretty;
+    max-width:980px;
+  }
+  .card-a .flourish{
+    font-style:italic;
+    color:var(--chartreuse);
+    white-space:nowrap;
   }
   .card-a .thumbs{
     display:grid;
@@ -390,13 +407,14 @@
 
   <section class="compare" aria-label="Side-by-side comparison">
     <div class="compare-item">
-      <p class="option-label"><strong>A</strong> · Site lockup + stack</p>
+      <p class="option-label"><strong>A</strong> · Hero extension</p>
       <div class="stage">
         <div class="og">
           <article class="card card-a">
             <div class="lockup">
               <h2 class="name">Adam Lorber</h2>
               <p class="role">Lead Designer / Art Director</p>
+              <p class="headline">Branding, art direction, and strategy for <span class="flourish">established brands</span> and <span class="flourish">ambitious startups</span>.</p>
             </div>
             <div class="thumbs" aria-hidden="true">
               <div class="thumb thumb-tv"><img src="images/televisionacademy/hero-stack.jpg?v=6" alt=""></div>
@@ -460,8 +478,8 @@
 
     <section class="option" aria-labelledby="opt-a">
       <div class="option-meta">
-        <p class="option-label" id="opt-a"><strong>Option A</strong> · Site lockup + hero stack</p>
-        <p class="option-hint">Logo-style name · hero role · stack thumbnails</p>
+        <p class="option-label" id="opt-a"><strong>Option A</strong> · Hero extension</p>
+        <p class="option-hint">Logo name · hero line + flourishes · stack thumbs</p>
       </div>
       <div class="stage" aria-label="Option A artboard">
         <div class="og">
@@ -469,6 +487,7 @@
             <div class="lockup">
               <h2 class="name">Adam Lorber</h2>
               <p class="role">Lead Designer / Art Director</p>
+              <p class="headline">Branding, art direction, and strategy for <span class="flourish">established brands</span> and <span class="flourish">ambitious startups</span>.</p>
             </div>
             <div class="thumbs" aria-hidden="true">
               <div class="thumb thumb-tv"><img src="images/televisionacademy/hero-stack.jpg?v=6" alt=""></div>
