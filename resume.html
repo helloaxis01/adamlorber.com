@@ -195,11 +195,12 @@
 
   .r-job{padding:26px 0; border-top:1px solid var(--line);}
   .r-job:last-child{border-bottom:1px solid var(--line);}
-  /* Title a step up; city/dates + summary + bullets share one body size. */
-  .r-job-lockup{margin-bottom:22px;}
+  /* Title+location locked tight; small beat → description; small beat → bullets.
+     Title a step up; city/dates + summary + bullets share one body size. */
+  .r-job-lockup{margin-bottom:12px;}
   .r-job-title{
     font-family:var(--grotesk); font-weight:600; font-size:17px; line-height:1.3; color:var(--ink);
-    margin-bottom:6px;
+    margin-bottom:3px;
   }
   .r-job-title .r-mark{
     font-weight:600;
@@ -212,13 +213,12 @@
 
   .r-job-meta{
     font-family:var(--grotesk); font-weight:400; font-size:14px; letter-spacing:0;
-    color:var(--ink-dim); margin-bottom:10px; line-height:20px;
+    color:var(--ink-dim); margin-bottom:0; line-height:20px;
   }
-  .r-job-lockup > .r-job-meta:last-child{margin-bottom:0;}
   .r-job .r-job-lead,
   .r-section .r-job-lead{
     font-family:var(--grotesk); font-style:normal; font-weight:400;
-    font-size:14px; line-height:20px; color:var(--ink); margin-bottom:0;
+    font-size:14px; line-height:20px; color:var(--ink); margin:0 0 12px;
   }
   .r-job .r-list{gap:10px;}
   .r-job .r-list li{font-size:14px; line-height:20px; color:var(--ink);}
@@ -261,7 +261,7 @@
     }
   }
 </style>
-<link rel="stylesheet" href="/site.css?v=r-body14">
+<link rel="stylesheet" href="/site.css?v=r-rhythm1">
 </head>
 <body>
 <header id="siteHeader">
@@ -327,8 +327,8 @@
         <div class="r-job-lockup">
           <h3 class="r-job-title"><span class="r-mark">Art Director III, Amazon Prime Video Sports</span></h3>
           <p class="r-job-meta">Culver City, CA (Contractor) · July 2026 – Present</p>
-          <p class="r-job-lead">Direct the creative strategy and visual execution for live sports content, digital channels, and marketing campaigns across the Prime Video platform.</p>
         </div>
+        <p class="r-job-lead">Direct the creative strategy and visual execution for live sports content, digital channels, and marketing campaigns across the Prime Video platform.</p>
         <ul class="r-list">
           <li>Design and scale a high volume of multi-format promotional assets, manipulating complex creative supplied by major networks and league partners into seamless on-brand graphics.</li>
           <li>Partner cross-functionally with Operations, GTM, and internal design teams to streamline asset trafficking and optimize the customer-facing streaming product experience.</li>
@@ -339,8 +339,8 @@
         <div class="r-job-lockup">
           <h3 class="r-job-title"><span class="r-mark">Lead Design Consultant, Television Academy &amp; Emmy Awards</span></h3>
           <p class="r-job-meta">Los Angeles, CA · February 2026 – Present</p>
-          <p class="r-job-lead">Returned as strategic consultant for 2026 Emmy season. Overseeing visual brand consistency, seasonal campaigns, and complex production logistics.</p>
         </div>
+        <p class="r-job-lead">Returned as strategic consultant for 2026 Emmy season. Overseeing visual brand consistency, seasonal campaigns, and complex production logistics.</p>
         <ul class="r-list">
           <li>Rebuilt Televerse Festival logo system and master brand guidelines across 20+ touchpoints.</li>
           <li>Directing visual strategy and production materials for the 2026 Emmy season.</li>
@@ -351,8 +351,8 @@
         <div class="r-job-lockup">
           <h3 class="r-job-title"><span class="r-mark">Lead Designer, Inflection</span></h3>
           <p class="r-job-meta">Remote · March 2025 – November 2025</p>
-          <p class="r-job-lead">Drove visual consistency and brand strategy for Fortune 100 health/wellness and tech platform serving 6 million+ users worldwide.</p>
         </div>
+        <p class="r-job-lead">Drove visual consistency and brand strategy for Fortune 100 health/wellness and tech platform serving 6 million+ users worldwide.</p>
         <ul class="r-list">
           <li>Cleaned up identity after recent rebrand for main brand and six product lines.</li>
           <li>Designed deal-supporting decks, membership and client success material, and collateral that directly supported Fortune 100 contract renewals.</li>
@@ -377,8 +377,8 @@
         <div class="r-job-lockup">
           <h3 class="r-job-title"><span class="r-mark">Lead Designer, Fount</span></h3>
           <p class="r-job-meta">Los Angeles, CA · September 2022 – November 2023</p>
-          <p class="r-job-lead">First design hire at health/wellness tech startup. Built visual language and brand infrastructure from ground zero.</p>
         </div>
+        <p class="r-job-lead">First design hire at health/wellness tech startup. Built visual language and brand infrastructure from ground zero.</p>
         <ul class="r-list">
           <li>Directed creative strategy for the Series A round, designing pitch decks that supported successful capital raises.</li>
           <li>Designed FDA-compliant packaging systems for FlyKitt and four supplement product lines, coordinating directly with overseas and local manufacturers.</li>
@@ -392,8 +392,8 @@
         <div class="r-job-lockup">
           <h3 class="r-job-title"><span class="r-mark">Freelance Art Director &amp; Creative Lead, Various Brands</span></h3>
           <p class="r-job-meta">Remote · January 2012 – Present</p>
-          <p class="r-job-lead">Maintained independent creative practice throughout career. Designed branding projects, campaigns, concepts, and art direction for consumer brands and emerging startups.</p>
         </div>
+        <p class="r-job-lead">Maintained independent creative practice throughout career. Designed branding projects, campaigns, concepts, and art direction for consumer brands and emerging startups.</p>
         <ul class="r-list">
           <li>Notable projects include developing national OOH campaigns for Lemon Perfect, creating debut social concepts for Chick-fil-A, and art directing/shooting editorial photography for Joe's Stone Crab's 100th anniversary book.</li>
         </ul>
@@ -403,8 +403,8 @@
         <div class="r-job-lockup">
           <h3 class="r-job-title"><span class="r-mark">Art Director, Television Academy &amp; Emmy Awards</span></h3>
           <p class="r-job-meta">North Hollywood, CA · April 2006 – September 2022</p>
-          <p class="r-job-lead">Oversaw the design department, shaping the visual identity and creative direction for the Emmy Awards organization.</p>
         </div>
+        <p class="r-job-lead">Oversaw the design department, shaping the visual identity and creative direction for the Emmy Awards organization.</p>
         <ul class="r-list">
           <li>Conceptualized and executed the end-to-end visual identity for the 70th Primetime Emmy Awards across global markets.</li>
           <li>Directed visual strategy for member acquisition, print and digital campaigns, and large scale environmental design for live events and galas.</li>
