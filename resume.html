@@ -195,8 +195,7 @@
 
   .r-job{padding:26px 0; border-top:1px solid var(--line);}
   .r-job:last-child{border-bottom:1px solid var(--line);}
-  /* Title + location + summary as one lockup; bullets sit a beat below.
-     Hierarchy: title (17) → meta (12, dim) → lead/bullets (14, same ink). */
+  /* Title a step up; city/dates + summary + bullets share one body size. */
   .r-job-lockup{margin-bottom:22px;}
   .r-job-title{
     font-family:var(--grotesk); font-weight:600; font-size:17px; line-height:1.3; color:var(--ink);
@@ -212,8 +211,8 @@
   }
 
   .r-job-meta{
-    font-family:var(--grotesk); font-weight:400; font-size:12px; letter-spacing:0.02em;
-    color:var(--ink-dim); margin-bottom:10px; line-height:1.4;
+    font-family:var(--grotesk); font-weight:400; font-size:14px; letter-spacing:0;
+    color:var(--ink-dim); margin-bottom:10px; line-height:20px;
   }
   .r-job-lockup > .r-job-meta:last-child{margin-bottom:0;}
   .r-job .r-job-lead,
@@ -262,7 +261,7 @@
     }
   }
 </style>
-<link rel="stylesheet" href="/site.css?v=r-type2">
+<link rel="stylesheet" href="/site.css?v=r-body14">
 </head>
 <body>
 <header id="siteHeader">
