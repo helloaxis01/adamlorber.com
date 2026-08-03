@@ -26,7 +26,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Archivo:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#1a1a19; --ink:#dcdad3; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
+    --bg:#1a1a19; --ink:#E2E8F0; --ink-dim:#8f8d85; --gold:#dcdad3; --chartreuse:#ebff12;
     --line:rgba(220,218,211,0.16);
     --serif:'Fraunces',serif; --grotesk:'Archivo',sans-serif; --mono:'IBM Plex Mono',monospace;
     --maxw:1320px;
@@ -165,7 +165,7 @@
     color:var(--gold); margin-bottom:18px;
   }
   .r-section p{
-    font-size:16px; line-height:1.75; color:var(--ink-dim); margin-bottom:0;
+    font-size:16px; line-height:1.75; color:var(--ink); margin-bottom:0;
   }
   .r-mark{
     color:var(--chartreuse); font-weight:500;
@@ -187,7 +187,7 @@
   .r-list{list-style:none; display:flex; flex-direction:column; gap:14px;}
   .r-list li{
     position:relative; padding-left:1.1em;
-    font-size:15px; line-height:1.65; color:var(--ink-dim);
+    font-size:15px; line-height:1.65; color:var(--ink);
   }
   .r-list li::before{
     content:"·"; position:absolute; left:0; color:var(--ink-dim);
@@ -214,8 +214,12 @@
   }
   .r-job .r-job-lead,
   .r-section .r-job-lead{
-    font-family:var(--grotesk); font-style:italic; font-weight:400;
-    font-size:14px; line-height:1.6; color:var(--ink); margin-bottom:12px;
+    font-family:var(--grotesk); font-style:normal; font-weight:400;
+    font-size:14px; line-height:1.6; color:#CBD5E1; margin-bottom:12px;
+  }
+  html[data-theme="light"] .r-job .r-job-lead,
+  html[data-theme="light"] .r-section .r-job-lead{
+    color:var(--ink-dim);
   }
   .r-job .r-list{gap:10px;}
   .r-job .r-list li{font-size:14px; line-height:1.6;}
@@ -227,7 +231,7 @@
     margin-top:8px;
   }
   .r-grid .r-section{margin-bottom:0;}
-  .r-grid p{font-size:14px; line-height:1.65; color:var(--ink-dim);}
+  .r-grid p{font-size:14px; line-height:1.65; color:var(--ink);}
 
   footer.wrap{
     padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim);
@@ -258,7 +262,7 @@
     }
   }
 </style>
-<link rel="stylesheet" href="/site.css?v=meta-m2pol1">
+<link rel="stylesheet" href="/site.css?v=ink-e2e8f0">
 </head>
 <body>
 <header id="siteHeader">
@@ -353,7 +357,7 @@
         <ul class="r-list">
           <li>Cleaned up identity after recent rebrand for main brand and six product lines.</li>
           <li>Designed deal-supporting decks, membership and client success material, and collateral that directly supported Fortune 100 contract renewals.</li>
-          <li>Designed 400+ custom course graphics for complex wellness topics (elder care, divorce, infertility), improving visual cohesion across the Inflection platform.</li>
+          <li>Designed 400+ custom course graphics for complex wellness topics (elder care, divorce, infertility), improving visual consistency across the Inflection platform.</li>
           <li>Redesigned member email journey, eliminating outdated branding and improving click-through rates and engagement metrics through hierarchy, typography, and brand cohesion.</li>
           <li>Partnered with product and engineering to scale visual consistency across web and mobile.</li>
         </ul>
