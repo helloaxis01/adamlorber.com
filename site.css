@@ -125,6 +125,10 @@ html[data-theme="light"] .next:hover .next-title,
 html[data-theme="light"] .next .next-title:hover{
   color:#1a1a19 !important;
   background:var(--chartreuse, #ebff12) !important;
+  padding-inline:0.18em;
+  margin-inline:-0.18em;
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone;
 }
 
 /* Slightly shaded band separates; no hairline under it */
