@@ -165,7 +165,7 @@
     color:var(--gold); margin-bottom:18px;
   }
   .r-section > p{
-    font-size:16px; line-height:1.75; color:var(--ink); margin-bottom:0;
+    font-size:15px; line-height:22px; color:var(--ink); margin-bottom:0;
   }
   .r-mark{
     color:var(--chartreuse); font-weight:500;
@@ -187,7 +187,7 @@
   .r-list{list-style:none; display:flex; flex-direction:column; gap:14px;}
   .r-list li{
     position:relative; padding-left:1.1em;
-    font-size:15px; line-height:20px; color:var(--ink);
+    font-size:15px; line-height:22px; color:var(--ink);
   }
   .r-list li::before{
     content:"·"; position:absolute; left:0; color:var(--ink-dim);
@@ -196,7 +196,7 @@
   .r-job{padding:26px 0; border-top:1px solid var(--line);}
   .r-job:last-child{border-bottom:1px solid var(--line);}
   /* Title+location locked tight; small beat → description; small beat → bullets.
-     Title a step up; city/dates + summary + bullets share one body size. */
+     Title 16px; page body (summary, highlights, jobs, software, education) 15px. */
   .r-job-lockup{margin-bottom:12px;}
   .r-job-title{
     font-family:var(--grotesk); font-weight:600; font-size:16px; line-height:1.3; color:var(--ink);
@@ -212,16 +212,16 @@
   }
 
   .r-job .r-job-meta{
-    font-family:var(--grotesk); font-weight:400; font-size:14px; letter-spacing:0;
-    color:var(--ink); margin-bottom:0; line-height:20px;
+    font-family:var(--grotesk); font-weight:400; font-size:15px; letter-spacing:0;
+    color:var(--ink); margin-bottom:0; line-height:22px;
   }
   .r-job .r-job-lead,
   .r-section .r-job-lead{
     font-family:var(--grotesk); font-style:normal; font-weight:400;
-    font-size:14px; line-height:20px; color:var(--ink); margin:0 0 12px;
+    font-size:15px; line-height:22px; color:var(--ink); margin:0 0 12px;
   }
   .r-job .r-list{gap:10px;}
-  .r-job .r-list li{font-size:14px; line-height:20px; color:var(--ink);}
+  .r-job .r-list li{font-size:15px; line-height:22px; color:var(--ink);}
 
   .r-grid{
     display:flex;
@@ -230,7 +230,7 @@
     margin-top:8px;
   }
   .r-grid .r-section{margin-bottom:0;}
-  .r-grid p{font-size:14px; line-height:1.65; color:var(--ink);}
+  .r-grid p{font-size:15px; line-height:22px; color:var(--ink);}
 
   footer.wrap{
     padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim);
@@ -261,7 +261,7 @@
     }
   }
 </style>
-<link rel="stylesheet" href="/site.css?v=r-meta-ink">
+<link rel="stylesheet" href="/site.css?v=r-scale15">
 </head>
 <body>
 <header id="siteHeader">
