@@ -187,7 +187,7 @@
   .r-list{list-style:none; display:flex; flex-direction:column; gap:14px;}
   .r-list li{
     position:relative; padding-left:1.1em;
-    font-size:15px; line-height:1.65; color:var(--ink);
+    font-size:15px; line-height:20px; color:var(--ink);
   }
   .r-list li::before{
     content:"·"; position:absolute; left:0; color:var(--ink-dim);
@@ -197,32 +197,33 @@
   .r-job:last-child{border-bottom:1px solid var(--line);}
   .r-job-head{margin-bottom:14px;}
   .r-job-title{
-    font-family:var(--grotesk); font-weight:600; font-size:16px; line-height:1.25; color:var(--ink);
-    margin-bottom:4px;
+    font-family:var(--grotesk); font-weight:600; font-size:18px; line-height:1.3; color:var(--ink);
+    margin-bottom:6px;
   }
   .r-job-title .r-mark{
     font-weight:600;
-    line-height:1.15;
-    padding:0.02em 0.08em;
+    font-size:inherit;
+    line-height:1.25;
+    padding:0.06em 0.1em;
     box-decoration-break:clone;
     -webkit-box-decoration-break:clone;
   }
 
   .r-job-meta{
-    font-family:var(--grotesk); font-weight:400; font-size:14px; letter-spacing:0;
-    color:var(--ink-dim); margin-bottom:0; line-height:1.5;
+    font-family:var(--grotesk); font-weight:400; font-size:13px; letter-spacing:0.01em;
+    color:var(--ink-dim); margin-bottom:0; line-height:1.4;
   }
   .r-job .r-job-lead,
   .r-section .r-job-lead{
     font-family:var(--grotesk); font-style:normal; font-weight:400;
-    font-size:14px; line-height:1.6; color:#CBD5E1; margin-bottom:12px;
+    font-size:14px; line-height:20px; color:#CBD5E1; margin-bottom:12px;
   }
   html[data-theme="light"] .r-job .r-job-lead,
   html[data-theme="light"] .r-section .r-job-lead{
     color:#334155;
   }
   .r-job .r-list{gap:10px;}
-  .r-job .r-list li{font-size:14px; line-height:1.6;}
+  .r-job .r-list li{font-size:14px; line-height:20px;}
 
   .r-grid{
     display:flex;
@@ -262,7 +263,7 @@
     }
   }
 </style>
-<link rel="stylesheet" href="/site.css?v=r-lead-lt1">
+<link rel="stylesheet" href="/site.css?v=lead-20r">
 </head>
 <body>
 <header id="siteHeader">
