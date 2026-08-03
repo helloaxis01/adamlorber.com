@@ -22,6 +22,27 @@ header{
   backdrop-filter: none !important;
 }
 
+/* Hamburger menu: illuminate categories on hover/focus */
+.menu a{
+  width:fit-content;
+  max-width:100%;
+  color:inherit;
+  transition:color .15s ease, background-color .15s ease;
+}
+.menu a:hover,
+.menu a:focus-visible{
+  color:var(--chartreuse, #ebff12);
+}
+html[data-theme="light"] .menu a:hover,
+html[data-theme="light"] .menu a:focus-visible{
+  color:#1a1a19;
+  background:var(--chartreuse, #ebff12);
+  padding-inline:0.12em;
+  margin-inline:-0.12em;
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone;
+}
+
 img, video{
   max-width:100%;
   height:auto;
