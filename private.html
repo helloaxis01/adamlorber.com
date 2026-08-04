@@ -279,12 +279,28 @@
     aspect-ratio:1200 / 630;
     overflow:hidden;
   }
+  .private-list .asset-preview.asset-preview--square{
+    max-width:160px;
+    aspect-ratio:1 / 1;
+  }
   .private-list .asset-preview img{
     width:100%;
     height:100%;
     object-fit:cover;
     display:block;
   }
+  .private-list .asset-preview.asset-preview--square img{
+    object-fit:contain;
+  }
+  .private-list .asset-actions{
+    display:flex; flex-wrap:wrap; gap:10px; margin-top:12px;
+  }
+  .private-list .asset-actions a{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--ink-dim); background:transparent; border:1px solid var(--line);
+    padding:10px 12px; cursor:pointer; text-decoration:none; line-height:1;
+  }
+  .private-list .asset-actions a:hover{color:var(--ink); border-color:var(--ink-dim);}
   .private-tip{font-size:14px; line-height:1.65; color:var(--ink-dim); max-width:640px; margin:28px 0 28px;}
   .private-tip code{font-family:var(--mono); font-size:12px; color:var(--ink);}
   .private-section{max-width:720px; margin-top:48px;}
@@ -495,6 +511,20 @@
           <p class="note">Live Open Graph / Twitter card (1200×630). Used by <code>og:image</code> and <code>twitter:image</code> sitewide. Options preview: <a href="/og-preview" style="font-family:var(--mono); font-size:12px; letter-spacing:0.04em;">/og-preview</a>.</p>
           <div class="asset-preview">
             <img src="/og-image.png" alt="Default social share image — Adam Lorber hero extension card" width="1200" height="630" loading="eager">
+          </div>
+        </li>
+        <li>
+          <a href="/favicon.svg?v=pointer1">Favicon — pointer mark</a>
+          <div class="path-row">
+            <span class="path">/favicon.svg</span>
+            <button type="button" class="copy-path" data-path="/favicon.svg">Copy</button>
+          </div>
+          <p class="note">Live site favicon: black pointer on chartreuse, centered at ~62% scale. Also exported as <code>/favicon.ico</code>, <code>/favicon-32.png</code>, <code>/favicon-48.png</code>, and <code>/apple-touch-icon.png</code>.</p>
+          <div class="asset-preview asset-preview--square">
+            <img src="/favicon.svg?v=pointer1" alt="Adam Lorber favicon — black pointer on chartreuse" width="32" height="32" loading="eager">
+          </div>
+          <div class="asset-actions">
+            <a href="/favicon.svg?v=pointer1" download="adamlorber-favicon.svg">Download SVG</a>
           </div>
         </li>
       </ul>
