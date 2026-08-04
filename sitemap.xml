@@ -1,78 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.adamlorber.com/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://adamlorber.com/</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/about</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://adamlorber.com/about</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/resume</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://adamlorber.com/resume</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/amazon</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://adamlorber.com/amazon</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/television-academy</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://adamlorber.com/television-academy</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/fount</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://adamlorber.com/fount</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/inflection</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://adamlorber.com/inflection</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/dream-clean</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://adamlorber.com/dream-clean</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/lemon-perfect</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://adamlorber.com/lemon-perfect</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/mantra</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://adamlorber.com/chick-fil-a</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/chick-fil-a</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://adamlorber.com/mantra</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/olio</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://adamlorber.com/olio</loc>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/joes-stone-crab</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.adamlorber.com/logos-marks</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://www.adamlorber.com/process</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://adamlorber.com/joes-stone-crab</loc>
   </url>
 </urlset>
