@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Adam Lorber">
-  <!-- Brand chartreuse field; black pointer centered at ~62% canvas height -->
+  <!-- Chartreuse field; pointer optically centered via path centroid at ~62% scale -->
   <rect width="32" height="32" fill="#ebff12"/>
-  <g transform="translate(16 16) scale(0.762) translate(-12.5 -16)">
+  <g transform="translate(16 16) scale(0.7631) translate(-10.012 -16.382)">
     <path fill="#000000" d="M4 3 L4 25 L9.5 20.5 L14 29 L17.5 27.3 L12.8 18.7 L21 18.7 Z"/>
   </g>
 </svg>
