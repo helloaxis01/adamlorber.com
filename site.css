@@ -446,6 +446,16 @@ a.next + .wrap.sitemap{
   min-width:0;
   max-width:100%;
 }
+
+/* Kill post-media body shrink — keep all description copy at Fount size. */
+.case-block.block-image + .case-block.block-text p,
+.case-block.block-carousel + .case-block.block-text p,
+.case-block.block-gif + .case-block.block-text p,
+.case-block.block-gif-centered + .case-block.block-text p,
+.case-block.block-appstore + .case-block.block-text p{
+  font-size:15px !important;
+  line-height:20px !important;
+}
 .case-blocks{
   gap:28px !important;
 }
