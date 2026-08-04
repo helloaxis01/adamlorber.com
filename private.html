@@ -494,7 +494,7 @@
           </div>
           <p class="note">Live Open Graph / Twitter card (1200×630). Used by <code>og:image</code> and <code>twitter:image</code> sitewide. Options preview: <a href="/og-preview" style="font-family:var(--mono); font-size:12px; letter-spacing:0.04em;">/og-preview</a>.</p>
           <div class="asset-preview">
-            <img src="/og-image.png" alt="Default social share image — Adam Lorber hero extension card" width="1200" height="630">
+            <img src="/og-image.png" alt="Default social share image — Adam Lorber hero extension card" width="1200" height="630" loading="eager">
           </div>
         </li>
       </ul>
@@ -528,7 +528,7 @@
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Editors + private routes noindex / robots Disallow</span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>About H1 for SEO (visually hidden — no name/role echo under logo)</span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Amazon sitemap priority softened while case is thin</span></li>
-          <li class="is-done"><span class="box" aria-hidden="true"></span><span>GA4 + Search Console hooks in <code>site.js</code> (IDs blank until you paste)</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Analytics: Umami Cloud live; unused GA4/GSC stubs removed from <code>site.js</code></span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>/private dashboard: groups, copy URLs, Forms link, promote checklist</span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Resume is a native on-site page (<code>/resume</code>) with optional PDF open/download</span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Default share image (<code>/og-image.png</code>) — hero lockup + stack thumbs</span></li>
@@ -540,8 +540,8 @@
         <ul class="check-list">
           <li><span class="box" aria-hidden="true"></span><span>Soak on <code>adamlorber.netlify.app</code>, then point DNS from Squarespace/GoDaddy → Netlify</span></li>
           <li><span class="box" aria-hidden="true"></span><span>Confirm SSL / HTTPS on custom domain</span></li>
-          <li><span class="box" aria-hidden="true"></span><span>Search Console: verify site + submit <code>sitemap.xml</code> (paste token into <code>AL_GSC_VERIFICATION</code>)</span></li>
-          <li><span class="box" aria-hidden="true"></span><span>Optional: paste GA4 ID into <code>AL_GA4_MEASUREMENT_ID</code></span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Search Console: verify site + submit <code>sitemap.xml</code></span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Optional: add GA4 later via a dedicated snippet if needed (not in <code>site.js</code>)</span></li>
           <li><span class="box" aria-hidden="true"></span><span>Cancel Squarespace after DNS is stable</span></li>
         </ul>
       </div>

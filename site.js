@@ -1,30 +1,4 @@
 (function () {
-  // Optional: set these when ready. Leave blank to skip.
-  // GA4: Search Console → Admin → Data streams → Measurement ID (G-…).
-  // GSC: Search Console → Settings → Ownership verification → HTML tag content value.
-  var AL_GA4_MEASUREMENT_ID = '';
-  var AL_GSC_VERIFICATION = '';
-
-  if (AL_GSC_VERIFICATION) {
-    var gsc = document.createElement('meta');
-    gsc.name = 'google-site-verification';
-    gsc.content = AL_GSC_VERIFICATION;
-    document.head.appendChild(gsc);
-  }
-
-  if (AL_GA4_MEASUREMENT_ID && !document.querySelector('script[data-al-ga4]')) {
-    var gaScript = document.createElement('script');
-    gaScript.async = true;
-    gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(AL_GA4_MEASUREMENT_ID);
-    gaScript.setAttribute('data-al-ga4', '1');
-    document.head.appendChild(gaScript);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); }
-    window.gtag = gtag;
-    gtag('js', new Date());
-    gtag('config', AL_GA4_MEASUREMENT_ID);
-  }
-
   var root = document.documentElement;
   var btn = document.getElementById('themeToggle');
 
