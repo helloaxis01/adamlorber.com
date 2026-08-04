@@ -247,25 +247,31 @@
     background:var(--chartreuse);
   }
 
-  .q-form{max-width:720px; display:flex; flex-direction:column; gap:48px; padding-bottom:96px;}
-  .q-section{display:flex; flex-direction:column; gap:28px;}
-  .q-section + .q-section{border-top:1px solid var(--line); padding-top:48px;}
+  .q-form{max-width:720px; display:flex; flex-direction:column; gap:56px; padding-bottom:96px;}
+  .q-section{display:flex; flex-direction:column; gap:36px;}
+  .q-section + .q-section{border-top:1px solid var(--line); padding-top:56px;}
   .q-section-label{
     font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
     color:var(--ink-dim);
   }
-  .q-grid{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
-  .q-grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .q-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  .q-grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
   @media (max-width:720px){
     .q-grid, .q-grid-3{grid-template-columns:1fr;}
+    .q-form{gap:48px;}
+    .q-section{gap:32px;}
+    .q-section + .q-section{padding-top:48px;}
   }
-  .q-field{display:flex; flex-direction:column; gap:8px;}
+  .q-field{display:flex; flex-direction:column; gap:12px;}
   .q-field > label{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink);}
-  .q-field .hint{font-family:var(--grotesk); font-size:13px; line-height:1.5; color:var(--ink-dim); text-transform:none; letter-spacing:0;}
-  .q-field input, .q-field textarea, .q-field select{
+  .q-field .hint{font-family:var(--grotesk); font-size:13px; line-height:1.55; color:var(--ink-dim); text-transform:none; letter-spacing:0; max-width:38em;}
+  .q-field input[type="text"],
+  .q-field input[type="email"],
+  .q-field textarea,
+  .q-field select{
     width:100%; background:transparent; border:1px solid var(--line); color:var(--ink);
     font-family:var(--grotesk); font-size:15px; line-height:1.5; padding:14px 16px; outline:none; resize:vertical;
-    border-radius:0; appearance:none;
+    border-radius:0; appearance:none; -webkit-appearance:none;
   }
   .q-field select{
     background-image:linear-gradient(45deg, transparent 50%, var(--ink-dim) 50%), linear-gradient(135deg, var(--ink-dim) 50%, transparent 50%);
@@ -273,12 +279,15 @@
     background-size:6px 6px, 6px 6px; background-repeat:no-repeat;
     padding-right:36px;
   }
-  .q-field input:focus, .q-field textarea:focus, .q-field select:focus{border-color:var(--ink-dim);}
+  .q-field input[type="text"]:focus,
+  .q-field input[type="email"]:focus,
+  .q-field textarea:focus,
+  .q-field select:focus{border-color:var(--ink-dim);}
   .q-field textarea{min-height:110px;}
-  .q-scope{display:flex; flex-direction:column; gap:12px;}
+  .q-scope{display:flex; flex-direction:column; gap:14px;}
   .q-scope-option{
-    display:flex; gap:14px; align-items:flex-start;
-    border:1px solid var(--line); padding:16px 18px; cursor:pointer;
+    display:flex; gap:16px; align-items:flex-start;
+    border:1px solid var(--line); padding:18px 18px; cursor:pointer;
     transition:border-color .15s ease, background-color .15s ease;
   }
   .q-scope-option:hover{border-color:var(--ink-dim);}
@@ -290,20 +299,45 @@
     background:color-mix(in srgb, var(--chartreuse) 28%, transparent);
     border-color:#1a1a19;
   }
-  .q-scope-option input{margin-top:3px; width:auto; accent-color:var(--chartreuse); flex:0 0 auto;}
-  .q-scope-option .opt-title{display:block; font-size:15px; font-weight:600; color:var(--ink); margin-bottom:4px;}
-  .q-scope-option .opt-desc{display:block; font-size:13px; line-height:1.45; color:var(--ink-dim);}
-  .q-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .q-scope-option input[type="checkbox"]{
+    -webkit-appearance:none; appearance:none;
+    width:20px; height:20px; min-width:20px; min-height:20px;
+    margin:1px 0 0; padding:0; flex:0 0 20px;
+    border:1.5px solid var(--ink-dim); border-radius:4px;
+    background:transparent; cursor:pointer; position:relative;
+    box-sizing:border-box;
+  }
+  .q-scope-option input[type="checkbox"]:checked{
+    background:var(--chartreuse); border-color:var(--chartreuse);
+  }
+  .q-scope-option input[type="checkbox"]:checked::after{
+    content:""; position:absolute; left:6px; top:2px;
+    width:5px; height:10px;
+    border:solid #1a1a19; border-width:0 2px 2px 0;
+    transform:rotate(45deg);
+  }
+  .q-scope-option .opt-title{display:block; font-size:15px; font-weight:600; color:var(--ink); margin-bottom:6px;}
+  .q-scope-option .opt-desc{display:block; font-size:13px; line-height:1.5; color:var(--ink-dim);}
+  .q-tags{display:flex; flex-wrap:wrap; gap:10px;}
   .q-tag{
-    display:inline-flex; align-items:center; cursor:pointer;
+    position:relative; display:inline-flex; align-items:center; gap:8px; cursor:pointer;
     font-family:var(--mono); font-size:11px; letter-spacing:0.06em; text-transform:uppercase;
-    border:1px solid var(--line); color:var(--ink-dim); padding:10px 14px;
+    border:1px solid var(--line); color:var(--ink-dim); padding:11px 14px;
     transition:color .15s ease, border-color .15s ease, background-color .15s ease;
   }
-  .q-tag input{position:absolute; opacity:0; pointer-events:none;}
+  .q-tag input{position:absolute; opacity:0; pointer-events:none; width:1px; height:1px;}
+  .q-tag::before{
+    content:""; width:14px; height:14px; flex:0 0 14px; box-sizing:border-box;
+    border:1.5px solid currentColor; border-radius:3px;
+  }
   .q-tag:hover{color:var(--ink); border-color:var(--ink-dim);}
   .q-tag:has(input:checked){
     color:#1a1a19; background:var(--chartreuse); border-color:var(--chartreuse);
+  }
+  .q-tag:has(input:checked)::before{
+    background:#1a1a19; border-color:#1a1a19;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath fill='none' stroke='%23ebff12' stroke-width='2' d='M2.5 6.2L5 8.7l4.5-5'%3E%3C/path%3E%3C/svg%3E");
+    background-size:10px 10px; background-position:center; background-repeat:no-repeat;
   }
   .q-actions{display:flex; align-items:center; gap:18px; flex-wrap:wrap; padding-top:8px;}
   .q-submit{
@@ -320,67 +354,78 @@
   .q-submit:disabled{opacity:0.6; cursor:wait;}
   .hp{position:absolute; left:-9999px; height:0; overflow:hidden;}
 
-  .q-brand-words{display:flex; flex-direction:column; gap:18px;}
+  .q-brand-words{display:flex; flex-direction:column; gap:0; margin-top:4px;}
   .q-bw-key{
     font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase;
-    color:var(--ink-dim); line-height:1.6;
+    color:var(--ink-dim); line-height:1.6; margin-bottom:6px;
   }
   .q-bw-scale-head{
-    display:grid; grid-template-columns:minmax(88px,1fr) auto minmax(88px,1fr);
-    gap:10px; align-items:center; padding:0 2px;
+    display:grid; grid-template-columns:minmax(92px,1fr) auto minmax(92px,1fr);
+    gap:12px; align-items:center; padding:0 2px 10px;
   }
   .q-bw-scale-head span{font-family:var(--mono); font-size:10px; letter-spacing:0.06em; color:var(--ink-dim);}
   .q-bw-scale-head .nums{
-    display:grid; grid-template-columns:repeat(7, 28px); gap:6px; justify-content:center; text-align:center;
+    display:grid; grid-template-columns:repeat(7, 36px); gap:8px; justify-content:center; text-align:center;
   }
   .q-bw-row{
-    display:grid; grid-template-columns:minmax(88px,1fr) auto minmax(88px,1fr);
-    gap:10px; align-items:center;
-    border-top:1px solid var(--line); padding:14px 2px 0;
+    display:grid; grid-template-columns:minmax(92px,1fr) auto minmax(92px,1fr);
+    gap:12px; align-items:center;
+    border-top:1px solid var(--line); padding:18px 2px;
   }
-  .q-bw-scale-head + .q-bw-row{border-top:none; padding-top:0;}
+  .q-bw-scale-head + .q-bw-row{border-top:1px solid var(--line);}
   .q-bw-left, .q-bw-right{
     font-size:13px; line-height:1.3; color:var(--ink); font-weight:500;
   }
   .q-bw-left{text-align:right;}
   .q-bw-right{text-align:left;}
-  .q-bw-mid{display:flex; flex-direction:column; align-items:center; gap:8px;}
+  .q-bw-mid{display:flex; flex-direction:column; align-items:center; gap:10px;}
   .q-bw-pair{display:none;}
   .q-bw-dots{
-    display:grid; grid-template-columns:repeat(7, 28px); gap:6px; justify-content:center;
+    display:grid; grid-template-columns:repeat(7, 36px); gap:8px; justify-content:center; justify-items:center;
   }
-  .q-bw-dots label{
-    width:28px; height:28px; display:grid; place-items:center; cursor:pointer; margin:0;
+  .q-bw-opt{
+    width:36px; height:36px; display:grid; place-items:center; cursor:pointer; margin:0; position:relative;
   }
-  .q-bw-dots input{
-    appearance:none; -webkit-appearance:none; width:16px; height:16px; margin:0;
-    border:1.5px solid var(--ink-dim); border-radius:50%; background:transparent;
-    cursor:pointer; transition:border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+  .q-bw-opt input{
+    position:absolute; opacity:0; width:1px; height:1px; pointer-events:none; margin:0;
   }
-  .q-bw-dots input:hover{border-color:var(--ink);}
-  .q-bw-dots input:checked{
+  .q-bw-dot{
+    width:18px; height:18px; min-width:18px; min-height:18px;
+    box-sizing:border-box; border-radius:50%;
+    border:1.5px solid var(--ink-dim); background:transparent;
+    display:block; aspect-ratio:1 / 1;
+    transition:border-color .15s ease, background-color .15s ease, box-shadow .15s ease, transform .15s ease;
+  }
+  .q-bw-opt:hover .q-bw-dot{border-color:var(--ink); transform:scale(1.06);}
+  .q-bw-opt:has(input:checked) .q-bw-dot{
     border-color:var(--chartreuse); background:var(--chartreuse);
     box-shadow:0 0 0 3px color-mix(in srgb, var(--chartreuse) 22%, transparent);
   }
-  html[data-theme="light"] .q-bw-dots input:checked{
+  html[data-theme="light"] .q-bw-opt:has(input:checked) .q-bw-dot{
     border-color:#1a1a19;
     box-shadow:0 0 0 3px color-mix(in srgb, var(--chartreuse) 55%, transparent);
   }
-  .q-bw-dots input:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  .q-bw-opt:has(input:focus-visible) .q-bw-dot{outline:2px solid var(--gold); outline-offset:3px;}
   @media (max-width:560px){
     .q-bw-scale-head{display:none;}
     .q-bw-row{
       grid-template-columns:1fr;
-      gap:8px; padding:16px 0 4px;
+      gap:12px; padding:22px 0;
     }
     .q-bw-left, .q-bw-right{display:none;}
     .q-bw-mid{width:100%; align-items:stretch;}
     .q-bw-pair{
-      display:flex; justify-content:space-between; gap:12px; width:100%;
+      display:flex; justify-content:space-between; gap:16px; width:100%;
       font-family:var(--mono); font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-dim);
+      margin-bottom:2px;
     }
-    .q-bw-dots{width:100%; grid-template-columns:repeat(7, 1fr); gap:4px;}
-    .q-bw-dots label{width:100%;}
+    .q-bw-dots{
+      width:100%;
+      grid-template-columns:repeat(7, minmax(0, 1fr));
+      gap:6px; justify-items:center;
+    }
+    .q-bw-opt{width:100%; max-width:40px; height:40px;}
+    .q-bw-dot{width:18px; height:18px;}
   }
 
 </style>
@@ -507,6 +552,16 @@
             <label class="q-tag"><input type="checkbox" name="brand-personality" value="Editorial"> Editorial</label>
             <label class="q-tag"><input type="checkbox" name="brand-personality" value="Nostalgic"> Nostalgic</label>
             <label class="q-tag"><input type="checkbox" name="brand-personality" value="Clean & Functional"> Clean &amp; Functional</label>
+            <label class="q-tag"><input type="checkbox" name="brand-personality" value="Warm"> Warm</label>
+            <label class="q-tag"><input type="checkbox" name="brand-personality" value="Sharp"> Sharp</label>
+            <label class="q-tag"><input type="checkbox" name="brand-personality" value="Quiet"> Quiet</label>
+            <label class="q-tag"><input type="checkbox" name="brand-personality" value="Confident"> Confident</label>
+            <label class="q-tag"><input type="checkbox" name="brand-personality" value="Organic"> Organic</label>
+            <label class="q-tag"><input type="checkbox" name="brand-personality" value="Geometric"> Geometric</label>
+            <label class="q-tag"><input type="checkbox" name="brand-personality" value="Vibrant"> Vibrant</label>
+            <label class="q-tag"><input type="checkbox" name="brand-personality" value="Understated"> Understated</label>
+            <label class="q-tag"><input type="checkbox" name="brand-personality" value="Crafted"> Crafted</label>
+            <label class="q-tag"><input type="checkbox" name="brand-personality" value="Human"> Human</label>
           </div>
         </div>
 
@@ -526,13 +581,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Feminine</span><span>Masculine</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Feminine to Masculine">
-                <label><input type="radio" name="bw-feminine-masculine" value="Feminine — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-feminine-masculine" value="Feminine — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-feminine-masculine" value="Feminine — 1"></label>
-                <label><input type="radio" name="bw-feminine-masculine" value="Neutral"></label>
-                <label><input type="radio" name="bw-feminine-masculine" value="Masculine — 1"></label>
-                <label><input type="radio" name="bw-feminine-masculine" value="Masculine — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-feminine-masculine" value="Masculine — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-feminine-masculine" value="Feminine — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-feminine-masculine" value="Feminine — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-feminine-masculine" value="Feminine — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-feminine-masculine" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-feminine-masculine" value="Masculine — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-feminine-masculine" value="Masculine — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-feminine-masculine" value="Masculine — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Masculine</span>
@@ -542,13 +597,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Simple</span><span>Complex</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Simple to Complex">
-                <label><input type="radio" name="bw-simple-complex" value="Simple — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-simple-complex" value="Simple — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-simple-complex" value="Simple — 1"></label>
-                <label><input type="radio" name="bw-simple-complex" value="Neutral"></label>
-                <label><input type="radio" name="bw-simple-complex" value="Complex — 1"></label>
-                <label><input type="radio" name="bw-simple-complex" value="Complex — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-simple-complex" value="Complex — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-simple-complex" value="Simple — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-simple-complex" value="Simple — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-simple-complex" value="Simple — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-simple-complex" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-simple-complex" value="Complex — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-simple-complex" value="Complex — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-simple-complex" value="Complex — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Complex</span>
@@ -558,13 +613,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Youthful</span><span>Mature</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Youthful to Mature">
-                <label><input type="radio" name="bw-youthful-mature" value="Youthful — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-youthful-mature" value="Youthful — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-youthful-mature" value="Youthful — 1"></label>
-                <label><input type="radio" name="bw-youthful-mature" value="Neutral"></label>
-                <label><input type="radio" name="bw-youthful-mature" value="Mature — 1"></label>
-                <label><input type="radio" name="bw-youthful-mature" value="Mature — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-youthful-mature" value="Mature — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-youthful-mature" value="Youthful — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-youthful-mature" value="Youthful — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-youthful-mature" value="Youthful — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-youthful-mature" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-youthful-mature" value="Mature — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-youthful-mature" value="Mature — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-youthful-mature" value="Mature — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Mature</span>
@@ -574,13 +629,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Subtle</span><span>Bold</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Subtle to Bold">
-                <label><input type="radio" name="bw-subtle-bold" value="Subtle — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-subtle-bold" value="Subtle — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-subtle-bold" value="Subtle — 1"></label>
-                <label><input type="radio" name="bw-subtle-bold" value="Neutral"></label>
-                <label><input type="radio" name="bw-subtle-bold" value="Bold — 1"></label>
-                <label><input type="radio" name="bw-subtle-bold" value="Bold — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-subtle-bold" value="Bold — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-subtle-bold" value="Subtle — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-subtle-bold" value="Subtle — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-subtle-bold" value="Subtle — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-subtle-bold" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-subtle-bold" value="Bold — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-subtle-bold" value="Bold — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-subtle-bold" value="Bold — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Bold</span>
@@ -590,13 +645,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Classic</span><span>Modern</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Classic to Modern">
-                <label><input type="radio" name="bw-classic-modern" value="Classic — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-classic-modern" value="Classic — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-classic-modern" value="Classic — 1"></label>
-                <label><input type="radio" name="bw-classic-modern" value="Neutral"></label>
-                <label><input type="radio" name="bw-classic-modern" value="Modern — 1"></label>
-                <label><input type="radio" name="bw-classic-modern" value="Modern — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-classic-modern" value="Modern — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-classic-modern" value="Classic — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-classic-modern" value="Classic — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-classic-modern" value="Classic — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-classic-modern" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-classic-modern" value="Modern — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-classic-modern" value="Modern — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-classic-modern" value="Modern — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Modern</span>
@@ -606,13 +661,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Friendly</span><span>Authoritative</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Friendly to Authoritative">
-                <label><input type="radio" name="bw-friendly-authoritative" value="Friendly — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-friendly-authoritative" value="Friendly — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-friendly-authoritative" value="Friendly — 1"></label>
-                <label><input type="radio" name="bw-friendly-authoritative" value="Neutral"></label>
-                <label><input type="radio" name="bw-friendly-authoritative" value="Authoritative — 1"></label>
-                <label><input type="radio" name="bw-friendly-authoritative" value="Authoritative — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-friendly-authoritative" value="Authoritative — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-friendly-authoritative" value="Friendly — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-friendly-authoritative" value="Friendly — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-friendly-authoritative" value="Friendly — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-friendly-authoritative" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-friendly-authoritative" value="Authoritative — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-friendly-authoritative" value="Authoritative — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-friendly-authoritative" value="Authoritative — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Authoritative</span>
@@ -622,13 +677,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Economical</span><span>Luxury</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Economical to Luxury">
-                <label><input type="radio" name="bw-economical-luxury" value="Economical — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-economical-luxury" value="Economical — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-economical-luxury" value="Economical — 1"></label>
-                <label><input type="radio" name="bw-economical-luxury" value="Neutral"></label>
-                <label><input type="radio" name="bw-economical-luxury" value="Luxury — 1"></label>
-                <label><input type="radio" name="bw-economical-luxury" value="Luxury — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-economical-luxury" value="Luxury — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-economical-luxury" value="Economical — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-economical-luxury" value="Economical — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-economical-luxury" value="Economical — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-economical-luxury" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-economical-luxury" value="Luxury — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-economical-luxury" value="Luxury — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-economical-luxury" value="Luxury — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Luxury</span>
@@ -638,13 +693,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Playful</span><span>Serious</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Playful to Serious">
-                <label><input type="radio" name="bw-playful-serious" value="Playful — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-playful-serious" value="Playful — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-playful-serious" value="Playful — 1"></label>
-                <label><input type="radio" name="bw-playful-serious" value="Neutral"></label>
-                <label><input type="radio" name="bw-playful-serious" value="Serious — 1"></label>
-                <label><input type="radio" name="bw-playful-serious" value="Serious — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-playful-serious" value="Serious — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-playful-serious" value="Playful — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-playful-serious" value="Playful — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-playful-serious" value="Playful — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-playful-serious" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-playful-serious" value="Serious — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-playful-serious" value="Serious — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-playful-serious" value="Serious — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Serious</span>
@@ -654,13 +709,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Unconventional</span><span>Mainstream</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Unconventional to Mainstream">
-                <label><input type="radio" name="bw-unconventional-mainstream" value="Unconventional — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-unconventional-mainstream" value="Unconventional — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-unconventional-mainstream" value="Unconventional — 1"></label>
-                <label><input type="radio" name="bw-unconventional-mainstream" value="Neutral"></label>
-                <label><input type="radio" name="bw-unconventional-mainstream" value="Mainstream — 1"></label>
-                <label><input type="radio" name="bw-unconventional-mainstream" value="Mainstream — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-unconventional-mainstream" value="Mainstream — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-unconventional-mainstream" value="Unconventional — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-unconventional-mainstream" value="Unconventional — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-unconventional-mainstream" value="Unconventional — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-unconventional-mainstream" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-unconventional-mainstream" value="Mainstream — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-unconventional-mainstream" value="Mainstream — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-unconventional-mainstream" value="Mainstream — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Mainstream</span>
@@ -670,13 +725,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Industrial</span><span>Minimalist</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Industrial to Minimalist">
-                <label><input type="radio" name="bw-industrial-minimalist" value="Industrial — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-industrial-minimalist" value="Industrial — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-industrial-minimalist" value="Industrial — 1"></label>
-                <label><input type="radio" name="bw-industrial-minimalist" value="Neutral"></label>
-                <label><input type="radio" name="bw-industrial-minimalist" value="Minimalist — 1"></label>
-                <label><input type="radio" name="bw-industrial-minimalist" value="Minimalist — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-industrial-minimalist" value="Minimalist — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-industrial-minimalist" value="Industrial — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-industrial-minimalist" value="Industrial — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-industrial-minimalist" value="Industrial — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-industrial-minimalist" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-industrial-minimalist" value="Minimalist — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-industrial-minimalist" value="Minimalist — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-industrial-minimalist" value="Minimalist — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Minimalist</span>
@@ -686,13 +741,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Approachable</span><span>Elite</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Approachable to Elite">
-                <label><input type="radio" name="bw-approachable-elite" value="Approachable — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-approachable-elite" value="Approachable — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-approachable-elite" value="Approachable — 1"></label>
-                <label><input type="radio" name="bw-approachable-elite" value="Neutral"></label>
-                <label><input type="radio" name="bw-approachable-elite" value="Elite — 1"></label>
-                <label><input type="radio" name="bw-approachable-elite" value="Elite — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-approachable-elite" value="Elite — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-approachable-elite" value="Approachable — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-approachable-elite" value="Approachable — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-approachable-elite" value="Approachable — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-approachable-elite" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-approachable-elite" value="Elite — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-approachable-elite" value="Elite — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-approachable-elite" value="Elite — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Elite</span>
@@ -702,13 +757,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Casual</span><span>Elegant</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Casual to Elegant">
-                <label><input type="radio" name="bw-casual-elegant" value="Casual — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-casual-elegant" value="Casual — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-casual-elegant" value="Casual — 1"></label>
-                <label><input type="radio" name="bw-casual-elegant" value="Neutral"></label>
-                <label><input type="radio" name="bw-casual-elegant" value="Elegant — 1"></label>
-                <label><input type="radio" name="bw-casual-elegant" value="Elegant — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-casual-elegant" value="Elegant — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-casual-elegant" value="Casual — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-casual-elegant" value="Casual — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-casual-elegant" value="Casual — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-casual-elegant" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-casual-elegant" value="Elegant — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-casual-elegant" value="Elegant — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-casual-elegant" value="Elegant — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Elegant</span>
@@ -718,13 +773,13 @@
               <div class="q-bw-mid">
                 <p class="q-bw-pair" aria-hidden="true"><span>Refined</span><span>Rustic</span></p>
                 <div class="q-bw-dots" role="radiogroup" aria-label="Refined to Rustic">
-                <label><input type="radio" name="bw-refined-rustic" value="Refined — 3 (strongly)"></label>
-                <label><input type="radio" name="bw-refined-rustic" value="Refined — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-refined-rustic" value="Refined — 1"></label>
-                <label><input type="radio" name="bw-refined-rustic" value="Neutral"></label>
-                <label><input type="radio" name="bw-refined-rustic" value="Rustic — 1"></label>
-                <label><input type="radio" name="bw-refined-rustic" value="Rustic — 2 (somewhat)"></label>
-                <label><input type="radio" name="bw-refined-rustic" value="Rustic — 3 (strongly)"></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-refined-rustic" value="Refined — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-refined-rustic" value="Refined — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-refined-rustic" value="Refined — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-refined-rustic" value="Neutral"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-refined-rustic" value="Rustic — 1"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-refined-rustic" value="Rustic — 2 (somewhat)"><span class="q-bw-dot" aria-hidden="true"></span></label>
+                <label class="q-bw-opt"><input type="radio" name="bw-refined-rustic" value="Rustic — 3 (strongly)"><span class="q-bw-dot" aria-hidden="true"></span></label>
                 </div>
               </div>
               <span class="q-bw-right">Rustic</span>
