@@ -137,19 +137,15 @@ html[data-theme="light"] .next .next-label{
   /* 20% smaller than the prior clamp(32px, 6vw, 64px) */
   font-size:clamp(26px, 4.8vw, 51px) !important;
 }
+/* Project name under Next project: no chartreuse mark in either theme */
 .next:hover .next-title,
-.next .next-title:hover{
-  color:var(--ink) !important;
-  background:transparent !important;
-}
+.next .next-title:hover,
 html[data-theme="light"] .next:hover .next-title,
 html[data-theme="light"] .next .next-title:hover{
-  color:#1a1a19 !important;
-  background:var(--chartreuse, #ebff12) !important;
-  padding-inline:0.18em;
-  margin-inline:-0.18em;
-  box-decoration-break:clone;
-  -webkit-box-decoration-break:clone;
+  color:var(--ink) !important;
+  background:transparent !important;
+  padding-inline:0 !important;
+  margin-inline:0 !important;
 }
 
 /* Slightly shaded band separates; no hairline under it */
