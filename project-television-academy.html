@@ -70,8 +70,9 @@
 
   .stats{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border-top:1px solid var(--line); border-bottom:1px solid var(--line); margin:0 auto 48px; max-width:var(--maxw); width:100%; box-sizing:border-box;}
   .stat{background:var(--bg); padding:36px clamp(16px,2vw,28px);} .stat:first-child{padding-left:var(--gutter);} .stat:last-child{padding-right:var(--gutter);}
-  .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:nowrap;}
+  .stat .num{font-family:var(--serif); font-weight:500; font-size:clamp(20px,2.8vw,34px); color:var(--chartreuse); display:inline-block; width:fit-content; max-width:100%; text-align:left; white-space:normal; line-height:1.15;}
   .stat .label{font-family:var(--mono); font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-dim); margin-top:8px; text-align:left;}
+  .stat .desc{font-family:var(--grotesk); font-weight:400; font-size:13px; line-height:1.45; letter-spacing:0; text-transform:none; color:var(--ink); margin-top:12px; text-align:left; max-width:28em;}
 
   section{padding-top:96px; padding-bottom:130px;}
   .section-inner{display:grid; grid-template-columns:180px 1fr; gap:64px;}
@@ -365,9 +366,18 @@
   </div>
 
   <div class="stats">
-    <div class="stat"><div class="num">257%</div><div class="label">Membership growth during my time at the Television Academy</div></div>
-    <div class="stat"><div class="num">16 yrs</div><div class="label">Working on Emmy collateral, and attending the annual ceremonies and galas</div></div>
-    <div class="stat"><div class="num">10M+</div><div class="label">Reach for the 70th Emmys logo in 120 countries</div></div>
+    <div class="stat">
+      <div class="num">257% Membership Growth</div>
+      <p class="desc">Driven by a comprehensive rebrand, elevated design touchpoints, ad campaigns, and strategic marketing initiatives.</p>
+    </div>
+    <div class="stat">
+      <div class="num">16 Years of Creative Leadership</div>
+      <p class="desc">Designed core brand collateral and experiential assets for onsite and offsite events, membership drives, and the annual Emmy Awards and Galas.</p>
+    </div>
+    <div class="stat">
+      <div class="num">10M+ Global Reach</div>
+      <p class="desc">Created the official 70th Emmys visual identity, broadcast and advertised across 120 countries.</p>
+    </div>
   </div>
 
     <section class="wrap case-section" data-section="challenge">
