@@ -434,6 +434,12 @@ a.next + .wrap.sitemap{
   max-width:min(36rem, 100%);
   overflow-wrap:break-word;
 }
+.case-section .case-block.block-text p{
+  margin-bottom:16px;
+}
+.case-section .case-block.block-text p:last-child{
+  margin-bottom:0;
+}
 .case-section .case-block .block-cap{
   font-family:var(--mono, "IBM Plex Mono", monospace);
   font-size:11px !important;
@@ -458,6 +464,10 @@ a.next + .wrap.sitemap{
 }
 .case-blocks{
   gap:28px !important;
+}
+/* Consecutive description blocks = paragraph rhythm (not media gap). */
+.case-block.block-text + .case-block.block-text{
+  margin-top:-12px; /* 28px gap − 12px → 16px, matches p margin-bottom */
 }
 /* Extra air after media so the next prose reads as a new beat, not a caption.
    No rule here — section dividers live between .case-section blocks. */
