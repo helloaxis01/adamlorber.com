@@ -421,12 +421,23 @@ a.next + .wrap.sitemap{
   letter-spacing:-0.02em;
   color:var(--ink-dim);
 }
-/* Case body + captions lead (white/ink) sitewide.
-   Shared reading measure — stay inside page gutters; don’t kiss the edge. */
+/* Case body + captions — Fount scale sitewide.
+   Description: 15px/20px. Captions: 11px mono (smaller). */
 .case-section .case-block.block-text p,
 .case-section .case-block.block-text ul,
-.case-section .case-block.block-text li,
+.case-section .case-block.block-text li{
+  font-family:var(--grotesk, "Archivo", sans-serif);
+  font-weight:400;
+  font-size:15px !important;
+  line-height:20px !important;
+  color:var(--ink);
+  max-width:min(36rem, 100%);
+  overflow-wrap:break-word;
+}
 .case-section .case-block .block-cap{
+  font-family:var(--mono, "IBM Plex Mono", monospace);
+  font-size:11px !important;
+  line-height:1.5 !important;
   color:var(--ink);
   max-width:min(36rem, 100%);
   overflow-wrap:break-word;
