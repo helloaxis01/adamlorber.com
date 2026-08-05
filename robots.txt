@@ -35,6 +35,10 @@ Disallow: /questions-thanks
 Disallow: /questions-thanks.html
 Disallow: /mitzvahs-thanks
 Disallow: /mitzvahs-thanks.html
+Disallow: /og-preview
+Disallow: /og-preview.html
+Disallow: /holo-preview
+Disallow: /holo-preview.html
 Disallow: /editor
 Disallow: /editor.html
 Disallow: /case-study-editor

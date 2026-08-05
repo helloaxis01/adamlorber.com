@@ -1,0 +1,217 @@
+/**
+ * Holo portrait foil — CSS module
+ * Zero permission: no DeviceOrientation / DeviceMotion.
+ *
+ * Demo modes via [data-holo-demo]:
+ *   ambient | hover-tilt | css-scroll | js-scroll | pointer | full
+ */
+
+@property --bg-x {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 42%;
+}
+
+@property --bg-y {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 28%;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 125deg;
+}
+
+@keyframes holo-ambient {
+  0%   { --bg-x: 28%; --bg-y: 20%; --angle: 108deg; }
+  50%  { --bg-x: 66%; --bg-y: 52%; --angle: 152deg; }
+  100% { --bg-x: 38%; --bg-y: 34%; --angle: 128deg; }
+}
+
+@keyframes holo-scroll-sweep {
+  from { --bg-x: 16%; --bg-y: 68%; --angle: 98deg; }
+  to   { --bg-x: 82%; --bg-y: 14%; --angle: 172deg; }
+}
+
+.holo-portrait {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  --bg-x: 42%;
+  --bg-y: 28%;
+  --angle: 125deg;
+  --holo-opacity: 0.55;
+  --rx: 0deg;
+  --ry: 0deg;
+  transform-style: preserve-3d;
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.35s ease-out;
+}
+
+.holo-portrait.is-holo-active {
+  transition: transform 0.12s ease-out;
+}
+
+/* --- Default production behavior --- */
+.holo-portrait:not(.is-holo-driven):not([data-holo-demo]) {
+  animation: holo-ambient 10s ease-in-out infinite alternate;
+}
+
+.holo-portrait.is-holo-driven {
+  animation: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .holo-portrait:hover:not(.is-holo-driven):not([data-holo-demo]),
+  .holo-portrait[data-holo-demo="hover-tilt"]:hover,
+  .holo-portrait[data-holo-demo="full"]:hover:not(.is-holo-driven) {
+    --rx: -3deg;
+    --ry: 5deg;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (pointer: coarse), (max-width: 900px) {
+    .holo-portrait:not(.is-holo-driven):not([data-holo-demo]) {
+      animation-name: holo-scroll-sweep;
+      animation-duration: 1ms;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-iteration-count: 1;
+      animation-direction: normal;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+}
+
+/* --- Isolated demo modes (preview page) --- */
+.holo-portrait[data-holo-demo="ambient"]:not(.is-holo-driven) {
+  animation: holo-ambient 10s ease-in-out infinite alternate;
+  --rx: 0deg;
+  --ry: 0deg;
+}
+
+.holo-portrait[data-holo-demo="hover-tilt"]:not(.is-holo-driven) {
+  animation: holo-ambient 10s ease-in-out infinite alternate;
+}
+
+.holo-portrait[data-holo-demo="css-scroll"]:not(.is-holo-driven) {
+  animation-name: holo-scroll-sweep;
+  animation-duration: 1ms;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-timeline: view();
+  animation-range: entry 0% exit 100%;
+}
+
+.holo-portrait[data-holo-demo="js-scroll"],
+.holo-portrait[data-holo-demo="pointer"],
+.holo-portrait[data-holo-demo="full"] {
+  /* JS owns motion when driven; ambient until then */
+}
+.holo-portrait[data-holo-demo="js-scroll"]:not(.is-holo-driven),
+.holo-portrait[data-holo-demo="pointer"]:not(.is-holo-driven),
+.holo-portrait[data-holo-demo="full"]:not(.is-holo-driven) {
+  animation: holo-ambient 10s ease-in-out infinite alternate;
+}
+
+.holo-portrait__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.holo-portrait__foil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: var(--holo-opacity);
+  mix-blend-mode: color-dodge;
+  background:
+    linear-gradient(
+      var(--angle),
+      rgba(255, 80, 180, 0) 0%,
+      rgba(255, 120, 90, 0.35) 18%,
+      rgba(255, 220, 80, 0.45) 34%,
+      rgba(120, 255, 180, 0.4) 48%,
+      rgba(80, 200, 255, 0.5) 62%,
+      rgba(160, 100, 255, 0.35) 78%,
+      rgba(255, 80, 180, 0) 100%
+    ),
+    radial-gradient(
+      circle at var(--bg-x) var(--bg-y),
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 240, 200, 0.2) 18%,
+      rgba(120, 220, 255, 0.12) 36%,
+      transparent 58%
+    );
+  transition: opacity 0.45s ease;
+}
+
+.holo-portrait__foil::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: soft-light;
+  opacity: 0.65;
+  background:
+    repeating-linear-gradient(
+      calc(var(--angle) + 90deg),
+      rgba(255, 255, 255, 0.08) 0px,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+}
+
+.holo-portrait:hover .holo-portrait__foil,
+.holo-portrait.is-holo-active .holo-portrait__foil {
+  opacity: calc(var(--holo-opacity) + 0.12);
+}
+
+html[data-theme="light"] .holo-portrait {
+  --holo-opacity: 0.28;
+}
+
+html[data-theme="light"] .holo-portrait__foil {
+  mix-blend-mode: soft-light;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .holo-portrait:not(.is-holo-driven),
+  .holo-portrait.is-holo-driven {
+    animation: none !important;
+    animation-timeline: auto !important;
+  }
+
+  .holo-portrait {
+    --rx: 0deg !important;
+    --ry: 0deg !important;
+    transform: none;
+    transition: none;
+  }
+
+  .holo-portrait__foil {
+    opacity: 0.22;
+    background:
+      linear-gradient(
+        125deg,
+        rgba(255, 120, 90, 0.15) 0%,
+        rgba(120, 255, 180, 0.18) 45%,
+        rgba(80, 200, 255, 0.15) 100%
+      );
+  }
+
+  .holo-portrait__foil::after {
+    display: none;
+  }
+}
