@@ -195,16 +195,18 @@
   var prioritized = false;
   document.querySelectorAll('img').forEach(function (img, i) {
     var eager = img.closest('.hero, .p-hero, .stack, .stack-wrap, header');
-    // First case-study hero frame after .p-hero
     var caseHero = img.closest('.p-image') && img.closest('main') &&
       img.closest('.p-image').previousElementSibling &&
       img.closest('.p-image').previousElementSibling.classList.contains('p-hero');
+    var workThumb = img.closest('.work-media');
     var alreadyEager = img.getAttribute('loading') === 'eager';
-    var isHero = eager || caseHero || alreadyEager || i < 2;
+    var isHero = eager || caseHero || alreadyEager || i < 2 || !!workThumb;
 
     if (isHero) {
-      if (!img.hasAttribute('loading')) img.setAttribute('loading', 'eager');
-      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+      img.setAttribute('loading', 'eager');
+      // Sync decode on the LCP frame avoids a soft→sharp paint hitch.
+      if (caseHero || alreadyEager) img.setAttribute('decoding', 'sync');
+      else if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
       if (!prioritized && (caseHero || eager || alreadyEager || i === 0)) {
         img.setAttribute('fetchpriority', 'high');
         prioritized = true;
@@ -216,26 +218,9 @@
     img.setAttribute('decoding', 'async');
   });
 
-  // Warm the case-study LCP image when hovering/focusing a work card.
-  document.querySelectorAll('a.work-item[href]').forEach(function (link) {
-    var warmed = false;
-    function warm() {
-      if (warmed) return;
-      warmed = true;
-      var media = link.querySelector('.work-media img');
-      var slug = media && media.closest('.work-media') && media.closest('.work-media').getAttribute('data-slug');
-      // Prefer explicit data-hero when present; else skip (thumb ≠ full hero).
-      var hero = link.getAttribute('data-hero');
-      if (!hero) return;
-      var pre = document.createElement('link');
-      pre.rel = 'preload';
-      pre.as = 'image';
-      pre.href = hero;
-      document.head.appendChild(pre);
-    }
-    link.addEventListener('pointerenter', warm, { once: true, passive: true });
-    link.addEventListener('focus', warm, { once: true });
-  });
+  // Prefetch the case document on intent — not the full hero image
+  // (preloading large heroes on hover competed with the current page).
+  // Document prefetch already runs below.
 
   /* ---------- Launch interactions ---------- */
 
@@ -311,7 +296,7 @@
     a.addEventListener('focus', function () { prefetchHref(a.href); });
   });
 
-  // 4) View Transitions: CSS @view-transition { navigation: auto } in site.css
+  // 4) View Transitions intentionally off (see site.css)
 
   // 5) Case media fade-in on scroll
   if (!prefersReducedMotion()) {

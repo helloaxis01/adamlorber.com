@@ -48,21 +48,7 @@ img, video{
   height:auto;
 }
 
-/* Soft same-origin page transitions (progressive enhancement) */
-@view-transition{
-  navigation:auto;
-}
-::view-transition-old(root),
-::view-transition-new(root){
-  animation-duration:.32s;
-  animation-timing-function:cubic-bezier(.65,0,.35,1);
-}
-@media (prefers-reduced-motion:reduce){
-  ::view-transition-old(root),
-  ::view-transition-new(root){
-    animation-duration:.01ms;
-  }
-}
+/* Page view-transitions disabled — they caused a settle/jerk on back-nav. */
 
 /* Case-study reading progress — fixed under the sticky header */
 .read-progress{
