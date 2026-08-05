@@ -591,7 +591,7 @@
             <span class="path">/og-image.png</span>
             <button type="button" class="copy-path" data-path="/og-image.png">Copy</button>
           </div>
-          <p class="note">Live Open Graph / Twitter card (1200×630). Used by <code>og:image</code> and <code>twitter:image</code> sitewide. Options preview: <a href="/og-preview" style="font-family:var(--mono); font-size:12px; letter-spacing:0.04em;">/og-preview</a>.</p>
+          <p class="note">Live Open Graph / Twitter card (1200×630). Default fallback for <code>og:image</code> / <code>twitter:image</code> when a page has no unique share asset. Project / case pages override with their thumbnail or primary featured image (absolute <code>https://adamlorber.com/…</code> URLs). Options preview: <a href="/og-preview" style="font-family:var(--mono); font-size:12px; letter-spacing:0.04em;">/og-preview</a>.</p>
           <div class="asset-preview">
             <img src="/og-image.png" alt="Default social share image — Adam Lorber hero extension card" width="1200" height="630" loading="eager">
           </div>
@@ -622,6 +622,7 @@
         <li>Add the pretty URL to <code>sitemap.xml</code>; remove it from <code>robots.txt</code> Disallow.</li>
         <li>Remove <code>noindex</code> from the page <code>&lt;head&gt;</code> if present.</li>
         <li>Add or refresh a case thumbnail + hero stack card if it should appear in the deck.</li>
+        <li>Set <code>og:image</code> and <code>twitter:image</code> to the project thumbnail / primary featured image (absolute URL). If none exists yet, keep the fallback <code>https://adamlorber.com/og-image.png</code>.</li>
         <li>Delete the entry here and in <code>HIDDEN-PAGES.txt</code>.</li>
       </ol>
     </div>
@@ -646,7 +647,8 @@
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Analytics: Umami Cloud live; unused GA4/GSC stubs removed from <code>site.js</code></span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>/backend dashboard: groups, tabs, copy URLs, Forms link, promote checklist</span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Resume is a native on-site page (<code>/resume</code>) with optional PDF open/download</span></li>
-          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Default share image (<code>/og-image.png</code>) — hero lockup + stack thumbs</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Default share image (<code>/og-image.png</code>) — hero lockup + stack thumbs; fallback when a page has no unique OG asset</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Per-project OG / Twitter images (thumbnail or primary featured; absolute URLs; else <code>/og-image.png</code>)</span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Favicon pointer mark rebuilt as optically centered SVG (<code>/favicon.svg</code>) + download on this page</span></li>
         </ul>
       </div>
