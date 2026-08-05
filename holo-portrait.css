@@ -1,12 +1,9 @@
 /**
- * Holo portrait foil — CSS module
+ * Holo portrait foil — restrained iridescent sheen (not a rainbow stripe).
  * Zero permission: no DeviceOrientation / DeviceMotion.
  *
  * Demo modes via [data-holo-demo]:
  *   ambient | hover-tilt | css-scroll | js-scroll | pointer | full
- *
- * Visibility note: uses a moving foil band (background-position) so the
- * shimmer reads clearly on bright chartreuse portraits — not only @property.
  */
 
 @property --bg-x {
@@ -30,18 +27,18 @@
 @property --foil-pos {
   syntax: "<percentage>";
   inherits: true;
-  initial-value: 0%;
+  initial-value: 35%;
 }
 
 @keyframes holo-ambient {
-  0%   { --foil-pos: 0%;   --bg-x: 22%; --bg-y: 18%; --angle: 105deg; }
-  50%  { --foil-pos: 100%; --bg-x: 78%; --bg-y: 62%; --angle: 165deg; }
-  100% { --foil-pos: 0%;   --bg-x: 40%; --bg-y: 36%; --angle: 125deg; }
+  0%   { --foil-pos: 18%; --bg-x: 30%; --bg-y: 22%; --angle: 118deg; }
+  50%  { --foil-pos: 78%; --bg-x: 68%; --bg-y: 58%; --angle: 148deg; }
+  100% { --foil-pos: 18%; --bg-x: 36%; --bg-y: 32%; --angle: 128deg; }
 }
 
 @keyframes holo-scroll-sweep {
-  from { --foil-pos: 0%;   --bg-x: 12%; --bg-y: 72%; --angle: 95deg; }
-  to   { --foil-pos: 100%; --bg-x: 88%; --bg-y: 12%; --angle: 175deg; }
+  from { --foil-pos: 12%; --bg-x: 20%; --bg-y: 70%; --angle: 110deg; }
+  to   { --foil-pos: 88%; --bg-x: 80%; --bg-y: 16%; --angle: 160deg; }
 }
 
 .holo-portrait {
@@ -51,22 +48,21 @@
   --bg-x: 42%;
   --bg-y: 28%;
   --angle: 125deg;
-  --foil-pos: 0%;
-  --holo-opacity: 0.85;
+  --foil-pos: 35%;
+  --holo-opacity: 0.42;
   --rx: 0deg;
   --ry: 0deg;
   transform-style: preserve-3d;
   transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
-  transition: transform 0.35s ease-out;
+  transition: transform 0.4s ease-out;
 }
 
 .holo-portrait.is-holo-active {
-  transition: transform 0.12s ease-out;
+  transition: transform 0.14s ease-out;
 }
 
-/* --- Default production behavior --- */
 .holo-portrait:not(.is-holo-driven):not([data-holo-demo]) {
-  animation: holo-ambient 4.5s ease-in-out infinite;
+  animation: holo-ambient 11s ease-in-out infinite;
 }
 
 .holo-portrait.is-holo-driven {
@@ -77,8 +73,8 @@
   .holo-portrait:hover:not(.is-holo-driven):not([data-holo-demo]),
   .holo-portrait[data-holo-demo="hover-tilt"]:hover,
   .holo-portrait[data-holo-demo="full"]:hover:not(.is-holo-driven) {
-    --rx: -8deg;
-    --ry: 12deg;
+    --rx: -5deg;
+    --ry: 7deg;
   }
 }
 
@@ -97,15 +93,14 @@
   }
 }
 
-/* --- Isolated demo modes --- */
 .holo-portrait[data-holo-demo="ambient"]:not(.is-holo-driven) {
-  animation: holo-ambient 4.5s ease-in-out infinite;
+  animation: holo-ambient 11s ease-in-out infinite;
   --rx: 0deg;
   --ry: 0deg;
 }
 
 .holo-portrait[data-holo-demo="hover-tilt"]:not(.is-holo-driven) {
-  animation: holo-ambient 4.5s ease-in-out infinite;
+  animation: holo-ambient 11s ease-in-out infinite;
 }
 
 .holo-portrait[data-holo-demo="css-scroll"]:not(.is-holo-driven) {
@@ -122,7 +117,7 @@
 .holo-portrait[data-holo-demo="js-scroll"]:not(.is-holo-driven),
 .holo-portrait[data-holo-demo="pointer"]:not(.is-holo-driven),
 .holo-portrait[data-holo-demo="full"]:not(.is-holo-driven) {
-  animation: holo-ambient 4.5s ease-in-out infinite;
+  animation: holo-ambient 11s ease-in-out infinite;
 }
 
 .holo-portrait__media {
@@ -134,82 +129,89 @@
   display: block;
 }
 
+/*
+  Layered foil:
+  1) Soft silver specular (reads as light, not color)
+  2) Very thin chromatic fringe only in the highlight
+  3) Fine diffraction lines
+*/
 .holo-portrait__foil {
   position: absolute;
-  inset: -10%;
+  inset: 0;
   z-index: 1;
   pointer-events: none;
   opacity: var(--holo-opacity);
-  mix-blend-mode: overlay;
-  background-image:
+  mix-blend-mode: soft-light;
+  background:
+    radial-gradient(
+      ellipse 55% 40% at var(--bg-x) var(--bg-y),
+      rgba(255, 255, 255, 0.55) 0%,
+      rgba(255, 255, 255, 0.12) 28%,
+      transparent 58%
+    ),
     linear-gradient(
       var(--angle),
       transparent 0%,
-      transparent 28%,
-      rgba(255, 60, 160, 0.75) 38%,
-      rgba(255, 210, 40, 0.85) 46%,
-      rgba(60, 255, 190, 0.8) 54%,
-      rgba(70, 160, 255, 0.75) 62%,
-      rgba(180, 90, 255, 0.7) 70%,
-      transparent 80%,
+      transparent calc(var(--foil-pos) - 18%),
+      rgba(255, 255, 255, 0.08) calc(var(--foil-pos) - 8%),
+      rgba(190, 230, 255, 0.22) calc(var(--foil-pos) - 2%),
+      rgba(255, 255, 255, 0.35) var(--foil-pos),
+      rgba(255, 210, 230, 0.2) calc(var(--foil-pos) + 2%),
+      rgba(255, 255, 255, 0.08) calc(var(--foil-pos) + 8%),
+      transparent calc(var(--foil-pos) + 18%),
       transparent 100%
-    ),
-    radial-gradient(
-      circle at var(--bg-x) var(--bg-y),
-      rgba(255, 255, 255, 0.7) 0%,
-      rgba(255, 255, 255, 0.15) 22%,
-      transparent 48%
     );
-  background-size: 220% 220%, 100% 100%;
-  background-position: var(--foil-pos) 50%, center;
-  filter: saturate(1.35) contrast(1.08);
 }
 
 .holo-portrait__foil::before {
   content: "";
   position: absolute;
   inset: 0;
-  mix-blend-mode: soft-light;
-  opacity: 0.9;
+  opacity: 0.55;
+  mix-blend-mode: color-dodge;
   background:
     linear-gradient(
-      calc(var(--angle) + 90deg),
-      transparent 35%,
-      rgba(255, 255, 255, 0.55) 48%,
-      transparent 62%
+      calc(var(--angle) + 12deg),
+      transparent 0%,
+      transparent calc(var(--foil-pos) - 6%),
+      rgba(120, 200, 255, 0.25) calc(var(--foil-pos) - 1%),
+      rgba(255, 255, 255, 0.4) var(--foil-pos),
+      rgba(255, 160, 200, 0.22) calc(var(--foil-pos) + 1%),
+      transparent calc(var(--foil-pos) + 6%),
+      transparent 100%
     );
-  background-size: 180% 180%;
-  background-position: var(--foil-pos) center;
 }
 
 .holo-portrait__foil::after {
   content: "";
   position: absolute;
   inset: 0;
-  mix-blend-mode: soft-light;
-  opacity: 0.55;
+  opacity: 0.28;
+  mix-blend-mode: overlay;
   background:
     repeating-linear-gradient(
       calc(var(--angle) + 90deg),
-      rgba(255, 255, 255, 0.14) 0px,
-      rgba(255, 255, 255, 0.14) 1px,
-      transparent 1px,
-      transparent 4px
+      rgba(255, 255, 255, 0.07) 0 1px,
+      transparent 1px 5px
     );
 }
 
 .holo-portrait:hover .holo-portrait__foil,
 .holo-portrait.is-holo-active .holo-portrait__foil {
-  opacity: 1;
+  opacity: calc(var(--holo-opacity) + 0.12);
 }
 
 html[data-theme="light"] .holo-portrait {
-  --holo-opacity: 0.72;
+  --holo-opacity: 0.38;
 }
 
 html[data-theme="light"] .holo-portrait__foil {
-  mix-blend-mode: multiply;
-  filter: saturate(1.5) contrast(1.05);
+  mix-blend-mode: soft-light;
+}
+
+html[data-theme="light"] .holo-portrait__foil::before {
+  mix-blend-mode: soft-light;
+  opacity: 0.7;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -227,16 +229,13 @@ html[data-theme="light"] .holo-portrait__foil {
   }
 
   .holo-portrait__foil {
-    opacity: 0.35;
-    background-image:
-      linear-gradient(
-        125deg,
-        rgba(255, 80, 160, 0.25),
-        rgba(80, 220, 200, 0.25),
-        rgba(100, 140, 255, 0.25)
+    opacity: 0.22;
+    background:
+      radial-gradient(
+        ellipse at 42% 28%,
+        rgba(255, 255, 255, 0.35),
+        transparent 55%
       );
-    background-size: 100% 100%;
-    filter: none;
   }
 
   .holo-portrait__foil::before,

@@ -84,8 +84,8 @@
 
     function setTilt(nx, ny) {
       if (!allowTilt) return;
-      var ry = (nx - 0.5) * 22;
-      var rx = (0.5 - ny) * 16;
+      var ry = (nx - 0.5) * 12;
+      var rx = (0.5 - ny) * 9;
       photo.style.setProperty("--rx", rx.toFixed(2) + "deg");
       photo.style.setProperty("--ry", ry.toFixed(2) + "deg");
     }
