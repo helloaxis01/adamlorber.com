@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Backend · Adam Lorber</title>
+<title>/backend · Adam Lorber</title>
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://adamlorber.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -93,13 +93,46 @@
   footer.wrap{padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
 
   @media (max-width:900px){
-    .p-hero{padding-top:120px;}
+    .p-hero{padding-top:108px; padding-bottom:28px;}
+    .p-title{font-size:clamp(40px,14vw,64px);}
+    .p-sub{margin-top:14px; font-size:15px;}
     .meta-row{grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:1.5rem; row-gap:1.5rem; align-items:start;}
     .logo-grid{grid-template-columns:repeat(2,1fr);}
     .proc-gallery{grid-template-columns:1fr;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
-    .private-tabs{top:64px;}
-    .private-tab{padding:12px 12px 10px; font-size:10px; letter-spacing:0.1em;}
+    .private-actions{
+      display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;
+    }
+    .private-actions button,
+    .private-actions a{
+      width:100%; text-align:center; padding:12px 10px; min-height:44px;
+      display:inline-flex; align-items:center; justify-content:center;
+    }
+    .private-hosts{margin:0 0 12px; font-size:10px;}
+    .private-tip{display:none;}
+    .private-tabs{
+      top:64px; flex-wrap:nowrap; overflow-x:auto; overflow-y:hidden;
+      -webkit-overflow-scrolling:touch; scrollbar-width:none;
+      max-width:none; width:calc(100% + (2 * var(--gutter)));
+      margin-left:calc(-1 * var(--gutter)); margin-right:calc(-1 * var(--gutter));
+      padding-left:var(--gutter); padding-right:var(--gutter);
+      gap:0;
+    }
+    .private-tabs::-webkit-scrollbar{display:none;}
+    .private-tab{
+      flex:0 0 auto; white-space:nowrap;
+      padding:14px 14px 12px; font-size:11px; letter-spacing:0.1em;
+      min-height:44px;
+    }
+    .private-section-label{display:none;}
+    .private-panel{padding:12px 0 80px;}
+    .private-list{padding-bottom:0;}
+    .private-list li{padding:18px 0;}
+    .private-list a{font-size:clamp(22px,7vw,28px);}
+    .private-list .note{font-size:13px; line-height:1.5; max-width:none;}
+    .private-list .path{font-size:10px;}
+    .private-howto{margin-bottom:28px;}
+    .private-checklist{padding-top:28px;}
   }
 
   html[data-theme="light"]{
@@ -435,24 +468,23 @@
 
 <main id="top">
   <div class="wrap p-hero">
-    <h1 class="p-title">Backend</h1>
-    <p class="p-sub">Index for forms, archives, assets, and site tools. Bookmark this page.</p>
+    <h1 class="p-title">/backend</h1>
+    <p class="p-sub">Forms, archives, assets, and site tools.</p>
   </div>
   <div class="wrap">
     <div class="private-actions">
-      <button type="button" id="copyPrivateUrl">Copy this page URL</button>
-      <a id="linkNetlify" href="https://adamlorber.netlify.app/backend">Open on Netlify</a>
-      <a id="linkLive" href="https://adamlorber.com/backend">Open on adamlorber.com</a>
+      <button type="button" id="copyPrivateUrl">Copy URL</button>
       <a href="https://app.netlify.com/projects/adamlorber/forms" target="_blank" rel="noopener">Netlify Forms</a>
+      <a id="linkNetlify" href="https://adamlorber.netlify.app/backend">Netlify</a>
+      <a id="linkLive" href="https://adamlorber.com/backend">Live site</a>
     </div>
-    <p class="private-hosts">You’re on <strong id="currentHost">—</strong>. Bookmark <code>/backend</code> on whichever host you use day to day.</p>
-    <p class="private-tip">Same list lives in <code>HIDDEN-PAGES.txt</code> in the repo. Paths below include a copy button for sharing.</p>
+    <p class="private-hosts">Host: <strong id="currentHost">—</strong> · <code>/backend</code></p>
 
     <div class="private-tabs" role="tablist" aria-label="Backend page sections">
       <button type="button" class="private-tab" role="tab" id="tab-tools" aria-controls="panel-tools" aria-selected="true" data-tab="tools">Tools</button>
       <button type="button" class="private-tab" role="tab" id="tab-ideas" aria-controls="panel-ideas" aria-selected="false" data-tab="ideas" tabindex="-1">Ideas</button>
       <button type="button" class="private-tab" role="tab" id="tab-cases" aria-controls="panel-cases" aria-selected="false" data-tab="cases" tabindex="-1">Cases</button>
-      <button type="button" class="private-tab" role="tab" id="tab-deep-dives" aria-controls="panel-deep-dives" aria-selected="false" data-tab="deep-dives" tabindex="-1">Deep dives</button>
+      <button type="button" class="private-tab" role="tab" id="tab-deep-dives" aria-controls="panel-deep-dives" aria-selected="false" data-tab="deep-dives" tabindex="-1">Dives</button>
       <button type="button" class="private-tab" role="tab" id="tab-assets" aria-controls="panel-assets" aria-selected="false" data-tab="assets" tabindex="-1">Assets</button>
       <button type="button" class="private-tab" role="tab" id="tab-checklist" aria-controls="panel-checklist" aria-selected="false" data-tab="checklist" tabindex="-1">Checklist</button>
     </div>
@@ -719,6 +751,9 @@
         var on = tab.getAttribute('data-tab') === id;
         tab.setAttribute('aria-selected', on ? 'true' : 'false');
         tab.tabIndex = on ? 0 : -1;
+        if (on && tab.scrollIntoView){
+          try{ tab.scrollIntoView({ inline:'center', block:'nearest', behavior:'smooth' }); }catch(e){}
+        }
       });
       panels.forEach(function(panel){
         var on = panel.getAttribute('data-panel') === id;
