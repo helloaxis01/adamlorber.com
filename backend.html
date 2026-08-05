@@ -29,7 +29,7 @@
     --gutter:clamp(20px,5vw,64px);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth; scrollbar-gutter:stable;}
   body{background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400; overflow-x:hidden;}
   a{color:inherit; text-decoration:none;}
   img{display:block; max-width:100%;}
@@ -745,15 +745,28 @@
     var panels = Array.prototype.slice.call(document.querySelectorAll('.private-panel'));
     var valid = { tools:1, ideas:1, cases:1, 'deep-dives':1, assets:1, checklist:1 };
 
+    function scrollTabIntoView(tab){
+      var list = tab && tab.parentElement;
+      if (!list) return;
+      var listRect = list.getBoundingClientRect();
+      var tabRect = tab.getBoundingClientRect();
+      var nextLeft = list.scrollLeft + (tabRect.left - listRect.left) - ((listRect.width - tabRect.width) / 2);
+      if (typeof list.scrollTo === 'function'){
+        list.scrollTo({ left: Math.max(0, nextLeft), behavior: 'smooth' });
+      } else {
+        list.scrollLeft = Math.max(0, nextLeft);
+      }
+    }
+
     function activateTab(id, pushHash){
       if (!valid[id]) id = 'tools';
+      var y = window.scrollY || window.pageYOffset || 0;
+      var activeTab = null;
       tabs.forEach(function(tab){
         var on = tab.getAttribute('data-tab') === id;
         tab.setAttribute('aria-selected', on ? 'true' : 'false');
         tab.tabIndex = on ? 0 : -1;
-        if (on && tab.scrollIntoView){
-          try{ tab.scrollIntoView({ inline:'center', block:'nearest', behavior:'smooth' }); }catch(e){}
-        }
+        if (on) activeTab = tab;
       });
       panels.forEach(function(panel){
         var on = panel.getAttribute('data-panel') === id;
@@ -761,9 +774,19 @@
         if (on) panel.removeAttribute('hidden');
         else panel.setAttribute('hidden', '');
       });
+      if (activeTab) scrollTabIntoView(activeTab);
       if (pushHash){
         var next = '#' + id;
         if (location.hash !== next) history.replaceState(null, '', next);
+      }
+      // Keep page from jumping when panel height changes
+      if (typeof window.scrollTo === 'function'){
+        window.scrollTo({ top: y, left: 0, behavior: 'instant' });
+        requestAnimationFrame(function(){
+          window.scrollTo({ top: y, left: 0, behavior: 'instant' });
+        });
+      } else {
+        window.scrollTo(0, y);
       }
     }
 
