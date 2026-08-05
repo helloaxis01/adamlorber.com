@@ -4,7 +4,7 @@ These are intentionally off the public nav and Selected Work grid.
 Open them on the live host with pretty URLs (or the .html
 files locally from this folder).
 
-  /private              private.html                 This index (bookmark it)
+  /backend              backend.html                 This index (bookmark it)
   /agra-wood            project-agra-wood.html       Archived corporate identity case
   /solmar               project-solmar.html          Full case (also featured in Process)
   /mootz-tom            project-mootz-tom.html       Full case (also featured in Process)
@@ -39,9 +39,10 @@ Legacy /televisionacademy redirects to /television-academy.
 
 PREVIEW
 -------
-  https://adamlorber.netlify.app/private
-  https://www.adamlorber.com/private   (after DNS)
-  Local: open private.html in a browser from this folder.
+  https://adamlorber.netlify.app/backend
+  https://www.adamlorber.com/backend
+  Local: open backend.html in a browser from this folder.
+  Legacy /private redirects to /backend.
 
-The /private page groups tools, archives, and deep dives; includes
+The /backend page groups tools, ideas, archives, and deep dives; includes
 copy-URL buttons and a short “promote to Selected Work” checklist.

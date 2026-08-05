@@ -17,7 +17,8 @@
 /olio                     /project-olio.html                        200
 /solmar                   /project-solmar.html                      200
 /good-kernels             /project-good-kernels.html                200
-/private                  /private.html                             200
+/backend                  /backend.html                             200
+/private                  /backend                                  301
 /questions                /questions.html                           200
 /questions-thanks         /questions-thanks.html                    200
 /fount-deep-dive          /fount-deep-dive.html                     200
@@ -57,7 +58,8 @@
 /process/                 /process                                  301
 /mootz-tom/               /mootz-tom                                301
 /good-kernels/            /good-kernels                             301
-/private/                 /private                                  301
+/backend/                 /backend                                  301
+/private/                 /backend                                  301
 /questions/               /questions                                301
 /mitzvahs/                /mitzvahs                                 301
 
@@ -80,7 +82,8 @@
 /project-olio.html                                  /olio                   301!
 /project-solmar.html                                /solmar                 301!
 /project-good-kernels.html                          /good-kernels           301!
-/private.html                                       /private                301!
+/backend.html                                       /backend                301!
+/private.html                                       /backend                301!
 /questions.html                                     /questions              301!
 /fount-deep-dive.html                               /fount-deep-dive        301!
 /fount-sites.html                                   /fount-sites            301!

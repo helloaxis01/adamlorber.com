@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Private · Adam Lorber</title>
+<title>Backend · Adam Lorber</title>
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://adamlorber.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -435,22 +435,22 @@
 
 <main id="top">
   <div class="wrap p-hero">
-    <p class="p-eyebrow">Private</p>
-    <h1 class="p-title">Hidden pages</h1>
-    <p class="p-sub">Unlisted routes — not in the public nav or sitemap. Bookmark this page; it’s your index for archives, forms, and tools.</p>
+    <h1 class="p-title">Backend</h1>
+    <p class="p-sub">Index for forms, archives, assets, and site tools. Bookmark this page.</p>
   </div>
   <div class="wrap">
     <div class="private-actions">
       <button type="button" id="copyPrivateUrl">Copy this page URL</button>
-      <a id="linkNetlify" href="https://adamlorber.netlify.app/private">Open on Netlify</a>
-      <a id="linkLive" href="https://adamlorber.com/private">Open on adamlorber.com</a>
+      <a id="linkNetlify" href="https://adamlorber.netlify.app/backend">Open on Netlify</a>
+      <a id="linkLive" href="https://adamlorber.com/backend">Open on adamlorber.com</a>
       <a href="https://app.netlify.com/projects/adamlorber/forms" target="_blank" rel="noopener">Netlify Forms</a>
     </div>
-    <p class="private-hosts">You’re on <strong id="currentHost">—</strong>. Bookmark <code>/private</code> on whichever host you use day to day.</p>
+    <p class="private-hosts">You’re on <strong id="currentHost">—</strong>. Bookmark <code>/backend</code> on whichever host you use day to day.</p>
     <p class="private-tip">Same list lives in <code>HIDDEN-PAGES.txt</code> in the repo. Paths below include a copy button for sharing.</p>
 
-    <div class="private-tabs" role="tablist" aria-label="Private page sections">
+    <div class="private-tabs" role="tablist" aria-label="Backend page sections">
       <button type="button" class="private-tab" role="tab" id="tab-tools" aria-controls="panel-tools" aria-selected="true" data-tab="tools">Tools</button>
+      <button type="button" class="private-tab" role="tab" id="tab-ideas" aria-controls="panel-ideas" aria-selected="false" data-tab="ideas" tabindex="-1">Ideas</button>
       <button type="button" class="private-tab" role="tab" id="tab-cases" aria-controls="panel-cases" aria-selected="false" data-tab="cases" tabindex="-1">Cases</button>
       <button type="button" class="private-tab" role="tab" id="tab-deep-dives" aria-controls="panel-deep-dives" aria-selected="false" data-tab="deep-dives" tabindex="-1">Deep dives</button>
       <button type="button" class="private-tab" role="tab" id="tab-assets" aria-controls="panel-assets" aria-selected="false" data-tab="assets" tabindex="-1">Assets</button>
@@ -467,16 +467,6 @@
           <p class="note">Discovery questionnaire (Netlify form). Submissions → Netlify Forms → <code>questions</code> · subject <code>Questions form — adamlorber.com</code>. Brand Words land as per-pair fields (<code>bw-*</code>) plus a readable <code>brand-words-summary</code> block.</p>
         </li>
         <li>
-          <a href="/mitzvahs">Mitzvahs</a>
-          <div class="path-row"><span class="path">/mitzvahs</span><button type="button" class="copy-path" data-path="/mitzvahs">Copy</button></div>
-          <p class="note">Bespoke event identity + inquiry form. Submissions → Netlify Forms → <code>mitzvahs</code>.</p>
-        </li>
-        <li>
-          <a href="/revyrie-decks">Revyrie Decks</a>
-          <div class="path-row"><span class="path">/revyrie-decks</span><button type="button" class="copy-path" data-path="/revyrie-decks">Copy</button></div>
-          <p class="note">Password: <strong>Decks</strong> — client proposal and Clarity deck designs.</p>
-        </li>
-        <li>
           <a href="/editor">Site editor</a>
           <div class="path-row"><span class="path">/editor</span><button type="button" class="copy-path" data-path="/editor">Copy</button></div>
           <p class="note">Local/preview homepage editor. Noindex — not for public use.</p>
@@ -490,10 +480,28 @@
     </div>
     </div>
 
+    <div class="private-panel" role="tabpanel" id="panel-ideas" aria-labelledby="tab-ideas" data-panel="ideas" hidden>
+    <div class="private-section">
+      <div class="private-section-label">Ideas</div>
+      <ul class="private-list">
+        <li>
+          <a href="/mitzvahs">Mitzvahs</a>
+          <div class="path-row"><span class="path">/mitzvahs</span><button type="button" class="copy-path" data-path="/mitzvahs">Copy</button></div>
+          <p class="note">Bespoke event identity + inquiry form. Submissions → Netlify Forms → <code>mitzvahs</code>.</p>
+        </li>
+      </ul>
+    </div>
+    </div>
+
     <div class="private-panel" role="tabpanel" id="panel-cases" aria-labelledby="tab-cases" data-panel="cases" hidden>
     <div class="private-section">
       <div class="private-section-label">Archived cases</div>
       <ul class="private-list">
+        <li>
+          <a href="/revyrie-decks">Revyrie Decks</a>
+          <div class="path-row"><span class="path">/revyrie-decks</span><button type="button" class="copy-path" data-path="/revyrie-decks">Copy</button></div>
+          <p class="note">Password: <strong>Decks</strong> — client proposal and Clarity deck designs.</p>
+        </li>
         <li>
           <a href="/agra-wood">Agra Wood</a>
           <div class="path-row"><span class="path">/agra-wood</span><button type="button" class="copy-path" data-path="/agra-wood">Copy</button></div>
@@ -502,7 +510,7 @@
         <li>
           <a href="/solmar">Solmar</a>
           <div class="path-row"><span class="path">/solmar</span><button type="button" class="copy-path" data-path="/solmar">Copy</button></div>
-          <p class="note">Full case kept private; packaging also appears in Process.</p>
+          <p class="note">Full case off the public grid; packaging also appears in Process.</p>
         </li>
         <li>
           <a href="/mootz-tom">Mootz &amp; Tom</a>
@@ -604,7 +612,7 @@
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>About H1 for SEO (visually hidden — no name/role echo under logo)</span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Amazon sitemap priority softened while case is thin</span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Analytics: Umami Cloud live; unused GA4/GSC stubs removed from <code>site.js</code></span></li>
-          <li class="is-done"><span class="box" aria-hidden="true"></span><span>/private dashboard: groups, copy URLs, Forms link, promote checklist</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>/backend dashboard: groups, tabs, copy URLs, Forms link, promote checklist</span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Resume is a native on-site page (<code>/resume</code>) with optional PDF open/download</span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Default share image (<code>/og-image.png</code>) — hero lockup + stack thumbs</span></li>
           <li class="is-done"><span class="box" aria-hidden="true"></span><span>Favicon pointer mark rebuilt as optically centered SVG (<code>/favicon.svg</code>) + download on this page</span></li>
@@ -631,7 +639,7 @@
           <li><span class="box" aria-hidden="true"></span><span>Compress heavy Fount videos / remaining large GIFs</span></li>
           <li><span class="box" aria-hidden="true"></span><span>Amazon case assets when work is public</span></li>
           <li><span class="box" aria-hidden="true"></span><span>Inflection: more showable assets if any leave the paywall</span></li>
-          <li><span class="box" aria-hidden="true"></span><span>Optional: password-protect <code>/private</code> in Netlify</span></li>
+          <li><span class="box" aria-hidden="true"></span><span>Optional: password-protect <code>/backend</code> in Netlify</span></li>
         </ul>
       </div>
     </div>
@@ -647,7 +655,7 @@
   </a>
 </div>
 <footer class="wrap">
-    <span>© 2026 Adam Lorber <span class="build-tag">· private index</span></span>
+    <span>© 2026 Adam Lorber <span class="build-tag">· backend</span></span>
     <a href="#top">Back to top ↑</a>
   </footer>
 </main>
@@ -691,7 +699,7 @@
     var copyPage = document.getElementById('copyPrivateUrl');
     if (copyPage){
       copyPage.addEventListener('click', function(){
-        copyText(location.origin + '/private', copyPage);
+        copyText(location.origin + '/backend', copyPage);
       });
     }
     document.querySelectorAll('.copy-path').forEach(function(btn){
@@ -703,7 +711,7 @@
 
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.private-tab'));
     var panels = Array.prototype.slice.call(document.querySelectorAll('.private-panel'));
-    var valid = { tools:1, cases:1, 'deep-dives':1, assets:1, checklist:1 };
+    var valid = { tools:1, ideas:1, cases:1, 'deep-dives':1, assets:1, checklist:1 };
 
     function activateTab(id, pushHash){
       if (!valid[id]) id = 'tools';
