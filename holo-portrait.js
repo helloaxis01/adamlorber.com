@@ -44,12 +44,10 @@
     var pointerOnly = demo === "pointer" || demo === "full";
     var production = demo === "";
 
-    var targetX = 42;
-    var targetY = 28;
-    var targetAngle = 125;
-    var curX = 42;
-    var curY = 28;
-    var curAngle = 125;
+    var targetX = 50;
+    var targetY = 40;
+    var curX = 50;
+    var curY = 40;
     var pointerInside = false;
     var scrollDriving = false;
     var raf = 0;
@@ -77,15 +75,12 @@
     function setVars() {
       photo.style.setProperty("--bg-x", curX.toFixed(2) + "%");
       photo.style.setProperty("--bg-y", curY.toFixed(2) + "%");
-      photo.style.setProperty("--angle", curAngle.toFixed(2) + "deg");
-      /* Map X into foil band travel so pointer motion is obvious */
-      photo.style.setProperty("--foil-pos", curX.toFixed(2) + "%");
     }
 
     function setTilt(nx, ny) {
       if (!allowTilt) return;
-      var ry = (nx - 0.5) * 12;
-      var rx = (0.5 - ny) * 9;
+      var ry = (nx - 0.5) * 14;
+      var rx = (0.5 - ny) * 10;
       photo.style.setProperty("--rx", rx.toFixed(2) + "deg");
       photo.style.setProperty("--ry", ry.toFixed(2) + "deg");
     }
@@ -100,23 +95,16 @@
       if (!on) {
         photo.style.removeProperty("--bg-x");
         photo.style.removeProperty("--bg-y");
-        photo.style.removeProperty("--angle");
-        photo.style.removeProperty("--foil-pos");
       }
     }
 
     function tick() {
       raf = 0;
       if (!pointerInside && !scrollDriving) return;
-      curX += (targetX - curX) * 0.12;
-      curY += (targetY - curY) * 0.12;
-      curAngle += (targetAngle - curAngle) * 0.12;
+      curX += (targetX - curX) * 0.14;
+      curY += (targetY - curY) * 0.14;
       setVars();
-      if (
-        Math.abs(targetX - curX) > 0.05 ||
-        Math.abs(targetY - curY) > 0.05 ||
-        Math.abs(targetAngle - curAngle) > 0.05
-      ) {
+      if (Math.abs(targetX - curX) > 0.08 || Math.abs(targetY - curY) > 0.08) {
         raf = requestAnimationFrame(tick);
       }
     }
@@ -154,7 +142,6 @@
       ny = Math.min(1, Math.max(0, ny));
       targetX = nx * 100;
       targetY = ny * 100;
-      targetAngle = 90 + nx * 70 + ny * 25;
       setTilt(nx, ny);
       kick();
     }
@@ -198,7 +185,6 @@
 
       targetX = 22 + progress * 56;
       targetY = 18 + (1 - progress) * 48;
-      targetAngle = 105 + progress * 70;
       photo.classList.toggle("is-holo-active", progress > 0.25 && progress < 0.85);
       kick();
     }
