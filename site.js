@@ -191,26 +191,50 @@
     }
   }
 
-  // Lazy-load below-the-fold images; keep early/hero images eager.
+  // Lazy-load below-the-fold images; keep early/hero images eager + high priority.
   var prioritized = false;
   document.querySelectorAll('img').forEach(function (img, i) {
-    if (img.hasAttribute('loading')) return;
     var eager = img.closest('.hero, .p-hero, .stack, .stack-wrap, header');
     // First case-study hero frame after .p-hero
     var caseHero = img.closest('.p-image') && img.closest('main') &&
       img.closest('.p-image').previousElementSibling &&
       img.closest('.p-image').previousElementSibling.classList.contains('p-hero');
-    if (eager || caseHero || i < 2) {
-      img.setAttribute('loading', 'eager');
-      img.setAttribute('decoding', 'async');
-      if (!prioritized && (caseHero || eager || i === 0)) {
+    var alreadyEager = img.getAttribute('loading') === 'eager';
+    var isHero = eager || caseHero || alreadyEager || i < 2;
+
+    if (isHero) {
+      if (!img.hasAttribute('loading')) img.setAttribute('loading', 'eager');
+      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+      if (!prioritized && (caseHero || eager || alreadyEager || i === 0)) {
         img.setAttribute('fetchpriority', 'high');
         prioritized = true;
       }
       return;
     }
+    if (img.hasAttribute('loading')) return;
     img.setAttribute('loading', 'lazy');
     img.setAttribute('decoding', 'async');
+  });
+
+  // Warm the case-study LCP image when hovering/focusing a work card.
+  document.querySelectorAll('a.work-item[href]').forEach(function (link) {
+    var warmed = false;
+    function warm() {
+      if (warmed) return;
+      warmed = true;
+      var media = link.querySelector('.work-media img');
+      var slug = media && media.closest('.work-media') && media.closest('.work-media').getAttribute('data-slug');
+      // Prefer explicit data-hero when present; else skip (thumb ≠ full hero).
+      var hero = link.getAttribute('data-hero');
+      if (!hero) return;
+      var pre = document.createElement('link');
+      pre.rel = 'preload';
+      pre.as = 'image';
+      pre.href = hero;
+      document.head.appendChild(pre);
+    }
+    link.addEventListener('pointerenter', warm, { once: true, passive: true });
+    link.addEventListener('focus', warm, { once: true });
   });
 
   /* ---------- Launch interactions ---------- */

@@ -16,6 +16,7 @@
 <meta name="twitter:description" content="Polish carpentry brand identity: craftsmanship that finally looked like the work.">
 <meta name="twitter:image" content="https://adamlorber.com/images/agra-wood/cover.jpg">
 <link rel="canonical" href="https://adamlorber.com/agra-wood">
+<link rel="preload" as="image" href="images/agra-wood/cover.jpg" fetchpriority="high">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -381,7 +382,7 @@
   </div>
 
   <div class="p-image">
-    <img src="images/agra-wood/cover.jpg" alt="Agra Wood brand cover" loading="eager" width="2500" height="1406">
+    <img src="images/agra-wood/cover.jpg" alt="Agra Wood brand cover" loading="eager" decoding="async" fetchpriority="high" width="2500" height="1406">
   </div>
 
     <section class="wrap case-section" data-section="challenge">
@@ -580,6 +581,6 @@
   })();
 </script>
 
-<script src="site.js?v=stats-br1"></script>
+<script src="site.js?v=lcp-hero1"></script>
 </body>
 </html>

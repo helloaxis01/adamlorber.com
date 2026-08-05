@@ -1,3 +1,7 @@
+# Long-cache static media (query-string bust when assets change).
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
 # Serve resume PDF inline so browsers can preview it (download is opt-in via link).
 /resume.pdf
   Content-Type: application/pdf
