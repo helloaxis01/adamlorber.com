@@ -98,6 +98,8 @@
     .logo-grid{grid-template-columns:repeat(2,1fr);}
     .proc-gallery{grid-template-columns:1fr;}
     .sitemap{grid-template-columns:1fr; gap:32px;}
+    .private-tabs{top:64px;}
+    .private-tab{padding:12px 12px 10px; font-size:10px; letter-spacing:0.1em;}
   }
 
   html[data-theme="light"]{
@@ -307,7 +309,29 @@
   .private-list .asset-actions a:hover{color:var(--ink); border-color:var(--ink-dim);}
   .private-tip{font-size:14px; line-height:1.65; color:var(--ink-dim); max-width:640px; margin:28px 0 28px;}
   .private-tip code{font-family:var(--mono); font-size:12px; color:var(--ink);}
-  .private-section{max-width:720px; margin-top:48px;}
+  .private-tabs{
+    display:flex; flex-wrap:wrap; gap:0; max-width:720px;
+    border-bottom:1px solid var(--line); margin:8px 0 0;
+    position:sticky; top:72px; z-index:40;
+    background:color-mix(in srgb, var(--bg) 92%, transparent);
+    -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+  }
+  .private-tab{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--ink-dim); background:none; border:none; border-bottom:2px solid transparent;
+    padding:14px 16px 12px; margin-bottom:-1px; cursor:pointer;
+  }
+  .private-tab:hover{color:var(--ink);}
+  .private-tab[aria-selected="true"]{
+    color:var(--ink); border-bottom-color:var(--chartreuse);
+  }
+  html[data-theme="light"] .private-tab[aria-selected="true"]{
+    border-bottom-color:#1a1a19;
+  }
+  .private-panel{display:none; max-width:720px; padding:28px 0 96px;}
+  .private-panel.is-active{display:block;}
+  .private-section{max-width:720px; margin-top:0;}
+  .private-section + .private-section{margin-top:40px;}
   .private-section-label{
     font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
     color:var(--ink); margin-bottom:4px;
@@ -338,7 +362,7 @@
   }
   .private-hosts strong{color:var(--ink); font-weight:500;}
   .private-howto{
-    max-width:640px; margin:56px 0 40px; padding-top:36px; border-top:1px solid var(--line);
+    max-width:640px; margin:0 0 40px; padding-top:0; border-top:none;
   }
   .private-howto h2{
     font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
@@ -349,7 +373,7 @@
   .private-howto code{font-family:var(--mono); font-size:12px; color:var(--ink);}
 
   .private-checklist{
-    max-width:720px; margin:0 0 96px; padding-top:36px; border-top:1px solid var(--line);
+    max-width:720px; margin:0; padding-top:36px; border-top:1px solid var(--line);
   }
   .private-checklist > h2{
     font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
@@ -425,6 +449,15 @@
     <p class="private-hosts">You’re on <strong id="currentHost">—</strong>. Bookmark <code>/private</code> on whichever host you use day to day.</p>
     <p class="private-tip">Same list lives in <code>HIDDEN-PAGES.txt</code> in the repo. Paths below include a copy button for sharing.</p>
 
+    <div class="private-tabs" role="tablist" aria-label="Private page sections">
+      <button type="button" class="private-tab" role="tab" id="tab-tools" aria-controls="panel-tools" aria-selected="true" data-tab="tools">Tools</button>
+      <button type="button" class="private-tab" role="tab" id="tab-cases" aria-controls="panel-cases" aria-selected="false" data-tab="cases" tabindex="-1">Cases</button>
+      <button type="button" class="private-tab" role="tab" id="tab-deep-dives" aria-controls="panel-deep-dives" aria-selected="false" data-tab="deep-dives" tabindex="-1">Deep dives</button>
+      <button type="button" class="private-tab" role="tab" id="tab-assets" aria-controls="panel-assets" aria-selected="false" data-tab="assets" tabindex="-1">Assets</button>
+      <button type="button" class="private-tab" role="tab" id="tab-checklist" aria-controls="panel-checklist" aria-selected="false" data-tab="checklist" tabindex="-1">Checklist</button>
+    </div>
+
+    <div class="private-panel is-active" role="tabpanel" id="panel-tools" aria-labelledby="tab-tools" data-panel="tools">
     <div class="private-section">
       <div class="private-section-label">Tools &amp; forms</div>
       <ul class="private-list">
@@ -455,7 +488,9 @@
         </li>
       </ul>
     </div>
+    </div>
 
+    <div class="private-panel" role="tabpanel" id="panel-cases" aria-labelledby="tab-cases" data-panel="cases" hidden>
     <div class="private-section">
       <div class="private-section-label">Archived cases</div>
       <ul class="private-list">
@@ -481,7 +516,9 @@
         </li>
       </ul>
     </div>
+    </div>
 
+    <div class="private-panel" role="tabpanel" id="panel-deep-dives" aria-labelledby="tab-deep-dives" data-panel="deep-dives" hidden>
     <div class="private-section">
       <div class="private-section-label">Deep dives &amp; in progress</div>
       <ul class="private-list">
@@ -502,7 +539,9 @@
         </li>
       </ul>
     </div>
+    </div>
 
+    <div class="private-panel" role="tabpanel" id="panel-assets" aria-labelledby="tab-assets" data-panel="assets" hidden>
     <div class="private-section">
       <div class="private-section-label">Site assets</div>
       <ul class="private-list">
@@ -533,7 +572,9 @@
         </li>
       </ul>
     </div>
+    </div>
 
+    <div class="private-panel" role="tabpanel" id="panel-checklist" aria-labelledby="tab-checklist" data-panel="checklist" hidden>
     <div class="private-howto">
       <h2>Promote a page to Selected Work</h2>
       <ol>
@@ -593,6 +634,7 @@
           <li><span class="box" aria-hidden="true"></span><span>Optional: password-protect <code>/private</code> in Netlify</span></li>
         </ul>
       </div>
+    </div>
     </div>
   </div>
   <div class="site-place wrap" aria-live="polite">
@@ -658,6 +700,54 @@
         copyText(location.origin + path, btn);
       });
     });
+
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.private-tab'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('.private-panel'));
+    var valid = { tools:1, cases:1, 'deep-dives':1, assets:1, checklist:1 };
+
+    function activateTab(id, pushHash){
+      if (!valid[id]) id = 'tools';
+      tabs.forEach(function(tab){
+        var on = tab.getAttribute('data-tab') === id;
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+        tab.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach(function(panel){
+        var on = panel.getAttribute('data-panel') === id;
+        panel.classList.toggle('is-active', on);
+        if (on) panel.removeAttribute('hidden');
+        else panel.setAttribute('hidden', '');
+      });
+      if (pushHash){
+        var next = '#' + id;
+        if (location.hash !== next) history.replaceState(null, '', next);
+      }
+    }
+
+    tabs.forEach(function(tab){
+      tab.addEventListener('click', function(){
+        activateTab(tab.getAttribute('data-tab'), true);
+      });
+      tab.addEventListener('keydown', function(e){
+        var i = tabs.indexOf(tab);
+        var next = -1;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = tabs.length - 1;
+        if (next < 0) return;
+        e.preventDefault();
+        tabs[next].focus();
+        activateTab(tabs[next].getAttribute('data-tab'), true);
+      });
+    });
+
+    function fromHash(){
+      var id = (location.hash || '#tools').replace(/^#/, '');
+      activateTab(id, false);
+    }
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
   })();
 </script>
 <script src="site.js?v=encino-weather1"></script>
