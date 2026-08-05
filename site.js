@@ -322,11 +322,29 @@
       return { prefix: m[1], value: parseFloat(m[2]), suffix: m[3], decimals: (m[2].split('.')[1] || '').length };
     }
 
+    // textContent drops <br>, gluing "Membership" + "Growth". Keep markup.
+    function statPlainText(html) {
+      return String(html || '')
+        .replace(/<br\s*\/?>/gi, ' ')
+        .replace(/&nbsp;/gi, ' ')
+        .replace(/&amp;/g, '&')
+        .replace(/<[^>]+>/g, '')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
     function animateNum(el) {
-      var parsed = parseStat(el.textContent);
+      var html = el.innerHTML;
+      var parsed = parseStat(statPlainText(html));
       if (!parsed || !isFinite(parsed.value)) return;
+      var numMatch = html.match(/(\d+(?:\.\d+)?)/);
+      if (!numMatch) return;
+      var template = html.replace(numMatch[1], '{{N}}');
       var start = performance.now();
       var dur = 900;
+      function render(display) {
+        el.innerHTML = template.split('{{N}}').join(display);
+      }
       function frame(now) {
         var t = Math.min(1, (now - start) / dur);
         var eased = 1 - Math.pow(1 - t, 3);
@@ -334,11 +352,11 @@
         var display = parsed.decimals
           ? current.toFixed(parsed.decimals)
           : String(Math.round(current));
-        el.textContent = parsed.prefix + display + parsed.suffix;
+        render(display);
         if (t < 1) requestAnimationFrame(frame);
-        else el.textContent = parsed.prefix + (parsed.decimals ? parsed.value.toFixed(parsed.decimals) : String(Math.round(parsed.value))) + parsed.suffix;
+        else render(parsed.decimals ? parsed.value.toFixed(parsed.decimals) : String(Math.round(parsed.value)));
       }
-      el.textContent = parsed.prefix + (parsed.decimals ? (0).toFixed(parsed.decimals) : '0') + parsed.suffix;
+      render(parsed.decimals ? (0).toFixed(parsed.decimals) : '0');
       requestAnimationFrame(frame);
     }
 
