@@ -117,16 +117,8 @@
 
   .about{padding-top:158px; padding-bottom:140px;}
   .about-grid{display:grid; grid-template-columns:minmax(0,340px) minmax(0,1fr); gap:72px; align-items:start;}
-  .about-photo{
-    position:relative;
-    aspect-ratio:4/5;
-    max-width:340px;
-    width:100%;
-    overflow:visible;
-    border-radius:0;
-    perspective:900px;
-  }
-  .about-photo .holo-portrait__media{object-position:50% 39%;}
+  .about-photo{position:relative; aspect-ratio:4/5; max-width:340px; width:100%; overflow:hidden; border-radius:0;}
+  .about-photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 39%; display:block;}
   .about-body p{font-family:var(--grotesk); font-weight:400; font-size:15px; line-height:1.8; color:var(--ink); max-width:none; margin-bottom:18px;}
   .about-body p strong{color:var(--ink); font-weight:600;}
   .about-body p:last-of-type{margin-bottom:0;}
@@ -241,7 +233,7 @@
       margin-inline:0;
       background:#f7fadf;
     }
-    .about-photo .holo-portrait__media{object-position:50% 50%;}
+    .about-photo img{object-position:50% 50%;}
     .tl-row{flex-direction:column; gap:4px;}
     .tl-row .tl-year{width:auto;}
     .about-meta{flex-direction:column; gap:22px;}
@@ -428,7 +420,6 @@
   .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
 </style>
   <link rel="stylesheet" href="/site.css?v=next-no-hl1">
-  <link rel="stylesheet" href="/holo-portrait.css?v=8">
 <script defer src="https://cloud.umami.is/script.js" data-website-id="df8fc49d-0ab0-4d84-ba86-407ac7c28ab4"></script>
 </head>
 <body>
@@ -458,9 +449,8 @@
     <div class="label-row reveal"><span class="eyebrow-sm">About</span></div>
     <h1 class="sr-only">About Adam Lorber</h1>
     <div class="about-grid">
-      <div class="about-photo holo-portrait reveal" data-holo>
-        <img class="holo-portrait__media" src="images/about/adam-lorber-portrait.jpg" alt="Adam Lorber portrait" width="1024" height="1536" loading="eager">
-        <span class="holo-portrait__foil" aria-hidden="true"></span>
+      <div class="about-photo reveal">
+        <img src="images/about/adam-lorber-portrait.jpg" alt="Adam Lorber portrait" width="1024" height="1536" loading="eager">
       </div>
       <div class="about-body reveal">
         <p>I'm an Art Director and Lead Designer based in Los Angeles. For sixteen years I directed visual identity for the Television Academy and the Emmy Awards, the kind of work where the deadline is a live event and there's no version two.</p>
@@ -563,7 +553,6 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
-<script src="holo-portrait.js?v=8"></script>
 <script src="site.js?v=stats-br1"></script>
 </body>
 </html>
