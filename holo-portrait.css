@@ -4,6 +4,9 @@
  *
  * Demo modes via [data-holo-demo]:
  *   ambient | hover-tilt | css-scroll | js-scroll | pointer | full
+ *
+ * Visibility note: uses a moving foil band (background-position) so the
+ * shimmer reads clearly on bright chartreuse portraits — not only @property.
  */
 
 @property --bg-x {
@@ -24,15 +27,21 @@
   initial-value: 125deg;
 }
 
+@property --foil-pos {
+  syntax: "<percentage>";
+  inherits: true;
+  initial-value: 0%;
+}
+
 @keyframes holo-ambient {
-  0%   { --bg-x: 28%; --bg-y: 20%; --angle: 108deg; }
-  50%  { --bg-x: 66%; --bg-y: 52%; --angle: 152deg; }
-  100% { --bg-x: 38%; --bg-y: 34%; --angle: 128deg; }
+  0%   { --foil-pos: 0%;   --bg-x: 22%; --bg-y: 18%; --angle: 105deg; }
+  50%  { --foil-pos: 100%; --bg-x: 78%; --bg-y: 62%; --angle: 165deg; }
+  100% { --foil-pos: 0%;   --bg-x: 40%; --bg-y: 36%; --angle: 125deg; }
 }
 
 @keyframes holo-scroll-sweep {
-  from { --bg-x: 16%; --bg-y: 68%; --angle: 98deg; }
-  to   { --bg-x: 82%; --bg-y: 14%; --angle: 172deg; }
+  from { --foil-pos: 0%;   --bg-x: 12%; --bg-y: 72%; --angle: 95deg; }
+  to   { --foil-pos: 100%; --bg-x: 88%; --bg-y: 12%; --angle: 175deg; }
 }
 
 .holo-portrait {
@@ -42,7 +51,8 @@
   --bg-x: 42%;
   --bg-y: 28%;
   --angle: 125deg;
-  --holo-opacity: 0.55;
+  --foil-pos: 0%;
+  --holo-opacity: 0.85;
   --rx: 0deg;
   --ry: 0deg;
   transform-style: preserve-3d;
@@ -56,7 +66,7 @@
 
 /* --- Default production behavior --- */
 .holo-portrait:not(.is-holo-driven):not([data-holo-demo]) {
-  animation: holo-ambient 10s ease-in-out infinite alternate;
+  animation: holo-ambient 4.5s ease-in-out infinite;
 }
 
 .holo-portrait.is-holo-driven {
@@ -67,8 +77,8 @@
   .holo-portrait:hover:not(.is-holo-driven):not([data-holo-demo]),
   .holo-portrait[data-holo-demo="hover-tilt"]:hover,
   .holo-portrait[data-holo-demo="full"]:hover:not(.is-holo-driven) {
-    --rx: -3deg;
-    --ry: 5deg;
+    --rx: -8deg;
+    --ry: 12deg;
   }
 }
 
@@ -87,15 +97,15 @@
   }
 }
 
-/* --- Isolated demo modes (preview page) --- */
+/* --- Isolated demo modes --- */
 .holo-portrait[data-holo-demo="ambient"]:not(.is-holo-driven) {
-  animation: holo-ambient 10s ease-in-out infinite alternate;
+  animation: holo-ambient 4.5s ease-in-out infinite;
   --rx: 0deg;
   --ry: 0deg;
 }
 
 .holo-portrait[data-holo-demo="hover-tilt"]:not(.is-holo-driven) {
-  animation: holo-ambient 10s ease-in-out infinite alternate;
+  animation: holo-ambient 4.5s ease-in-out infinite;
 }
 
 .holo-portrait[data-holo-demo="css-scroll"]:not(.is-holo-driven) {
@@ -109,15 +119,10 @@
   animation-range: entry 0% exit 100%;
 }
 
-.holo-portrait[data-holo-demo="js-scroll"],
-.holo-portrait[data-holo-demo="pointer"],
-.holo-portrait[data-holo-demo="full"] {
-  /* JS owns motion when driven; ambient until then */
-}
 .holo-portrait[data-holo-demo="js-scroll"]:not(.is-holo-driven),
 .holo-portrait[data-holo-demo="pointer"]:not(.is-holo-driven),
 .holo-portrait[data-holo-demo="full"]:not(.is-holo-driven) {
-  animation: holo-ambient 10s ease-in-out infinite alternate;
+  animation: holo-ambient 4.5s ease-in-out infinite;
 }
 
 .holo-portrait__media {
@@ -131,30 +136,50 @@
 
 .holo-portrait__foil {
   position: absolute;
-  inset: 0;
+  inset: -10%;
   z-index: 1;
   pointer-events: none;
   opacity: var(--holo-opacity);
-  mix-blend-mode: color-dodge;
-  background:
+  mix-blend-mode: overlay;
+  background-image:
     linear-gradient(
       var(--angle),
-      rgba(255, 80, 180, 0) 0%,
-      rgba(255, 120, 90, 0.35) 18%,
-      rgba(255, 220, 80, 0.45) 34%,
-      rgba(120, 255, 180, 0.4) 48%,
-      rgba(80, 200, 255, 0.5) 62%,
-      rgba(160, 100, 255, 0.35) 78%,
-      rgba(255, 80, 180, 0) 100%
+      transparent 0%,
+      transparent 28%,
+      rgba(255, 60, 160, 0.75) 38%,
+      rgba(255, 210, 40, 0.85) 46%,
+      rgba(60, 255, 190, 0.8) 54%,
+      rgba(70, 160, 255, 0.75) 62%,
+      rgba(180, 90, 255, 0.7) 70%,
+      transparent 80%,
+      transparent 100%
     ),
     radial-gradient(
       circle at var(--bg-x) var(--bg-y),
-      rgba(255, 255, 255, 0.55) 0%,
-      rgba(255, 240, 200, 0.2) 18%,
-      rgba(120, 220, 255, 0.12) 36%,
-      transparent 58%
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.15) 22%,
+      transparent 48%
     );
-  transition: opacity 0.45s ease;
+  background-size: 220% 220%, 100% 100%;
+  background-position: var(--foil-pos) 50%, center;
+  filter: saturate(1.35) contrast(1.08);
+}
+
+.holo-portrait__foil::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  mix-blend-mode: soft-light;
+  opacity: 0.9;
+  background:
+    linear-gradient(
+      calc(var(--angle) + 90deg),
+      transparent 35%,
+      rgba(255, 255, 255, 0.55) 48%,
+      transparent 62%
+    );
+  background-size: 180% 180%;
+  background-position: var(--foil-pos) center;
 }
 
 .holo-portrait__foil::after {
@@ -162,28 +187,29 @@
   position: absolute;
   inset: 0;
   mix-blend-mode: soft-light;
-  opacity: 0.65;
+  opacity: 0.55;
   background:
     repeating-linear-gradient(
       calc(var(--angle) + 90deg),
-      rgba(255, 255, 255, 0.08) 0px,
-      rgba(255, 255, 255, 0.08) 1px,
+      rgba(255, 255, 255, 0.14) 0px,
+      rgba(255, 255, 255, 0.14) 1px,
       transparent 1px,
-      transparent 3px
+      transparent 4px
     );
 }
 
 .holo-portrait:hover .holo-portrait__foil,
 .holo-portrait.is-holo-active .holo-portrait__foil {
-  opacity: calc(var(--holo-opacity) + 0.12);
+  opacity: 1;
 }
 
 html[data-theme="light"] .holo-portrait {
-  --holo-opacity: 0.28;
+  --holo-opacity: 0.72;
 }
 
 html[data-theme="light"] .holo-portrait__foil {
-  mix-blend-mode: soft-light;
+  mix-blend-mode: multiply;
+  filter: saturate(1.5) contrast(1.05);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -201,16 +227,19 @@ html[data-theme="light"] .holo-portrait__foil {
   }
 
   .holo-portrait__foil {
-    opacity: 0.22;
-    background:
+    opacity: 0.35;
+    background-image:
       linear-gradient(
         125deg,
-        rgba(255, 120, 90, 0.15) 0%,
-        rgba(120, 255, 180, 0.18) 45%,
-        rgba(80, 200, 255, 0.15) 100%
+        rgba(255, 80, 160, 0.25),
+        rgba(80, 220, 200, 0.25),
+        rgba(100, 140, 255, 0.25)
       );
+    background-size: 100% 100%;
+    filter: none;
   }
 
+  .holo-portrait__foil::before,
   .holo-portrait__foil::after {
     display: none;
   }

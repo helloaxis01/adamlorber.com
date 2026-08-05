@@ -78,12 +78,14 @@
       photo.style.setProperty("--bg-x", curX.toFixed(2) + "%");
       photo.style.setProperty("--bg-y", curY.toFixed(2) + "%");
       photo.style.setProperty("--angle", curAngle.toFixed(2) + "deg");
+      /* Map X into foil band travel so pointer motion is obvious */
+      photo.style.setProperty("--foil-pos", curX.toFixed(2) + "%");
     }
 
     function setTilt(nx, ny) {
       if (!allowTilt) return;
-      var ry = (nx - 0.5) * 14;
-      var rx = (0.5 - ny) * 10;
+      var ry = (nx - 0.5) * 22;
+      var rx = (0.5 - ny) * 16;
       photo.style.setProperty("--rx", rx.toFixed(2) + "deg");
       photo.style.setProperty("--ry", ry.toFixed(2) + "deg");
     }
@@ -99,6 +101,7 @@
         photo.style.removeProperty("--bg-x");
         photo.style.removeProperty("--bg-y");
         photo.style.removeProperty("--angle");
+        photo.style.removeProperty("--foil-pos");
       }
     }
 
