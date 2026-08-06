@@ -880,15 +880,22 @@
 
   let peeling = false;
   let undercardStaged = false;
+  // Start with front + next only (LCP). Expand to all visible peeks after load / interaction.
+  let stackWarmCount = 2;
 
   function warmStackImages(){
-    // Only hydrate the front + next card so peeking undercards don't steal LCP bandwidth.
-    order.slice(0, 2).forEach(function(cardIndex){
+    order.slice(0, stackWarmCount).forEach(function(cardIndex){
       const img = cards[cardIndex].querySelector('img');
       if (!img) return;
       const ds = img.getAttribute('data-src');
       if (ds && img.getAttribute('src') !== ds) img.setAttribute('src', ds);
     });
+  }
+
+  function revealStackPeeks(){
+    if (stackWarmCount >= 4) return;
+    stackWarmCount = 4;
+    warmStackImages();
   }
 
   function layout(force){
@@ -971,6 +978,7 @@
   function peelAdvance(direction, opts){
     opts = opts || {};
     if (peeling) return;
+    revealStackPeeks();
     peeling = true;
     const token = ++peelToken;
     stack.classList.add('is-peeling');
@@ -1063,6 +1071,8 @@
   }
 
   layout();
+  window.addEventListener('load', revealStackPeeks);
+  window.setTimeout(revealStackPeeks, 900);
   var resizeTimer = null;
   window.addEventListener('resize', function () {
     clearTimeout(resizeTimer);
