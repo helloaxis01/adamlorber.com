@@ -117,35 +117,7 @@
 
   .about{padding-top:158px; padding-bottom:140px;}
   .about-grid{display:grid; grid-template-columns:minmax(0,340px) minmax(0,1fr); gap:72px; align-items:start;}
-  .about-photo-frame{
-    position:relative;
-    max-width:340px;
-    width:100%;
-  }
-  /* Chartreuse disc behind the portrait — animate transform/opacity only (no layout shift). */
-  .about-photo-orb{
-    position:absolute;
-    z-index:0;
-    width:82%;
-    aspect-ratio:1;
-    border-radius:50%;
-    background:var(--chartreuse);
-    left:-10%;
-    bottom:-8%;
-    pointer-events:none;
-    transform:scale(1);
-    opacity:1;
-    transform-origin:center center;
-    animation:about-photo-breathe 5s ease-in-out infinite;
-  }
-  @keyframes about-photo-breathe{
-    0%, 100%{ transform:scale(1); opacity:1; }
-    50%{ transform:scale(1.03); opacity:0.9; }
-  }
-  @media (prefers-reduced-motion:reduce){
-    .about-photo-orb{ animation:none; }
-  }
-  .about-photo{position:relative; z-index:1; aspect-ratio:4/5; width:100%; overflow:hidden; border-radius:0;}
+  .about-photo{position:relative; aspect-ratio:4/5; max-width:340px; width:100%; overflow:hidden; border-radius:0;}
   .about-photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 39%; display:block;}
   .about-body p{font-family:var(--grotesk); font-weight:400; font-size:15px; line-height:1.8; color:var(--ink); max-width:none; margin-bottom:18px;}
   .about-body p strong{color:var(--ink); font-weight:600;}
@@ -253,7 +225,6 @@
   @media (max-width:900px){
     .about{padding-top:120px; padding-bottom:90px;}
     .about-grid{grid-template-columns:1fr; gap:28px;}
-    .about-photo-frame{max-width:none; width:100%;}
     .about-photo{
       /* Full portrait — match source 2:3 so nothing is cropped */
       aspect-ratio:2/3;
@@ -478,11 +449,8 @@
     <div class="label-row reveal"><span class="eyebrow-sm">About</span></div>
     <h1 class="sr-only">About Adam Lorber</h1>
     <div class="about-grid">
-      <div class="about-photo-frame reveal">
-        <span class="about-photo-orb" aria-hidden="true"></span>
-        <div class="about-photo">
-          <img src="images/about/adam-lorber-portrait.jpg" alt="Adam Lorber portrait" width="1024" height="1536" loading="eager">
-        </div>
+      <div class="about-photo reveal">
+        <img src="images/about/adam-lorber-portrait.jpg" alt="Adam Lorber portrait" width="1024" height="1536" loading="eager">
       </div>
       <div class="about-body reveal">
         <p>I'm an Art Director and Lead Designer based in Los Angeles. For sixteen years I directed visual identity for the Television Academy and the Emmy Awards, the kind of work where the deadline is a live event and there's no version two.</p>
