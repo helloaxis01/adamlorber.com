@@ -191,28 +191,41 @@
     }
   }
 
-  // Lazy-load below-the-fold images; keep early/hero images eager + high priority.
+  // Lazy-load below-the-fold images; keep the true LCP / case-hero frame eager + high priority.
+  // Do NOT eager-load every stack card or work thumb — that competes with LCP on /.
   var prioritized = false;
   document.querySelectorAll('img').forEach(function (img, i) {
-    var eager = img.closest('.hero, .p-hero, .stack, .stack-wrap, header');
+    var stackCard = img.closest('.stack-card');
+    var frontStack = !!stackCard && (
+      stackCard.classList.contains('is-front') ||
+      (!document.querySelector('.stack-card.is-front') && stackCard === document.querySelector('.stack-card'))
+    );
+    var inHeroCopy = !!img.closest('.hero, .p-hero, header');
     var caseHero = img.closest('.p-image') && img.closest('main') &&
       img.closest('.p-image').previousElementSibling &&
       img.closest('.p-image').previousElementSibling.classList.contains('p-hero');
-    var workThumb = img.closest('.work-media');
     var alreadyEager = img.getAttribute('loading') === 'eager';
-    var isHero = eager || caseHero || alreadyEager || i < 2 || !!workThumb;
+    var isLcp = caseHero || frontStack || inHeroCopy || (alreadyEager && !img.closest('.work-media, .stack'));
 
-    if (isHero) {
+    if (isLcp || (alreadyEager && frontStack)) {
       img.setAttribute('loading', 'eager');
-      // Sync decode on the LCP frame avoids a soft→sharp paint hitch.
-      if (caseHero || alreadyEager) img.setAttribute('decoding', 'sync');
+      if (caseHero || frontStack) img.setAttribute('decoding', 'sync');
       else if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
-      if (!prioritized && (caseHero || eager || alreadyEager || i === 0)) {
+      if (!prioritized && (caseHero || frontStack || inHeroCopy || i === 0)) {
         img.setAttribute('fetchpriority', 'high');
         prioritized = true;
       }
       return;
     }
+
+    // Non-front stack cards and work-grid thumbs stay lazy unless the page opted in.
+    if (stackCard || img.closest('.work-media')) {
+      img.setAttribute('loading', 'lazy');
+      if (!img.hasAttribute('decoding')) img.setAttribute('decoding', 'async');
+      img.removeAttribute('fetchpriority');
+      return;
+    }
+
     if (img.hasAttribute('loading')) return;
     img.setAttribute('loading', 'lazy');
     img.setAttribute('decoding', 'async');
