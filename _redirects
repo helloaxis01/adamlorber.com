@@ -34,12 +34,11 @@
 # Legacy Squarespace-style paths
 /televisionacademy        /television-academy                       301
 /televisionacademy/       /television-academy                       301
-/work                     /#work                                    301
-/work/                    /#work                                    301
-/contact                  /#contact                                 301
-/contact/                 /#contact                                 301
-/cart                     /                                         301
-/search                   /                                         301
+# Legacy Squarespace paths. Drop /cart|/search→/ (soft 404); let them 404 cleanly.
+/work                     /                                         301
+/work/                    /                                         301
+/contact                  /                                         301
+/contact/                 /                                         301
 /about/                   /about                                    301
 /resume/                  /resume                                   301
 /amazon/                  /amazon                                   301
