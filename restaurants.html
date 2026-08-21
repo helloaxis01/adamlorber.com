@@ -59,38 +59,42 @@
   .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
   .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
 
-  /* Hero: brand + copy, then full-bleed project previews */
+  /* Hero: left copy + right magnet list */
   .r-hero{
     position:relative;
-    display:flex;
-    flex-direction:column;
-    justify-content:flex-end;
-    padding:132px 0 0;
+    padding:132px 0 clamp(48px,7vw,80px);
     overflow:hidden;
     background:
       radial-gradient(ellipse 90% 70% at 12% 18%, rgba(235,255,18,0.07), transparent 55%),
       radial-gradient(ellipse 70% 55% at 88% 8%, rgba(220,218,211,0.08), transparent 50%),
       linear-gradient(165deg, #222220 0%, var(--bg) 48%, #161615 100%);
   }
+  .r-hero-split{
+    display:grid;
+    grid-template-columns:minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap:clamp(32px,5vw,72px);
+    align-items:center;
+  }
   .r-hero-copy{
     position:relative;
     z-index:1;
-    padding-bottom:clamp(28px,4vw,44px);
+    text-align:left;
+    align-self:center;
   }
   .r-brand{
-    font-family:var(--grotesk); font-weight:800; font-size:clamp(28px,6vw,56px);
+    font-family:var(--grotesk); font-weight:800; font-size:clamp(22px,3.2vw,36px);
     letter-spacing:0.08em; text-transform:uppercase; line-height:1;
-    margin-bottom:28px; text-align:left;
+    margin-bottom:22px; text-align:left;
   }
   .r-headline{
     font-family:var(--serif); font-weight:500;
-    font-size:clamp(32px,5.5vw,64px); line-height:1.08;
-    max-width:22ch; margin:0 0 18px; text-align:left;
+    font-size:clamp(28px,3.8vw,48px); line-height:1.1;
+    max-width:16ch; margin:0 0 16px; text-align:left;
     text-wrap:balance;
   }
   .r-lede{
-    font-size:clamp(15px,1.5vw,17px); line-height:1.65; color:var(--gold);
-    max-width:54ch; margin:0 0 32px; text-align:left;
+    font-size:clamp(15px,1.4vw,17px); line-height:1.65; color:var(--gold);
+    max-width:36ch; margin:0 0 28px; text-align:left;
     text-wrap:pretty;
   }
   .r-cta-row{display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:18px 28px;}
@@ -105,19 +109,18 @@
   }
   .r-cta-quiet:hover{color:var(--chartreuse); border-bottom-color:var(--chartreuse);}
 
-  /* Snellenberg-style magnet list + cursor preview */
+  /* Magnet list + horizontal cursor preview */
   .r-magnet{
     position:relative;
-    padding-bottom:clamp(48px,8vw,88px);
-    min-height:min(72vh, 720px);
+    min-width:0;
   }
   .r-magnet-list{
     display:flex; flex-direction:column;
     position:relative; z-index:2;
   }
   .r-magnet-item{
-    display:flex; align-items:baseline; gap:clamp(14px,2.5vw,28px);
-    padding:clamp(18px,2.4vw,28px) 0;
+    display:flex; align-items:baseline; gap:clamp(12px,1.8vw,20px);
+    padding:clamp(14px,1.8vw,20px) 0;
     border-top:1px solid var(--line);
     color:var(--ink);
     transition:color .25s ease;
@@ -130,7 +133,7 @@
   }
   .r-magnet-name{
     font-family:var(--serif); font-weight:500;
-    font-size:clamp(36px,7.2vw,88px); line-height:0.95;
+    font-size:clamp(26px,3.6vw,52px); line-height:1;
     letter-spacing:-0.02em;
     transition:transform .35s cubic-bezier(.65,0,.35,1), color .25s ease;
     transform-origin:left center;
@@ -139,26 +142,26 @@
   .r-magnet-item:focus-visible .r-magnet-name,
   .r-magnet-item.is-active .r-magnet-name{
     color:var(--chartreuse);
-    transform:translateX(0.12em);
+    transform:translateX(0.1em);
   }
   .r-magnet-item:hover .r-magnet-index,
   .r-magnet-item:focus-visible .r-magnet-index,
   .r-magnet-item.is-active .r-magnet-index{color:var(--chartreuse);}
   .r-magnet-float{
     position:fixed; top:0; left:0; z-index:3;
-    width:min(42vw, 520px);
-    aspect-ratio:4/5;
+    width:min(46vw, 560px);
+    aspect-ratio:16/9;
     pointer-events:none;
     opacity:0;
     visibility:hidden;
-    transform:translate3d(-40%, -45%, 0) scale(0.92);
+    transform:translate3d(-50%, -50%, 0) scale(0.94);
     transition:opacity .28s ease, visibility .28s ease, transform .45s cubic-bezier(.65,0,.35,1);
     overflow:hidden; background:#141413;
     will-change:transform, left, top;
   }
   .r-magnet.is-hot .r-magnet-float{
     opacity:1; visibility:visible;
-    transform:translate3d(-40%, -45%, 0) scale(1);
+    transform:translate3d(-50%, -50%, 0) scale(1);
   }
   .r-magnet-float img{
     width:100%; height:100%; object-fit:cover; display:block;
@@ -317,11 +320,17 @@
   html[data-theme="light"] .carousel-counter{color:#1a1a19; text-shadow:none;}
 
   @media (max-width:900px){
-    .r-hero{padding-top:118px;}
-    .r-magnet{min-height:0; padding-bottom:56px;}
+    .r-hero{padding-top:118px; padding-bottom:56px;}
+    .r-hero-split{
+      grid-template-columns:1fr;
+      gap:36px;
+      align-items:start;
+    }
+    .r-headline{max-width:18ch; font-size:clamp(30px,8vw,42px);}
+    .r-lede{max-width:48ch;}
     .r-magnet-float{display:none !important;}
     .r-magnet-mobile{display:block;}
-    .r-magnet-name{font-size:clamp(30px,9vw,48px);}
+    .r-magnet-name{font-size:clamp(28px,8vw,40px);}
     .r-work{padding-top:64px;}
     .r-project{padding-block:40px 56px;}
     .menu a{font-size:36px;}
@@ -358,7 +367,8 @@
 
 <main id="top">
   <section class="r-hero">
-    <div class="wrap r-hero-copy">
+    <div class="wrap r-hero-split">
+    <div class="r-hero-copy">
       <p class="r-brand">Adam Lorber</p>
       <h1 class="r-headline">Design for restaurants that want to feel like themselves.</h1>
       <p class="r-lede">Identity, menus, signage, merch, and the guest touchpoints that make a room memorable before the first bite.</p>
@@ -367,7 +377,7 @@
         <a class="r-cta-quiet" href="/">Full portfolio</a>
       </div>
     </div>
-    <div class="wrap r-magnet" data-magnet>
+    <div class="r-magnet" data-magnet>
       <div class="r-magnet-mobile" data-magnet-mobile aria-hidden="true">
         <img src="images/olio/portfolio-07.jpg" alt="Olio Italian" width="1600" height="900" loading="eager" decoding="async">
       </div>
@@ -394,8 +404,9 @@
         </a>
       </div>
       <div class="r-magnet-float" data-magnet-float aria-hidden="true">
-        <img data-magnet-img src="images/olio/portfolio-07.jpg" alt="" width="800" height="1000" decoding="async">
+        <img data-magnet-img src="images/olio/portfolio-07.jpg" alt="" width="1600" height="900" decoding="async">
       </div>
+    </div>
     </div>
   </section>
 
