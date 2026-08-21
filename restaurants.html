@@ -59,61 +59,28 @@
   .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
   .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
 
-  /* Hero: left copy + right magnet list */
+  /* Hero: copy above large stage + project name bar */
   .r-hero{
     position:relative;
-    padding:132px 0 clamp(48px,7vw,80px);
+    padding:132px 0 0;
     overflow:hidden;
-    background:#171614;
-  }
-  .r-hero-atmosphere{
-    position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden;
-  }
-  .r-hero-atmosphere img{
-    position:absolute; inset:-28%;
-    width:156%; height:156%;
-    max-width:none;
-    object-fit:cover;
-    display:block;
-    filter:blur(92px) saturate(1.75) contrast(1.2) brightness(0.62);
-    transform:scale(1.08);
-    opacity:1;
-  }
-  .r-hero-atmosphere img.is-shift{
-    inset:-36% -18% -20% -40%;
-    filter:blur(110px) saturate(1.9) contrast(1.15) brightness(0.55);
-    mix-blend-mode:screen;
-    opacity:0.55;
-    transform:scale(1.2) rotate(-8deg);
-  }
-  .r-hero-atmosphere::after{
-    content:""; position:absolute; inset:0;
-    background:
-      linear-gradient(108deg, rgba(14,13,12,0.78) 0%, rgba(14,13,12,0.42) 46%, rgba(14,13,12,0.62) 100%),
-      linear-gradient(180deg, rgba(14,13,12,0.35) 0%, transparent 42%, rgba(14,13,12,0.55) 100%);
-  }
-  .r-hero-split{
-    position:relative; z-index:1;
-    display:grid;
-    grid-template-columns:minmax(0, 0.95fr) minmax(0, 1.05fr);
-    gap:clamp(32px,5vw,72px);
-    align-items:center;
+    background:var(--bg);
   }
   .r-hero-copy{
     position:relative;
     z-index:1;
     text-align:left;
-    align-self:center;
+    padding-bottom:clamp(24px,3.5vw,36px);
   }
   .r-headline{
     font-family:var(--serif); font-weight:500;
-    font-size:clamp(30px,4.1vw,52px); line-height:1.08;
-    max-width:16ch; margin:0 0 18px; text-align:left;
+    font-size:clamp(28px,4vw,48px); line-height:1.15;
+    max-width:22ch; margin:0 0 16px; text-align:left;
     text-wrap:balance;
   }
   .r-lede{
-    font-size:clamp(15px,1.4vw,17px); line-height:1.65; color:var(--gold);
-    max-width:36ch; margin:0 0 28px; text-align:left;
+    font-size:clamp(15px,1.45vw,17px); line-height:1.65; color:var(--gold);
+    max-width:48ch; margin:0 0 28px; text-align:left;
     text-wrap:pretty;
   }
   .r-cta-row{display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:18px 28px;}
@@ -128,71 +95,56 @@
   }
   .r-cta-quiet:hover{color:var(--chartreuse); border-bottom-color:var(--chartreuse);}
 
-  /* Magnet list + horizontal cursor preview */
-  .r-magnet{
+  .r-stage{width:100%; margin-bottom:0;}
+  .r-stage-frame{
     position:relative;
-    min-width:0;
-  }
-  .r-magnet-list{
-    display:flex; flex-direction:column;
-    position:relative; z-index:2;
-  }
-  .r-magnet-item{
-    display:flex; align-items:baseline; gap:clamp(12px,1.8vw,20px);
-    padding:clamp(14px,1.8vw,20px) 0;
-    border-top:1px solid var(--line);
-    color:var(--ink);
-    transition:color .25s ease;
-  }
-  .r-magnet-item:last-child{border-bottom:1px solid var(--line);}
-  .r-magnet-index{
-    font-family:var(--mono); font-size:11px; letter-spacing:0.12em;
-    color:var(--ink-dim); min-width:2.2em; flex-shrink:0;
-    transition:color .25s ease;
-  }
-  .r-magnet-name{
-    font-family:var(--serif); font-weight:500;
-    font-size:clamp(26px,3.6vw,52px); line-height:1;
-    letter-spacing:-0.02em;
-    transition:transform .35s cubic-bezier(.65,0,.35,1), color .25s ease;
-    transform-origin:left center;
-  }
-  .r-magnet-item:hover .r-magnet-name,
-  .r-magnet-item:focus-visible .r-magnet-name,
-  .r-magnet-item.is-active .r-magnet-name{
-    color:var(--chartreuse);
-    transform:translateX(0.1em);
-  }
-  .r-magnet-item:hover .r-magnet-index,
-  .r-magnet-item:focus-visible .r-magnet-index,
-  .r-magnet-item.is-active .r-magnet-index{color:var(--chartreuse);}
-  .r-magnet-float{
-    position:fixed; top:0; left:0; z-index:3;
-    width:min(46vw, 560px);
+    width:100%;
     aspect-ratio:16/9;
-    pointer-events:none;
+    overflow:hidden;
+    background:#141413;
+  }
+  .r-stage-frame img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
     opacity:0;
-    visibility:hidden;
-    transform:translate3d(-50%, -50%, 0) scale(0.94);
-    transition:opacity .28s ease, visibility .28s ease, transform .45s cubic-bezier(.65,0,.35,1);
-    overflow:hidden; background:#141413;
-    will-change:transform, left, top;
+    transition:opacity .45s ease;
+    will-change:opacity;
   }
-  .r-magnet.is-hot .r-magnet-float{
-    opacity:1; visibility:visible;
-    transform:translate3d(-50%, -50%, 0) scale(1);
+  .r-stage-frame img.is-on{opacity:1;}
+  .r-stage-bar{
+    position:absolute; left:0; right:0; bottom:0; z-index:2;
+    display:flex; flex-wrap:nowrap; align-items:stretch;
+    gap:0;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    background:linear-gradient(180deg, transparent 0%, rgba(10,10,9,0.72) 38%, rgba(10,10,9,0.88) 100%);
+    padding:28px clamp(12px,2.5vw,28px) 14px;
   }
-  .r-magnet-float img{
-    width:100%; height:100%; object-fit:cover; display:block;
+  .r-stage-bar::-webkit-scrollbar{display:none;}
+  .r-stage-tab{
+    flex:1 1 0;
+    min-width:max(7.5rem, 18%);
+    appearance:none; border:0; background:transparent; cursor:pointer;
+    font-family:var(--mono); font-size:clamp(10px,1.1vw,12px);
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:rgba(239,238,233,0.55);
+    text-align:left;
+    padding:10px 12px 8px;
+    border-bottom:2px solid transparent;
+    transition:color .25s ease, border-color .25s ease;
+    white-space:nowrap;
   }
-  .r-magnet-mobile{
-    display:none;
-    width:100%; aspect-ratio:16/9;
-    overflow:hidden; background:#141413;
-    margin-bottom:8px;
+  .r-stage-tab:hover,
+  .r-stage-tab:focus-visible{
+    color:rgba(239,238,233,0.92);
+    outline:none;
   }
-  .r-magnet-mobile img{
-    width:100%; height:100%; object-fit:cover; display:block;
+  .r-stage-tab.is-active{
+    color:#efeee9;
+    border-bottom-color:var(--chartreuse);
   }
 
   .r-work{padding-block:96px 40px;}
@@ -313,33 +265,20 @@
     --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19;
     --line:rgba(26,26,25,0.14);
   }
-  html[data-theme="light"] .r-hero{background:#efeee9;}
-  html[data-theme="light"] .r-hero-atmosphere img{
-    filter:blur(100px) saturate(1.55) contrast(1.1) brightness(1.05);
-  }
-  html[data-theme="light"] .r-hero-atmosphere img.is-shift{
-    filter:blur(120px) saturate(1.7) contrast(1.05) brightness(1.0);
-    mix-blend-mode:multiply;
-    opacity:0.4;
-  }
-  html[data-theme="light"] .r-hero-atmosphere::after{
-    background:
-      linear-gradient(108deg, rgba(239,238,233,0.82) 0%, rgba(239,238,233,0.55) 46%, rgba(239,238,233,0.72) 100%),
-      linear-gradient(180deg, rgba(239,238,233,0.4) 0%, transparent 42%, rgba(239,238,233,0.55) 100%);
-  }
-  html[data-theme="light"] .r-magnet-item:hover .r-magnet-name,
-  html[data-theme="light"] .r-magnet-item:focus-visible .r-magnet-name,
-  html[data-theme="light"] .r-magnet-item.is-active .r-magnet-name{
-    color:#1a1a19; background:var(--chartreuse);
-    box-decoration-break:clone; -webkit-box-decoration-break:clone;
-    padding-inline:0.08em; margin-inline:-0.08em;
-  }
-  html[data-theme="light"] .r-magnet-item:hover .r-magnet-index,
-  html[data-theme="light"] .r-magnet-item:focus-visible .r-magnet-index,
-  html[data-theme="light"] .r-magnet-item.is-active .r-magnet-index{color:#1a1a19;}
   html[data-theme="light"] .r-lede{color:var(--ink-dim);}
   html[data-theme="light"] .r-cta{color:#1a1a19;}
   html[data-theme="light"] .r-cta-quiet:hover{color:#1a1a19; background:var(--chartreuse); border-bottom-color:transparent; padding-inline:0.2em; margin-inline:-0.2em;}
+  html[data-theme="light"] .r-stage-bar{
+    background:linear-gradient(180deg, transparent 0%, rgba(239,238,233,0.78) 40%, rgba(239,238,233,0.94) 100%);
+  }
+  html[data-theme="light"] .r-stage-tab{color:rgba(26,26,25,0.45);}
+  html[data-theme="light"] .r-stage-tab:hover,
+  html[data-theme="light"] .r-stage-tab:focus-visible{color:rgba(26,26,25,0.85);}
+  html[data-theme="light"] .r-stage-tab.is-active{
+    color:#1a1a19;
+    border-bottom-color:#1a1a19;
+    background:var(--chartreuse);
+  }
   html[data-theme="light"] .theme-toggle:hover{
     color:#1a1a19; background:var(--chartreuse);
   }
@@ -347,21 +286,17 @@
   html[data-theme="light"] .carousel-counter{color:#1a1a19; text-shadow:none;}
 
   @media (max-width:900px){
-    .r-hero{padding-top:118px; padding-bottom:56px;}
-    .r-hero-split{
-      grid-template-columns:1fr;
-      gap:36px;
-      align-items:start;
-    }
-    .r-headline{max-width:18ch; font-size:clamp(30px,8vw,42px);}
-    .r-lede{max-width:48ch;}
-    .r-magnet-float{display:none !important;}
-    .r-magnet-mobile{display:block;}
-    .r-magnet-name{font-size:clamp(28px,8vw,40px);}
+    .r-hero{padding-top:118px;}
+    .r-headline{max-width:18ch; font-size:clamp(28px,7.5vw,40px);}
+    .r-lede{max-width:42ch;}
+    .r-stage-frame{aspect-ratio:4/3;}
+    .r-stage-tab{min-width:8.5rem; font-size:10px; padding:10px 10px 8px;}
+    .r-stage-bar{padding:32px 10px 12px;}
     .r-work{padding-top:64px;}
     .r-project{padding-block:40px 56px;}
     .menu a{font-size:36px;}
   }
+
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
     *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
@@ -394,12 +329,7 @@
 
 <main id="top">
   <section class="r-hero">
-    <div class="r-hero-atmosphere" aria-hidden="true">
-      <img src="images/mootz-tom/Mootz-Tom_Portfolio-05.jpg" alt="" width="2200" height="1400" decoding="async" style="object-position:center">
-      <img class="is-shift" src="images/mootz-tom/Mootz-Tom_Portfolio-05.jpg" alt="" width="2200" height="1400" decoding="async" style="object-position:center">
-    </div>
-    <div class="wrap r-hero-split">
-    <div class="r-hero-copy">
+    <div class="wrap r-hero-copy">
       <h1 class="r-headline">Design for restaurants that want to feel like themselves.</h1>
       <p class="r-lede">Identity, menus, signage, merch, and the guest touchpoints that make a room memorable before the first bite.</p>
       <div class="r-cta-row">
@@ -407,36 +337,18 @@
         <a class="r-cta-quiet" href="/">Full portfolio</a>
       </div>
     </div>
-    <div class="r-magnet" data-magnet>
-      <div class="r-magnet-mobile" data-magnet-mobile aria-hidden="true">
-        <img src="images/olio/portfolio-07.jpg" alt="Olio Italian" width="1600" height="900" loading="eager" decoding="async">
+    <div class="r-stage" data-stage>
+      <div class="r-stage-frame" data-stage-frame>
+        <img class="is-on" src="images/olio/hero-stack.jpg" alt="Olio Italian chef plating" width="2200" height="1238" loading="eager" decoding="async" style="object-position:center">
+        <img src="images/olio/hero-stack.jpg" alt="" width="2200" height="1238" decoding="async" aria-hidden="true" style="object-position:center">
+        <div class="r-stage-bar" role="tablist" aria-label="Projects">
+        <button type="button" class="r-stage-tab is-active" role="tab" aria-selected="true" data-stage-tab data-src="images/olio/hero-stack.jpg" data-alt="Olio Italian chef plating" data-href="#olio">Olio Italian</button>
+        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/joes-stone-crab/hero-stack.jpg" data-alt="Joe's Stone Crab neon sign" data-href="#joes">Joe&rsquo;s Stone Crab</button>
+        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/chick-fil-a/Chick-fil-A_Task1.jpg" data-alt="Chick-fil-A campaign" data-href="#chick-fil-a">Chick-fil-A</button>
+        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/studies-process/GreatGreek_Portfolio-10.jpg" data-alt="Great Greek identity" data-href="#great-greek">Great Greek</button>
+        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/mootz-tom/Mootz-Tom_Portfolio-05.jpg" data-alt="Mootz &amp; Tom matchbooks" data-href="#mootz-tom">Mootz &amp; Tom</button>
+        </div>
       </div>
-      <div class="r-magnet-list">
-        <a class="r-magnet-item" href="#olio" data-magnet-item data-src="images/olio/portfolio-07.jpg" data-alt="Olio Italian">
-          <span class="r-magnet-index">01</span>
-          <span class="r-magnet-name">Olio Italian</span>
-        </a>
-        <a class="r-magnet-item" href="#joes" data-magnet-item data-src="images/joes-stone-crab/DSCF1488.jpg" data-alt="Joe's Stone Crab">
-          <span class="r-magnet-index">02</span>
-          <span class="r-magnet-name">Joe&rsquo;s Stone Crab</span>
-        </a>
-        <a class="r-magnet-item" href="#chick-fil-a" data-magnet-item data-src="images/chick-fil-a/Chick-fil-A_Task1.jpg" data-alt="Chick-fil-A">
-          <span class="r-magnet-index">03</span>
-          <span class="r-magnet-name">Chick-fil-A</span>
-        </a>
-        <a class="r-magnet-item" href="#great-greek" data-magnet-item data-src="images/studies-process/GreatGreek_Portfolio-10.jpg" data-alt="Great Greek">
-          <span class="r-magnet-index">04</span>
-          <span class="r-magnet-name">Great Greek</span>
-        </a>
-        <a class="r-magnet-item" href="#mootz-tom" data-magnet-item data-src="images/mootz-tom/Mootz-Tom_Portfolio-08.jpg" data-alt="Mootz &amp; Tom">
-          <span class="r-magnet-index">05</span>
-          <span class="r-magnet-name">Mootz &amp; Tom</span>
-        </a>
-      </div>
-      <div class="r-magnet-float" data-magnet-float aria-hidden="true">
-        <img data-magnet-img src="images/olio/portfolio-07.jpg" alt="" width="1600" height="900" decoding="async">
-      </div>
-    </div>
     </div>
   </section>
 
@@ -691,88 +603,56 @@
   })();
 
   (function(){
-    var root = document.querySelector('[data-magnet]');
+    var root = document.querySelector('[data-stage]');
     if (!root) return;
-    var items = Array.prototype.slice.call(root.querySelectorAll('[data-magnet-item]'));
-    var floatEl = root.querySelector('[data-magnet-float]');
-    var floatImg = root.querySelector('[data-magnet-img]');
-    var mobile = root.querySelector('[data-magnet-mobile]');
-    var mobileImg = mobile && mobile.querySelector('img');
-    if (!items.length || !floatEl || !floatImg) return;
+    var frame = root.querySelector('[data-stage-frame]');
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[data-stage-tab]'));
+    var imgs = Array.prototype.slice.call(frame.querySelectorAll('img'));
+    if (!tabs.length || imgs.length < 2) return;
 
-    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    var x = window.innerWidth * 0.62, y = window.innerHeight * 0.42;
-    var tx = x, ty = y;
-    var raf = 0;
     var active = null;
+    var showing = 0;
 
-    items.forEach(function(item){
-      var img = new Image();
-      img.src = item.getAttribute('data-src');
+    tabs.forEach(function(tab){
+      var preload = new Image();
+      preload.src = tab.getAttribute('data-src');
     });
 
-    function setImage(item){
-      if (!item || item === active) return;
-      active = item;
-      items.forEach(function(el){ el.classList.toggle('is-active', el === item); });
-      var src = item.getAttribute('data-src');
-      var alt = item.getAttribute('data-alt') || '';
-      floatImg.src = src;
-      floatImg.alt = alt;
-      if (mobileImg){
-        mobileImg.src = src;
-        mobileImg.alt = alt;
-      }
+    function goTo(tab){
+      var target = tab && tab.getAttribute('data-href');
+      if (!target || target.charAt(0) !== '#') return;
+      var el = document.querySelector(target);
+      if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
     }
 
-    function show(){ root.classList.add('is-hot'); }
-    function hide(){
-      root.classList.remove('is-hot');
-      items.forEach(function(el){ el.classList.remove('is-active'); });
-      active = null;
+    function show(tab){
+      if (!tab || tab === active) return;
+      active = tab;
+      tabs.forEach(function(el){
+        var on = el === tab;
+        el.classList.toggle('is-active', on);
+        el.setAttribute('aria-selected', on ? 'true' : 'false');
+      });
+      var src = tab.getAttribute('data-src');
+      var alt = tab.getAttribute('data-alt') || '';
+      var next = 1 - showing;
+      imgs[next].src = src;
+      imgs[next].alt = alt;
+      imgs[next].classList.add('is-on');
+      imgs[showing].classList.remove('is-on');
+      showing = next;
     }
 
-    function tick(){
-      raf = 0;
-      x += (tx - x) * (reduceMotion ? 1 : 0.14);
-      y += (ty - y) * (reduceMotion ? 1 : 0.14);
-      floatEl.style.left = x + 'px';
-      floatEl.style.top = y + 'px';
-      if (Math.abs(tx - x) > 0.4 || Math.abs(ty - y) > 0.4){
-        raf = requestAnimationFrame(tick);
-      }
-    }
-    function move(nx, ny){
-      tx = nx; ty = ny;
-      if (!raf) raf = requestAnimationFrame(tick);
-    }
+    tabs.forEach(function(tab){
+      tab.addEventListener('mouseenter', function(){ show(tab); });
+      tab.addEventListener('focus', function(){ show(tab); });
+      tab.addEventListener('click', function(){
+        show(tab);
+        goTo(tab);
+      });
+    });
 
-    if (finePointer){
-      root.addEventListener('mousemove', function(e){
-        move(e.clientX, e.clientY);
-      });
-      items.forEach(function(item){
-        item.addEventListener('mouseenter', function(){
-          setImage(item);
-          show();
-        });
-        item.addEventListener('focus', function(){
-          setImage(item);
-          show();
-          var r = item.getBoundingClientRect();
-          move(Math.min(window.innerWidth - 40, r.right + 40), r.top + r.height / 2);
-        });
-      });
-      root.addEventListener('mouseleave', hide);
-    } else {
-      // Touch / coarse: update mobile preview on focus/click prep
-      setImage(items[0]);
-      items.forEach(function(item){
-        item.addEventListener('pointerenter', function(){ setImage(item); });
-        item.addEventListener('focus', function(){ setImage(item); });
-      });
-    }
+    active = tabs[0];
   })();
 </script>
 <script src="site.js?v=nav-smooth1"></script>
