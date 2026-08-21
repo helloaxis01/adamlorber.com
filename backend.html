@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
+<script>document.documentElement.classList.add("backend-locked");</script>
 <title>/backend · Adam Lorber</title>
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://www.adamlorber.com/og-image.png">
@@ -454,6 +455,7 @@
   }
   .gate-error{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#c45c5c; min-height:1.2em;}
   .backend-page[hidden]{display:none;}
+  html.backend-locked .backend-page{display:none !important;}
 
 </style>
   <link rel="stylesheet" href="/site.css?v=nav-smooth1">
@@ -724,8 +726,8 @@
   </footer>
 </main>
 <script>
-  const GATE_KEY = "backend-unlocked";
-  const PASS = "Private";
+  const GATE_KEY = "backend-gate-v2";
+  const PASS = "F!0rida!";
   const gate = document.getElementById("backendGate");
   const page = document.querySelector(".backend-page");
   const form = document.getElementById("backendGateForm");
@@ -733,7 +735,14 @@
   function unlock() {
     gate.hidden = true;
     page.hidden = false;
+    document.documentElement.classList.remove("backend-locked");
   }
+  function lock() {
+    document.documentElement.classList.add("backend-locked");
+    gate.hidden = false;
+    page.hidden = true;
+  }
+  lock();
   try {
     if (sessionStorage.getItem(GATE_KEY) === "1") unlock();
   } catch (e) {}

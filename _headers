@@ -78,6 +78,10 @@
   Cache-Control: no-cache, no-store, must-revalidate
   Pragma: no-cache
 
+/backend
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+
 /questions
   Cache-Control: no-cache, no-store, must-revalidate
   Pragma: no-cache
