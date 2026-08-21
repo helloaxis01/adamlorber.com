@@ -149,38 +149,35 @@
     -webkit-user-drag:none; user-select:none; pointer-events:none;
   }
 
-  /* Chick-fil-A: 16:9 frames; non-16:9 assets centered on white */
-  .r-cfa-stack{display:flex; flex-direction:column; gap:clamp(20px,3vw,32px);}
-  .r-frame{
-    position:relative; width:100%; aspect-ratio:16/9;
-    overflow:hidden; background:#141413;
-  }
-  .r-frame img{width:100%; height:100%; object-fit:cover; display:block;}
-  .r-frame.on-white{
+  /* Chick-fil-A matte slides: non-16:9 assets float on white */
+  .carousel-slide.on-white{
     background:#fff;
     display:flex; align-items:center; justify-content:center;
+    padding:clamp(40px,8vw,96px);
+    box-sizing:border-box;
   }
-  .r-frame.on-white img{
+  .carousel-slide.on-white > img{
     width:auto; height:auto; max-width:100%; max-height:100%;
     object-fit:contain;
   }
-  .r-frame.on-white .r-pair{
+  .carousel-slide.on-white .r-pair{
     display:flex; align-items:center; justify-content:center;
     gap:clamp(16px,2.5vw,36px);
     width:100%; height:100%;
-    padding:clamp(18px,3.5vw,44px);
     box-sizing:border-box;
   }
-  .r-frame.on-white .r-pair video{
+  .carousel-slide.on-white .r-pair video{
     height:100%; width:auto; max-width:calc(50% - 12px);
     object-fit:contain; display:block; background:#0f0f0e;
+    pointer-events:none;
   }
-  .shot-label{
-    font-family:var(--mono); font-size:11px; letter-spacing:0.1em;
-    text-transform:uppercase; color:var(--ink-dim);
-    margin-bottom:10px;
+  #carousel-cfa .carousel-arrow{color:#1a1a19;}
+  #carousel-cfa .carousel-counter{
+    color:#fff;
+    background:rgba(26,26,25,0.55);
+    padding:5px 9px;
+    text-shadow:none;
   }
-  .r-cfa-shot{display:flex; flex-direction:column;}
 
   .theme-toggle{
     background:none; border:1px solid var(--line); color:var(--ink-dim);
@@ -366,30 +363,23 @@
         <h2 class="r-project-name">Chick-fil-A</h2>
       </div>
       <p class="r-project-blurb">Social and campaign concepts that carry in-person hospitality onto platforms that move fast, without losing the brand&rsquo;s warmth.</p>
-      <div class="r-cfa-stack">
-        <div class="r-frame">
-          <img src="images/chick-fil-a/Chick-fil-A_Task1.jpg" alt="Chick-fil-A logo with stylized chicken head on red background" loading="lazy" width="2500" height="1406">
-        </div>
-        <div class="r-cfa-shot">
-          <span class="shot-label">Sauce Shuffle · Sandwich &amp; Nuggets</span>
-          <div class="r-frame on-white">
-            <div class="r-pair">
-              <video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with sandwich background" src="images/chick-fil-a/Chick-fil-A_Task2.mp4" preload="metadata"></video>
-              <video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with nuggets" src="images/chick-fil-a/Chick-fil-A_Task2_v2.mp4" preload="metadata"></video>
+      <div class="ba-carousel block-carousel" id="carousel-cfa">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1.jpg" alt="Chick-fil-A logo with stylized chicken head on red background" loading="lazy" width="2500" height="1406"></div>
+            <div class="carousel-slide on-white">
+              <div class="r-pair">
+                <video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with sandwich background" src="images/chick-fil-a/Chick-fil-A_Task2.mp4" preload="metadata"></video>
+                <video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with nuggets" src="images/chick-fil-a/Chick-fil-A_Task2_v2.mp4" preload="metadata"></video>
+              </div>
             </div>
+            <div class="carousel-slide on-white"><img src="images/chick-fil-a/Chick-fil-A_Task1-01.jpg" alt="Chick-fil-A Instagram grid employee appreciation concept featuring Haley" loading="lazy" width="2200" height="1355"></div>
+            <div class="carousel-slide on-white"><img src="images/chick-fil-a/Chick-fil-A_Task1-02.jpg" alt="Chick-fil-A Facebook employee appreciation post concept featuring Jake" loading="lazy" width="1842" height="922"></div>
+            <div class="carousel-slide on-white"><img src="images/chick-fil-a/Chick-fil-A_Task1-03.jpg" alt="Chick-fil-A team member appreciation OOH billboard concept featuring Alby" loading="lazy" width="2500" height="834"></div>
           </div>
-        </div>
-        <div class="r-cfa-shot">
-          <span class="shot-label">Instagram Grid · We ♥ Haley</span>
-          <div class="r-frame on-white"><img src="images/chick-fil-a/Chick-fil-A_Task1-01.jpg" alt="Chick-fil-A Instagram grid employee appreciation concept featuring Haley" loading="lazy" width="2200" height="1355"></div>
-        </div>
-        <div class="r-cfa-shot">
-          <span class="shot-label">Facebook Post · We ♥ Jake</span>
-          <div class="r-frame on-white"><img src="images/chick-fil-a/Chick-fil-A_Task1-02.jpg" alt="Chick-fil-A Facebook employee appreciation post concept featuring Jake" loading="lazy" width="1842" height="922"></div>
-        </div>
-        <div class="r-cfa-shot">
-          <span class="shot-label">OOH Billboard · Meet Alby</span>
-          <div class="r-frame on-white"><img src="images/chick-fil-a/Chick-fil-A_Task1-03.jpg" alt="Chick-fil-A team member appreciation OOH billboard concept featuring Alby" loading="lazy" width="2500" height="834"></div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / <span class="carousel-total">05</span></div>
         </div>
       </div>
     </article>
