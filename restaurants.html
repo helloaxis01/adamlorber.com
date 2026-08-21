@@ -59,35 +59,23 @@
   .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
   .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
 
-  /* Hero: one composition, brand first, full-bleed image plane */
+  /* Hero: brand + copy, then full-bleed project previews */
   .r-hero{
     position:relative;
-    min-height:100svh;
     display:flex;
     flex-direction:column;
     justify-content:flex-end;
-    padding:120px 0 72px;
+    padding:132px 0 0;
     overflow:hidden;
-  }
-  .r-hero-media{
-    position:absolute; inset:0; z-index:0;
-  }
-  .r-hero-media img{
-    width:100%; height:100%; object-fit:cover; object-position:50% 40%;
-  }
-  .r-hero-media::after{
-    content:"";
-    position:absolute; inset:0;
     background:
-      linear-gradient(to top, rgba(26,26,25,0.94) 0%, rgba(26,26,25,0.72) 38%, rgba(26,26,25,0.35) 62%, rgba(26,26,25,0.45) 100%),
-      radial-gradient(ellipse 70% 50% at 20% 80%, rgba(235,255,18,0.08), transparent 55%);
+      radial-gradient(ellipse 90% 70% at 12% 18%, rgba(235,255,18,0.07), transparent 55%),
+      radial-gradient(ellipse 70% 55% at 88% 8%, rgba(220,218,211,0.08), transparent 50%),
+      linear-gradient(165deg, #222220 0%, var(--bg) 48%, #161615 100%);
   }
-  .r-hero .wrap{
+  .r-hero-copy{
     position:relative;
     z-index:1;
-    width:100%;
-    text-align:left;
-    align-self:stretch;
+    padding-bottom:clamp(40px,6vw,64px);
   }
   .r-brand{
     font-family:var(--grotesk); font-weight:800; font-size:clamp(28px,6vw,56px);
@@ -96,12 +84,14 @@
   }
   .r-headline{
     font-family:var(--serif); font-weight:500;
-    font-size:clamp(32px,5.5vw,64px); line-height:1.05;
-    max-width:18ch; margin:0 0 18px; text-align:left;
+    font-size:clamp(32px,5.5vw,64px); line-height:1.08;
+    max-width:22ch; margin:0 0 18px; text-align:left;
+    text-wrap:balance;
   }
   .r-lede{
     font-size:clamp(15px,1.5vw,17px); line-height:1.65; color:var(--gold);
-    max-width:40ch; margin:0 0 32px; text-align:left;
+    max-width:54ch; margin:0 0 32px; text-align:left;
+    text-wrap:pretty;
   }
   .r-cta-row{display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:18px 28px;}
   .r-cta{
@@ -115,13 +105,32 @@
   }
   .r-cta-quiet:hover{color:var(--chartreuse); border-bottom-color:var(--chartreuse);}
 
+  .r-previews{
+    display:grid;
+    grid-template-columns:repeat(5, minmax(0, 1fr));
+    gap:2px;
+    width:100%;
+    background:var(--line);
+  }
+  .r-previews a{
+    display:block; position:relative; aspect-ratio:5/6;
+    overflow:hidden; background:#141413;
+  }
+  .r-previews img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .7s cubic-bezier(.65,0,.35,1);
+  }
+  .r-previews a:hover img,
+  .r-previews a:focus-visible img{transform:scale(1.045);}
+  .r-previews a:focus-visible{outline:2px solid var(--chartreuse); outline-offset:-2px; z-index:1;}
+
   .r-work{padding-block:96px 40px;}
   .r-work-intro{
     font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
     color:var(--ink-dim); margin-bottom:48px;
   }
 
-  .r-project{padding-block:56px 72px; border-top:1px solid var(--line);}
+  .r-project{padding-block:56px 72px; border-top:1px solid var(--line); scroll-margin-top:96px;}
   .r-project-head{
     display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between;
     gap:12px 24px; margin-bottom:14px;
@@ -130,7 +139,9 @@
     font-family:var(--serif); font-weight:500; font-size:clamp(28px,4vw,48px); line-height:1.05;
   }
   .r-project-blurb{
-    font-size:15px; line-height:1.7; color:var(--ink); max-width:52ch; margin-bottom:28px;
+    font-size:15px; line-height:1.7; color:var(--ink);
+    max-width:68ch; margin-bottom:28px;
+    text-wrap:pretty;
   }
 
   .ba-carousel{position:relative; margin-top:4px;}
@@ -212,10 +223,13 @@
   }
   .r-close-title{
     font-family:var(--serif); font-weight:500; font-size:clamp(28px,4.5vw,48px);
-    line-height:1.1; max-width:16ch; margin-bottom:16px;
+    line-height:1.12; max-width:20ch; margin-bottom:16px;
+    text-wrap:balance;
   }
   .r-close-copy{
-    font-size:15px; line-height:1.7; color:var(--ink-dim); max-width:42ch; margin-bottom:32px;
+    font-size:15px; line-height:1.7; color:var(--ink-dim);
+    max-width:58ch; margin-bottom:32px;
+    text-wrap:pretty;
   }
 
   footer.wrap{padding-block:48px 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
@@ -228,9 +242,11 @@
     --bg:#efeee9; --ink:#1a1a19; --ink-dim:#6b6963; --gold:#1a1a19;
     --line:rgba(26,26,25,0.14);
   }
-  html[data-theme="light"] .r-hero-media::after{
+  html[data-theme="light"] .r-hero{
     background:
-      linear-gradient(to top, rgba(239,238,233,0.96) 0%, rgba(239,238,233,0.78) 40%, rgba(239,238,233,0.28) 65%, rgba(26,26,25,0.25) 100%);
+      radial-gradient(ellipse 90% 70% at 12% 18%, rgba(235,255,18,0.18), transparent 55%),
+      radial-gradient(ellipse 70% 55% at 88% 10%, rgba(26,26,25,0.06), transparent 50%),
+      linear-gradient(165deg, #f4f3ee 0%, var(--bg) 50%, #e7e5de 100%);
   }
   html[data-theme="light"] .r-lede{color:var(--ink-dim);}
   html[data-theme="light"] .r-cta{color:#1a1a19;}
@@ -242,7 +258,19 @@
   html[data-theme="light"] .carousel-counter{color:#1a1a19; text-shadow:none;}
 
   @media (max-width:900px){
-    .r-hero{min-height:92svh; padding:110px 0 56px;}
+    .r-hero{padding-top:118px;}
+    .r-previews{
+      display:flex;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      gap:2px;
+      background:var(--line);
+    }
+    .r-previews a{
+      flex:0 0 46vw;
+      scroll-snap-align:start;
+    }
     .r-work{padding-top:64px;}
     .r-project{padding-block:40px 56px;}
     .menu a{font-size:36px;}
@@ -279,10 +307,7 @@
 
 <main id="top">
   <section class="r-hero">
-    <div class="r-hero-media" aria-hidden="true">
-      <img src="images/olio/portfolio-07.jpg" alt="" width="2200" height="1238" loading="eager" decoding="sync" fetchpriority="high">
-    </div>
-    <div class="wrap">
+    <div class="wrap r-hero-copy">
       <p class="r-brand">Adam Lorber</p>
       <h1 class="r-headline">Design for restaurants that want to feel like themselves.</h1>
       <p class="r-lede">Identity, menus, signage, merch, and the guest touchpoints that make a room memorable before the first bite.</p>
@@ -290,6 +315,13 @@
         <a class="r-cta" href="mailto:hello@adamlorber.com" data-umami-event="Restaurants Email CTA">Email Adam</a>
         <a class="r-cta-quiet" href="/">Full portfolio</a>
       </div>
+    </div>
+    <div class="r-previews" aria-label="Project previews">
+      <a href="#olio"><img src="images/olio/portfolio-07.jpg" alt="Olio Italian" width="800" height="960" loading="eager" decoding="sync" fetchpriority="high"></a>
+      <a href="#joes"><img src="images/joes-stone-crab/DSCF1488.jpg" alt="Joe's Stone Crab" width="800" height="960" loading="eager" decoding="async"></a>
+      <a href="#chick-fil-a"><img src="images/chick-fil-a/Chick-fil-A_Task1.jpg" alt="Chick-fil-A" width="800" height="960" loading="lazy" decoding="async"></a>
+      <a href="#great-greek"><img src="images/studies-process/GreatGreek_Portfolio-10.jpg" alt="Great Greek" width="800" height="960" loading="lazy" decoding="async"></a>
+      <a href="#mootz-tom"><img src="images/mootz-tom/Mootz-Tom_Portfolio-08.jpg" alt="Mootz &amp; Tom" width="800" height="960" loading="lazy" decoding="async"></a>
     </div>
   </section>
 
