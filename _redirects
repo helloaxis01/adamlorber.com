@@ -31,6 +31,7 @@
 /case-study-editor        /case-study-editor.html                   200
 /og-preview               /og-preview.html                          200
 /restaurants              /restaurants.html                         200
+/cpg                      /cpg.html                                 200
 
 # Legacy Squarespace-style paths
 /televisionacademy        /television-academy                       301
@@ -92,3 +93,4 @@
 /axis.html                                          /axis                   301!
 /mitzvahs.html                                      /mitzvahs               301!
 /restaurants.html                                   /restaurants            301!
+/cpg.html                                           /cpg                    301!

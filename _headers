@@ -93,3 +93,7 @@
 /restaurants
   Cache-Control: no-cache, no-store, must-revalidate
   Pragma: no-cache
+
+/cpg
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache

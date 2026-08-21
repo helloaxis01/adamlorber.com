@@ -16,6 +16,7 @@ files locally from this folder).
   /axis                 axis.html                    AXIS app showcase (screens + brand)
   /mitzvahs             mitzvahs.html                Bespoke Mitzvahs (standalone client page)
   /restaurants          restaurants.html             Cold-call one-pager · restaurant / hospitality work
+  /cpg                  cpg.html                     Cold-call one-pager · CPG / packaging work
   /editor               editor.html                  Site editor tool (noindex)
   /case-study-editor    case-study-editor.html       Case study editor tool (noindex)
 

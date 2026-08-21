@@ -21,6 +21,8 @@ Disallow: /mitzvahs
 Disallow: /mitzvahs.html
 Disallow: /restaurants
 Disallow: /restaurants.html
+Disallow: /cpg
+Disallow: /cpg.html
 Disallow: /agra-wood
 Disallow: /agra-wood.html
 Disallow: /project-agra-wood.html
