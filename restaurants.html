@@ -82,22 +82,28 @@
       linear-gradient(to top, rgba(26,26,25,0.94) 0%, rgba(26,26,25,0.72) 38%, rgba(26,26,25,0.35) 62%, rgba(26,26,25,0.45) 100%),
       radial-gradient(ellipse 70% 50% at 20% 80%, rgba(235,255,18,0.08), transparent 55%);
   }
-  .r-hero .wrap{position:relative; z-index:1;}
+  .r-hero .wrap{
+    position:relative;
+    z-index:1;
+    width:100%;
+    text-align:left;
+    align-self:stretch;
+  }
   .r-brand{
     font-family:var(--grotesk); font-weight:800; font-size:clamp(28px,6vw,56px);
     letter-spacing:0.08em; text-transform:uppercase; line-height:1;
-    margin-bottom:28px;
+    margin-bottom:28px; text-align:left;
   }
   .r-headline{
     font-family:var(--serif); font-weight:500;
     font-size:clamp(32px,5.5vw,64px); line-height:1.05;
-    max-width:16ch; margin-bottom:18px;
+    max-width:18ch; margin:0 0 18px; text-align:left;
   }
   .r-lede{
     font-size:clamp(15px,1.5vw,17px); line-height:1.65; color:var(--gold);
-    max-width:38ch; margin-bottom:32px;
+    max-width:40ch; margin:0 0 32px; text-align:left;
   }
-  .r-cta-row{display:flex; flex-wrap:wrap; align-items:center; gap:18px 28px;}
+  .r-cta-row{display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-start; gap:18px 28px;}
   .r-cta{
     font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
     font-weight:700; background:var(--chartreuse); color:#1a1a19; padding:16px 26px;
@@ -123,24 +129,9 @@
   .r-project-name{
     font-family:var(--serif); font-weight:500; font-size:clamp(28px,4vw,48px); line-height:1.05;
   }
-  .r-project-link{
-    font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--ink-dim);
-  }
-  .r-project-link:hover{color:var(--chartreuse);}
   .r-project-blurb{
     font-size:15px; line-height:1.7; color:var(--ink); max-width:52ch; margin-bottom:28px;
   }
-  .r-shots{
-    display:grid; grid-template-columns:1.2fr 0.8fr; gap:2px;
-  }
-  .r-shots.triple{grid-template-columns:1fr 1fr 1fr;}
-  .r-shot{
-    position:relative; aspect-ratio:16/10; overflow:hidden; background:#141413;
-  }
-  .r-shots .r-shot:first-child{aspect-ratio:16/11;}
-  .r-shots.triple .r-shot{aspect-ratio:4/5;}
-  .r-shot img{width:100%; height:100%; object-fit:cover;}
 
   .ba-carousel{position:relative; margin-top:4px;}
   .carousel-viewport{
@@ -152,7 +143,8 @@
   .carousel-slide{
     flex:0 0 100%; width:100%; height:100%; position:relative;
   }
-  .carousel-slide img{width:100%; height:100%; object-fit:cover;}
+  .carousel-slide img,
+  .carousel-slide video{width:100%; height:100%; object-fit:cover; display:block;}
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); z-index:2;
     width:44px; height:44px; border:none; background:transparent; cursor:pointer;
@@ -166,6 +158,7 @@
     font-family:var(--mono); font-size:11px; letter-spacing:0.08em; color:#fff;
     text-shadow:0 1px 3px rgba(0,0,0,0.55);
   }
+  .carousel-counter .carousel-total{opacity:0.85;}
 
   .r-close{
     padding:96px 0 120px; border-top:1px solid var(--line);
@@ -196,12 +189,9 @@
   html[data-theme="light"] .r-lede{color:var(--ink-dim);}
   html[data-theme="light"] .r-cta{color:#1a1a19;}
   html[data-theme="light"] .r-cta-quiet:hover{color:#1a1a19; background:var(--chartreuse); border-bottom-color:transparent; padding-inline:0.2em; margin-inline:-0.2em;}
-  html[data-theme="light"] .r-project-link:hover{color:#1a1a19; background:var(--chartreuse); padding-inline:0.15em; margin-inline:-0.15em;}
 
   @media (max-width:900px){
     .r-hero{min-height:92svh; padding:110px 0 56px;}
-    .r-shots, .r-shots.triple{grid-template-columns:1fr;}
-    .r-shots .r-shot:first-child, .r-shots.triple .r-shot{aspect-ratio:16/10;}
     .r-work{padding-top:64px;}
     .r-project{padding:40px 0 56px;}
     .menu a{font-size:36px;}
@@ -258,36 +248,87 @@
     <article class="r-project" id="olio">
       <div class="r-project-head">
         <h2 class="r-project-name">Olio Italian</h2>
-        <a class="r-project-link" href="/olio">Full case</a>
       </div>
       <p class="r-project-blurb">A modern take on neighborhood Italian. End-to-end identity from olive-leaf mark through menus, apparel, and the front door.</p>
-      <div class="r-shots">
-        <div class="r-shot"><img src="images/olio/portfolio-07.jpg" alt="Olio Italian chef in branded apron" loading="lazy" width="2200" height="1238"></div>
-        <div class="r-shot"><img src="images/olio/portfolio-03.jpg" alt="Olio Italian branded coffee cup" loading="lazy" width="2500" height="1406"></div>
+      <div class="ba-carousel block-carousel" id="carousel-olio">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/olio/portfolio-07.jpg" alt="Olio Italian chef in branded apron" loading="lazy" width="2200" height="1238"></div>
+            <div class="carousel-slide"><img src="images/olio/portfolio-04.jpg" alt="Olio Italian logo concept sheet" loading="lazy" width="2500" height="1407"></div>
+            <div class="carousel-slide"><img src="images/olio/portfolio-08.jpg" alt="Olio mark concept: O plus olive branch" loading="lazy" width="2500" height="1406"></div>
+            <div class="carousel-slide"><img src="images/olio/portfolio-10.jpg" alt="Olio Italian wordmark over Italian landscape" loading="lazy" width="2200" height="1237"></div>
+            <div class="carousel-slide"><img src="images/olio/portfolio-02.jpg" alt="Olio Italian lockup in olive wreath" loading="lazy" width="2200" height="1237"></div>
+            <div class="carousel-slide"><img src="images/olio/portfolio-09.jpg" alt="Olio O mark in olive wreath" loading="lazy" width="2200" height="1237"></div>
+            <div class="carousel-slide"><img src="images/olio/portfolio-03.jpg" alt="Olio Italian branded coffee cup" loading="lazy" width="2500" height="1406"></div>
+            <div class="carousel-slide"><img src="images/olio/portfolio-06.jpg" alt="Olio Italian branded apron" loading="lazy" width="2500" height="1406"></div>
+            <div class="carousel-slide"><img src="images/olio/portfolio-01.jpg" alt="Olio Italian window sign wordmark" loading="lazy" width="2500" height="1406"></div>
+            <div class="carousel-slide"><img src="images/olio/dsc-0663.jpg" alt="Olio Italian restaurant exterior" loading="lazy" width="2200" height="1237"></div>
+            <div class="carousel-slide"><img src="images/olio/olio-3.jpg" alt="Olio Italian restaurant interior" loading="lazy" width="2048" height="1152"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / <span class="carousel-total">11</span></div>
+        </div>
       </div>
     </article>
 
     <article class="r-project" id="joes">
       <div class="r-project-head">
         <h2 class="r-project-name">Joe&rsquo;s Stone Crab</h2>
-        <a class="r-project-link" href="/joes-stone-crab">Full case</a>
       </div>
       <p class="r-project-blurb">Art direction and photography for the 100th anniversary book Waiting At Joe&rsquo;s, told through the people who built one of America&rsquo;s highest-grossing restaurants.</p>
-      <div class="r-shots">
-        <div class="r-shot"><img src="images/joes-stone-crab/IMG_0068.jpg" alt="Joe's Stone Crab restaurant exterior" loading="lazy" width="1500" height="1143"></div>
-        <div class="r-shot"><img src="images/joes-stone-crab/hero-stack.jpg" alt="Joe's Stone Crab anniversary book photography" loading="lazy" width="1500" height="1143"></div>
+      <div class="ba-carousel block-carousel" id="carousel-joes">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0068.jpg" alt="Joe's Stone Crab restaurant exterior, Home of the Crab sign" loading="lazy" width="1500" height="1143"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0073.jpg" alt="Joe's Stone Crab staff portrait photography" loading="lazy" width="2200" height="1466"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0087.jpg" alt="Joe's Stone Crab waitstaff portrait" loading="lazy" width="1500" height="1000"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0078.jpg" alt="Joe's Stone Crab candid staff photography" loading="lazy" width="1500" height="1000"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0081.jpg" alt="Joe's Stone Crab staff portrait" loading="lazy" width="1500" height="1000"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0098.jpg" alt="Joe's Stone Crab staff portrait" loading="lazy" width="1500" height="1125"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0083.jpg" alt="Joe's Stone Crab staff portrait" loading="lazy" width="1500" height="1000"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0086.jpg" alt="Joe's Stone Crab staff portrait" loading="lazy" width="1500" height="1000"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0104.jpg" alt="Joe's Stone Crab staff portrait, candid moment" loading="lazy" width="1500" height="1000"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0108.jpg" alt="Joe's Stone Crab staff portrait" loading="lazy" width="1500" height="1000"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0112.jpg" alt="Joe's Stone Crab staff portrait" loading="lazy" width="1500" height="1249"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0122.jpg" alt="Joe's Stone Crab staff portrait series" loading="lazy" width="1500" height="1000"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0130.jpg" alt="Joe's Stone Crab staff portrait" loading="lazy" width="1500" height="1010"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0134.jpg" alt="Joe's Stone Crab staff portrait" loading="lazy" width="1500" height="999"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0141.jpg" alt="Joe's Stone Crab staff portrait" loading="lazy" width="1500" height="1000"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0138.jpg" alt="Joe's Stone Crab staff portrait, dining room" loading="lazy" width="1500" height="1048"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0153.jpg" alt="Joe's Stone Crab staff portrait" loading="lazy" width="1500" height="1000"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_0155.jpg" alt="Joe's Stone Crab final portrait series" loading="lazy" width="1500" height="1000"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/DSCF1488.jpg" alt="Joe's Stone Crab wait staff captains" loading="lazy" width="2200" height="1760"></div>
+            <div class="carousel-slide"><img src="images/joes-stone-crab/IMG_1548.jpg" alt="Framed photographs at the entrance of Joe's Stone Crab" loading="lazy" width="1650" height="2200"></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / <span class="carousel-total">20</span></div>
+        </div>
       </div>
     </article>
 
     <article class="r-project" id="chick-fil-a">
       <div class="r-project-head">
         <h2 class="r-project-name">Chick-fil-A</h2>
-        <a class="r-project-link" href="/chick-fil-a">Full case</a>
       </div>
       <p class="r-project-blurb">Social and campaign concepts that carry in-person hospitality onto platforms that move fast, without losing the brand&rsquo;s warmth.</p>
-      <div class="r-shots">
-        <div class="r-shot"><img src="images/chick-fil-a/hero-stack.jpg" alt="Chick-fil-A campaign creative" loading="lazy" width="2500" height="1406"></div>
-        <div class="r-shot"><img src="images/chick-fil-a/Chick-fil-A_Task1-01.jpg" alt="Chick-fil-A Instagram grid concept" loading="lazy" width="2200" height="1355"></div>
+      <div class="ba-carousel block-carousel" id="carousel-cfa">
+        <div class="carousel-viewport">
+          <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1.jpg" alt="Chick-fil-A logo with stylized chicken head on red background" loading="lazy" width="2500" height="1406"></div>
+            <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-01.jpg" alt="Chick-fil-A Instagram grid employee appreciation concept featuring Haley" loading="lazy" width="2200" height="1355"></div>
+            <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-02.jpg" alt="Chick-fil-A Facebook employee appreciation post concept featuring Jake" loading="lazy" width="1842" height="922"></div>
+            <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-03.jpg" alt="Chick-fil-A team member appreciation OOH billboard concept featuring Alby" loading="lazy" width="2500" height="834"></div>
+            <div class="carousel-slide"><img src="images/chick-fil-a/meet-alby-cover.jpg" alt="Chick-fil-A Meet Alby campaign cover" loading="lazy" width="2500" height="1406"></div>
+            <div class="carousel-slide"><img src="images/chick-fil-a/hero-stack.jpg" alt="Chick-fil-A campaign creative" loading="lazy" width="2500" height="1406"></div>
+            <div class="carousel-slide"><video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with sandwich background" src="images/chick-fil-a/Chick-fil-A_Task2.mp4" preload="metadata"></video></div>
+            <div class="carousel-slide"><video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with nuggets" src="images/chick-fil-a/Chick-fil-A_Task2_v2.mp4" preload="metadata"></video></div>
+          </div>
+          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / <span class="carousel-total">08</span></div>
+        </div>
       </div>
     </article>
 
@@ -307,7 +348,7 @@
           </div>
           <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / <span class="carousel-total">05</span></div>
         </div>
       </div>
     </article>
@@ -320,15 +361,21 @@
       <div class="ba-carousel block-carousel" id="carousel-mootz">
         <div class="carousel-viewport">
           <div class="carousel-track">
+            <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-02.jpg" alt="Mootz &amp; Tom brand concept art, pink circular badges" loading="lazy" width="2200" height="1237"></div>
             <div class="carousel-slide"><img src="images/mootz-tom/hero-stack.jpg" alt="Mootz &amp; Tom coaster designs" loading="lazy" width="2200" height="1237"></div>
             <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-10.jpg" alt="Mootz &amp; Tom logo over raw steaks" loading="lazy" width="2200" height="1238"></div>
-            <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-09.jpg" alt="Mootz &amp; Tom plated steak" loading="lazy" width="2200" height="1238"></div>
-            <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-04.jpg" alt="Mootz &amp; Tom brand identity" loading="lazy" width="2500" height="1407"></div>
-            <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-08.jpg" alt="Mootz &amp; Tom brand applications" loading="lazy" width="2200" height="1238"></div>
+            <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-03.jpg" alt="Mootz &amp; Tom brand collateral" loading="lazy" width="2200" height="1237"></div>
+            <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-04.jpg" alt="Mootz &amp; Tom menu design" loading="lazy" width="2500" height="1407"></div>
+            <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-05.jpg" alt="Mootz &amp; Tom matchbook designs" loading="lazy" width="2500" height="1407"></div>
+            <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-06.jpg" alt="Mootz &amp; Tom merchandise and collateral" loading="lazy" width="2500" height="1407"></div>
+            <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-07.jpg" alt="Mootz &amp; Tom signage and interior branding" loading="lazy" width="2500" height="1407"></div>
+            <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-08.jpg" alt="Mootz &amp; Tom Missed Steak campaign visual" loading="lazy" width="2200" height="1238"></div>
+            <div class="carousel-slide"><img src="images/mootz-tom/Mootz-Tom_Portfolio-09.jpg" alt="Mootz &amp; Tom plated steak with M&amp;T logo" loading="lazy" width="2200" height="1238"></div>
+            <div class="carousel-slide"><img src="images/mootz-tom/thumbnail.jpg" alt="Mootz &amp; Tom steakhouse wordmark" loading="lazy" width="1600" height="900"></div>
           </div>
           <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
           <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="carousel-counter"><span class="carousel-current">01</span> / 05</div>
+          <div class="carousel-counter"><span class="carousel-current">01</span> / <span class="carousel-total">11</span></div>
         </div>
       </div>
     </article>
@@ -403,6 +450,8 @@
         track.style.transition = 'transform 0.45s cubic-bezier(0.65,0,0.35,1)';
         track.style.transform = 'translate3d(' + slideX(0) + 'px,0,0)';
         if (counter) counter.textContent = String(index + 1).padStart(2, '0');
+        var totalEl = carousel.querySelector('.carousel-total');
+        if (totalEl) totalEl.textContent = String(total).padStart(2, '0');
       }
       function go(dir){
         index = (index + dir + total) % total;
