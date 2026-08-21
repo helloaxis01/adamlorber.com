@@ -135,20 +135,42 @@
 
   .ba-carousel{position:relative; margin-top:4px;}
   .carousel-viewport{
-    position:relative; width:100%; height:auto; min-height:240px;
+    position:relative; width:100%; aspect-ratio:16/9;
     background:#141413; overflow:hidden; touch-action:pan-y; cursor:grab;
   }
   .carousel-viewport:active{cursor:grabbing;}
-  .carousel-track{display:flex; height:100%; will-change:transform; align-items:stretch;}
+  .carousel-track{display:flex; height:100%; will-change:transform;}
   .carousel-slide{
     flex:0 0 100%; width:100%; height:100%; position:relative;
-    display:flex; align-items:center; justify-content:center;
-    background:#141413;
   }
   .carousel-slide img,
   .carousel-slide video{
-    width:100%; height:100%; object-fit:contain; display:block;
+    width:100%; height:100%; object-fit:cover; display:block;
+    -webkit-user-drag:none; user-select:none; pointer-events:none;
   }
+
+  /* Chick-fil-A: same framing as /project-chick-fil-a */
+  .r-cfa-stack{display:flex; flex-direction:column; gap:clamp(28px,4vw,48px);}
+  .r-frame{
+    position:relative; width:100%; aspect-ratio:16/9;
+    overflow:hidden; background:#141413;
+  }
+  .r-frame img{width:100%; height:100%; object-fit:cover; display:block;}
+  .r-frame.natural{aspect-ratio:auto;}
+  .r-frame.natural img{height:auto; object-fit:contain;}
+  .tiktok-pair{
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:clamp(20px,3vw,40px); align-items:start; max-width:900px; margin:0 auto;
+  }
+  .tiktok-pair .shot{display:flex; flex-direction:column; gap:14px;}
+  .tiktok-pair .r-frame{aspect-ratio:auto; background:#0f0f0e;}
+  .tiktok-pair .r-frame video{width:100%; height:auto; object-fit:contain; display:block;}
+  .shot-label{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--ink-dim);
+  }
+  .r-cfa-shots{display:flex; flex-direction:column; gap:48px;}
+  .r-cfa-shots .shot{display:flex; flex-direction:column; gap:14px;}
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); z-index:2;
     width:44px; height:44px; border:none; background:transparent; cursor:pointer;
@@ -198,6 +220,7 @@
     .r-hero{min-height:92svh; padding:110px 0 56px;}
     .r-work{padding-top:64px;}
     .r-project{padding:40px 0 56px;}
+    .tiktok-pair{grid-template-columns:1fr; max-width:420px;}
     .menu a{font-size:36px;}
   }
   @media (prefers-reduced-motion:reduce){
@@ -317,21 +340,37 @@
         <h2 class="r-project-name">Chick-fil-A</h2>
       </div>
       <p class="r-project-blurb">Social and campaign concepts that carry in-person hospitality onto platforms that move fast, without losing the brand&rsquo;s warmth.</p>
-      <div class="ba-carousel block-carousel" id="carousel-cfa">
-        <div class="carousel-viewport">
-          <div class="carousel-track">
-            <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1.jpg" alt="Chick-fil-A logo with stylized chicken head on red background" loading="lazy" width="2500" height="1406"></div>
-            <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-01.jpg" alt="Chick-fil-A Instagram grid employee appreciation concept featuring Haley" loading="lazy" width="2200" height="1355"></div>
-            <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-02.jpg" alt="Chick-fil-A Facebook employee appreciation post concept featuring Jake" loading="lazy" width="1842" height="922"></div>
-            <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-03.jpg" alt="Chick-fil-A team member appreciation OOH billboard concept featuring Alby" loading="lazy" width="2500" height="834"></div>
-            <div class="carousel-slide"><img src="images/chick-fil-a/meet-alby-cover.jpg" alt="Chick-fil-A Meet Alby campaign cover" loading="lazy" width="2500" height="1406"></div>
-            <div class="carousel-slide"><img src="images/chick-fil-a/hero-stack.jpg" alt="Chick-fil-A campaign creative" loading="lazy" width="2500" height="1406"></div>
-            <div class="carousel-slide"><video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with sandwich background" src="images/chick-fil-a/Chick-fil-A_Task2.mp4" preload="metadata"></video></div>
-            <div class="carousel-slide"><video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with nuggets" src="images/chick-fil-a/Chick-fil-A_Task2_v2.mp4" preload="metadata"></video></div>
+      <div class="r-cfa-stack">
+        <div class="r-frame">
+          <img src="images/chick-fil-a/Chick-fil-A_Task1.jpg" alt="Chick-fil-A logo with stylized chicken head on red background" loading="lazy" width="2500" height="1406">
+        </div>
+        <div class="tiktok-pair">
+          <div class="shot">
+            <span class="shot-label">Sauce Shuffle · Sandwich</span>
+            <div class="r-frame">
+              <video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with sandwich background" src="images/chick-fil-a/Chick-fil-A_Task2.mp4" preload="metadata"></video>
+            </div>
           </div>
-          <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
-          <div class="carousel-counter"><span class="carousel-current">01</span> / <span class="carousel-total">08</span></div>
+          <div class="shot">
+            <span class="shot-label">Sauce Shuffle · Nuggets</span>
+            <div class="r-frame">
+              <video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with nuggets" src="images/chick-fil-a/Chick-fil-A_Task2_v2.mp4" preload="metadata"></video>
+            </div>
+          </div>
+        </div>
+        <div class="r-cfa-shots">
+          <div class="shot">
+            <span class="shot-label">Instagram · Employee appreciation</span>
+            <div class="r-frame natural"><img src="images/chick-fil-a/Chick-fil-A_Task1-01.jpg" alt="Chick-fil-A Instagram grid employee appreciation concept featuring Haley" loading="lazy" width="2200" height="1355"></div>
+          </div>
+          <div class="shot">
+            <span class="shot-label">Facebook · Employee appreciation</span>
+            <div class="r-frame natural"><img src="images/chick-fil-a/Chick-fil-A_Task1-02.jpg" alt="Chick-fil-A Facebook employee appreciation post concept featuring Jake" loading="lazy" width="1842" height="922"></div>
+          </div>
+          <div class="shot">
+            <span class="shot-label">OOH · Team member appreciation</span>
+            <div class="r-frame natural"><img src="images/chick-fil-a/Chick-fil-A_Task1-03.jpg" alt="Chick-fil-A team member appreciation OOH billboard concept featuring Alby" loading="lazy" width="2500" height="834"></div>
+          </div>
         </div>
       </div>
     </article>
@@ -439,31 +478,6 @@
       let pointerId = null;
 
       function viewportW(){ return Math.round(viewport.getBoundingClientRect().width); }
-      function mediaSize(media){
-        if (!media) return null;
-        if (media.tagName === 'VIDEO'){
-          var vw = media.videoWidth, vh = media.videoHeight;
-          if (vw && vh) return { w: vw, h: vh };
-          return null;
-        }
-        var nw = media.naturalWidth, nh = media.naturalHeight;
-        if (nw && nh) return { w: nw, h: nh };
-        return null;
-      }
-      function syncViewportHeight(){
-        var slide = slides[index];
-        var media = slide && slide.querySelector('img, video');
-        var size = mediaSize(media);
-        var w = viewportW();
-        if (!size || !w){
-          viewport.style.height = Math.round(w * 9 / 16) + 'px';
-          return;
-        }
-        var h = Math.round(w * (size.h / size.w));
-        var maxH = Math.round(Math.min(window.innerHeight * 0.78, 900));
-        if (h > maxH) h = maxH;
-        viewport.style.height = h + 'px';
-      }
       function syncSlideWidths(){
         var w = viewportW();
         for (var i = 0; i < slides.length; i++){
@@ -476,7 +490,6 @@
       function slideX(dragPx){ return -(index * viewportW()) + (dragPx || 0); }
       function update(){
         syncSlideWidths();
-        syncViewportHeight();
         track.style.transition = 'transform 0.45s cubic-bezier(0.65,0,0.35,1)';
         track.style.transform = 'translate3d(' + slideX(0) + 'px,0,0)';
         if (counter) counter.textContent = String(index + 1).padStart(2, '0');
@@ -490,17 +503,6 @@
 
       carousel.querySelector('.carousel-prev').addEventListener('click', function(){ go(-1); });
       carousel.querySelector('.carousel-next').addEventListener('click', function(){ go(1); });
-
-      slides.forEach(function(slide){
-        var media = slide.querySelector('img, video');
-        if (!media) return;
-        if (media.tagName === 'IMG'){
-          if (media.complete) return;
-          media.addEventListener('load', function(){ if (!dragging) update(); });
-        } else {
-          media.addEventListener('loadedmetadata', function(){ if (!dragging) update(); });
-        }
-      });
 
       viewport.addEventListener('pointerdown', function(e){
         if (e.button !== 0) return;
