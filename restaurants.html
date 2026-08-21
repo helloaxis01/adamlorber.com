@@ -135,16 +135,20 @@
 
   .ba-carousel{position:relative; margin-top:4px;}
   .carousel-viewport{
-    position:relative; width:100%; aspect-ratio:16/9; background:#141413;
-    overflow:hidden; touch-action:pan-y; cursor:grab;
+    position:relative; width:100%; height:auto; min-height:240px;
+    background:#141413; overflow:hidden; touch-action:pan-y; cursor:grab;
   }
   .carousel-viewport:active{cursor:grabbing;}
-  .carousel-track{display:flex; height:100%; will-change:transform;}
+  .carousel-track{display:flex; height:100%; will-change:transform; align-items:stretch;}
   .carousel-slide{
     flex:0 0 100%; width:100%; height:100%; position:relative;
+    display:flex; align-items:center; justify-content:center;
+    background:#141413;
   }
   .carousel-slide img,
-  .carousel-slide video{width:100%; height:100%; object-fit:cover; display:block;}
+  .carousel-slide video{
+    width:100%; height:100%; object-fit:contain; display:block;
+  }
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); z-index:2;
     width:44px; height:44px; border:none; background:transparent; cursor:pointer;
@@ -435,6 +439,31 @@
       let pointerId = null;
 
       function viewportW(){ return Math.round(viewport.getBoundingClientRect().width); }
+      function mediaSize(media){
+        if (!media) return null;
+        if (media.tagName === 'VIDEO'){
+          var vw = media.videoWidth, vh = media.videoHeight;
+          if (vw && vh) return { w: vw, h: vh };
+          return null;
+        }
+        var nw = media.naturalWidth, nh = media.naturalHeight;
+        if (nw && nh) return { w: nw, h: nh };
+        return null;
+      }
+      function syncViewportHeight(){
+        var slide = slides[index];
+        var media = slide && slide.querySelector('img, video');
+        var size = mediaSize(media);
+        var w = viewportW();
+        if (!size || !w){
+          viewport.style.height = Math.round(w * 9 / 16) + 'px';
+          return;
+        }
+        var h = Math.round(w * (size.h / size.w));
+        var maxH = Math.round(Math.min(window.innerHeight * 0.78, 900));
+        if (h > maxH) h = maxH;
+        viewport.style.height = h + 'px';
+      }
       function syncSlideWidths(){
         var w = viewportW();
         for (var i = 0; i < slides.length; i++){
@@ -447,6 +476,7 @@
       function slideX(dragPx){ return -(index * viewportW()) + (dragPx || 0); }
       function update(){
         syncSlideWidths();
+        syncViewportHeight();
         track.style.transition = 'transform 0.45s cubic-bezier(0.65,0,0.35,1)';
         track.style.transform = 'translate3d(' + slideX(0) + 'px,0,0)';
         if (counter) counter.textContent = String(index + 1).padStart(2, '0');
@@ -460,6 +490,17 @@
 
       carousel.querySelector('.carousel-prev').addEventListener('click', function(){ go(-1); });
       carousel.querySelector('.carousel-next').addEventListener('click', function(){ go(1); });
+
+      slides.forEach(function(slide){
+        var media = slide.querySelector('img, video');
+        if (!media) return;
+        if (media.tagName === 'IMG'){
+          if (media.complete) return;
+          media.addEventListener('load', function(){ if (!dragging) update(); });
+        } else {
+          media.addEventListener('loadedmetadata', function(){ if (!dragging) update(); });
+        }
+      });
 
       viewport.addEventListener('pointerdown', function(e){
         if (e.button !== 0) return;
