@@ -105,24 +105,35 @@
   }
   .r-cta-quiet:hover{color:var(--chartreuse); border-bottom-color:var(--chartreuse);}
 
-  .r-previews{
-    display:grid;
-    grid-template-columns:repeat(5, minmax(0, 1fr));
-    gap:2px;
-    width:100%;
-    background:var(--line);
-  }
-  .r-previews a{
-    display:block; position:relative; aspect-ratio:5/6;
+  /* Featured project stage + name rail (common packaging-portfolio pattern) */
+  .r-stage{width:100%;}
+  .r-stage-frame{
+    position:relative; width:100%; aspect-ratio:16/9;
     overflow:hidden; background:#141413;
   }
-  .r-previews img{
-    width:100%; height:100%; object-fit:cover;
-    transition:transform .7s cubic-bezier(.65,0,.35,1);
+  .r-stage-link{display:block; width:100%; height:100%;}
+  .r-stage-frame img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:opacity .4s ease, transform 8s linear;
+    transform:scale(1.02);
   }
-  .r-previews a:hover img,
-  .r-previews a:focus-visible img{transform:scale(1.045);}
-  .r-previews a:focus-visible{outline:2px solid var(--chartreuse); outline-offset:-2px; z-index:1;}
+  .r-stage-frame.is-ready img{transform:scale(1.06);}
+  .r-stage-rail{
+    display:flex; flex-wrap:wrap; align-items:baseline;
+    gap:12px 28px;
+    padding:20px 0 32px;
+  }
+  .r-stage-tab{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--ink-dim);
+    border-bottom:1px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .r-stage-tab:hover,
+  .r-stage-tab:focus-visible{color:var(--ink); border-bottom-color:var(--ink-dim);}
+  .r-stage-tab.is-active{
+    color:var(--chartreuse); border-bottom-color:var(--chartreuse);
+  }
 
   .r-work{padding-block:96px 40px;}
   .r-work-intro{
@@ -248,7 +259,11 @@
       radial-gradient(ellipse 70% 55% at 88% 10%, rgba(26,26,25,0.06), transparent 50%),
       linear-gradient(165deg, #f4f3ee 0%, var(--bg) 50%, #e7e5de 100%);
   }
-  html[data-theme="light"] .r-lede{color:var(--ink-dim);}
+  html[data-theme="light"] .r-stage-tab.is-active{
+    color:#1a1a19; border-bottom-color:var(--chartreuse);
+    background:var(--chartreuse); padding-inline:0.2em; margin-inline:-0.2em;
+    border-bottom-color:transparent;
+  }
   html[data-theme="light"] .r-cta{color:#1a1a19;}
   html[data-theme="light"] .r-cta-quiet:hover{color:#1a1a19; background:var(--chartreuse); border-bottom-color:transparent; padding-inline:0.2em; margin-inline:-0.2em;}
   html[data-theme="light"] .theme-toggle:hover{
@@ -259,18 +274,7 @@
 
   @media (max-width:900px){
     .r-hero{padding-top:118px;}
-    .r-previews{
-      display:flex;
-      overflow-x:auto;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-      gap:2px;
-      background:var(--line);
-    }
-    .r-previews a{
-      flex:0 0 46vw;
-      scroll-snap-align:start;
-    }
+    .r-stage-rail{gap:10px 18px; padding-bottom:24px;}
     .r-work{padding-top:64px;}
     .r-project{padding-block:40px 56px;}
     .menu a{font-size:36px;}
@@ -316,12 +320,21 @@
         <a class="r-cta-quiet" href="/">Full portfolio</a>
       </div>
     </div>
-    <div class="r-previews" aria-label="Project previews">
-      <a href="#olio"><img src="images/olio/portfolio-07.jpg" alt="Olio Italian" width="800" height="960" loading="eager" decoding="sync" fetchpriority="high"></a>
-      <a href="#joes"><img src="images/joes-stone-crab/DSCF1488.jpg" alt="Joe's Stone Crab" width="800" height="960" loading="eager" decoding="async"></a>
-      <a href="#chick-fil-a"><img src="images/chick-fil-a/Chick-fil-A_Task1.jpg" alt="Chick-fil-A" width="800" height="960" loading="lazy" decoding="async"></a>
-      <a href="#great-greek"><img src="images/studies-process/GreatGreek_Portfolio-10.jpg" alt="Great Greek" width="800" height="960" loading="lazy" decoding="async"></a>
-      <a href="#mootz-tom"><img src="images/mootz-tom/Mootz-Tom_Portfolio-08.jpg" alt="Mootz &amp; Tom" width="800" height="960" loading="lazy" decoding="async"></a>
+    <div class="r-stage" data-stage>
+      <div class="r-stage-frame">
+        <a class="r-stage-link" href="#olio" data-stage-link>
+          <img data-stage-img src="images/olio/portfolio-07.jpg" alt="Olio Italian" width="2200" height="1238" loading="eager" decoding="sync" fetchpriority="high">
+        </a>
+      </div>
+      <div class="wrap">
+        <div class="r-stage-rail" aria-label="Projects">
+          <a class="r-stage-tab is-active" href="#olio" data-stage-tab data-src="images/olio/portfolio-07.jpg" data-alt="Olio Italian">Olio Italian</a>
+          <a class="r-stage-tab" href="#joes" data-stage-tab data-src="images/joes-stone-crab/DSCF1488.jpg" data-alt="Joe's Stone Crab">Joe&rsquo;s Stone Crab</a>
+          <a class="r-stage-tab" href="#chick-fil-a" data-stage-tab data-src="images/chick-fil-a/Chick-fil-A_Task1.jpg" data-alt="Chick-fil-A">Chick-fil-A</a>
+          <a class="r-stage-tab" href="#great-greek" data-stage-tab data-src="images/studies-process/GreatGreek_Portfolio-10.jpg" data-alt="Great Greek">Great Greek</a>
+          <a class="r-stage-tab" href="#mootz-tom" data-stage-tab data-src="images/mootz-tom/Mootz-Tom_Portfolio-08.jpg" data-alt="Mootz &amp; Tom">Mootz &amp; Tom</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -573,6 +586,64 @@
       window.addEventListener('resize', function(){ if (!dragging) update(); });
       update();
     });
+  })();
+
+  (function(){
+    var stage = document.querySelector('[data-stage]');
+    if (!stage) return;
+    var frame = stage.querySelector('.r-stage-frame');
+    var img = stage.querySelector('[data-stage-img]');
+    var link = stage.querySelector('[data-stage-link]');
+    var tabs = Array.prototype.slice.call(stage.querySelectorAll('[data-stage-tab]'));
+    if (!img || !link || !tabs.length) return;
+    var index = 0;
+    var timer = null;
+    var fading = false;
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function show(i, user){
+      index = (i + tabs.length) % tabs.length;
+      var tab = tabs[index];
+      tabs.forEach(function(t, n){ t.classList.toggle('is-active', n === index); });
+      var src = tab.getAttribute('data-src');
+      var alt = tab.getAttribute('data-alt') || '';
+      var href = tab.getAttribute('href');
+      link.href = href;
+      if (img.getAttribute('src') === src) return;
+      if (reduceMotion){
+        img.src = src;
+        img.alt = alt;
+        return;
+      }
+      if (fading) return;
+      fading = true;
+      img.style.opacity = '0';
+      window.setTimeout(function(){
+        img.onload = function(){ img.style.opacity = '1'; fading = false; };
+        img.src = src;
+        img.alt = alt;
+        if (img.complete){ img.style.opacity = '1'; fading = false; }
+      }, 220);
+      if (user) restart();
+    }
+
+    function next(){ show(index + 1, false); }
+    function stop(){ if (timer){ clearInterval(timer); timer = null; } }
+    function start(){
+      if (reduceMotion || tabs.length < 2) return;
+      stop();
+      timer = setInterval(next, 4200);
+    }
+    function restart(){ stop(); start(); }
+
+    tabs.forEach(function(tab, i){
+      tab.addEventListener('mouseenter', function(){ show(i, true); });
+      tab.addEventListener('focus', function(){ show(i, true); });
+    });
+    stage.addEventListener('mouseenter', stop);
+    stage.addEventListener('mouseleave', start);
+    requestAnimationFrame(function(){ if (frame) frame.classList.add('is-ready'); });
+    start();
   })();
 </script>
 <script src="site.js?v=nav-smooth1"></script>
