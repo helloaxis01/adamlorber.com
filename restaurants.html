@@ -115,13 +115,13 @@
   }
   .r-cta-quiet:hover{color:var(--chartreuse); border-bottom-color:var(--chartreuse);}
 
-  .r-work{padding:96px 0 40px;}
+  .r-work{padding-block:96px 40px;}
   .r-work-intro{
     font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
     color:var(--ink-dim); margin-bottom:48px;
   }
 
-  .r-project{padding:56px 0 72px; border-top:1px solid var(--line);}
+  .r-project{padding-block:56px 72px; border-top:1px solid var(--line);}
   .r-project-head{
     display:flex; flex-wrap:wrap; align-items:baseline; justify-content:space-between;
     gap:12px 24px; margin-bottom:14px;
@@ -206,7 +206,7 @@
   .carousel-counter .carousel-total{opacity:0.85;}
 
   .r-close{
-    padding:96px 0 120px; border-top:1px solid var(--line);
+    padding-block:96px 120px; border-top:1px solid var(--line);
   }
   .r-close-title{
     font-family:var(--serif); font-weight:500; font-size:clamp(28px,4.5vw,48px);
@@ -216,8 +216,7 @@
     font-size:15px; line-height:1.7; color:var(--ink-dim); max-width:42ch; margin-bottom:32px;
   }
 
-  footer.wrap{padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
-  .site-place{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; padding:36px var(--gutter) 0; max-width:var(--maxw); margin:0 auto;}
+  footer.wrap{padding-block:48px 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
   .site-place-line{font-family:var(--mono); font-size:11px; color:var(--ink-dim);}
   .site-place-temp{font-family:var(--mono); font-size:11px; color:var(--ink-dim); margin-top:6px;}
   .pointer-egg{color:var(--ink-dim);}
@@ -243,7 +242,7 @@
   @media (max-width:900px){
     .r-hero{min-height:92svh; padding:110px 0 56px;}
     .r-work{padding-top:64px;}
-    .r-project{padding:40px 0 56px;}
+    .r-project{padding-block:40px 56px;}
     .menu a{font-size:36px;}
   }
   @media (prefers-reduced-motion:reduce){
