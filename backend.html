@@ -435,6 +435,26 @@
   .check-list strong{color:var(--ink); font-weight:600;}
   html[data-theme="light"] .check-list li.is-done .box{color:#1a1a19;}
 
+  .gate{position:fixed; inset:0; z-index:200; background:var(--bg); display:flex; align-items:center; justify-content:center; padding:32px;}
+  .gate[hidden]{display:none;}
+  .gate-card{width:min(420px,100%); text-align:left;}
+  .gate-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); margin-bottom:16px;}
+  .gate-title{font-family:var(--serif); font-weight:500; font-size:clamp(28px,5vw,40px); margin-bottom:12px;}
+  .gate-sub{font-size:15px; line-height:1.6; color:var(--ink-dim); margin-bottom:28px;}
+  .gate-form{display:flex; flex-direction:column; gap:12px;}
+  .gate-form input{
+    width:100%; background:transparent; border:1px solid var(--line); color:var(--ink);
+    font-family:var(--grotesk); font-size:16px; padding:14px 16px; outline:none;
+  }
+  .gate-form input:focus{border-color:var(--ink-dim);}
+  .gate-form button{
+    align-self:flex-start; border:none; cursor:pointer;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    background:var(--chartreuse); color:#1a1a19; padding:14px 22px; font-weight:700;
+  }
+  .gate-error{font-family:var(--mono); font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:#c45c5c; min-height:1.2em;}
+  .backend-page[hidden]{display:none;}
+
 </style>
   <link rel="stylesheet" href="/site.css?v=nav-smooth1">
 <script defer src="https://cloud.umami.is/script.js" data-website-id="df8fc49d-0ab0-4d84-ba86-407ac7c28ab4"></script>
@@ -461,7 +481,20 @@
   <a href="/#contact">Contact</a>
 </div>
 
-<main id="top">
+<div class="gate" id="backendGate">
+  <div class="gate-card">
+    <p class="gate-eyebrow">Private</p>
+    <h1 class="gate-title">Hidden pages</h1>
+    <p class="gate-sub">Enter the password to open the private index.</p>
+    <form class="gate-form" id="backendGateForm">
+      <input type="password" id="backendGatePassword" name="password" autocomplete="current-password" placeholder="Password" required>
+      <button type="submit" data-umami-event="Backend Unlock">Unlock</button>
+      <p class="gate-error" id="backendGateError" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<main id="top" class="backend-page" hidden>
   <div class="wrap p-hero">
     <h1 class="p-title">/backend</h1>
     <p class="p-sub">Forms, archives, assets, and site tools.</p>
@@ -670,7 +703,7 @@
           <li><span class="box" aria-hidden="true"></span><span>Compress heavy Fount videos / remaining large GIFs</span></li>
           <li><span class="box" aria-hidden="true"></span><span>Amazon case assets when work is public</span></li>
           <li><span class="box" aria-hidden="true"></span><span>Inflection: more showable assets if any leave the paywall</span></li>
-          <li><span class="box" aria-hidden="true"></span><span>Optional: password-protect <code>/backend</code> in Netlify</span></li>
+          <li class="is-done"><span class="box" aria-hidden="true"></span><span>Password gate on <code>/backend</code> (client-side, same pattern as Revyrie Decks)</span></li>
         </ul>
       </div>
     </div>
@@ -691,6 +724,30 @@
   </footer>
 </main>
 <script>
+  const GATE_KEY = "backend-unlocked";
+  const PASS = "Private";
+  const gate = document.getElementById("backendGate");
+  const page = document.querySelector(".backend-page");
+  const form = document.getElementById("backendGateForm");
+  const err = document.getElementById("backendGateError");
+  function unlock() {
+    gate.hidden = true;
+    page.hidden = false;
+  }
+  try {
+    if (sessionStorage.getItem(GATE_KEY) === "1") unlock();
+  } catch (e) {}
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const val = document.getElementById("backendGatePassword").value.trim();
+    if (val === PASS) {
+      try { sessionStorage.setItem(GATE_KEY, "1"); } catch (err2) {}
+      unlock();
+    } else {
+      err.textContent = "Incorrect password";
+    }
+  });
+
   const header = document.getElementById('siteHeader');
   let headerScrolled = false, headerTicking = false;
   function updateHeader(){
