@@ -149,28 +149,50 @@
     -webkit-user-drag:none; user-select:none; pointer-events:none;
   }
 
-  /* Chick-fil-A: same framing as /project-chick-fil-a */
-  .r-cfa-stack{display:flex; flex-direction:column; gap:clamp(28px,4vw,48px);}
+  /* Chick-fil-A: 16:9 frames; non-16:9 assets centered on white */
+  .r-cfa-stack{display:flex; flex-direction:column; gap:clamp(20px,3vw,32px);}
   .r-frame{
     position:relative; width:100%; aspect-ratio:16/9;
     overflow:hidden; background:#141413;
   }
   .r-frame img{width:100%; height:100%; object-fit:cover; display:block;}
-  .r-frame.natural{aspect-ratio:auto;}
-  .r-frame.natural img{height:auto; object-fit:contain;}
-  .tiktok-pair{
-    display:grid; grid-template-columns:1fr 1fr;
-    gap:clamp(20px,3vw,40px); align-items:start; max-width:900px; margin:0 auto;
+  .r-frame.on-white{
+    background:#fff;
+    display:flex; align-items:center; justify-content:center;
   }
-  .tiktok-pair .shot{display:flex; flex-direction:column; gap:14px;}
-  .tiktok-pair .r-frame{aspect-ratio:auto; background:#0f0f0e;}
-  .tiktok-pair .r-frame video{width:100%; height:auto; object-fit:contain; display:block;}
+  .r-frame.on-white img{
+    width:auto; height:auto; max-width:100%; max-height:100%;
+    object-fit:contain;
+  }
+  .r-frame.on-white .r-pair{
+    display:flex; align-items:center; justify-content:center;
+    gap:clamp(16px,2.5vw,36px);
+    width:100%; height:100%;
+    padding:clamp(18px,3.5vw,44px);
+    box-sizing:border-box;
+  }
+  .r-frame.on-white .r-pair video{
+    height:100%; width:auto; max-width:calc(50% - 12px);
+    object-fit:contain; display:block; background:#0f0f0e;
+  }
   .shot-label{
     font-family:var(--mono); font-size:11px; letter-spacing:0.1em;
     text-transform:uppercase; color:var(--ink-dim);
+    margin-bottom:10px;
   }
-  .r-cfa-shots{display:flex; flex-direction:column; gap:48px;}
-  .r-cfa-shots .shot{display:flex; flex-direction:column; gap:14px;}
+  .r-cfa-shot{display:flex; flex-direction:column;}
+
+  .theme-toggle{
+    background:none; border:1px solid var(--line); color:var(--ink-dim);
+    font-family:var(--mono); font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    padding:7px 10px; cursor:pointer; border-radius:1px;
+    min-width:5.75em; text-align:center;
+    transition:color .15s ease, background-color .15s ease;
+  }
+  .theme-toggle-label{display:inline-block; width:100%; text-align:center;}
+  .theme-toggle:hover{
+    color:var(--chartreuse); background:transparent; border-color:var(--line);
+  }
   .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%); z-index:2;
     width:44px; height:44px; border:none; background:transparent; cursor:pointer;
@@ -215,12 +237,16 @@
   html[data-theme="light"] .r-lede{color:var(--ink-dim);}
   html[data-theme="light"] .r-cta{color:#1a1a19;}
   html[data-theme="light"] .r-cta-quiet:hover{color:#1a1a19; background:var(--chartreuse); border-bottom-color:transparent; padding-inline:0.2em; margin-inline:-0.2em;}
+  html[data-theme="light"] .theme-toggle:hover{
+    color:#1a1a19; background:var(--chartreuse);
+  }
+  html[data-theme="light"] .carousel-arrow{color:var(--ink);}
+  html[data-theme="light"] .carousel-counter{color:#1a1a19; text-shadow:none;}
 
   @media (max-width:900px){
     .r-hero{min-height:92svh; padding:110px 0 56px;}
     .r-work{padding-top:64px;}
     .r-project{padding:40px 0 56px;}
-    .tiktok-pair{grid-template-columns:1fr; max-width:420px;}
     .menu a{font-size:36px;}
   }
   @media (prefers-reduced-motion:reduce){
@@ -344,33 +370,26 @@
         <div class="r-frame">
           <img src="images/chick-fil-a/Chick-fil-A_Task1.jpg" alt="Chick-fil-A logo with stylized chicken head on red background" loading="lazy" width="2500" height="1406">
         </div>
-        <div class="tiktok-pair">
-          <div class="shot">
-            <span class="shot-label">Sauce Shuffle · Sandwich</span>
-            <div class="r-frame">
+        <div class="r-cfa-shot">
+          <span class="shot-label">Sauce Shuffle · Sandwich &amp; Nuggets</span>
+          <div class="r-frame on-white">
+            <div class="r-pair">
               <video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with sandwich background" src="images/chick-fil-a/Chick-fil-A_Task2.mp4" preload="metadata"></video>
-            </div>
-          </div>
-          <div class="shot">
-            <span class="shot-label">Sauce Shuffle · Nuggets</span>
-            <div class="r-frame">
               <video autoplay muted loop playsinline disablepictureinpicture aria-label="Chick-fil-A TikTok sauce shuffle concept with nuggets" src="images/chick-fil-a/Chick-fil-A_Task2_v2.mp4" preload="metadata"></video>
             </div>
           </div>
         </div>
-        <div class="r-cfa-shots">
-          <div class="shot">
-            <span class="shot-label">Instagram Grid · We ♥ Haley</span>
-            <div class="r-frame natural"><img src="images/chick-fil-a/Chick-fil-A_Task1-01.jpg" alt="Chick-fil-A Instagram grid employee appreciation concept featuring Haley" loading="lazy" width="2200" height="1355"></div>
-          </div>
-          <div class="shot">
-            <span class="shot-label">Facebook Post · We ♥ Jake</span>
-            <div class="r-frame natural"><img src="images/chick-fil-a/Chick-fil-A_Task1-02.jpg" alt="Chick-fil-A Facebook employee appreciation post concept featuring Jake" loading="lazy" width="1842" height="922"></div>
-          </div>
-          <div class="shot">
-            <span class="shot-label">OOH Billboard · Meet Alby</span>
-            <div class="r-frame natural"><img src="images/chick-fil-a/Chick-fil-A_Task1-03.jpg" alt="Chick-fil-A team member appreciation OOH billboard concept featuring Alby" loading="lazy" width="2500" height="834"></div>
-          </div>
+        <div class="r-cfa-shot">
+          <span class="shot-label">Instagram Grid · We ♥ Haley</span>
+          <div class="r-frame on-white"><img src="images/chick-fil-a/Chick-fil-A_Task1-01.jpg" alt="Chick-fil-A Instagram grid employee appreciation concept featuring Haley" loading="lazy" width="2200" height="1355"></div>
+        </div>
+        <div class="r-cfa-shot">
+          <span class="shot-label">Facebook Post · We ♥ Jake</span>
+          <div class="r-frame on-white"><img src="images/chick-fil-a/Chick-fil-A_Task1-02.jpg" alt="Chick-fil-A Facebook employee appreciation post concept featuring Jake" loading="lazy" width="1842" height="922"></div>
+        </div>
+        <div class="r-cfa-shot">
+          <span class="shot-label">OOH Billboard · Meet Alby</span>
+          <div class="r-frame on-white"><img src="images/chick-fil-a/Chick-fil-A_Task1-03.jpg" alt="Chick-fil-A team member appreciation OOH billboard concept featuring Alby" loading="lazy" width="2500" height="834"></div>
         </div>
       </div>
     </article>
