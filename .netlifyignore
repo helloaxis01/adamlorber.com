@@ -1,0 +1,6 @@
+node_modules/
+.git/
+.cursor/
+.staging-home/
+*.zip
+.DS_Store
