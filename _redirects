@@ -64,6 +64,7 @@
 /questions/               /questions                                301
 /mitzvahs/                /mitzvahs                                 301
 /restaurants/             /restaurants                              301
+/cpg/                     /cpg                                      301
 
 # Prefer pretty URLs when someone hits the .html file directly
 /about.html                                         /about                  301!
