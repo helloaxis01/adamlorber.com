@@ -115,36 +115,51 @@
   .r-stage-frame img.is-on{opacity:1;}
   .r-stage-bar{
     position:absolute; left:0; right:0; bottom:0; z-index:2;
-    display:flex; flex-wrap:nowrap; align-items:stretch;
-    gap:0;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-    background:linear-gradient(180deg, transparent 0%, rgba(10,10,9,0.72) 38%, rgba(10,10,9,0.88) 100%);
-    padding:28px clamp(12px,2.5vw,28px) 14px;
+    padding:36px 0 0;
+    background:linear-gradient(180deg, transparent 0%, rgba(10,10,9,0.55) 45%, rgba(10,10,9,0.9) 100%);
+    pointer-events:none;
   }
-  .r-stage-bar::-webkit-scrollbar{display:none;}
+  .r-stage-bar-inner{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 var(--gutter);
+    display:flex;
+    align-items:stretch;
+    gap:4px;
+    pointer-events:auto;
+  }
   .r-stage-tab{
     flex:1 1 0;
-    min-width:max(7.5rem, 18%);
-    appearance:none; border:0; background:transparent; cursor:pointer;
-    font-family:var(--mono); font-size:clamp(10px,1.1vw,12px);
-    letter-spacing:0.1em; text-transform:uppercase;
-    color:rgba(239,238,233,0.55);
-    text-align:left;
-    padding:10px 12px 8px;
-    border-bottom:2px solid transparent;
-    transition:color .25s ease, border-color .25s ease;
-    white-space:nowrap;
+    min-width:0;
+    appearance:none; cursor:pointer;
+    font-family:var(--mono); font-size:clamp(9px,1.05vw,11px);
+    letter-spacing:0.08em; text-transform:uppercase;
+    color:rgba(239,238,233,0.62);
+    text-align:center;
+    line-height:1.25;
+    padding:12px 8px 11px;
+    border:1px solid rgba(239,238,233,0.18);
+    border-bottom:none;
+    border-radius:3px 3px 0 0;
+    background:rgba(20,20,19,0.45);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    transition:color .2s ease, background .2s ease, border-color .2s ease;
+    white-space:normal;
+    hyphens:auto;
   }
   .r-stage-tab:hover,
   .r-stage-tab:focus-visible{
-    color:rgba(239,238,233,0.92);
+    color:#efeee9;
+    background:rgba(20,20,19,0.72);
+    border-color:rgba(239,238,233,0.35);
     outline:none;
   }
   .r-stage-tab.is-active{
-    color:#efeee9;
-    border-bottom-color:var(--chartreuse);
+    color:#1a1a19;
+    background:var(--chartreuse);
+    border-color:var(--chartreuse);
+    font-weight:700;
   }
 
   .r-work{padding-block:96px 40px;}
@@ -239,15 +254,23 @@
   html[data-theme="light"] .r-cta{color:#1a1a19;}
   html[data-theme="light"] .r-cta-quiet:hover{color:#1a1a19; background:var(--chartreuse); border-bottom-color:transparent; padding-inline:0.2em; margin-inline:-0.2em;}
   html[data-theme="light"] .r-stage-bar{
-    background:linear-gradient(180deg, transparent 0%, rgba(239,238,233,0.78) 40%, rgba(239,238,233,0.94) 100%);
+    background:linear-gradient(180deg, transparent 0%, rgba(239,238,233,0.55) 45%, rgba(239,238,233,0.92) 100%);
   }
-  html[data-theme="light"] .r-stage-tab{color:rgba(26,26,25,0.45);}
+  html[data-theme="light"] .r-stage-tab{
+    color:rgba(26,26,25,0.5);
+    background:rgba(239,238,233,0.55);
+    border-color:rgba(26,26,25,0.14);
+  }
   html[data-theme="light"] .r-stage-tab:hover,
-  html[data-theme="light"] .r-stage-tab:focus-visible{color:rgba(26,26,25,0.85);}
+  html[data-theme="light"] .r-stage-tab:focus-visible{
+    color:#1a1a19;
+    background:rgba(239,238,233,0.88);
+    border-color:rgba(26,26,25,0.28);
+  }
   html[data-theme="light"] .r-stage-tab.is-active{
     color:#1a1a19;
-    border-bottom-color:#1a1a19;
     background:var(--chartreuse);
+    border-color:var(--chartreuse);
   }
   html[data-theme="light"] .theme-toggle:hover{
     color:#1a1a19; background:var(--chartreuse);
@@ -260,8 +283,9 @@
     .r-headline{max-width:18ch; font-size:clamp(28px,7.5vw,40px);}
     .r-lede{max-width:42ch;}
     .r-stage-frame{aspect-ratio:4/3;}
-    .r-stage-tab{min-width:8.5rem; font-size:10px; padding:10px 10px 8px;}
-    .r-stage-bar{padding:32px 10px 12px;}
+    .r-stage-tab{font-size:9px; letter-spacing:0.06em; padding:10px 4px 9px;}
+    .r-stage-bar{padding-top:28px;}
+    .r-stage-bar-inner{gap:3px;}
     .r-work{padding-top:64px;}
     .r-project{padding-block:40px 56px;}
     .menu a{font-size:36px;}
@@ -312,12 +336,14 @@
         <img class="is-on" src="images/lemon-perfect/hero-stack.jpg" alt="Lemon Perfect billboard" width="2200" height="1238" loading="eager" decoding="async" style="object-position:center">
         <img src="images/lemon-perfect/hero-stack.jpg" alt="" width="2200" height="1238" decoding="async" aria-hidden="true" style="object-position:center">
         <div class="r-stage-bar" role="tablist" aria-label="Projects">
+          <div class="r-stage-bar-inner">
         <button type="button" class="r-stage-tab is-active" role="tab" aria-selected="true" data-stage-tab data-src="images/lemon-perfect/hero-stack.jpg" data-alt="Lemon Perfect billboard" data-href="#lemon-perfect">Lemon Perfect</button>
         <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/mantra/hero-stack.jpg" data-alt="Mantra packaging" data-href="#mantra">Mantra</button>
         <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/dream-clean/hero-stack.jpg" data-alt="Dream Clean scent line" data-href="#dream-clean">Dream Clean</button>
         <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/studies-process/NiceSupps_Mockup_MightyMulti.jpg" data-alt="Nice Supps packaging" data-href="#nice-supps">Nice Supps</button>
         <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/studies-process/Victory_Portfolio-03.jpg" data-alt="Victory Extracts packaging" data-href="#victory-extracts">Victory Extracts</button>
         <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/solmar/pack-salmon.jpg" data-alt="Solmar packaging" data-href="#solmar">Solmar</button>
+          </div>
         </div>
       </div>
     </div>
