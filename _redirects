@@ -30,6 +30,7 @@
 /editor                   /editor.html                              200
 /case-study-editor        /case-study-editor.html                   200
 /og-preview               /og-preview.html                          200
+/restaurants              /restaurants.html                         200
 
 # Legacy Squarespace-style paths
 /televisionacademy        /television-academy                       301
@@ -61,6 +62,7 @@
 /private/                 /backend                                  301
 /questions/               /questions                                301
 /mitzvahs/                /mitzvahs                                 301
+/restaurants/             /restaurants                              301
 
 # Prefer pretty URLs when someone hits the .html file directly
 /about.html                                         /about                  301!
@@ -89,3 +91,4 @@
 /revyrie-decks.html                                 /revyrie-decks          301!
 /axis.html                                          /axis                   301!
 /mitzvahs.html                                      /mitzvahs               301!
+/restaurants.html                                   /restaurants            301!

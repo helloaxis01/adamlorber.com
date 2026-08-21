@@ -19,6 +19,8 @@ Disallow: /axis
 Disallow: /axis.html
 Disallow: /mitzvahs
 Disallow: /mitzvahs.html
+Disallow: /restaurants
+Disallow: /restaurants.html
 Disallow: /agra-wood
 Disallow: /agra-wood.html
 Disallow: /project-agra-wood.html

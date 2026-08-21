@@ -89,3 +89,7 @@
 /mitzvahs
   Cache-Control: no-cache, no-store, must-revalidate
   Pragma: no-cache
+
+/restaurants
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
