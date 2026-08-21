@@ -75,7 +75,7 @@
   .r-hero-copy{
     position:relative;
     z-index:1;
-    padding-bottom:clamp(40px,6vw,64px);
+    padding-bottom:clamp(28px,4vw,44px);
   }
   .r-brand{
     font-family:var(--grotesk); font-weight:800; font-size:clamp(28px,6vw,56px);
@@ -105,34 +105,72 @@
   }
   .r-cta-quiet:hover{color:var(--chartreuse); border-bottom-color:var(--chartreuse);}
 
-  /* Featured project stage + name rail (common packaging-portfolio pattern) */
-  .r-stage{width:100%;}
-  .r-stage-frame{
-    position:relative; width:100%; aspect-ratio:16/9;
-    overflow:hidden; background:#141413;
+  /* Snellenberg-style magnet list + cursor preview */
+  .r-magnet{
+    position:relative;
+    padding-bottom:clamp(48px,8vw,88px);
+    min-height:min(72vh, 720px);
   }
-  .r-stage-link{display:block; width:100%; height:100%;}
-  .r-stage-frame img{
-    width:100%; height:100%; object-fit:cover; display:block;
-    transition:opacity .4s ease, transform 8s linear;
-    transform:scale(1.02);
+  .r-magnet-list{
+    display:flex; flex-direction:column;
+    position:relative; z-index:2;
   }
-  .r-stage-frame.is-ready img{transform:scale(1.06);}
-  .r-stage-rail{
-    display:flex; flex-wrap:wrap; align-items:baseline;
-    gap:12px 28px;
-    padding:20px 0 32px;
+  .r-magnet-item{
+    display:flex; align-items:baseline; gap:clamp(14px,2.5vw,28px);
+    padding:clamp(18px,2.4vw,28px) 0;
+    border-top:1px solid var(--line);
+    color:var(--ink);
+    transition:color .25s ease;
   }
-  .r-stage-tab{
+  .r-magnet-item:last-child{border-bottom:1px solid var(--line);}
+  .r-magnet-index{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em;
-    text-transform:uppercase; color:var(--ink-dim);
-    border-bottom:1px solid transparent;
-    transition:color .2s ease, border-color .2s ease;
+    color:var(--ink-dim); min-width:2.2em; flex-shrink:0;
+    transition:color .25s ease;
   }
-  .r-stage-tab:hover,
-  .r-stage-tab:focus-visible{color:var(--ink); border-bottom-color:var(--ink-dim);}
-  .r-stage-tab.is-active{
-    color:var(--chartreuse); border-bottom-color:var(--chartreuse);
+  .r-magnet-name{
+    font-family:var(--serif); font-weight:500;
+    font-size:clamp(36px,7.2vw,88px); line-height:0.95;
+    letter-spacing:-0.02em;
+    transition:transform .35s cubic-bezier(.65,0,.35,1), color .25s ease;
+    transform-origin:left center;
+  }
+  .r-magnet-item:hover .r-magnet-name,
+  .r-magnet-item:focus-visible .r-magnet-name,
+  .r-magnet-item.is-active .r-magnet-name{
+    color:var(--chartreuse);
+    transform:translateX(0.12em);
+  }
+  .r-magnet-item:hover .r-magnet-index,
+  .r-magnet-item:focus-visible .r-magnet-index,
+  .r-magnet-item.is-active .r-magnet-index{color:var(--chartreuse);}
+  .r-magnet-float{
+    position:fixed; top:0; left:0; z-index:3;
+    width:min(42vw, 520px);
+    aspect-ratio:4/5;
+    pointer-events:none;
+    opacity:0;
+    visibility:hidden;
+    transform:translate3d(-40%, -45%, 0) scale(0.92);
+    transition:opacity .28s ease, visibility .28s ease, transform .45s cubic-bezier(.65,0,.35,1);
+    overflow:hidden; background:#141413;
+    will-change:transform, left, top;
+  }
+  .r-magnet.is-hot .r-magnet-float{
+    opacity:1; visibility:visible;
+    transform:translate3d(-40%, -45%, 0) scale(1);
+  }
+  .r-magnet-float img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .r-magnet-mobile{
+    display:none;
+    width:100%; aspect-ratio:16/9;
+    overflow:hidden; background:#141413;
+    margin-bottom:8px;
+  }
+  .r-magnet-mobile img{
+    width:100%; height:100%; object-fit:cover; display:block;
   }
 
   .r-work{padding-block:96px 40px;}
@@ -259,11 +297,17 @@
       radial-gradient(ellipse 70% 55% at 88% 10%, rgba(26,26,25,0.06), transparent 50%),
       linear-gradient(165deg, #f4f3ee 0%, var(--bg) 50%, #e7e5de 100%);
   }
-  html[data-theme="light"] .r-stage-tab.is-active{
-    color:#1a1a19; border-bottom-color:var(--chartreuse);
-    background:var(--chartreuse); padding-inline:0.2em; margin-inline:-0.2em;
-    border-bottom-color:transparent;
+  html[data-theme="light"] .r-magnet-item:hover .r-magnet-name,
+  html[data-theme="light"] .r-magnet-item:focus-visible .r-magnet-name,
+  html[data-theme="light"] .r-magnet-item.is-active .r-magnet-name{
+    color:#1a1a19; background:var(--chartreuse);
+    box-decoration-break:clone; -webkit-box-decoration-break:clone;
+    padding-inline:0.08em; margin-inline:-0.08em;
   }
+  html[data-theme="light"] .r-magnet-item:hover .r-magnet-index,
+  html[data-theme="light"] .r-magnet-item:focus-visible .r-magnet-index,
+  html[data-theme="light"] .r-magnet-item.is-active .r-magnet-index{color:#1a1a19;}
+  html[data-theme="light"] .r-lede{color:var(--ink-dim);}
   html[data-theme="light"] .r-cta{color:#1a1a19;}
   html[data-theme="light"] .r-cta-quiet:hover{color:#1a1a19; background:var(--chartreuse); border-bottom-color:transparent; padding-inline:0.2em; margin-inline:-0.2em;}
   html[data-theme="light"] .theme-toggle:hover{
@@ -274,7 +318,10 @@
 
   @media (max-width:900px){
     .r-hero{padding-top:118px;}
-    .r-stage-rail{gap:10px 18px; padding-bottom:24px;}
+    .r-magnet{min-height:0; padding-bottom:56px;}
+    .r-magnet-float{display:none !important;}
+    .r-magnet-mobile{display:block;}
+    .r-magnet-name{font-size:clamp(30px,9vw,48px);}
     .r-work{padding-top:64px;}
     .r-project{padding-block:40px 56px;}
     .menu a{font-size:36px;}
@@ -320,20 +367,34 @@
         <a class="r-cta-quiet" href="/">Full portfolio</a>
       </div>
     </div>
-    <div class="r-stage" data-stage>
-      <div class="r-stage-frame">
-        <a class="r-stage-link" href="#olio" data-stage-link>
-          <img data-stage-img src="images/olio/portfolio-07.jpg" alt="Olio Italian" width="2200" height="1238" loading="eager" decoding="sync" fetchpriority="high">
+    <div class="wrap r-magnet" data-magnet>
+      <div class="r-magnet-mobile" data-magnet-mobile aria-hidden="true">
+        <img src="images/olio/portfolio-07.jpg" alt="Olio Italian" width="1600" height="900" loading="eager" decoding="async">
+      </div>
+      <div class="r-magnet-list">
+        <a class="r-magnet-item" href="#olio" data-magnet-item data-src="images/olio/portfolio-07.jpg" data-alt="Olio Italian">
+          <span class="r-magnet-index">01</span>
+          <span class="r-magnet-name">Olio Italian</span>
+        </a>
+        <a class="r-magnet-item" href="#joes" data-magnet-item data-src="images/joes-stone-crab/DSCF1488.jpg" data-alt="Joe's Stone Crab">
+          <span class="r-magnet-index">02</span>
+          <span class="r-magnet-name">Joe&rsquo;s Stone Crab</span>
+        </a>
+        <a class="r-magnet-item" href="#chick-fil-a" data-magnet-item data-src="images/chick-fil-a/Chick-fil-A_Task1.jpg" data-alt="Chick-fil-A">
+          <span class="r-magnet-index">03</span>
+          <span class="r-magnet-name">Chick-fil-A</span>
+        </a>
+        <a class="r-magnet-item" href="#great-greek" data-magnet-item data-src="images/studies-process/GreatGreek_Portfolio-10.jpg" data-alt="Great Greek">
+          <span class="r-magnet-index">04</span>
+          <span class="r-magnet-name">Great Greek</span>
+        </a>
+        <a class="r-magnet-item" href="#mootz-tom" data-magnet-item data-src="images/mootz-tom/Mootz-Tom_Portfolio-08.jpg" data-alt="Mootz &amp; Tom">
+          <span class="r-magnet-index">05</span>
+          <span class="r-magnet-name">Mootz &amp; Tom</span>
         </a>
       </div>
-      <div class="wrap">
-        <div class="r-stage-rail" aria-label="Projects">
-          <a class="r-stage-tab is-active" href="#olio" data-stage-tab data-src="images/olio/portfolio-07.jpg" data-alt="Olio Italian">Olio Italian</a>
-          <a class="r-stage-tab" href="#joes" data-stage-tab data-src="images/joes-stone-crab/DSCF1488.jpg" data-alt="Joe's Stone Crab">Joe&rsquo;s Stone Crab</a>
-          <a class="r-stage-tab" href="#chick-fil-a" data-stage-tab data-src="images/chick-fil-a/Chick-fil-A_Task1.jpg" data-alt="Chick-fil-A">Chick-fil-A</a>
-          <a class="r-stage-tab" href="#great-greek" data-stage-tab data-src="images/studies-process/GreatGreek_Portfolio-10.jpg" data-alt="Great Greek">Great Greek</a>
-          <a class="r-stage-tab" href="#mootz-tom" data-stage-tab data-src="images/mootz-tom/Mootz-Tom_Portfolio-08.jpg" data-alt="Mootz &amp; Tom">Mootz &amp; Tom</a>
-        </div>
+      <div class="r-magnet-float" data-magnet-float aria-hidden="true">
+        <img data-magnet-img src="images/olio/portfolio-07.jpg" alt="" width="800" height="1000" decoding="async">
       </div>
     </div>
   </section>
@@ -589,61 +650,88 @@
   })();
 
   (function(){
-    var stage = document.querySelector('[data-stage]');
-    if (!stage) return;
-    var frame = stage.querySelector('.r-stage-frame');
-    var img = stage.querySelector('[data-stage-img]');
-    var link = stage.querySelector('[data-stage-link]');
-    var tabs = Array.prototype.slice.call(stage.querySelectorAll('[data-stage-tab]'));
-    if (!img || !link || !tabs.length) return;
-    var index = 0;
-    var timer = null;
-    var fading = false;
+    var root = document.querySelector('[data-magnet]');
+    if (!root) return;
+    var items = Array.prototype.slice.call(root.querySelectorAll('[data-magnet-item]'));
+    var floatEl = root.querySelector('[data-magnet-float]');
+    var floatImg = root.querySelector('[data-magnet-img]');
+    var mobile = root.querySelector('[data-magnet-mobile]');
+    var mobileImg = mobile && mobile.querySelector('img');
+    if (!items.length || !floatEl || !floatImg) return;
+
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var x = window.innerWidth * 0.62, y = window.innerHeight * 0.42;
+    var tx = x, ty = y;
+    var raf = 0;
+    var active = null;
 
-    function show(i, user){
-      index = (i + tabs.length) % tabs.length;
-      var tab = tabs[index];
-      tabs.forEach(function(t, n){ t.classList.toggle('is-active', n === index); });
-      var src = tab.getAttribute('data-src');
-      var alt = tab.getAttribute('data-alt') || '';
-      var href = tab.getAttribute('href');
-      link.href = href;
-      if (img.getAttribute('src') === src) return;
-      if (reduceMotion){
-        img.src = src;
-        img.alt = alt;
-        return;
-      }
-      if (fading) return;
-      fading = true;
-      img.style.opacity = '0';
-      window.setTimeout(function(){
-        img.onload = function(){ img.style.opacity = '1'; fading = false; };
-        img.src = src;
-        img.alt = alt;
-        if (img.complete){ img.style.opacity = '1'; fading = false; }
-      }, 220);
-      if (user) restart();
-    }
-
-    function next(){ show(index + 1, false); }
-    function stop(){ if (timer){ clearInterval(timer); timer = null; } }
-    function start(){
-      if (reduceMotion || tabs.length < 2) return;
-      stop();
-      timer = setInterval(next, 4200);
-    }
-    function restart(){ stop(); start(); }
-
-    tabs.forEach(function(tab, i){
-      tab.addEventListener('mouseenter', function(){ show(i, true); });
-      tab.addEventListener('focus', function(){ show(i, true); });
+    items.forEach(function(item){
+      var img = new Image();
+      img.src = item.getAttribute('data-src');
     });
-    stage.addEventListener('mouseenter', stop);
-    stage.addEventListener('mouseleave', start);
-    requestAnimationFrame(function(){ if (frame) frame.classList.add('is-ready'); });
-    start();
+
+    function setImage(item){
+      if (!item || item === active) return;
+      active = item;
+      items.forEach(function(el){ el.classList.toggle('is-active', el === item); });
+      var src = item.getAttribute('data-src');
+      var alt = item.getAttribute('data-alt') || '';
+      floatImg.src = src;
+      floatImg.alt = alt;
+      if (mobileImg){
+        mobileImg.src = src;
+        mobileImg.alt = alt;
+      }
+    }
+
+    function show(){ root.classList.add('is-hot'); }
+    function hide(){
+      root.classList.remove('is-hot');
+      items.forEach(function(el){ el.classList.remove('is-active'); });
+      active = null;
+    }
+
+    function tick(){
+      raf = 0;
+      x += (tx - x) * (reduceMotion ? 1 : 0.14);
+      y += (ty - y) * (reduceMotion ? 1 : 0.14);
+      floatEl.style.left = x + 'px';
+      floatEl.style.top = y + 'px';
+      if (Math.abs(tx - x) > 0.4 || Math.abs(ty - y) > 0.4){
+        raf = requestAnimationFrame(tick);
+      }
+    }
+    function move(nx, ny){
+      tx = nx; ty = ny;
+      if (!raf) raf = requestAnimationFrame(tick);
+    }
+
+    if (finePointer){
+      root.addEventListener('mousemove', function(e){
+        move(e.clientX, e.clientY);
+      });
+      items.forEach(function(item){
+        item.addEventListener('mouseenter', function(){
+          setImage(item);
+          show();
+        });
+        item.addEventListener('focus', function(){
+          setImage(item);
+          show();
+          var r = item.getBoundingClientRect();
+          move(Math.min(window.innerWidth - 40, r.right + 40), r.top + r.height / 2);
+        });
+      });
+      root.addEventListener('mouseleave', hide);
+    } else {
+      // Touch / coarse: update mobile preview on focus/click prep
+      setImage(items[0]);
+      items.forEach(function(item){
+        item.addEventListener('pointerenter', function(){ setImage(item); });
+        item.addEventListener('focus', function(){ setImage(item); });
+      });
+    }
   })();
 </script>
 <script src="site.js?v=nav-smooth1"></script>
