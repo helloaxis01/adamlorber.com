@@ -70,18 +70,27 @@
     position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden;
   }
   .r-hero-atmosphere img{
-    width:100%; height:100%; object-fit:cover; object-position:center 45%;
+    position:absolute; inset:-28%;
+    width:156%; height:156%;
+    max-width:none;
+    object-fit:cover;
     display:block;
-    filter:blur(42px) saturate(0.78) brightness(0.52);
-    transform:scale(1.18);
-    opacity:0.9;
+    filter:blur(92px) saturate(1.75) contrast(1.2) brightness(0.62);
+    transform:scale(1.08);
+    opacity:1;
+  }
+  .r-hero-atmosphere img.is-shift{
+    inset:-36% -18% -20% -40%;
+    filter:blur(110px) saturate(1.9) contrast(1.15) brightness(0.55);
+    mix-blend-mode:screen;
+    opacity:0.55;
+    transform:scale(1.2) rotate(-8deg);
   }
   .r-hero-atmosphere::after{
     content:""; position:absolute; inset:0;
     background:
-      linear-gradient(108deg, rgba(16,15,14,0.92) 0%, rgba(16,15,14,0.58) 48%, rgba(16,15,14,0.78) 100%),
-      linear-gradient(180deg, rgba(16,15,14,0.45) 0%, transparent 38%, rgba(16,15,14,0.62) 100%),
-      radial-gradient(ellipse 70% 55% at 18% 70%, rgba(180,120,60,0.12), transparent 60%);
+      linear-gradient(108deg, rgba(14,13,12,0.78) 0%, rgba(14,13,12,0.42) 46%, rgba(14,13,12,0.62) 100%),
+      linear-gradient(180deg, rgba(14,13,12,0.35) 0%, transparent 42%, rgba(14,13,12,0.55) 100%);
   }
   .r-hero-split{
     position:relative; z-index:1;
@@ -276,14 +285,17 @@
   }
   html[data-theme="light"] .r-hero{background:#efeee9;}
   html[data-theme="light"] .r-hero-atmosphere img{
-    filter:blur(48px) saturate(0.72) brightness(1.12);
-    opacity:0.5;
+    filter:blur(100px) saturate(1.55) contrast(1.1) brightness(1.05);
+  }
+  html[data-theme="light"] .r-hero-atmosphere img.is-shift{
+    filter:blur(120px) saturate(1.7) contrast(1.05) brightness(1.0);
+    mix-blend-mode:multiply;
+    opacity:0.4;
   }
   html[data-theme="light"] .r-hero-atmosphere::after{
     background:
-      linear-gradient(108deg, rgba(239,238,233,0.94) 0%, rgba(239,238,233,0.72) 48%, rgba(239,238,233,0.88) 100%),
-      linear-gradient(180deg, rgba(239,238,233,0.55) 0%, transparent 40%, rgba(239,238,233,0.7) 100%),
-      radial-gradient(ellipse 70% 55% at 18% 70%, rgba(200,160,90,0.1), transparent 60%);
+      linear-gradient(108deg, rgba(239,238,233,0.82) 0%, rgba(239,238,233,0.55) 46%, rgba(239,238,233,0.72) 100%),
+      linear-gradient(180deg, rgba(239,238,233,0.4) 0%, transparent 42%, rgba(239,238,233,0.55) 100%);
   }
   html[data-theme="light"] .r-magnet-item:hover .r-magnet-name,
   html[data-theme="light"] .r-magnet-item:focus-visible .r-magnet-name,
@@ -353,7 +365,8 @@
 <main id="top">
   <section class="r-hero">
     <div class="r-hero-atmosphere" aria-hidden="true">
-      <img src="images/mantra/Product2.jpg" alt="" width="2200" height="1400" decoding="async">
+      <img src="images/lemon-perfect/LemonPerfect_BillboardMockup_C1b.jpg" alt="" width="2200" height="1400" decoding="async" style="object-position:center 35%">
+      <img class="is-shift" src="images/lemon-perfect/LemonPerfect_BillboardMockup_C1b.jpg" alt="" width="2200" height="1400" decoding="async" style="object-position:center 35%">
     </div>
     <div class="wrap r-hero-split">
     <div class="r-hero-copy">
