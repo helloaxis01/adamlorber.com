@@ -149,7 +149,7 @@
     white-space:normal;
     hyphens:auto;
   }
-  .r-stage-tab:last-child{border-right:0;}
+  .r-stage-tab:first-child{border-left:1px solid rgba(239,238,233,0.12);}
   .r-stage-tab:hover,
   .r-stage-tab:focus-visible{
     color:#efeee9;
@@ -261,6 +261,7 @@
     color:rgba(26,26,25,0.45);
     border-right-color:rgba(26,26,25,0.12);
   }
+  html[data-theme="light"] .r-stage-tab:first-child{border-left-color:rgba(26,26,25,0.12);}
   html[data-theme="light"] .r-stage-tab:hover,
   html[data-theme="light"] .r-stage-tab:focus-visible{
     color:#1a1a19;
@@ -329,13 +330,13 @@
     </div>
     <div class="r-stage" data-stage>
       <div class="r-stage-frame" data-stage-frame>
-        <img class="is-on" src="images/lemon-perfect/hero-stack.jpg" alt="Lemon Perfect billboard" width="2200" height="1238" loading="eager" decoding="async" style="object-position:center">
-        <img src="images/lemon-perfect/hero-stack.jpg" alt="" width="2200" height="1238" decoding="async" aria-hidden="true" style="object-position:center">
+        <img class="is-on" src="images/mantra/hero-stack.jpg" alt="Mantra packaging" width="2200" height="1238" loading="eager" decoding="async" style="object-position:center">
+        <img src="images/mantra/hero-stack.jpg" alt="" width="2200" height="1238" decoding="async" aria-hidden="true" style="object-position:center">
         <div class="r-stage-bar" role="tablist" aria-label="Projects">
           <div class="r-stage-bar-inner">
-        <button type="button" class="r-stage-tab is-active" role="tab" aria-selected="true" data-stage-tab data-src="images/lemon-perfect/hero-stack.jpg" data-alt="Lemon Perfect billboard" data-href="#lemon-perfect">Lemon Perfect</button>
-        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/mantra/hero-stack.jpg" data-alt="Mantra packaging" data-href="#mantra">Mantra</button>
+        <button type="button" class="r-stage-tab is-active" role="tab" aria-selected="true" data-stage-tab data-src="images/mantra/hero-stack.jpg" data-alt="Mantra packaging" data-href="#mantra">Mantra</button>
         <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/dream-clean/hero-stack.jpg" data-alt="Dream Clean scent line" data-href="#dream-clean">Dream Clean</button>
+        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/lemon-perfect/hero-stack.jpg" data-alt="Lemon Perfect billboard" data-href="#lemon-perfect">Lemon Perfect</button>
         <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/studies-process/NiceSupps_Mockup_MightyMulti.jpg" data-alt="Nice Supps packaging" data-href="#nice-supps">Nice Supps</button>
         <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/studies-process/Victory_Portfolio-03.jpg" data-alt="Victory Extracts packaging" data-href="#victory-extracts">Victory Extracts</button>
         <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/solmar/pack-salmon.jpg" data-alt="Solmar packaging" data-href="#solmar">Solmar</button>

@@ -149,7 +149,7 @@
     white-space:normal;
     hyphens:auto;
   }
-  .r-stage-tab:last-child{border-right:0;}
+  .r-stage-tab:first-child{border-left:1px solid rgba(239,238,233,0.12);}
   .r-stage-tab:hover,
   .r-stage-tab:focus-visible{
     color:#efeee9;
@@ -291,6 +291,7 @@
     color:rgba(26,26,25,0.45);
     border-right-color:rgba(26,26,25,0.12);
   }
+  html[data-theme="light"] .r-stage-tab:first-child{border-left-color:rgba(26,26,25,0.12);}
   html[data-theme="light"] .r-stage-tab:hover,
   html[data-theme="light"] .r-stage-tab:focus-visible{
     color:#1a1a19;
@@ -359,15 +360,15 @@
     </div>
     <div class="r-stage" data-stage>
       <div class="r-stage-frame" data-stage-frame>
-        <img class="is-on" src="images/olio/hero-stack.jpg" alt="Olio Italian chef plating" width="2200" height="1238" loading="eager" decoding="async" style="object-position:center">
-        <img src="images/olio/hero-stack.jpg" alt="" width="2200" height="1238" decoding="async" aria-hidden="true" style="object-position:center">
+        <img class="is-on" src="images/joes-stone-crab/hero-stack.jpg" alt="Joe's Stone Crab neon sign" width="2200" height="1238" loading="eager" decoding="async" style="object-position:center">
+        <img src="images/joes-stone-crab/hero-stack.jpg" alt="" width="2200" height="1238" decoding="async" aria-hidden="true" style="object-position:center">
         <div class="r-stage-bar" role="tablist" aria-label="Projects">
           <div class="r-stage-bar-inner">
-        <button type="button" class="r-stage-tab is-active" role="tab" aria-selected="true" data-stage-tab data-src="images/olio/hero-stack.jpg" data-alt="Olio Italian chef plating" data-href="#olio">Olio Italian</button>
-        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/joes-stone-crab/hero-stack.jpg" data-alt="Joe's Stone Crab neon sign" data-href="#joes">Joe&rsquo;s Stone Crab</button>
-        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/chick-fil-a/Chick-fil-A_Task1.jpg" data-alt="Chick-fil-A campaign" data-href="#chick-fil-a">Chick-fil-A</button>
-        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/studies-process/GreatGreek_Portfolio-10.jpg" data-alt="Great Greek identity" data-href="#great-greek">Great Greek</button>
+        <button type="button" class="r-stage-tab is-active" role="tab" aria-selected="true" data-stage-tab data-src="images/joes-stone-crab/hero-stack.jpg" data-alt="Joe's Stone Crab neon sign" data-href="#joes">Joe&rsquo;s Stone Crab</button>
         <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/mootz-tom/Mootz-Tom_Portfolio-05.jpg" data-alt="Mootz &amp; Tom matchbooks" data-href="#mootz-tom">Mootz &amp; Tom</button>
+        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/chick-fil-a/Chick-fil-A_Task1.jpg" data-alt="Chick-fil-A campaign" data-href="#chick-fil-a">Chick-fil-A</button>
+        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/olio/hero-stack.jpg" data-alt="Olio Italian chef plating" data-href="#olio">Olio Italian</button>
+        <button type="button" class="r-stage-tab" role="tab" aria-selected="false" data-stage-tab data-src="images/studies-process/GreatGreek_Portfolio-10.jpg" data-alt="Great Greek identity" data-href="#great-greek">Great Greek</button>
           </div>
         </div>
       </div>
