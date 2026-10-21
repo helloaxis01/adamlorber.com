@@ -114,12 +114,30 @@
   .next-title{font-family:var(--serif); font-weight:500; font-size:clamp(26px,4.8vw,51px); display:inline-flex; align-items:center; gap:18px;}
   
 
-  .sitemap{display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
+  .sitemap{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
   .sitemap-col{display:flex; flex-direction:column; gap:11px;}
   .sitemap-head{font-family:var(--mono); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
   .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em;}
   
   .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
+  .sitemap-studies-spacer{flex:1 1 auto; min-height:1px; pointer-events:none;}
+
+  .sitemap-col-headrow{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px;}
+  .sitemap-col-headrow .sitemap-head{margin-bottom:0;}
+  .sitemap-col-list{display:flex; flex-direction:column; gap:11px;}
+  .sitemap-toggle{
+    display:none; background:none; border:none; padding:4px; margin:0; cursor:pointer;
+    color:var(--ink-dim); line-height:0; border-radius:1px;
+  }
+  .sitemap-toggle:hover{color:var(--ink);}
+  .sitemap-toggle:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  .sitemap-chevron{display:block; transition:transform .2s ease;}
+  @media (min-width:901px){
+    .sitemap-col[data-sitemap-col] .sitemap-toggle{display:inline-flex; align-items:center; justify-content:center;}
+    .sitemap-col[data-sitemap-col].is-collapsed .sitemap-col-list{display:none;}
+    .sitemap-col[data-sitemap-col].is-collapsed .sitemap-chevron{transform:rotate(-90deg);}
+  }
+
   
   .case-section{padding-top:88px; padding-bottom:88px;}
   .case-header{margin-bottom:32px;}
@@ -456,42 +474,61 @@
   </a>
 
   <div class="wrap sitemap">
-    <div class="sitemap-col">
-      <span class="sitemap-head">In-House</span>
+    <div class="sitemap-col" data-sitemap-col="in-house">
+      <div class="sitemap-col-headrow">
+        <span class="sitemap-head">In-House</span>
+        <button type="button" class="sitemap-toggle" aria-expanded="true" aria-controls="sitemap-list-in-house" aria-label="Toggle In-House links"><svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="sitemap-col-list" id="sitemap-list-in-house">
       <a href="/television-academy">Television Academy</a>
       <a href="/fount">Fount</a>
       <a href="/amazon">Amazon</a>
       <a href="/inflection">Inflection</a>
+      </div>
     </div>
-    <div class="sitemap-col">
-      <span class="sitemap-head">Client Work</span>
+    <div class="sitemap-col" data-sitemap-col="client-work">
+      <div class="sitemap-col-headrow">
+        <span class="sitemap-head">Client Work</span>
+        <button type="button" class="sitemap-toggle" aria-expanded="true" aria-controls="sitemap-list-client-work" aria-label="Toggle Client Work links"><svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="sitemap-col-list" id="sitemap-list-client-work">
       <a href="/dream-clean">Dream Clean</a>
       <a href="/lemon-perfect">Lemon Perfect</a>
       <a href="/red-shoes-pictures">Red Shoes Pictures</a>
       <a href="/joes-stone-crab">Joe's Stone Crab</a>
+      </div>
     </div>
-    <div class="sitemap-col">
-      <span class="sitemap-head">CPG</span>
+    <div class="sitemap-col" data-sitemap-col="cpg">
+      <div class="sitemap-col-headrow">
+        <span class="sitemap-head">CPG</span>
+        <button type="button" class="sitemap-toggle" aria-expanded="true" aria-controls="sitemap-list-cpg" aria-label="Toggle CPG links"><svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="sitemap-col-list" id="sitemap-list-cpg">
       <a href="/dream-clean">Dream Clean</a>
       <a href="/lemon-perfect">Lemon Perfect</a>
       <a href="/process#mantra">Mantra</a>
       <a href="/process#solmar">Solmar</a>
       <a href="/process#nice-supps">Nice Supps</a>
+      </div>
     </div>
-    <div class="sitemap-col">
-      <span class="sitemap-head">Hospitality</span>
+    <div class="sitemap-col" data-sitemap-col="hospitality">
+      <div class="sitemap-col-headrow">
+        <span class="sitemap-head">Hospitality</span>
+        <button type="button" class="sitemap-toggle" aria-expanded="true" aria-controls="sitemap-list-hospitality" aria-label="Toggle Hospitality links"><svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="sitemap-col-list" id="sitemap-list-hospitality">
       <a href="/joes-stone-crab">Joe's Stone Crab</a>
       <a href="/process#nautilus">Nautilus</a>
       <a href="/process#mootz-tom">Mootz &amp; Tom</a>
       <a href="/process#great-greek">Great Greek</a>
       <a href="/process#olio">Olio Italian</a>
+      </div>
     </div>
-    <div class="sitemap-col">
+    <div class="sitemap-col sitemap-col--studies">
       <span class="sitemap-head">Studies</span>
       <a href="/logos-marks">Logos &amp; Marks</a>
       <a href="/process">Concepts &amp; Freelance</a>
-    </div>
-    <div class="sitemap-col">
+      <span class="sitemap-studies-spacer" aria-hidden="true"></span>
       <a href="/about" class="sitemap-caps">About</a>
       <a href="/#contact" class="sitemap-caps">Contact</a>
     </div>
@@ -602,6 +639,6 @@
   })();
 </script>
 
-<script src="site.js?v=nav-smooth1"></script>
+<script src="site.js?v=footer-collapse1"></script>
 </body>
 </html>

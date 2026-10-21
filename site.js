@@ -395,6 +395,61 @@
     });
   })();
 
+  // Desktop footer column collapse (session-persistent; page-default when unset)
+  (function () {
+    var sitemap = document.querySelector('.sitemap');
+    if (!sitemap) return;
+    var mode = sitemap.getAttribute('data-sitemap-mode') || 'default';
+    var pageDefaults = mode === 'process'
+      ? { 'in-house': false, 'client-work': false, 'cpg': true, 'hospitality': true }
+      : { 'in-house': true, 'client-work': true, 'cpg': false, 'hospitality': false };
+
+    function storageKey(id) {
+      return 'sitemap-col:' + id;
+    }
+
+    function readStored(id) {
+      try {
+        var v = sessionStorage.getItem(storageKey(id));
+        if (v === '1') return true;
+        if (v === '0') return false;
+      } catch (e) {}
+      return null;
+    }
+
+    function writeStored(id, open) {
+      try {
+        sessionStorage.setItem(storageKey(id), open ? '1' : '0');
+      } catch (e) {}
+    }
+
+    function setExpanded(col, open, persist) {
+      var id = col.getAttribute('data-sitemap-col');
+      var btn = col.querySelector('.sitemap-toggle');
+      col.classList.toggle('is-collapsed', !open);
+      if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (persist && id) writeStored(id, open);
+    }
+
+    function preferredOpen(id) {
+      var stored = readStored(id);
+      if (stored !== null) return stored;
+      return !!pageDefaults[id];
+    }
+
+    sitemap.querySelectorAll('.sitemap-col[data-sitemap-col]').forEach(function (col) {
+      var id = col.getAttribute('data-sitemap-col');
+      if (!Object.prototype.hasOwnProperty.call(pageDefaults, id)) return;
+      setExpanded(col, preferredOpen(id), false);
+      var btn = col.querySelector('.sitemap-toggle');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') !== 'true';
+        setExpanded(col, open, true);
+      });
+    });
+  })();
+
   // Quiet LA weather for footer place line — Encino / Valley coords
   // (downtown runs cooler; Valley matches where Adam actually is).
   // Fail silent → "Made in sunny Los Angeles." only (hide temp line).
