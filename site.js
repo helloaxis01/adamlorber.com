@@ -395,7 +395,7 @@
     });
   })();
 
-  // Desktop footer column collapse (session-persistent; page-default when unset)
+  // Footer column collapse (session-persistent; page-default when unset) — same rules on mobile and desktop
   (function () {
     var sitemap = document.querySelector('.sitemap');
     if (!sitemap) return;
