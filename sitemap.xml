@@ -16,11 +16,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.adamlorber.com/amazon</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>https://www.adamlorber.com/television-academy</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -29,6 +24,11 @@
     <loc>https://www.adamlorber.com/fount</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.adamlorber.com/amazon</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.adamlorber.com/inflection</loc>
