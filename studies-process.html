@@ -52,7 +52,7 @@
     --gutter:clamp(20px,5vw,64px);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
-  html{scroll-behavior:smooth; scroll-padding-top:calc(var(--header-offset, 84px) + 52px);}
+  html{scroll-behavior:smooth; scroll-padding-top:var(--process-anchor-offset, calc(var(--header-offset, 84px) + 72px));}
   body{background:var(--bg); color:var(--ink); font-family:var(--grotesk); font-weight:400; overflow-x:hidden;}
   a{color:inherit; text-decoration:none;}
   img{display:block; max-width:100%;}
@@ -88,7 +88,7 @@
 
 
   .study-section,
-  .process-group{scroll-margin-top:calc(var(--header-offset, 84px) + 52px);}
+  .process-group{scroll-margin-top:var(--process-anchor-offset, calc(var(--header-offset, 84px) + 72px));}
   .process-bridge{font-size:14px; line-height:1.6; color:var(--ink-dim); max-width:720px; margin-top:18px;}
   .process-bridge a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
   .p-sub a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
@@ -976,6 +976,6 @@
     });
   })();
 </script>
-<script src="site.js?v=footer-collapse4"></script>
+<script src="site.js?v=footer-scroll1"></script>
 </body>
 </html>

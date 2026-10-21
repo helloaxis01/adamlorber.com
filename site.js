@@ -95,7 +95,13 @@
   }
 
   function syncHeaderOffset() {
-    root.style.setProperty('--header-offset', headerOffset() + 'px');
+    var headerH = headerOffset();
+    root.style.setProperty('--header-offset', headerH + 'px');
+    // /process sticky stack: fixed header + sticky sub-nav + breathing room
+    var subnav = document.querySelector('.process-subnav');
+    var subnavH = subnav ? Math.ceil(subnav.getBoundingClientRect().height) : 0;
+    var gap = 20;
+    root.style.setProperty('--process-anchor-offset', (headerH + subnavH + gap) + 'px');
   }
 
   function prefersReducedMotion() {
@@ -106,8 +112,10 @@
     var target = document.getElementById(hash);
     if (!target) return false;
     syncHeaderOffset();
-    // Studies section starts at its top rule; CSS padding-top (gutter) creates air above the label.
-    var top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+    // Honor CSS scroll-margin-top when present (e.g. /process clears header + sticky sub-nav).
+    var margin = parseFloat(window.getComputedStyle(target).scrollMarginTop);
+    var offset = (!isNaN(margin) && margin > 0) ? margin : headerOffset();
+    var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
     window.scrollTo({
       top: Math.max(0, top),
       behavior: smooth && !prefersReducedMotion() ? 'smooth' : 'auto'
@@ -396,7 +404,9 @@
   })();
 
   // Footer column collapse (session-persistent; page-default when unset).
-  // Same page-flipped defaults on every viewport.
+  // Same page-flipped defaults on every viewport. Stored prefs are scoped by
+  // page mode so homepage defaults never leak onto /process (and vice versa).
+  // Only explicit toggles are written to sessionStorage.
   (function () {
     var sitemap = document.querySelector('.sitemap');
     if (!sitemap) return;
@@ -406,7 +416,7 @@
       : { 'in-house': true, 'client-work': true, 'cpg': false, 'hospitality': false };
 
     function storageKey(id) {
-      return 'sitemap-col:' + id;
+      return 'sitemap-col:' + mode + ':' + id;
     }
 
     function readStored(id) {
@@ -438,16 +448,29 @@
       return !!pageDefaults[id];
     }
 
+    function applyColumnStates() {
+      sitemap.querySelectorAll('.sitemap-col[data-sitemap-col]').forEach(function (col) {
+        var id = col.getAttribute('data-sitemap-col');
+        if (!Object.prototype.hasOwnProperty.call(pageDefaults, id)) return;
+        setExpanded(col, preferredOpen(id), false);
+      });
+    }
+
     sitemap.querySelectorAll('.sitemap-col[data-sitemap-col]').forEach(function (col) {
       var id = col.getAttribute('data-sitemap-col');
       if (!Object.prototype.hasOwnProperty.call(pageDefaults, id)) return;
-      setExpanded(col, preferredOpen(id), false);
       var btn = col.querySelector('.sitemap-toggle');
-      if (!btn) return;
+      if (!btn || btn.dataset.sitemapBound) return;
+      btn.dataset.sitemapBound = '1';
       btn.addEventListener('click', function () {
         var open = btn.getAttribute('aria-expanded') !== 'true';
         setExpanded(col, open, true);
       });
+    });
+
+    applyColumnStates();
+    window.addEventListener('pageshow', function () {
+      applyColumnStates();
     });
   })();
 
