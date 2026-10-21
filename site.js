@@ -148,10 +148,18 @@
     });
   });
 
-  // Arrive with a hash (from another page or refresh)
+  // Arrive with a hash (from another page, /contact hop, or refresh).
+  // Retry briefly so layout/fonts don't leave #contact under the fixed header.
   if (window.location.hash.length > 1) {
     var initial = window.location.hash.slice(1);
-    window.setTimeout(function () { scrollToId(initial, false); }, 0);
+    var hashTries = 0;
+    function scrollHashArrival() {
+      scrollToId(initial, false);
+      hashTries += 1;
+      if (hashTries < 8) window.setTimeout(scrollHashArrival, 50);
+    }
+    window.setTimeout(scrollHashArrival, 0);
+    window.addEventListener('load', function () { scrollToId(initial, false); }, { once: true });
   }
 
   var burger = document.getElementById('burgerBtn');
