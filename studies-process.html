@@ -172,9 +172,19 @@
     -webkit-user-drag:none; user-select:none; pointer-events:none;
     display:block;
   }
-  /* CFA mixes wide OOH, social mocks, and a tall TikTok still — contain so nothing is cropped */
+  /* CFA mixes wide OOH, social mocks, and tall TikTok ads — contain so nothing is cropped */
   #carousel-chick-fil-a .carousel-viewport{background:#141413;}
   #carousel-chick-fil-a .carousel-slide img{object-fit:contain;}
+  #carousel-chick-fil-a .cfa-sauce-pair{
+    display:flex; align-items:center; justify-content:center;
+    gap:clamp(12px,2.5vw,28px); width:100%; height:100%;
+    padding:clamp(12px,3%,28px); box-sizing:border-box; background:#000;
+  }
+  #carousel-chick-fil-a .cfa-sauce-pair video{
+    height:100%; width:auto; max-width:calc(50% - 14px);
+    object-fit:contain; display:block;
+    -webkit-user-drag:none; user-select:none; pointer-events:none;
+  }
   .ba-carousel .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%);
     width:40px; height:40px; border:0; border-radius:0;
@@ -660,7 +670,12 @@
           <div class="carousel-slide"><img src="images/chick-fil-a/meet-alby-cover.jpg" alt="Chick-fil-A Meet Alby campaign cover" loading="lazy" width="1024" height="508"></div>
           <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-02.jpg" alt="Chick-fil-A Facebook employee appreciation post concept" loading="lazy" width="1842" height="922"></div>
           <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-03.jpg" alt="Chick-fil-A team member appreciation OOH billboard concept" loading="lazy" width="2500" height="834"></div>
-          <div class="carousel-slide"><img src="images/chick-fil-a/sauce-shuffle-still.jpg" alt="Chick-fil-A Sauce Shuffle interactive TikTok concept" loading="lazy" width="1080" height="2296"></div>
+          <div class="carousel-slide">
+            <div class="cfa-sauce-pair">
+              <video autoplay muted loop playsinline disablepictureinpicture preload="metadata" aria-label="Chick-fil-A Sauce Shuffle TikTok concept with sandwich background" src="images/chick-fil-a/Chick-fil-A_Task2.mp4"></video>
+              <video autoplay muted loop playsinline disablepictureinpicture preload="metadata" aria-label="Chick-fil-A Sauce Shuffle TikTok concept with nuggets" src="images/chick-fil-a/Chick-fil-A_Task2_v2.mp4"></video>
+            </div>
+          </div>
         </div>
         <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
         <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
@@ -933,11 +948,24 @@
       function slideX(dragPx){
         return -(index * viewportW()) + (dragPx || 0);
       }
+      function syncSlideMedia(){
+        for (var i = 0; i < slides.length; i++){
+          var vids = slides[i].querySelectorAll('video');
+          for (var v = 0; v < vids.length; v++){
+            if (i === index){
+              try { vids[v].play(); } catch (_) {}
+            } else {
+              vids[v].pause();
+            }
+          }
+        }
+      }
       function update(){
         syncSlideWidths();
         track.style.transition = 'transform 0.45s cubic-bezier(0.65,0,0.35,1)';
         track.style.transform = 'translate3d(' + slideX(0) + 'px,0,0)';
         if (counter) counter.textContent = String(index + 1).padStart(2, '0');
+        syncSlideMedia();
       }
       function go(dir){
         index = (index + dir + total) % total;
