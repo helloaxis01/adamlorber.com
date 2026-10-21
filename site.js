@@ -396,7 +396,7 @@
   })();
 
   // Footer column collapse (session-persistent; page-default when unset).
-  // Desktop keeps page-flipped defaults; mobile defaults all collapsible columns closed.
+  // Same page-flipped defaults on every viewport.
   (function () {
     var sitemap = document.querySelector('.sitemap');
     if (!sitemap) return;
@@ -404,7 +404,6 @@
     var pageDefaults = mode === 'process'
       ? { 'in-house': false, 'client-work': false, 'cpg': true, 'hospitality': true }
       : { 'in-house': true, 'client-work': true, 'cpg': false, 'hospitality': false };
-    var mobileMq = window.matchMedia('(max-width: 900px)');
 
     function storageKey(id) {
       return 'sitemap-col:' + id;
@@ -436,7 +435,6 @@
     function preferredOpen(id) {
       var stored = readStored(id);
       if (stored !== null) return stored;
-      if (mobileMq.matches) return false;
       return !!pageDefaults[id];
     }
 

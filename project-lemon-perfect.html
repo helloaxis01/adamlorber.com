@@ -125,13 +125,16 @@
   .sitemap-col-headrow .sitemap-head{margin-bottom:0;}
   .sitemap-col-list{display:flex; flex-direction:column; gap:11px;}
   .sitemap-toggle{
-    display:none; background:none; border:none; padding:4px; margin:0; cursor:pointer;
-    color:var(--ink-dim); line-height:0; border-radius:1px;
+    display:none; background:none; border:none; padding:0; margin:0; cursor:pointer;
+    color:var(--ink-dim); border-radius:1px; width:100%; font:inherit; text-align:left;
   }
   .sitemap-toggle:hover{color:var(--ink);}
+  .sitemap-toggle:hover .sitemap-head{color:var(--ink);}
   .sitemap-toggle:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
-  .sitemap-chevron{display:block; transition:transform .2s ease;}
-  .sitemap-col[data-sitemap-col] .sitemap-toggle{display:inline-flex; align-items:center; justify-content:center;}
+  .sitemap-chevron{display:block; transition:transform .2s ease; flex-shrink:0;}
+  .sitemap-col[data-sitemap-col] .sitemap-toggle{
+    display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px;
+  }
   .sitemap-col[data-sitemap-col].is-collapsed .sitemap-col-list{display:none;}
   .sitemap-col[data-sitemap-col].is-collapsed .sitemap-chevron{transform:rotate(-90deg);}
 
@@ -472,10 +475,10 @@
 
   <div class="wrap sitemap">
     <div class="sitemap-col" data-sitemap-col="in-house">
-      <div class="sitemap-col-headrow">
+      <button type="button" class="sitemap-toggle sitemap-col-headrow" aria-expanded="true" aria-controls="sitemap-list-in-house" aria-label="Toggle In-House links">
         <span class="sitemap-head">In-House</span>
-        <button type="button" class="sitemap-toggle" aria-expanded="true" aria-controls="sitemap-list-in-house" aria-label="Toggle In-House links"><svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
+        <svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
       <div class="sitemap-col-list" id="sitemap-list-in-house">
       <a href="/television-academy">Television Academy</a>
       <a href="/fount">Fount</a>
@@ -484,10 +487,10 @@
       </div>
     </div>
     <div class="sitemap-col" data-sitemap-col="client-work">
-      <div class="sitemap-col-headrow">
+      <button type="button" class="sitemap-toggle sitemap-col-headrow" aria-expanded="true" aria-controls="sitemap-list-client-work" aria-label="Toggle Client Work links">
         <span class="sitemap-head">Client Work</span>
-        <button type="button" class="sitemap-toggle" aria-expanded="true" aria-controls="sitemap-list-client-work" aria-label="Toggle Client Work links"><svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
+        <svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
       <div class="sitemap-col-list" id="sitemap-list-client-work">
       <a href="/dream-clean">Dream Clean</a>
       <a href="/lemon-perfect">Lemon Perfect</a>
@@ -496,10 +499,10 @@
       </div>
     </div>
     <div class="sitemap-col" data-sitemap-col="cpg">
-      <div class="sitemap-col-headrow">
+      <button type="button" class="sitemap-toggle sitemap-col-headrow" aria-expanded="true" aria-controls="sitemap-list-cpg" aria-label="Toggle CPG links">
         <span class="sitemap-head">CPG</span>
-        <button type="button" class="sitemap-toggle" aria-expanded="true" aria-controls="sitemap-list-cpg" aria-label="Toggle CPG links"><svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
+        <svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
       <div class="sitemap-col-list" id="sitemap-list-cpg">
       <a href="/dream-clean">Dream Clean</a>
       <a href="/lemon-perfect">Lemon Perfect</a>
@@ -509,10 +512,10 @@
       </div>
     </div>
     <div class="sitemap-col" data-sitemap-col="hospitality">
-      <div class="sitemap-col-headrow">
+      <button type="button" class="sitemap-toggle sitemap-col-headrow" aria-expanded="true" aria-controls="sitemap-list-hospitality" aria-label="Toggle Hospitality links">
         <span class="sitemap-head">Hospitality</span>
-        <button type="button" class="sitemap-toggle" aria-expanded="true" aria-controls="sitemap-list-hospitality" aria-label="Toggle Hospitality links"><svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
+        <svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
       <div class="sitemap-col-list" id="sitemap-list-hospitality">
       <a href="/joes-stone-crab">Joe's Stone Crab</a>
       <a href="/process#nautilus">Nautilus</a>
@@ -636,6 +639,6 @@
   })();
 </script>
 
-<script src="site.js?v=footer-collapse3"></script>
+<script src="site.js?v=footer-collapse4"></script>
 </body>
 </html>
