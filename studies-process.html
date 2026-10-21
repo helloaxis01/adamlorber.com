@@ -172,6 +172,9 @@
     -webkit-user-drag:none; user-select:none; pointer-events:none;
     display:block;
   }
+  /* CFA mixes wide OOH, social mocks, and a tall TikTok still — contain so nothing is cropped */
+  #carousel-chick-fil-a .carousel-viewport{background:#141413;}
+  #carousel-chick-fil-a .carousel-slide img{object-fit:contain;}
   .ba-carousel .carousel-arrow{
     position:absolute; top:50%; transform:translateY(-50%);
     width:40px; height:40px; border:0; border-radius:0;
@@ -653,11 +656,11 @@
     <div class="ba-carousel block-carousel" id="carousel-chick-fil-a">
       <div class="carousel-viewport">
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-01.jpg" alt="Chick-fil-A Instagram grid employee appreciation concept" loading="lazy" width="2200" height="1355" style="object-position:35% 50%;"></div>
+          <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-01.jpg" alt="Chick-fil-A Instagram grid employee appreciation concept" loading="lazy" width="2200" height="1355"></div>
           <div class="carousel-slide"><img src="images/chick-fil-a/meet-alby-cover.jpg" alt="Chick-fil-A Meet Alby campaign cover" loading="lazy" width="1024" height="508"></div>
           <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-02.jpg" alt="Chick-fil-A Facebook employee appreciation post concept" loading="lazy" width="1842" height="922"></div>
-          <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-03.jpg" alt="Chick-fil-A team member appreciation OOH billboard concept" loading="lazy" width="2500" height="834" style="object-position:50% 50%;"></div>
-          <div class="carousel-slide"><img src="images/chick-fil-a/sauce-shuffle-still.jpg" alt="Chick-fil-A Sauce Shuffle interactive TikTok concept" loading="lazy" width="1080" height="2296" style="object-position:50% 42%;"></div>
+          <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-03.jpg" alt="Chick-fil-A team member appreciation OOH billboard concept" loading="lazy" width="2500" height="834"></div>
+          <div class="carousel-slide"><img src="images/chick-fil-a/sauce-shuffle-still.jpg" alt="Chick-fil-A Sauce Shuffle interactive TikTok concept" loading="lazy" width="1080" height="2296"></div>
         </div>
         <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
         <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
