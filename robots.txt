@@ -32,6 +32,15 @@ Disallow: /project-solmar.html
 Disallow: /mootz-tom
 Disallow: /mootz-tom.html
 Disallow: /project-mootz-tom.html
+Disallow: /chick-fil-a
+Disallow: /chick-fil-a.html
+Disallow: /project-chick-fil-a.html
+Disallow: /mantra
+Disallow: /mantra.html
+Disallow: /project-mantra.html
+Disallow: /olio
+Disallow: /olio.html
+Disallow: /project-olio.html
 Disallow: /good-kernels
 Disallow: /good-kernels.html
 Disallow: /project-good-kernels.html
