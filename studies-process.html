@@ -75,7 +75,7 @@
   .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
   .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
 
-  .p-hero{padding-top:150px; padding-bottom:48px;}
+  .p-hero{padding-top:150px; padding-bottom:20px;}
   .p-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); display:flex; align-items:center; gap:12px; margin-bottom:20px;}
   .p-eyebrow::before{content:''; width:26px; height:1px; background:var(--ink-dim);}
   .p-title{font-family:var(--serif); font-weight:500; font-size:clamp(40px,7.6vw,104px); line-height:0.98;}
@@ -97,18 +97,19 @@
     background:color-mix(in srgb, var(--bg) 92%, transparent);
     -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
-    margin-bottom:8px;
+    margin:0 0 0;
   }
   .process-subnav-inner{
-    max-width:var(--maxw); margin:0 auto; padding:14px var(--gutter);
-    display:flex; flex-wrap:wrap; gap:18px 28px;
+    max-width:var(--maxw); margin:0 auto; padding:12px var(--gutter) 14px;
+    display:flex; flex-wrap:wrap; justify-content:flex-start; gap:18px 28px;
   }
   .process-subnav a{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
     color:var(--ink-dim);
   }
   .process-subnav a:hover{color:var(--ink);}
-  .process-group{padding-top:56px;}
+  .process-group{padding-top:40px;}
+  .process-subnav + .process-group{padding-top:28px;}
   .process-group-label{
     font-family:var(--mono); font-size:12px; letter-spacing:0.16em; text-transform:uppercase;
     color:var(--gold); margin-bottom:10px;
@@ -203,7 +204,7 @@
   .next-title{font-family:var(--serif); font-weight:500; font-size:clamp(26px,4.8vw,51px); display:inline-flex; align-items:center; gap:18px;}
   
 
-  .sitemap{display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
+  .sitemap{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
   .sitemap-col{display:flex; flex-direction:column; gap:11px;}
   .sitemap-head{font-family:var(--mono); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
   .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em;}
@@ -439,12 +440,6 @@
     <h1 class="p-title">Concepts &amp; Freelance</h1>
     <p class="p-sub">Selected freelance and concept work for CPG, food &amp; beverage, wellness, and hospitality brands — packaging, identity, and campaigns, including concepts for projects that never opened or launched. For new freelance projects: <a href="/#contact">contact</a>.</p>
     <p class="process-bridge">Looking for my in-house case studies? See <a href="/#work">Selected Work</a>.</p>
-    <div class="meta-row">
-      <div>Role<strong>Art Director</strong></div>
-      <div>Scope<strong>Brand Identity, Logo, Collateral</strong></div>
-      <div>Sector<strong>Various</strong></div>
-      <div>Timeline<strong>2012–2026</strong></div>
-    </div>
   </div>
   <nav class="process-subnav" aria-label="Concepts &amp; Freelance sections">
     <div class="process-subnav-inner">
@@ -460,26 +455,20 @@
   </div>
 <section class="wrap study-section" id="mantra">
     <div class="sec-label">Mantra</div>
-    <p class="sec-body">Natural wellness brand identity and packaging for tinctures, with an ingredient-forward system designed for health-conscious shoppers.</p>
+    <p class="sec-body">Natural wellness brand identity and packaging for tinctures, with an ingredient-forward system.</p>
     <div class="ba-carousel block-carousel" id="carousel-mantra-process">
       <div class="carousel-viewport">
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="images/mantra/thumbnail.jpg?v=2" alt="Mantra" loading="lazy" width="1600" height="900"></div>
-          <div class="carousel-slide"><img src="images/mantra/Product2.jpg" alt="Mantra tincture product photography" loading="lazy" width="1920" height="1080"></div>
-          <div class="carousel-slide"><img src="images/mantra/Mantra_Portfolio-03.jpg" alt="Mantra brand identity, primary packaging shot" loading="lazy" width="2500" height="1407"></div>
           <div class="carousel-slide"><img src="images/mantra/Mantra_Portfolio-05.jpg" alt="Mantra brand identity and packaging system" loading="lazy" width="2200" height="1238"></div>
           <div class="carousel-slide"><img src="images/mantra/Mantra_Portfolio-06.jpg" alt="Mantra full product line packaging" loading="lazy" width="2200" height="1237"></div>
           <div class="carousel-slide"><img src="images/mantra/Mantra_Portfolio-01.jpg" alt="Mantra packaging detail, front label" loading="lazy" width="2500" height="1407"></div>
-          <div class="carousel-slide"><img src="images/mantra/Mantra_Portfolio-02.jpg" alt="Mantra packaging detail, side panel" loading="lazy" width="2500" height="1406"></div>
-          <div class="carousel-slide"><img src="images/mantra/Mantra_Portfolio-04.jpg" alt="Mantra merchandise, front and back t-shirts" loading="lazy" width="2500" height="1406"></div>
-          <div class="carousel-slide"><img src="images/mantra/Product3.jpg" alt="Hands using Mantra product on a bathroom counter" loading="lazy" width="1920" height="1080"></div>
+          <div class="carousel-slide"><img src="images/mantra/Product2.jpg" alt="Mantra tincture product photography" loading="lazy" width="1920" height="1080"></div>
         </div>
         <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
         <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <div class="carousel-counter"><span class="carousel-current">01</span> / 09</div>
+        <div class="carousel-counter"><span class="carousel-current">01</span> / 04</div>
       </div>
     </div>
-  
     <p class="sec-project-link"><a href="/mantra">View full project →</a></p>
   </section>
 <section class="wrap study-section" id="solmar">
@@ -546,27 +535,17 @@
   </div>
 <section class="wrap study-section" id="olio">
     <div class="sec-label">Olio Italian</div>
-    <p class="sec-body">A modern take on neighborhood Italian. Identity, menus, merch, and environmental design that keeps traditional dining from falling into trattoria cliches.</p>
+    <p class="sec-body">A modern take on neighborhood Italian: identity, menus, merch, and environmental design.</p>
     <div class="ba-carousel block-carousel" id="carousel-olio-process">
       <div class="carousel-viewport">
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="images/olio/thumbnail.jpg" alt="Olio Italian logo" loading="lazy" width="1600" height="899"></div>
-          <div class="carousel-slide"><img src="images/olio/portfolio-07.jpg" alt="Olio Italian chef in branded apron" loading="lazy" width="2200" height="1238"></div>
-          <div class="carousel-slide"><img src="images/olio/portfolio-04.jpg" alt="Olio Italian logo concept sheet" loading="lazy" width="2500" height="1407"></div>
-          <div class="carousel-slide"><img src="images/olio/portfolio-08.jpg" alt="Olio mark concept: O plus olive branch" loading="lazy" width="2500" height="1406"></div>
-          <div class="carousel-slide"><img src="images/olio/portfolio-10.jpg" alt="Olio Italian wordmark over Italian landscape" loading="lazy" width="2200" height="1237"></div>
-          <div class="carousel-slide"><img src="images/olio/portfolio-02.jpg" alt="Olio Italian lockup in olive wreath" loading="lazy" width="2200" height="1237"></div>
-          <div class="carousel-slide"><img src="images/olio/portfolio-03.jpg" alt="Olio Italian branded coffee cup" loading="lazy" width="2500" height="1406"></div>
-          <div class="carousel-slide"><img src="images/olio/portfolio-06.jpg" alt="Olio Italian branded apron" loading="lazy" width="2500" height="1406"></div>
-          <div class="carousel-slide"><img src="images/olio/portfolio-01.jpg" alt="Olio Italian window sign wordmark" loading="lazy" width="2500" height="1406"></div>
-          <div class="carousel-slide"><img src="images/olio/dsc-0663.jpg" alt="Olio Italian restaurant exterior" loading="lazy" width="2200" height="1237"></div>
+          <div class="carousel-slide"><img src="images/olio/portfolio-04.jpg" alt="Olio Italian identity composite" loading="lazy" width="2500" height="1407"></div>
         </div>
         <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
         <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <div class="carousel-counter"><span class="carousel-current">01</span> / 10</div>
+        <div class="carousel-counter"><span class="carousel-current">01</span> / 01</div>
       </div>
     </div>
-  
     <p class="sec-project-link"><a href="/olio">View full project →</a></p>
   </section>
 <section class="wrap study-section" id="mootz-tom">
@@ -639,24 +618,19 @@
   </div>
 <section class="wrap study-section" id="chick-fil-a">
     <div class="sec-label">Chick-fil-A</div>
-    <p class="sec-body">Social and OOH concept work for Chick-fil-A, including a TikTok debut idea and a team member appreciation campaign across Instagram, Facebook, and billboards.</p>
+    <p class="sec-body">Social and OOH concept work, including a TikTok debut idea and team member appreciation campaign.</p>
     <p class="sec-scope">Engagement: Commissioned Concept — Paid concept work developed for Chick-fil-A. All work transferred to and owned by Chick-fil-A, for use at their discretion.</p>
     <div class="ba-carousel block-carousel" id="carousel-chick-fil-a">
       <div class="carousel-viewport">
         <div class="carousel-track">
-          <div class="carousel-slide"><img src="images/chick-fil-a/thumbnail.jpg?v=3" alt="Chick-fil-A" loading="lazy" width="2500" height="1406"></div>
-          <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1.jpg" alt="Chick-fil-A campaign concept" loading="lazy" width="2500" height="1406"></div>
-          <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-01.jpg" alt="Chick-fil-A Instagram grid employee appreciation concept" loading="lazy" width="2200" height="1355"></div>
-          <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-02.jpg" alt="Chick-fil-A Facebook employee appreciation post concept" loading="lazy" width="1842" height="922"></div>
+          <div class="carousel-slide"><img src="images/chick-fil-a/sauce-shuffle-still.jpg" alt="Chick-fil-A Sauce Shuffle interactive TikTok concept" loading="lazy" width="1080" height="2296"></div>
           <div class="carousel-slide"><img src="images/chick-fil-a/Chick-fil-A_Task1-03.jpg" alt="Chick-fil-A team member appreciation OOH billboard concept" loading="lazy" width="2500" height="834"></div>
-          <div class="carousel-slide"><img src="images/chick-fil-a/meet-alby-cover.jpg" alt="Chick-fil-A Meet Alby campaign cover" loading="lazy" width="2200" height="1238"></div>
         </div>
         <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
         <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
-        <div class="carousel-counter"><span class="carousel-current">01</span> / 06</div>
+        <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
       </div>
     </div>
-  
     <p class="sec-project-link"><a href="/chick-fil-a">View full project →</a></p>
   </section>
 <section class="wrap study-section" id="revyrie">
@@ -797,12 +771,11 @@
       <a href="/process#great-greek">Great Greek</a>
       <a href="/process#olio">Olio Italian</a>
     </div>
-    <div class="sitemap-col">
+    <div class="sitemap-col sitemap-col--studies">
       <span class="sitemap-head">Studies</span>
       <a href="/logos-marks">Logos &amp; Marks</a>
       <a href="/process">Concepts &amp; Freelance</a>
-    </div>
-    <div class="sitemap-col">
+      <span class="sitemap-studies-spacer" aria-hidden="true"></span>
       <a href="/about" class="sitemap-caps">About</a>
       <a href="/#contact" class="sitemap-caps">Contact</a>
     </div>
