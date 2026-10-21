@@ -154,13 +154,13 @@
   /* ---------- HERO : FULL BLEED ---------- */
   .hero{padding-top:158px; padding-bottom:0;}
   .hero-text{margin-bottom:32px;}
-  .hero-name{font-family:var(--serif); font-weight:500; font-size:clamp(24px,3.2vw,38px); line-height:1.28; color:var(--ink); max-width:100%; margin-top:18px; text-wrap:wrap;}
+  .hero-name{font-family:var(--serif); font-weight:500; font-size:clamp(24px,3.2vw,38px); line-height:1.28; color:var(--ink); max-width:min(1100px,100%); margin-top:18px; text-wrap:wrap;}
   .hero-name .m-br{display:none;}
   .hero-name .d-br{display:none;}
   .hero-name .hero-end{white-space:normal;}
   @media (min-width:1100px){
     .hero-name .d-br{display:inline;}
-    .hero-name .hero-end{white-space:normal;}
+    .hero-name .hero-end{white-space:nowrap;}
   }
   .nowrap{white-space:nowrap;}
   .flourish{
@@ -500,7 +500,7 @@
       font-size:clamp(22px,6.2vw,28px);
       line-height:1.32;
       margin-top:16px;
-      max-width:100%;
+      max-width:min(34ch,100%);
       text-wrap:pretty;
     }
     .hero-name .m-br{display:inline;}
@@ -713,7 +713,7 @@
   <div class="hero wrap">
     <div class="hero-text">
       <p class="hero-role">Lead Designer/Art Director</p>
-      <h1 class="hero-name">Identity, campaigns, and strategy for brands that need to <span class="flourish" data-text="look established">look established</span>, and established brands that need to <span class="flourish" data-text="feel new">feel new</span>.</h1>
+      <h1 class="hero-name">Identity, campaigns, and strategy for brands that need to <span class="flourish" data-text="look established">look established</span>,<br> and established brands that need to <span class="flourish" data-text="feel new">feel new</span>.</h1>
     </div>
   </div>
 
