@@ -43,8 +43,8 @@
 # Legacy Squarespace paths. Drop /cart|/search→/ (soft 404); let them 404 cleanly.
 /work                     /                                         301
 /work/                    /                                         301
-/contact                  /                                         301
-/contact/                 /                                         301
+/contact                  /contact.html                             200
+/contact/                 /contact.html                             200
 /about/                   /about                                    301
 /resume/                  /resume                                   301
 /amazon/                  /amazon                                   301
