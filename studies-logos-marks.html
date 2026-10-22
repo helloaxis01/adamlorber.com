@@ -90,7 +90,7 @@
   .study-section .sec-body{font-size:15px; line-height:1.75; color:var(--ink); max-width:720px; margin-bottom:32px;}
   .study-section .sec-body strong{color:var(--ink); font-weight:600;}
 
-  .logo-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,2vw,24px); padding-bottom:96px;}
+  .logo-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:clamp(12px,2vw,24px); padding-bottom:48px;}
   .logo-grid .cell{aspect-ratio:1; overflow:hidden; background:#141413;}
   .logo-grid .cell img{width:100%; height:100%; object-fit:cover;}
 
@@ -99,6 +99,62 @@
   .proc-gallery .p-image.full{grid-column:1 / -1; aspect-ratio:16/9;}
   .proc-gallery .p-image.square{aspect-ratio:1;}
   .proc-gallery img{width:100%; height:100%; object-fit:cover;}
+
+
+  .revyrie-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:clamp(16px,2.2vw,24px) clamp(12px,2vw,20px);
+    margin-bottom:16px;
+  }
+  .revyrie-cell{min-width:0; display:flex; flex-direction:column; gap:10px;}
+  .revyrie-cell.is-wide{grid-column:1 / -1;}
+  .revyrie-name{
+    font-family:var(--mono); font-size:10px; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--ink-dim);
+  }
+  .ba-carousel{position:relative; margin-bottom:16px;}
+  .revyrie-grid .ba-carousel{margin-bottom:0;}
+  .ba-carousel .carousel-viewport{
+    position:relative; width:100%; aspect-ratio:16/9; overflow:hidden;
+    background:var(--bg); touch-action:pan-y; cursor:grab; border-radius:1px;
+  }
+  .ba-carousel .carousel-viewport:active{cursor:grabbing;}
+  .ba-carousel .carousel-track{display:flex; height:100%; will-change:transform;}
+  .ba-carousel .carousel-slide{
+    flex:0 0 100%; height:100%; display:flex; align-items:center; justify-content:center;
+  }
+  .ba-carousel .carousel-slide img{
+    width:100%; height:100%; object-fit:cover;
+    -webkit-user-drag:none; user-select:none; pointer-events:none;
+    display:block;
+  }
+  .ba-carousel .carousel-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:40px; height:40px; border:0; border-radius:0;
+    background:transparent; color:#1a1a19; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; z-index:2;
+    padding:0; opacity:1; transition:opacity 0.2s ease, color 0.2s ease;
+  }
+  .ba-carousel .carousel-arrow svg{width:20px; height:20px; display:block;}
+  .ba-carousel .carousel-arrow:hover{opacity:1; color:#000; background:transparent;}
+  .ba-carousel .carousel-prev{left:4px;}
+  .ba-carousel .carousel-next{right:4px;}
+  .ba-carousel .carousel-counter{
+    position:absolute; right:12px; bottom:10px; z-index:2;
+    font-family:var(--mono); font-size:10px; letter-spacing:0.1em;
+    color:rgba(239,238,233,0.85); background:rgba(20,20,19,0.4);
+    padding:4px 8px; border-radius:999px; pointer-events:none;
+  }
+  html[data-theme="light"] .ba-carousel .carousel-arrow{
+    border:0; background:transparent; color:#1a1a19;
+  }
+  html[data-theme="light"] .ba-carousel .carousel-arrow:hover{
+    border:0; background:transparent; color:#000;
+  }
+  html[data-theme="light"] .ba-carousel .carousel-counter{
+    color:var(--ink); background:rgba(239,238,233,0.78);
+  }
 
   .next{background:var(--next-bg); padding:70px 0; display:flex; align-items:center; margin-top:48px;}
   .next .wrap{width:100%;}
@@ -109,6 +165,7 @@
   .sitemap{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; column-gap:0; row-gap:28px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
   .sitemap-col{display:flex; flex-direction:column; gap:11px; min-width:0; height:100%;}
   .sitemap-head{font-family:var(--mono); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
+  .sitemap-head--blank{visibility:hidden; user-select:none; pointer-events:none;}
   .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em; white-space:nowrap;}
   
   .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
@@ -127,6 +184,8 @@
     .p-hero{padding-top:120px;}
     .meta-row{grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:1.5rem; row-gap:1.5rem; align-items:start;}
     .logo-grid{grid-template-columns:repeat(2,1fr);}
+    .revyrie-grid{grid-template-columns:1fr;}
+    .revyrie-cell.is-wide{grid-column:auto;}
     .proc-gallery{grid-template-columns:1fr;}
     .sitemap{flex-direction:column; align-items:stretch; gap:32px;}
     .sitemap-cluster{display:flex; flex-direction:column; grid-template-columns:none; gap:32px; width:100%;}
@@ -357,6 +416,90 @@
     </div>
   </div>
 
+<section class="wrap study-section" id="revyrie">
+    <div class="sec-label">Revyrie</div>
+    <p class="sec-body">Brand refreshes and new logo systems developed for both existing and newly launched companies within the Revyrie portfolio.</p>
+    <div class="revyrie-grid">
+      <div class="revyrie-cell">
+        <div class="revyrie-name">Revyrie</div>
+        <div class="ba-carousel block-carousel" id="carousel-revyrie">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---1.jpg" alt="Revyrie new wordmark" loading="lazy" width="1920" height="1080"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---3.jpg" alt="Revyrie typography overlap comparison" loading="lazy" width="1920" height="1080"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---2.jpg" alt="Revyrie old wordmark" loading="lazy" width="1920" height="1080"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="revyrie-cell">
+        <div class="revyrie-name">Archetype</div>
+        <div class="ba-carousel block-carousel" id="carousel-archetype">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---4.jpg" alt="Archetype new wordmark" loading="lazy" width="1920" height="1080"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---5.jpg" alt="Archetype new logo mark" loading="lazy" width="1920" height="1080"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="revyrie-cell">
+        <div class="revyrie-name">Clarity</div>
+        <div class="ba-carousel block-carousel" id="carousel-clarity">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---7.jpg" alt="Clarity new wordmark" loading="lazy" width="1920" height="1080"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---8.jpg" alt="Clarity new logomark" loading="lazy" width="1920" height="1080"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---9.jpg" alt="Clarity old wordmark" loading="lazy" width="1920" height="1080"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="revyrie-cell">
+        <div class="revyrie-name">Gravity + AV</div>
+        <div class="ba-carousel block-carousel" id="carousel-gravity">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---10.jpg" alt="Gravity new wordmark" loading="lazy" width="1920" height="1080"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---11.jpg" alt="AV new logomark" loading="lazy" width="1920" height="1080"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 02</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="revyrie-cell is-wide">
+        <div class="revyrie-name">Legacie</div>
+        <div class="ba-carousel block-carousel" id="carousel-legacie">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---13.jpg" alt="Legacie new wordmark" loading="lazy" width="1920" height="1080"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---14.jpg" alt="Legacie new logomark" loading="lazy" width="1920" height="1080"></div>
+              <div class="carousel-slide"><img src="images/studies-process/Slide-16_9---15.jpg" alt="Legacie old wordmark and logomark" loading="lazy" width="1920" height="1080"></div>
+            </div>
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" stroke="#fff" stroke-width="3.5"/><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="#fff" stroke-width="3.5"/><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5"/></svg></button>
+            <div class="carousel-counter"><span class="carousel-current">01</span> / 03</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="next">
     <div class="wrap">
       <div class="next-label">Next study</div>
@@ -380,7 +523,7 @@
         <a href="/joes-stone-crab">Joe's Stone Crab</a>
       </div>
       <div class="sitemap-col sitemap-col--studies">
-        <span class="sitemap-head">Studies</span>
+        <span class="sitemap-head sitemap-head--blank" aria-hidden="true">Studies</span>
         <a href="/logos-marks">Logos &amp; Marks</a>
         <a href="/process">Freelance &amp; Concepts</a>
         <span class="sitemap-studies-spacer" aria-hidden="true"></span>
@@ -389,9 +532,8 @@
       </div>
     </div>
     <div class="sitemap-more">
-      <span class="sitemap-head">More projects</span>
-      <p class="sitemap-more-line">Mantra, Solmar, Nice Supps, Victory Extracts. <a href="/process#packaging-cpg">See all CPG work →</a></p>
-      <p class="sitemap-more-line">Olio Italian, Mootz &amp; Tom, Nautilus Hotel, Great Greek. <a href="/process#hospitality">See all hospitality work →</a></p>
+      <p class="sitemap-more-line">Mantra, Solmar, Nice Supps, Victory Extracts. <a href="/process">See all CPG work →</a></p>
+      <p class="sitemap-more-line">Olio Italian, Mootz &amp; Tom, Nautilus Hotel, Great Greek, Chick-fil-A. <a href="/process#hospitality">See all hospitality work →</a></p>
     </div>
   </div>
 
@@ -425,6 +567,65 @@
     if (!headerTicking){ headerTicking = true; requestAnimationFrame(updateHeader); }
   }, { passive: true });
 </script>
-<script src="site.js?v=footer-v3d"></script>
+
+<script>
+  (function(){
+    const carousels = document.querySelectorAll('.ba-carousel');
+    carousels.forEach(function(carousel){
+      const viewport = carousel.querySelector('.carousel-viewport');
+      const track = carousel.querySelector('.carousel-track');
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const counter = carousel.querySelector('.carousel-current');
+      const total = slides.length;
+      if (!viewport || !track || total < 2) return;
+      let index = 0, startX = 0, deltaX = 0, dragging = false, pointerId = null;
+      function viewportW(){ return Math.round(viewport.getBoundingClientRect().width); }
+      function syncSlideWidths(){
+        var w = viewportW();
+        for (var i = 0; i < slides.length; i++){
+          slides[i].style.flex = '0 0 ' + w + 'px';
+          slides[i].style.width = w + 'px';
+          slides[i].style.minWidth = w + 'px';
+          slides[i].style.maxWidth = w + 'px';
+        }
+      }
+      function slideX(dragPx){ return -(index * viewportW()) + (dragPx || 0); }
+      function update(){
+        syncSlideWidths();
+        track.style.transition = 'transform 0.45s cubic-bezier(0.65,0,0.35,1)';
+        track.style.transform = 'translate3d(' + slideX(0) + 'px,0,0)';
+        if (counter) counter.textContent = String(index + 1).padStart(2, '0');
+      }
+      function go(dir){ index = (index + dir + total) % total; update(); }
+      const prev = carousel.querySelector('.carousel-prev');
+      const next = carousel.querySelector('.carousel-next');
+      if (prev) prev.addEventListener('click', function(){ go(-1); });
+      if (next) next.addEventListener('click', function(){ go(1); });
+      viewport.addEventListener('pointerdown', function(e){
+        if (e.button !== 0) return;
+        if (e.target.closest('.carousel-arrow')) return;
+        dragging = true; pointerId = e.pointerId; startX = e.clientX; deltaX = 0;
+        track.style.transition = 'none';
+        try { viewport.setPointerCapture(e.pointerId); } catch (_) {}
+      });
+      viewport.addEventListener('pointermove', function(e){
+        if (!dragging || e.pointerId !== pointerId) return;
+        deltaX = e.clientX - startX;
+        track.style.transform = 'translate3d(' + slideX(deltaX) + 'px,0,0)';
+      });
+      function endDrag(e){
+        if (!dragging || (e && e.pointerId !== pointerId)) return;
+        dragging = false; pointerId = null;
+        if (Math.abs(deltaX) > 50) go(deltaX < 0 ? 1 : -1); else update();
+        deltaX = 0;
+      }
+      viewport.addEventListener('pointerup', endDrag);
+      viewport.addEventListener('pointercancel', endDrag);
+      window.addEventListener('resize', function(){ if (!dragging) update(); });
+      update();
+    });
+  })();
+</script>
+<script src="site.js?v=footer-v4"></script>
 </body>
 </html>

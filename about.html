@@ -216,6 +216,7 @@
   .sitemap{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; column-gap:0; row-gap:28px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
   .sitemap-col{display:flex; flex-direction:column; gap:11px; min-width:0; height:100%;}
   .sitemap-head{font-family:var(--mono); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
+  .sitemap-head--blank{visibility:hidden; user-select:none; pointer-events:none;}
   .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em; white-space:nowrap;}
   
   .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
@@ -523,7 +524,7 @@
         <a href="/joes-stone-crab">Joe's Stone Crab</a>
       </div>
       <div class="sitemap-col sitemap-col--studies">
-        <span class="sitemap-head">Studies</span>
+        <span class="sitemap-head sitemap-head--blank" aria-hidden="true">Studies</span>
         <a href="/logos-marks">Logos &amp; Marks</a>
         <a href="/process">Freelance &amp; Concepts</a>
         <span class="sitemap-studies-spacer" aria-hidden="true"></span>
@@ -532,9 +533,8 @@
       </div>
     </div>
     <div class="sitemap-more">
-      <span class="sitemap-head">More projects</span>
-      <p class="sitemap-more-line">Mantra, Solmar, Nice Supps, Victory Extracts. <a href="/process#packaging-cpg">See all CPG work →</a></p>
-      <p class="sitemap-more-line">Olio Italian, Mootz &amp; Tom, Nautilus Hotel, Great Greek. <a href="/process#hospitality">See all hospitality work →</a></p>
+      <p class="sitemap-more-line">Mantra, Solmar, Nice Supps, Victory Extracts. <a href="/process">See all CPG work →</a></p>
+      <p class="sitemap-more-line">Olio Italian, Mootz &amp; Tom, Nautilus Hotel, Great Greek, Chick-fil-A. <a href="/process#hospitality">See all hospitality work →</a></p>
     </div>
   </div>
 
@@ -574,6 +574,6 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
-<script src="site.js?v=footer-v3d"></script>
+<script src="site.js?v=footer-v4"></script>
 </body>
 </html>
