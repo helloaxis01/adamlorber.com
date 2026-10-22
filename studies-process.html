@@ -226,7 +226,7 @@
   .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em;}
   
   .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
-  .sitemap-cluster{display:flex; flex-wrap:wrap; align-items:flex-start; gap:28px 56px; flex:0 1 auto;}
+  .sitemap-cluster{display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:flex-start; gap:28px clamp(64px,8vw,120px); flex:1 1 auto; min-width:0;}
   .sitemap-meta{display:flex; flex-direction:column; gap:11px; flex:0 0 auto; margin-left:auto;}
   .sitemap-meta a{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
   .sitemap-more{flex:1 0 100%; display:flex; flex-direction:column; gap:11px; padding-top:4px;}
@@ -817,7 +817,7 @@
       <a href="/#contact" class="sitemap-caps">Contact</a>
     </div>
     <div class="sitemap-more">
-      <span class="sitemap-head">More work</span>
+      <span class="sitemap-head">More projects</span>
       <p class="sitemap-more-line">Mantra, Solmar, Nice Supps, Victory Extracts. <a href="/process#packaging-cpg">See all CPG work →</a></p>
       <p class="sitemap-more-line">Olio Italian, Mootz &amp; Tom, Nautilus Hotel, Great Greek. <a href="/process#hospitality">See all hospitality work →</a></p>
     </div>
@@ -979,6 +979,6 @@
     });
   })();
 </script>
-<script src="site.js?v=footer-v3"></script>
+<script src="site.js?v=footer-v3b"></script>
 </body>
 </html>
