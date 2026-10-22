@@ -412,8 +412,8 @@
     if (!sitemap) return;
     var mode = sitemap.getAttribute('data-sitemap-mode') || 'default';
     var pageDefaults = mode === 'process'
-      ? { 'in-house': false, 'client-work': false, 'cpg': true, 'hospitality': true }
-      : { 'in-house': true, 'client-work': true, 'cpg': false, 'hospitality': false };
+      ? { 'in-house': false, 'client-work': false }
+      : { 'in-house': true, 'client-work': true };
 
     function storageKey(id) {
       return 'sitemap-col:' + mode + ':' + id;
