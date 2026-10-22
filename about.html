@@ -214,14 +214,13 @@
   }
 
   .sitemap{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; column-gap:0; row-gap:28px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
-  .sitemap-col{display:flex; flex-direction:column; gap:11px; min-width:0;}
+  .sitemap-col{display:flex; flex-direction:column; gap:11px; min-width:0; height:100%;}
   .sitemap-head{font-family:var(--mono); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
   .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em; white-space:nowrap;}
   
   .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
+  .sitemap-studies-spacer{flex:1 1 auto; min-height:1px; pointer-events:none;}
   .sitemap-cluster{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:clamp(48px,6vw,96px); row-gap:28px; flex:1 1 auto; min-width:0; align-items:start;}
-  .sitemap-meta{display:flex; flex-direction:column; gap:11px; flex:0 0 auto; margin-left:auto;}
-  .sitemap-meta a{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
   .sitemap-more{flex:1 0 100%; display:flex; flex-direction:column; gap:11px; padding-top:4px;}
   .sitemap-more .sitemap-head{margin-bottom:0;}
   .sitemap-more-line{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.04em; color:var(--ink-dim); line-height:1.7; margin:0; text-transform:none; white-space:nowrap;}
@@ -292,8 +291,7 @@
     .sitemap{flex-direction:column; align-items:stretch; gap:32px;}
     .sitemap-cluster{display:flex; flex-direction:column; grid-template-columns:none; gap:32px; width:100%;}
     .sitemap-col a{white-space:normal;}
-    .sitemap-meta{margin-left:0; width:100%;}
-    .sitemap-more-line{white-space:normal;}
+      .sitemap-more-line{white-space:normal;}
     .sitemap-col{min-width:0;}
   }
 
@@ -306,7 +304,6 @@
   .sitemap-col a,
   .sitemap-col a.sitemap-caps,
   .sitemap-more-line a,
-  .sitemap-meta a,
   .study h3,
   .study span,
   .contact-links a,
@@ -322,7 +319,6 @@
   .sitemap-col a:hover,
   .sitemap-col a.sitemap-caps:hover,
   .sitemap-more-line a:hover,
-  .sitemap-meta a:hover,
   .study:hover h3,
   .study:hover span,
   .contact-links a:not(.email-address):hover,
@@ -341,7 +337,6 @@
   html[data-theme="light"] .sitemap-col a:hover,
   html[data-theme="light"] .sitemap-col a.sitemap-caps:hover,
   html[data-theme="light"] .sitemap-more-line a:hover,
-  .sitemap-meta a:hover,
   html[data-theme="light"] .study:hover h3,
   html[data-theme="light"] .study:hover span,
   html[data-theme="light"] .contact-links a:not(.email-address):hover,
@@ -531,11 +526,10 @@
         <span class="sitemap-head">Studies</span>
         <a href="/logos-marks">Logos &amp; Marks</a>
         <a href="/process">Freelance &amp; Concepts</a>
+        <span class="sitemap-studies-spacer" aria-hidden="true"></span>
+        <a href="/about" class="sitemap-caps">About</a>
+        <a href="/#contact" class="sitemap-caps">Contact</a>
       </div>
-    </div>
-    <div class="sitemap-meta">
-      <a href="/about" class="sitemap-caps">About</a>
-      <a href="/#contact" class="sitemap-caps">Contact</a>
     </div>
     <div class="sitemap-more">
       <span class="sitemap-head">More projects</span>
@@ -580,6 +574,6 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 </script>
 
-<script src="site.js?v=footer-v3c"></script>
+<script src="site.js?v=footer-v3d"></script>
 </body>
 </html>
