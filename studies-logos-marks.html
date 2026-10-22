@@ -106,13 +106,17 @@
   .next-title{font-family:var(--serif); font-weight:500; font-size:clamp(26px,4.8vw,51px); display:inline-flex; align-items:center; gap:18px;}
   
 
-  .sitemap{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
+  .sitemap{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
   .sitemap-col{display:flex; flex-direction:column; gap:11px;}
   .sitemap-head{font-family:var(--mono); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
   .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em;}
   
   .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
   .sitemap-studies-spacer{flex:1 1 auto; min-height:1px; pointer-events:none;}
+  .sitemap-more{grid-column:1 / -1; display:flex; flex-direction:column; gap:11px; padding-top:8px;}
+  .sitemap-more .sitemap-head{margin-bottom:0;}
+  .sitemap-more-line{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.04em; color:var(--ink-dim); line-height:1.7; margin:0; text-transform:none; max-width:72ch;}
+  .sitemap-more-line a{color:var(--ink-dim); text-decoration:none; text-transform:none; letter-spacing:0.04em;}
 
   .sitemap-col-headrow{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px;}
   .sitemap-col-headrow .sitemap-head{margin-bottom:0;}
@@ -150,6 +154,7 @@
   /* Chartreuse highlight: black type on mark; pad ~1 space L/R without hover shift */
   .sitemap-col a,
   .sitemap-col a.sitemap-caps,
+  .sitemap-more-line a,
   .study h3,
   .study span,
   .contact-links a,
@@ -162,6 +167,7 @@
   }
   .sitemap-col a:hover,
   .sitemap-col a.sitemap-caps:hover,
+  .sitemap-more-line a:hover,
   .study:hover h3,
   .study:hover span,
   .contact-links a:hover,
@@ -174,6 +180,7 @@
   }
   html[data-theme="light"] .sitemap-col a:hover,
   html[data-theme="light"] .sitemap-col a.sitemap-caps:hover,
+  html[data-theme="light"] .sitemap-more-line a:hover,
   html[data-theme="light"] .study:hover h3,
   html[data-theme="light"] .study:hover span,
   html[data-theme="light"] .contact-links a:hover,
@@ -392,32 +399,6 @@
       <a href="/joes-stone-crab">Joe's Stone Crab</a>
       </div>
     </div>
-    <div class="sitemap-col" data-sitemap-col="cpg">
-      <button type="button" class="sitemap-toggle sitemap-col-headrow" aria-expanded="true" aria-controls="sitemap-list-cpg" aria-label="Toggle CPG links">
-        <span class="sitemap-head">CPG</span>
-        <svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="sitemap-col-list" id="sitemap-list-cpg">
-      <a href="/dream-clean">Dream Clean</a>
-      <a href="/lemon-perfect">Lemon Perfect</a>
-      <a href="/process#mantra">Mantra</a>
-      <a href="/process#solmar">Solmar</a>
-      <a href="/process#nice-supps">Nice Supps</a>
-      </div>
-    </div>
-    <div class="sitemap-col" data-sitemap-col="hospitality">
-      <button type="button" class="sitemap-toggle sitemap-col-headrow" aria-expanded="true" aria-controls="sitemap-list-hospitality" aria-label="Toggle Hospitality links">
-        <span class="sitemap-head">Hospitality</span>
-        <svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="sitemap-col-list" id="sitemap-list-hospitality">
-      <a href="/joes-stone-crab">Joe's Stone Crab</a>
-      <a href="/process#nautilus">Nautilus</a>
-      <a href="/process#mootz-tom">Mootz &amp; Tom</a>
-      <a href="/process#great-greek">Great Greek</a>
-      <a href="/process#olio">Olio Italian</a>
-      </div>
-    </div>
     <div class="sitemap-col sitemap-col--studies">
       <span class="sitemap-head">Studies</span>
       <a href="/logos-marks">Logos &amp; Marks</a>
@@ -425,6 +406,11 @@
       <span class="sitemap-studies-spacer" aria-hidden="true"></span>
       <a href="/about" class="sitemap-caps">About</a>
       <a href="/#contact" class="sitemap-caps">Contact</a>
+    </div>
+    <div class="sitemap-more">
+      <span class="sitemap-head">More work</span>
+      <p class="sitemap-more-line">CPG: Dream Clean, Lemon Perfect, Mantra, Solmar, Nice Supps. <a href="/process#packaging-cpg">See all CPG work →</a></p>
+      <p class="sitemap-more-line">Hospitality: Joe's Stone Crab, Nautilus, Mootz &amp; Tom, Great Greek, Olio Italian. <a href="/process#hospitality">See all hospitality work →</a></p>
     </div>
   </div>
 
@@ -458,6 +444,6 @@
     if (!headerTicking){ headerTicking = true; requestAnimationFrame(updateHeader); }
   }, { passive: true });
 </script>
-<script src="site.js?v=footer-scroll1"></script>
+<script src="site.js?v=footer-more1"></script>
 </body>
 </html>
