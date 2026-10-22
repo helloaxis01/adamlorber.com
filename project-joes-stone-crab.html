@@ -127,6 +127,9 @@
   .sitemap-more-line{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.04em; color:var(--ink-dim); line-height:1.35; margin:0; text-transform:none; white-space:nowrap;}
   .sitemap-more-line a{color:var(--ink-dim); text-decoration:none; text-transform:none; letter-spacing:0.04em;}
 
+  .sitemap-more-br{display:none;}
+  .sitemap-more-names--mob{display:none;}
+
 
   
   .case-section{padding-top:88px; padding-bottom:88px;}
@@ -187,6 +190,12 @@
     .sitemap-cluster{display:flex; flex-direction:column; grid-template-columns:none; gap:32px; width:100%;}
     .sitemap-col a{white-space:normal;}
       .sitemap-more-line{white-space:normal;}
+    .sitemap-more{gap:14px;}
+    .sitemap-more-br{display:block;}
+    .sitemap-more-names--desk{display:none;}
+    .sitemap-more-names--mob{display:inline;}
+    .sitemap-more-line a{display:inline-block; margin-top:2px;}
+
     .sitemap-col{min-width:0;}
     .meta-row{grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:1.5rem; row-gap:1.5rem; align-items:start;}
     .section-inner{grid-template-columns:1fr; gap:14px;}
@@ -493,8 +502,11 @@
       </div>
     </div>
     <div class="sitemap-more">
-      <p class="sitemap-more-line">Mantra, Solmar, Nice Supps, Victory Extracts. <a href="/process">See all CPG work →</a></p>
-      <p class="sitemap-more-line">Chick-fil-A, Olio Italian, Mootz &amp; Tom, Nautilus Hotel, Great Greek. <a href="/process#hospitality">See all hospitality work →</a></p>
+      <p class="sitemap-more-line">Mantra, Solmar, Nice Supps, Victory Extracts.<br class="sitemap-more-br"> <a href="/process">See all CPG work →</a></p>
+      <p class="sitemap-more-line">
+        <span class="sitemap-more-names sitemap-more-names--desk">Chick-fil-A, Olio Italian, Mootz &amp; Tom, Nautilus Hotel, Great Greek.</span><span class="sitemap-more-names sitemap-more-names--mob">Chick-fil-A, Olio Italian, Nautilus Hotel.</span><br class="sitemap-more-br">
+        <a href="/process#hospitality">See all hospitality work →</a>
+      </p>
     </div>
   </div>
 
