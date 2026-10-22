@@ -115,36 +115,19 @@
   
 
   .sitemap{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; column-gap:0; row-gap:28px; padding-top:56px; padding-bottom:56px; border-top:1px solid var(--line);}
-  .sitemap-col{display:flex; flex-direction:column; gap:11px;}
+  .sitemap-col{display:flex; flex-direction:column; gap:11px; flex:0 0 auto; min-width:max-content;}
   .sitemap-head{font-family:var(--mono); font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:6px;}
   .sitemap-col a{font-family:var(--mono); font-weight:400; font-size:11px; color:var(--ink-dim); text-transform:uppercase; letter-spacing:0.04em;}
   
   .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
-  .sitemap-cluster{display:flex; flex-wrap:wrap; align-items:flex-start; gap:28px 32px; flex:0 1 auto;}
+  .sitemap-cluster{display:flex; flex-wrap:wrap; align-items:flex-start; gap:28px 56px; flex:0 1 auto;}
   .sitemap-meta{display:flex; flex-direction:column; gap:11px; flex:0 0 auto; margin-left:auto;}
   .sitemap-meta a{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
-  .sitemap-more{flex:1 0 100%; display:flex; flex-direction:column; gap:14px; padding-top:4px;}
+  .sitemap-more{flex:1 0 100%; display:flex; flex-direction:column; gap:11px; padding-top:4px;}
   .sitemap-more .sitemap-head{margin-bottom:0;}
-  .sitemap-more-block{display:flex; flex-direction:column; gap:4px;}
-  .sitemap-more-names{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.04em; color:var(--ink-dim); line-height:1.7; margin:0; text-transform:none; white-space:nowrap;}
-  .sitemap-more-link{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.04em; color:var(--ink-dim); text-decoration:none; text-transform:none; line-height:1.7; display:block; width:fit-content;}
+  .sitemap-more-line{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.04em; color:var(--ink-dim); line-height:1.7; margin:0; text-transform:none; white-space:nowrap;}
+  .sitemap-more-line a{color:var(--ink-dim); text-decoration:none; text-transform:none; letter-spacing:0.04em;}
 
-  .sitemap-col-headrow{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px;}
-  .sitemap-col-headrow .sitemap-head{margin-bottom:0;}
-  .sitemap-col-list{display:flex; flex-direction:column; gap:11px;}
-  .sitemap-toggle{
-    display:none; background:none; border:none; padding:0; margin:0; cursor:pointer;
-    color:var(--ink-dim); border-radius:1px; width:100%; font:inherit; text-align:left;
-  }
-  .sitemap-toggle:hover{color:var(--ink);}
-  .sitemap-toggle:hover .sitemap-head{color:var(--ink);}
-  .sitemap-toggle:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
-  .sitemap-chevron{display:block; transition:transform .2s ease; flex-shrink:0;}
-  .sitemap-col[data-sitemap-col] .sitemap-toggle{
-    display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:6px;
-  }
-  .sitemap-col[data-sitemap-col].is-collapsed .sitemap-col-list{display:none;}
-  .sitemap-col[data-sitemap-col].is-collapsed .sitemap-chevron{transform:rotate(-90deg);}
 
   
   .case-section{padding-top:88px; padding-bottom:88px;}
@@ -167,7 +150,8 @@
     .sitemap{flex-direction:column; align-items:stretch; gap:32px;}
     .sitemap-cluster{flex-direction:column; gap:32px; width:100%;}
     .sitemap-meta{margin-left:0; width:100%;}
-    .sitemap-more-names{white-space:normal;}
+    .sitemap-more-line{white-space:normal;}
+    .sitemap-col{min-width:0;}
     .meta-row{grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:1.5rem; row-gap:1.5rem; align-items:start;}
     .section-inner{grid-template-columns:1fr; gap:14px;}
     .stats{grid-template-columns:1fr;}
@@ -219,7 +203,8 @@
     .sitemap{flex-direction:column; align-items:stretch; gap:32px;}
     .sitemap-cluster{flex-direction:column; gap:32px; width:100%;}
     .sitemap-meta{margin-left:0; width:100%;}
-    .sitemap-more-names{white-space:normal;}
+    .sitemap-more-line{white-space:normal;}
+    .sitemap-col{min-width:0;}
     .meta-row{grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:1.5rem; row-gap:1.5rem; align-items:start;}
     .section-inner{grid-template-columns:1fr; gap:14px;}
     .stats{grid-template-columns:1fr;}
@@ -236,7 +221,7 @@
   /* Chartreuse highlight: black type on mark; pad ~1 space L/R without hover shift */
   .sitemap-col a,
   .sitemap-col a.sitemap-caps,
-  .sitemap-more-link,
+  .sitemap-more-line a,
   .sitemap-meta a,
   .study h3,
   .study span,
@@ -250,7 +235,7 @@
   }
   .sitemap-col a:hover,
   .sitemap-col a.sitemap-caps:hover,
-  .sitemap-more-link:hover,
+  .sitemap-more-line a:hover,
   .sitemap-meta a:hover,
   .study:hover h3,
   .study:hover span,
@@ -264,7 +249,7 @@
   }
   html[data-theme="light"] .sitemap-col a:hover,
   html[data-theme="light"] .sitemap-col a.sitemap-caps:hover,
-  html[data-theme="light"] .sitemap-more-link:hover,
+  html[data-theme="light"] .sitemap-more-line a:hover,
   .sitemap-meta a:hover,
   html[data-theme="light"] .study:hover h3,
   html[data-theme="light"] .study:hover span,
@@ -492,29 +477,19 @@
 
   <div class="wrap sitemap">
     <div class="sitemap-cluster">
-      <div class="sitemap-col" data-sitemap-col="in-house">
-        <button type="button" class="sitemap-toggle sitemap-col-headrow" aria-expanded="true" aria-controls="sitemap-list-in-house" aria-label="Toggle In-House links">
-          <span class="sitemap-head">In-House</span>
-          <svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="sitemap-col-list" id="sitemap-list-in-house">
+      <div class="sitemap-col">
+        <span class="sitemap-head">In-House</span>
         <a href="/television-academy">Television Academy</a>
         <a href="/fount">Fount</a>
         <a href="/amazon">Amazon</a>
         <a href="/inflection">Inflection</a>
-        </div>
       </div>
-      <div class="sitemap-col" data-sitemap-col="client-work">
-        <button type="button" class="sitemap-toggle sitemap-col-headrow" aria-expanded="true" aria-controls="sitemap-list-client-work" aria-label="Toggle Client Work links">
-          <span class="sitemap-head">Client Work</span>
-          <svg class="sitemap-chevron" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="sitemap-col-list" id="sitemap-list-client-work">
+      <div class="sitemap-col">
+        <span class="sitemap-head">Client Work</span>
         <a href="/dream-clean">Dream Clean</a>
         <a href="/lemon-perfect">Lemon Perfect</a>
         <a href="/red-shoes-pictures">Red Shoes Pictures</a>
         <a href="/joes-stone-crab">Joe's Stone Crab</a>
-        </div>
       </div>
       <div class="sitemap-col sitemap-col--studies">
         <span class="sitemap-head">Studies</span>
@@ -528,14 +503,8 @@
     </div>
     <div class="sitemap-more">
       <span class="sitemap-head">More work</span>
-      <div class="sitemap-more-block">
-        <p class="sitemap-more-names">CPG: Mantra, Solmar, Nice Supps, Victory Extracts.</p>
-        <a class="sitemap-more-link" href="/process#packaging-cpg">See all CPG work →</a>
-      </div>
-      <div class="sitemap-more-block">
-        <p class="sitemap-more-names">Hospitality: Olio Italian, Mootz &amp; Tom, Nautilus Hotel, Great Greek.</p>
-        <a class="sitemap-more-link" href="/process#hospitality">See all hospitality work →</a>
-      </div>
+      <p class="sitemap-more-line">Mantra, Solmar, Nice Supps, Victory Extracts. <a href="/process#packaging-cpg">See all CPG work →</a></p>
+      <p class="sitemap-more-line">Olio Italian, Mootz &amp; Tom, Nautilus Hotel, Great Greek. <a href="/process#hospitality">See all hospitality work →</a></p>
     </div>
   </div>
 
@@ -644,6 +613,6 @@
   })();
 </script>
 
-<script src="site.js?v=footer-more1"></script>
+<script src="site.js?v=footer-v3"></script>
 </body>
 </html>
