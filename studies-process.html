@@ -80,6 +80,7 @@
   .p-eyebrow::before{content:''; width:26px; height:1px; background:var(--ink-dim);}
   .p-title{font-family:var(--serif); font-weight:500; font-size:clamp(40px,7.6vw,104px); line-height:0.98;}
   .p-sub{font-family:var(--grotesk); font-weight:400; font-size:clamp(15px,1.6vw,17px); color:var(--ink-dim); max-width:720px; margin-top:22px; line-height:1.6;}
+  .p-sub + .p-sub{margin-top:14px;}
 
   .meta-row{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:24px; margin-top:56px; border-top:1px solid var(--line); padding:24px 0 56px; width:100%; align-items:start;}
   .meta-row div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim); min-width:0;}
@@ -89,8 +90,6 @@
 
   .study-section,
   .process-group{scroll-margin-top:var(--process-anchor-offset, calc(var(--header-offset, 84px) + 72px));}
-  .process-bridge{font-size:14px; line-height:1.6; color:var(--ink-dim); max-width:720px; margin-top:18px;}
-  .process-bridge a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
   .p-sub a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
   .process-subnav{
     position:sticky; top:var(--header-offset, 84px); z-index:90;
@@ -228,7 +227,7 @@
   
   .sitemap-col a.sitemap-caps{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold);}
   .sitemap-studies-spacer{flex:1 1 auto; min-height:1px; pointer-events:none;}
-  .sitemap-cluster{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:clamp(48px,6vw,96px); row-gap:28px; flex:1 1 auto; min-width:0; align-items:start;}
+  .sitemap-cluster{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:clamp(48px,6vw,96px); row-gap:28px; flex:1 1 auto; min-width:0; align-items:stretch;}
   .sitemap-more{flex:1 0 100%; display:flex; flex-direction:column; gap:11px; padding-top:4px;}
   .sitemap-more .sitemap-head{margin-bottom:0;}
   .sitemap-more-line{font-family:var(--mono); font-weight:400; font-size:11px; letter-spacing:0.04em; color:var(--ink-dim); line-height:1.7; margin:0; text-transform:none; white-space:nowrap;}
@@ -470,8 +469,9 @@
   <div class="wrap p-hero">
     <p class="p-eyebrow">Study</p>
     <h1 class="p-title">Freelance &amp; Concepts</h1>
-    <p class="p-sub">Selected freelance and concept work for CPG, food &amp; beverage, wellness, and hospitality brands: packaging, identity, and campaigns, including concept work for new ventures. For new freelance projects: <a href="/#contact">contact</a>.</p>
-    <p class="process-bridge">Looking for my in-house case studies? See <a href="/#work">Selected Work</a>.</p>
+    <p class="p-sub">Selected freelance and concept work for CPG, food &amp; beverage, wellness, and hospitality brands: packaging, identity, and campaigns, including concept work for new ventures.</p>
+    <p class="p-sub">For new freelance projects, <a href="/#contact">contact me</a>.</p>
+    <p class="p-sub">Looking for my in-house case studies? See <a href="/#work">Selected Work</a>.</p>
   </div>
   <nav class="process-subnav" aria-label="Freelance &amp; Concepts sections">
     <div class="process-subnav-inner">
@@ -722,7 +722,6 @@
         <a href="/joes-stone-crab">Joe's Stone Crab</a>
       </div>
       <div class="sitemap-col sitemap-col--studies">
-        <span class="sitemap-head sitemap-head--blank" aria-hidden="true">Studies</span>
         <a href="/logos-marks">Logos &amp; Marks</a>
         <a href="/process">Freelance &amp; Concepts</a>
         <span class="sitemap-studies-spacer" aria-hidden="true"></span>
