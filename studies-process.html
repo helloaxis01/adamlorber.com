@@ -75,12 +75,11 @@
   .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
   .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
 
-  .p-hero{padding-top:150px; padding-bottom:20px;}
-  .p-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); display:flex; align-items:center; gap:12px; margin-bottom:20px;}
+  .p-hero{padding-top:120px; padding-bottom:8px;}
+  .p-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); display:flex; align-items:center; gap:12px; margin-bottom:14px;}
   .p-eyebrow::before{content:''; width:26px; height:1px; background:var(--ink-dim);}
-  .p-title{font-family:var(--serif); font-weight:500; font-size:clamp(40px,7.6vw,104px); line-height:0.98;}
-  .p-sub{font-family:var(--grotesk); font-weight:400; font-size:clamp(15px,1.6vw,17px); color:var(--ink-dim); max-width:720px; margin-top:22px; line-height:1.6;}
-  .p-sub + .p-sub{margin-top:14px;}
+  .p-title{font-family:var(--serif); font-weight:500; font-size:clamp(36px,6.4vw,84px); line-height:0.98;}
+  .p-sub{font-family:var(--grotesk); font-weight:400; font-size:clamp(15px,1.6vw,17px); color:var(--ink-dim); max-width:640px; margin-top:14px; line-height:1.55;}
 
   .meta-row{display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:24px; margin-top:56px; border-top:1px solid var(--line); padding:24px 0 56px; width:100%; align-items:start;}
   .meta-row div{font-family:var(--mono); font-size:10px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-dim); min-width:0;}
@@ -88,15 +87,12 @@
   .meta-row .meta-span-2{grid-column:span 2;}
 
 
-  .study-section,
-  .process-group-label{scroll-margin-top:var(--process-anchor-offset, calc(var(--header-offset, 84px) + 72px));}
   .p-sub a{color:var(--ink); text-decoration:underline; text-underline-offset:3px;}
   .process-subnav{
     position:sticky; top:var(--header-offset, 84px); z-index:90;
     background:color-mix(in srgb, var(--bg) 92%, transparent);
     -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
-    /* Reset global `nav` rules so this sits full-bleed and left-aligns with .wrap */
     max-width:none; width:100%; margin:0; padding:0;
     display:block; justify-content:flex-start; align-items:stretch;
   }
@@ -110,8 +106,12 @@
     color:var(--ink-dim);
   }
   .process-subnav a:hover{color:var(--ink);}
-  .process-group{padding-top:40px;}
-  .process-subnav + .process-group{padding-top:28px;}
+  .process-subnav a.is-active{color:var(--chartreuse);}
+  .process-panels{padding-bottom:24px;}
+  .process-panel{display:none;}
+  .process-panel.is-active{display:block;}
+  .process-group{padding-top:28px;}
+  .process-panel .study-section:first-of-type{padding-top:48px;}
   .process-group-label{
     font-family:var(--mono); font-size:12px; letter-spacing:0.16em; text-transform:uppercase;
     color:var(--chartreuse); margin-bottom:10px;
@@ -240,7 +240,7 @@
   footer.wrap{padding:48px var(--gutter) 36px; font-family:var(--mono); font-size:10px; color:var(--ink-dim); display:flex; justify-content:space-between;}
 
   @media (max-width:900px){
-    .p-hero{padding-top:120px;}
+    .p-hero{padding-top:100px;}
     .meta-row{grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:1.5rem; row-gap:1.5rem; align-items:start;}
     .meta-row .meta-span-2{grid-column:1 / -1;}
     .logo-grid{grid-template-columns:repeat(2,1fr);}
@@ -475,19 +475,20 @@
   <div class="wrap p-hero">
     <p class="p-eyebrow">Study</p>
     <h1 class="p-title">Freelance &amp; Concepts</h1>
-    <p class="p-sub">Selected freelance and concept work for CPG, food &amp; beverage, wellness, and hospitality brands: packaging, identity, and campaigns, including concept work for new ventures.</p>
-    <p class="p-sub">For new freelance projects, <a href="/#contact">contact me</a>. Looking for my in-house case studies? See <a href="/#work">Selected Work</a>.</p>
+    <p class="p-sub">Packaging, identity, and campaigns for CPG and hospitality brands. For new projects, <a href="/#contact">contact me</a>. In-house case studies live under <a href="/#work">Selected Work</a>.</p>
   </div>
-  <nav class="process-subnav" aria-label="Freelance &amp; Concepts sections">
+  <nav class="process-subnav" aria-label="Freelance &amp; Concepts sections" data-process-tabs>
     <div class="process-subnav-inner">
-      <a href="#packaging-cpg">Packaging &amp; CPG</a>
-      <a href="#hospitality">Hospitality</a>
-      <a href="#misc">Misc</a>
+      <a href="#packaging-cpg" data-tab="packaging-cpg" class="is-active">Packaging &amp; CPG</a>
+      <a href="#hospitality" data-tab="hospitality">Hospitality</a>
+      <a href="#misc" data-tab="misc">Misc</a>
     </div>
   </nav>
 
+  <div class="process-panels">
+  <div class="process-panel is-active" id="packaging-cpg" data-panel="packaging-cpg">
   <div class="wrap process-group">
-    <h2 class="process-group-label" id="packaging-cpg">Packaging &amp; CPG</h2>
+    <h2 class="process-group-label">Packaging &amp; CPG</h2>
     <p class="process-group-desc">Packaging systems and label design for CPG, food &amp; beverage, and wellness brands.</p>
   </div>
 <section class="wrap study-section" id="mantra">
@@ -565,8 +566,10 @@
       </div>
     </div>
   </section>
+  </div>
+  <div class="process-panel" id="hospitality" data-panel="hospitality" hidden>
   <div class="wrap process-group">
-    <h2 class="process-group-label" id="hospitality">Hospitality &amp; Restaurants</h2>
+    <h2 class="process-group-label">Hospitality &amp; Restaurants</h2>
     <p class="process-group-desc">Identity and branding for restaurants, hotels, and hospitality brands.</p>
   </div>
 <section class="wrap study-section" id="olio">
@@ -682,8 +685,10 @@
       </div>
     </div>
   </section>
+  </div>
+  <div class="process-panel" id="misc" data-panel="misc" hidden>
   <div class="wrap process-group">
-    <h2 class="process-group-label" id="misc">Misc</h2>
+    <h2 class="process-group-label">Misc</h2>
     <p class="process-group-desc">Additional brand and identity work.</p>
   </div>
 <section class="wrap study-section" id="eric-broad">
@@ -703,6 +708,8 @@
       </div>
     </div>
   </section>
+  </div>
+  </div>
 
   <div class="next">
     <div class="wrap">
@@ -735,7 +742,7 @@
       </div>
     </div>
     <div class="sitemap-more">
-      <p class="sitemap-more-line">Mantra, Solmar, Nice Supps.<br class="sitemap-more-br"> <a href="/process">See all CPG work →</a></p>
+      <p class="sitemap-more-line">Mantra, Solmar, Nice Supps.<br class="sitemap-more-br"> <a href="/process#packaging-cpg">See all CPG work →</a></p>
       <p class="sitemap-more-line">Chick-fil-A, Olio Italian, Nautilus Hotel.<br class="sitemap-more-br"> <a href="/process#hospitality">See all hospitality work →</a></p>
     </div>
   </div>
@@ -896,6 +903,71 @@
     });
   })();
 </script>
-<script src="site.js?v=footer-v4"></script>
+<script>
+(function(){
+  var tabs = document.querySelector('[data-process-tabs]');
+  if (!tabs) return;
+  var links = Array.prototype.slice.call(tabs.querySelectorAll('[data-tab]'));
+  var panels = Array.prototype.slice.call(document.querySelectorAll('.process-panel'));
+  var ids = links.map(function(a){ return a.getAttribute('data-tab'); });
+
+  function show(id, updateHash){
+    if (ids.indexOf(id) === -1) id = 'packaging-cpg';
+    links.forEach(function(a){
+      var on = a.getAttribute('data-tab') === id;
+      a.classList.toggle('is-active', on);
+      a.setAttribute('aria-current', on ? 'true' : 'false');
+    });
+    panels.forEach(function(p){
+      var on = p.getAttribute('data-panel') === id;
+      p.classList.toggle('is-active', on);
+      if (on) p.removeAttribute('hidden');
+      else p.setAttribute('hidden', '');
+    });
+    if (updateHash && history.replaceState) history.replaceState(null, '', '#' + id);
+  }
+
+  // Capture so site.js does not scroll-jump these anchors
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[data-tab]');
+    if (!a || !tabs.contains(a)) {
+      // Footer / external same-page hash links into a tab
+      a = e.target.closest && e.target.closest('a[href]');
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      var hash = '';
+      if (href.charAt(0) === '#') hash = href.slice(1);
+      else {
+        try {
+          var u = new URL(href, location.href);
+          var here = location.pathname.replace(/\/$/, '') || '/';
+          var there = u.pathname.replace(/\/$/, '') || '/';
+          if (u.hash && there === here) hash = u.hash.slice(1);
+        } catch (err) {}
+      }
+      if (ids.indexOf(hash) === -1) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      show(hash, true);
+      var nav = document.querySelector('.process-subnav');
+      if (nav) {
+        var top = nav.getBoundingClientRect().top + window.pageYOffset - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-offset')) || 84);
+        // Only nudge if the subnav is not already sticky near the top
+        if (nav.getBoundingClientRect().top > 120) {
+          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }
+      }
+      return;
+    }
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    show(a.getAttribute('data-tab'), true);
+  }, true);
+
+  var initial = (location.hash || '').replace(/^#/, '');
+  show(ids.indexOf(initial) !== -1 ? initial : 'packaging-cpg', false);
+})();
+</script>
+<script src="site.js?v=footer-v5"></script>
 </body>
 </html>
