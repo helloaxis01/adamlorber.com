@@ -75,7 +75,7 @@
   .menu a{font-family:var(--serif); font-weight:500; font-size:44px;}
   .menu .m-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold);}
 
-  .p-hero{padding-top:120px; padding-bottom:8px;}
+  .p-hero{padding-top:120px; padding-bottom:36px;}
   .p-eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-dim); display:flex; align-items:center; gap:12px; margin-bottom:14px;}
   .p-eyebrow::before{content:''; width:26px; height:1px; background:var(--ink-dim);}
   .p-title{font-family:var(--serif); font-weight:500; font-size:clamp(36px,6.4vw,84px); line-height:0.98;}
@@ -97,21 +97,29 @@
     display:block; justify-content:flex-start; align-items:stretch;
   }
   .process-subnav-inner{
-    max-width:var(--maxw); width:100%; margin:0 auto; padding:12px var(--gutter) 14px;
-    display:flex; flex-wrap:wrap; justify-content:flex-start; gap:18px 28px;
+    max-width:var(--maxw); width:100%; margin:0 auto; padding:16px var(--gutter) 18px;
+    display:flex; flex-wrap:wrap; justify-content:flex-start; gap:10px 12px;
     box-sizing:border-box;
   }
   .process-subnav a{
     font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
     color:var(--ink-dim);
+    border:1px solid var(--line);
+    padding:10px 14px;
+    line-height:1;
+    transition:color .2s ease, border-color .2s ease, background-color .2s ease;
   }
-  .process-subnav a:hover{color:var(--ink);}
-  .process-subnav a.is-active{color:var(--chartreuse);}
-  .process-panels{padding-bottom:24px;}
-  .process-panel{display:none;}
-  .process-panel.is-active{display:block;}
-  .process-group{padding-top:28px;}
-  .process-panel .study-section:first-of-type{padding-top:48px;}
+  .process-subnav a:hover{color:var(--ink); border-color:var(--ink-dim);}
+  .process-subnav a.is-active{
+    color:var(--chartreuse);
+    border-color:var(--chartreuse);
+    background:color-mix(in srgb, var(--chartreuse) 10%, transparent);
+  }
+  .process-panels{padding-top:12px; padding-bottom:24px;}
+  .process-panel{display:none !important;}
+  .process-panel.is-active{display:block !important;}
+  .process-group{padding-top:36px;}
+  .process-panel .study-section:first-of-type{padding-top:56px;}
   .process-group-label{
     font-family:var(--mono); font-size:12px; letter-spacing:0.16em; text-transform:uppercase;
     color:var(--chartreuse); margin-bottom:10px;
@@ -567,7 +575,7 @@
     </div>
   </section>
   </div>
-  <div class="process-panel" id="hospitality" data-panel="hospitality" hidden>
+  <div class="process-panel" id="hospitality" data-panel="hospitality">
   <div class="wrap process-group">
     <h2 class="process-group-label">Hospitality &amp; Restaurants</h2>
     <p class="process-group-desc">Identity and branding for restaurants, hotels, and hospitality brands.</p>
@@ -686,7 +694,7 @@
     </div>
   </section>
   </div>
-  <div class="process-panel" id="misc" data-panel="misc" hidden>
+  <div class="process-panel" id="misc" data-panel="misc">
   <div class="wrap process-group">
     <h2 class="process-group-label">Misc</h2>
     <p class="process-group-desc">Additional brand and identity work.</p>
@@ -911,8 +919,43 @@
   var panels = Array.prototype.slice.call(document.querySelectorAll('.process-panel'));
   var ids = links.map(function(a){ return a.getAttribute('data-tab'); });
 
+  function refreshPanel(panel){
+    if (!panel) return;
+    panel.querySelectorAll('img').forEach(function(img){
+      img.loading = 'eager';
+      var src = img.getAttribute('src');
+      if (src && !img.complete){
+        img.removeAttribute('src');
+        img.setAttribute('src', src);
+      }
+    });
+    function remeasure(){
+      panel.querySelectorAll('.ba-carousel').forEach(function(carousel){
+        var viewport = carousel.querySelector('.carousel-viewport');
+        var track = carousel.querySelector('.carousel-track');
+        var slides = carousel.querySelectorAll('.carousel-slide');
+        if (!viewport || !track || !slides.length) return;
+        var w = Math.round(viewport.getBoundingClientRect().width);
+        if (!w) return;
+        for (var i = 0; i < slides.length; i++){
+          slides[i].style.flex = '0 0 ' + w + 'px';
+          slides[i].style.width = w + 'px';
+          slides[i].style.minWidth = w + 'px';
+          slides[i].style.maxWidth = w + 'px';
+        }
+        track.style.transition = 'none';
+        track.style.transform = 'translate3d(0,0,0)';
+        var counter = carousel.querySelector('.carousel-current');
+        if (counter) counter.textContent = '01';
+      });
+      window.dispatchEvent(new Event('resize'));
+    }
+    requestAnimationFrame(function(){ requestAnimationFrame(remeasure); });
+  }
+
   function show(id, updateHash){
     if (ids.indexOf(id) === -1) id = 'packaging-cpg';
+    var activePanel = null;
     links.forEach(function(a){
       var on = a.getAttribute('data-tab') === id;
       a.classList.toggle('is-active', on);
@@ -921,9 +964,10 @@
     panels.forEach(function(p){
       var on = p.getAttribute('data-panel') === id;
       p.classList.toggle('is-active', on);
-      if (on) p.removeAttribute('hidden');
-      else p.setAttribute('hidden', '');
+      p.removeAttribute('hidden');
+      if (on) activePanel = p;
     });
+    refreshPanel(activePanel);
     if (updateHash && history.replaceState) history.replaceState(null, '', '#' + id);
   }
 
