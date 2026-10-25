@@ -115,6 +115,9 @@
     border-color:var(--chartreuse);
     background:color-mix(in srgb, var(--chartreuse) 10%, transparent);
   }
+  .process-subnav a.process-tab-exit{
+    margin-left:4px;
+  }
   .process-panels{padding-top:12px; padding-bottom:24px;}
   .process-panel{display:none !important;}
   .process-panel.is-active{display:block !important;}
@@ -483,13 +486,14 @@
   <div class="wrap p-hero">
     <p class="p-eyebrow">Study</p>
     <h1 class="p-title">Freelance &amp; Concepts</h1>
-    <p class="p-sub">Packaging, identity, and campaigns for CPG and hospitality brands. For new projects, <a href="/#contact">contact me</a>. In-house case studies live under <a href="/#work">Selected Work</a>.</p>
+    <p class="p-sub">Packaging, identity, and campaigns for CPG and hospitality brands.</p>
   </div>
   <nav class="process-subnav" aria-label="Freelance &amp; Concepts sections" data-process-tabs>
     <div class="process-subnav-inner">
       <a href="#packaging-cpg" data-tab="packaging-cpg" class="is-active">Packaging &amp; CPG</a>
       <a href="#hospitality" data-tab="hospitality">Hospitality</a>
       <a href="#misc" data-tab="misc">Misc</a>
+      <a href="/#work" class="process-tab-exit">In-House</a>
     </div>
   </nav>
 
@@ -992,14 +996,7 @@
       e.preventDefault();
       e.stopImmediatePropagation();
       show(hash, true);
-      var nav = document.querySelector('.process-subnav');
-      if (nav) {
-        var top = nav.getBoundingClientRect().top + window.pageYOffset - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-offset')) || 84);
-        // Only nudge if the subnav is not already sticky near the top
-        if (nav.getBoundingClientRect().top > 120) {
-          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-        }
-      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
     e.preventDefault();
@@ -1008,7 +1005,14 @@
   }, true);
 
   var initial = (location.hash || '').replace(/^#/, '');
-  show(ids.indexOf(initial) !== -1 ? initial : 'packaging-cpg', false);
+  var fromHash = ids.indexOf(initial) !== -1;
+  show(fromHash ? initial : 'packaging-cpg', false);
+  // Footer / deep links: land on the matching tab at the top of the page
+  if (fromHash) {
+    window.scrollTo(0, 0);
+    window.setTimeout(function(){ window.scrollTo(0, 0); }, 0);
+    window.setTimeout(function(){ window.scrollTo(0, 0); }, 50);
+  }
 })();
 </script>
 <script src="site.js?v=footer-v5"></script>
